@@ -1,0 +1,3560 @@
+[
+    {
+        "id": "8c57d52fe6250639",
+        "type": "tab",
+        "label": "dataCenter-10",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f9ed7ce98dfb48f5",
+        "type": "tab",
+        "label": "dataCenter-100",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b60c316ff0a6b6c0",
+        "type": "tab",
+        "label": "scheduler-10",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "efd4a3479ccb4ba6",
+        "type": "tab",
+        "label": "scheduler-100",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b491bf7158494622",
+        "type": "modbus-client",
+        "name": "大负载-10",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "192.168.110.10",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "1a3a610758658ecb",
+        "type": "modbus-client",
+        "name": "大负载-100",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "192.168.110.100",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "f45c8577844ced46",
+        "type": "modbus-client",
+        "name": "虚拟modbus-10",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": "10010",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "ebdc7b3b4236640e",
+        "type": "modbus-client",
+        "name": "虚拟modbus-100",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": "10100",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "2b5ad56c2341e602",
+        "type": "modbus-server",
+        "z": "8c57d52fe6250639",
+        "name": "OP10",
+        "logEnabled": false,
+        "hostname": "0.0.0.0",
+        "serverPort": "10010",
+        "responseDelay": 100,
+        "delayUnit": "ms",
+        "coilsBufferSize": 10000,
+        "holdingBufferSize": 10000,
+        "inputBufferSize": 10000,
+        "discreteBufferSize": 10000,
+        "showErrors": true,
+        "x": 130,
+        "y": 480,
+        "wires": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "1ed90e87ef0ab5ce",
+        "type": "modbus-read",
+        "z": "8c57d52fe6250639",
+        "name": "读取控制器modbus-di控制-前段",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "Input",
+        "adr": "0",
+        "quantity": "100",
+        "rate": "200",
+        "rateUnit": "ms",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "b491bf7158494622",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 210,
+        "y": 120,
+        "wires": [
+            [
+                "1cd97ef4953b89a0",
+                "90f2a6da81217d8d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1cd97ef4953b89a0",
+        "type": "function",
+        "z": "8c57d52fe6250639",
+        "name": "写入到本地内存",
+        "func": "var DI_Names = [\n    \"DI_JiTing\",\n    \"DI_QiDong\",\n    \"DI_TingZhi\",\n    \"DI_ZiDong\",\n    \"DI_ShouDong\",\n    \"DI_L_GunTong_DaoWei\",\n    \"DI_R_GunTong_DaoWei\",\n    \"-\",\n    \"DI_L_ShenJiang_DaoWei\",\n    \"DI_R_ShenJiang_DaoWei\",\n    \"DI_ZhuaPan1_DaKaiDaoWei\",\n    \"DI_ZhuaPan2_GuanBiWei\",\n    \"DI_ZhuaPan1_DaKaiDaoWei\",\n    \"DI_ZhuaPan2_GuanBiWei\",\n    \"DI_HengYi_YouLiao\",\n    \"-\",\n    \"DI_NingJin_ShenDaoWei1\",\n    \"DI_NingJin_SuoDaoWei\",\n    \"DI_HengYi_SongKaiDaoWei\",\n    \"DI_HengYi_JiaJinDaoWei\",\n    \"DI_M5_FenLi1_DaKaiDaoWei\",\n    \"DI_M5_FenLi1_GuanBiDaoWei\",\n    \"DI_M6_FenLi_DaKaiDaoWei\",\n    \"DI_M6_FenLi_GuanBiDaoWei\",\n    \"DI_HengYi_ShangShenDaoWei\",\n    \"DI_HengYi_XiaJiangDaoWei\",\n    \"DI_M5_SongLiao_GuanBiDaoWei\",\n    \"DI_M5_SongLiao_DaKaiDaoWei\",\n    \"-\",\n    \"-\",\n    \"DI_NingJin_ShenDaoWei2\",\n    \"-\",\n    \"DI_DingWei_GuanBiDaoWei1\",\n    \"DI_DingWei_DaKaiDaoWei1\",\n    \"DI_DingWei_GuanBiDaoWei2\",\n    \"DI_DingWei_DaKaiDaoWei2\",\n    \"DI_M6_FenLiao_DaKaiDaoWei\",\n    \"DI_M6_FenLiao_GuanBiDaoWei\",\n    \"DI_ROB_JiaJinDaoWei2\",\n    \"-\",\n    \"DI_DingWei_GuanBiDaoWei3\",\n    \"DI_DingWei_DaKaiDaoWei3\",\n    \"DI_M5_FenLi2_DaKaiDaoWei\",\n    \"DI_M5_FenLi2_GuanBiDaoWei\",\n    \"DI_M5_ZDP_YouLiao\",\n    \"DI_M6_ZDP_DaoKaiDaoWei1\",\n    \"DI_M6_ZDP_GuanBiDaoWei1\",\n    \"DI_M6_ZDP_DaoKaiDaoWei2\",\n    \"DI_M6_ZDP_YouLiao\",\n    \"DI_ROB_DaKaiDaoWei1\",\n    \"DI_ROB_JiaJinDaoWei1\",\n    \"DI_ZDP_ZhengFanJianCe\",\n    \"DI_FuWei\",\n    \"DI_LianJi\",\n    \"DI_DanBuQianJin\",\n    \"DI_DanBuHouTui\",\n    ];\n\nvar IO_10 = global.get(\"IO_10\");\nconst data = msg.payload;\nfor(var i=0;i<DI_Names.length;i++){\n    if(DI_Names[i]!='-'){\n        IO_10.DI[DI_Names[i]] = data[i];\n    }\n}\nglobal.set(\"IO_10\",IO_10);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6438a2b608a115ee",
+        "type": "inject",
+        "z": "8c57d52fe6250639",
+        "name": "OP10数据初始化",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 40,
+        "wires": [
+            [
+                "9c22b32ef6374ba0"
+            ]
+        ]
+    },
+    {
+        "id": "1897a224540a3006",
+        "type": "function",
+        "z": "8c57d52fe6250639",
+        "name": "IO初始化",
+        "func": "var IO_10 = {\n    DO:{},\n    DI:{\n        DI_JiTing:0,\n        DI_QiDong:0,\n        DI_TingZhi:0,\n        DI_ZiDong:0,\n        DI_ShouDong:0,\n        DI_L_GunTong_DaoWei:0,\n        DI_R_GunTong_DaoWei:0,\n        \n        DI_L_ShenJiang_DaoWei:0,\n        DI_R_ShenJiang_DaoWei:0,\n        DI_ZhuaPan1_DaKaiDaoWei:0,\n        DI_ZhuaPan2_GuanBiWei:0,\n        DI_HengYi_YouLiao:0,\n        \n        DI_NingJin_ShenDaoWei1:0,\n        DI_NingJin_SuoDaoWei:0,\n        DI_HengYi_SongKaiDaoWei:0,\n        DI_HengYi_JiaJinDaoWei:0,\n        DI_M5_FenLi1_DaKaiDaoWei:0,\n        DI_M5_FenLi1_GuanBiDaoWei:0,\n        DI_M6_FenLi_DaKaiDaoWei:0,\n        DI_M6_FenLi_GuanBiDaoWei:0,\n        DI_HengYi_ShangShenDaoWei:0,\n        DI_HengYi_XiaJiangDaoWei:0,\n        DI_M5_SongLiao_GuanBiDaoWei:0,\n        DI_M5_SongLiao_DaKaiDaoWei:0,\n        \n        DI_NingJin_ShenDaoWei2:0,\n        \n        DI_DingWei_GuanBiDaoWei1:0,\n        DI_DingWei_DaKaiDaoWei1:0,\n        DI_DingWei_GuanBiDaoWei2:0,\n        DI_DingWei_DaKaiDaoWei2:0,\n        DI_M6_FenLiao_DaKaiDaoWei:0,\n        DI_M6_FenLiao_GuanBiDaoWei:0,\n        DI_ROB_JiaJinDaoWei2:0,\n        \n        DI_DingWei_GuanBiDaoWei3:0,\n        DI_DingWei_DaKaiDaoWei3:0,\n        DI_M5_FenLi2_DaKaiDaoWei:0,\n        DI_M5_FenLi2_GuanBiDaoWei:0,\n        DI_M5_ZDP_YouLiao:0,\n        DI_M6_ZDP_DaoKaiDaoWei1:0,\n        DI_M6_ZDP_GuanBiDaoWei1:0,\n        DI_M6_ZDP_DaoKaiDaoWei2:0,\n        DI_M6_ZDP_YouLiao:0,\n        DI_ROB_DaKaiDaoWei1:0,\n        DI_ROB_JiaJinDaoWei1:0,\n        DI_ZDP_ZhengFanJianCe:0,\n        DI_FuWei:0,\n        DI_LianJi:0,\n        DI_DanBuQianJin:0,\n        DI_DanBuHouTui:0,\n    },\n    AI:{//node-red收到来自控制器的逻辑变量\n        response: 0,//控制器端动作端的完成信号\n        request_vision: 0,\n    },\n    AO:{//node-red要发送下去的逻辑变量\n        request: 0,//下发给控制器的动作号\n        LCS: 0,\n    },    \n    AI_6axes:{\n        response: 0,//6轴机械臂端动作的完成信号\n        error: 0,//6轴机械臂的故障码\n        status: 0,//6轴机械臂状态\n        request_vission:0,\n    },\n\n    AO_6axes:{\n        Vision_X_1: 90,//料盘拍照纠偏得y到的X坐标\n        Vision_Y_1: 90,//料盘拍照纠偏得到的y坐标\n        Vision_QueXian: 0,\n        request:0,\n        M1 : 0,\n        assembled: 0,\n        response_vission: 0,\n        LCS: 0,\n    },\n    AI_LCS:{\n        request: 0,\n    },\n    AO_LCS:{\n        response: 0,\n    },\n    AI_AGV:{\n        request: 0,\n    },\n    AO_AGV:{\n        response: 0,\n    },    \n      \n};\n\nglobal.set(\"IO_10\",IO_10);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 40,
+        "wires": [
+            [
+                "e0fd6c2d76fabf9f"
+            ]
+        ]
+    },
+    {
+        "id": "33511cf9790c1661",
+        "type": "modbus-read",
+        "z": "8c57d52fe6250639",
+        "name": "6轴机械臂modbus-ao-逻辑变量",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "0",
+        "quantity": "100",
+        "rate": "200",
+        "rateUnit": "ms",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "b491bf7158494622",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 210,
+        "y": 220,
+        "wires": [
+            [
+                "77b0106cb3348651"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "77b0106cb3348651",
+        "type": "function",
+        "z": "8c57d52fe6250639",
+        "name": "写入到本地内存",
+        "func": "const data = msg.payload;\nvar IO = global.get(\"IO_90\");\nvar i = 0;\nIO.AI_6axes.response = data[i]; i++;\nIO.AI_6axes.error = data[i]; i++;\nIO.AI_6axes.status = data[i]; i++;\nIO.AI_6axes.request_vission = data[i]; i++;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "90f2a6da81217d8d",
+        "type": "modbus-write",
+        "z": "8c57d52fe6250639",
+        "name": "DI信号同步到虚拟modbus-10",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "MCoils",
+        "adr": "0",
+        "quantity": "100",
+        "server": "f45c8577844ced46",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 520,
+        "y": 140,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c6d9732bbca85682",
+        "type": "inject",
+        "z": "8c57d52fe6250639",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 340,
+        "wires": [
+            [
+                "9a16d87b386f27e5"
+            ]
+        ]
+    },
+    {
+        "id": "9a16d87b386f27e5",
+        "type": "trigger",
+        "z": "8c57d52fe6250639",
+        "name": "",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "val",
+        "op2type": "val",
+        "duration": "250",
+        "extend": "false",
+        "overrideDelay": "false",
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 310,
+        "y": 340,
+        "wires": [
+            [
+                "272db971681b6aaf",
+                "3c2d34047f6139bf"
+            ]
+        ]
+    },
+    {
+        "id": "6cea8a9c9676e2f4",
+        "type": "modbus-write",
+        "z": "8c57d52fe6250639",
+        "name": "写入到6轴",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "MHoldingRegisters",
+        "adr": "0",
+        "quantity": "100",
+        "server": "b491bf7158494622",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 730,
+        "y": 340,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "272db971681b6aaf",
+        "type": "function",
+        "z": "8c57d52fe6250639",
+        "name": "写入到6轴机械臂",
+        "func": "var data = [];\nvar IO = global.get(\"IO_90\");\ndata.push(IO.AO2.controller_6axes);\ndata.push(IO.AO2.tray_vision_x);\ndata.push(IO.AO2.tray_vision_y);\nmsg.payload = data;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 340,
+        "wires": [
+            [
+                "6cea8a9c9676e2f4"
+            ]
+        ]
+    },
+    {
+        "id": "b440bba5e4e9cb92",
+        "type": "modbus-read",
+        "z": "8c57d52fe6250639",
+        "name": "LCS 调度命令读取",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "4090",
+        "quantity": "7",
+        "rate": "200",
+        "rateUnit": "ms",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "f45c8577844ced46",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 170,
+        "y": 280,
+        "wires": [
+            [
+                "5d240a04c4c77d19"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5d240a04c4c77d19",
+        "type": "function",
+        "z": "8c57d52fe6250639",
+        "name": "写入到本地内存",
+        "func": "\nconst data = msg.payload;\nvar IO = global.get(\"IO_10\");\nvar i = 0;\nIO.AI_LCS.request = data[i]; i++;\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3c2d34047f6139bf",
+        "type": "function",
+        "z": "8c57d52fe6250639",
+        "name": "发送给LCS呼叫AGV",
+        "func": "var data = [];\nvar IO = global.get(\"IO_90\");\ndata.push(IO.AO_LCS.Pos_In);\ndata.push(IO.AO_LCS.Pos_Out);\n\nmsg.payload = data;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 400,
+        "wires": [
+            [
+                "b5be94f7376aad73"
+            ]
+        ]
+    },
+    {
+        "id": "b5be94f7376aad73",
+        "type": "modbus-write",
+        "z": "8c57d52fe6250639",
+        "name": "写入到虚拟modbus",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "MHoldingRegisters",
+        "adr": "0",
+        "quantity": "100",
+        "server": "f45c8577844ced46",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 750,
+        "y": 400,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e0fd6c2d76fabf9f",
+        "type": "function",
+        "z": "8c57d52fe6250639",
+        "name": "物料-视觉-工单 初始化",
+        "func": "\nvar Vision_10 = {\n    sessin: \"\",\n    v1:{//阀体上料后拍照\n        request: \"\",\n        response: \"\",\n        x:0,\n        result: 0,\n    },\n};\nvar ErrorMap_10 = [\n    \"视觉通信故障\",\n    \"螺丝刀通信故障\",\n    \"伺服1故障\",\n    \"伺服2故障\",\n    \"伺服3故障\",\n    \"伺服4故障\",   \n    \"伺服5故障\",\n    \"伺服6故障\",\n    \"伺服7故障\",\n    ];\n    \nglobal.set(\"StationTask_10\",{\n    BillCode: \"-\",\n    ProductCode: \"-\",\n    ProductName:\"-\",\n    ProcessDetail: [{\n        ProcessCode: \"OP10\",\n        ProcessName: \"-\",\n        EquipmentCode: \"OP10\",\n        ProgramNumer: 1,\n        Num: 0,\n        MaterialDetails: [\n        ]\n    }]\n});\n\nglobal.set(\"Vision_10\",Vision_10);\nglobal.set(\"ErrorMap_10\", ErrorMap_10);\nvar t = (new Date()).toISOString();\nglobal.set(\"StartTime_10\", t);\nglobal.set(\"EndTime_10\", t);\nglobal.set(\"RequestID_10\", \"-\");\nglobal.set(\"LCS\",\"http://192.168.130.245:30009/openApiUbiquitous/\");\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c22b32ef6374ba0",
+        "type": "function",
+        "z": "8c57d52fe6250639",
+        "name": "定义变量名",
+        "func": "global.set(\"n1\",{\n \n    \n    \n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 40,
+        "wires": [
+            [
+                "1897a224540a3006"
+            ]
+        ]
+    },
+    {
+        "id": "9ab459d877bebb3a",
+        "type": "http in",
+        "z": "8c57d52fe6250639",
+        "name": "",
+        "url": "/10/data",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 580,
+        "wires": [
+            [
+                "b0e241d043d4d797"
+            ]
+        ]
+    },
+    {
+        "id": "62db20fb3815ac1e",
+        "type": "http response",
+        "z": "8c57d52fe6250639",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "b0e241d043d4d797",
+        "type": "function",
+        "z": "8c57d52fe6250639",
+        "name": "function 29",
+        "func": "const p = msg.payload.key;\nvar arr = p.split(\".\");\nconst obj = global.get(arr[0]);\neval(\"var \"+arr[0]+\" = obj;\");\nconsole.debug(1);\neval(\"msg.payload = \"+p+\";\");\nconsole.debug(2);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 580,
+        "wires": [
+            [
+                "62db20fb3815ac1e"
+            ]
+        ]
+    },
+    {
+        "id": "d5f41080ab999c6a",
+        "type": "lower-case",
+        "z": "8c57d52fe6250639",
+        "name": "",
+        "x": 530,
+        "y": 680,
+        "wires": [
+            [
+                "32b020d27c3d2e40"
+            ]
+        ]
+    },
+    {
+        "id": "52498b8679c478cd",
+        "type": "inject",
+        "z": "8c57d52fe6250639",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ADFASDFADSF",
+        "payloadType": "str",
+        "x": 320,
+        "y": 680,
+        "wires": [
+            [
+                "d5f41080ab999c6a"
+            ]
+        ]
+    },
+    {
+        "id": "32b020d27c3d2e40",
+        "type": "debug",
+        "z": "8c57d52fe6250639",
+        "name": "debug 34",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "bc045cf5971608f9",
+        "type": "inject",
+        "z": "8c57d52fe6250639",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 880,
+        "wires": [
+            [
+                "6ed5555394507848"
+            ]
+        ]
+    },
+    {
+        "id": "6ed5555394507848",
+        "type": "function",
+        "z": "8c57d52fe6250639",
+        "name": "function 35",
+        "func": "node.status({fill:\"red\",shape:\"ring\",text:\"disconnected\"});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3dba3e8d93abf91f",
+        "type": "modbus-server",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "OP100",
+        "logEnabled": false,
+        "hostname": "0.0.0.0",
+        "serverPort": "10100",
+        "responseDelay": 100,
+        "delayUnit": "ms",
+        "coilsBufferSize": 10000,
+        "holdingBufferSize": 10000,
+        "inputBufferSize": 10000,
+        "discreteBufferSize": 10000,
+        "showErrors": true,
+        "x": 140,
+        "y": 620,
+        "wires": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "ae2ec5083c579d8e",
+        "type": "modbus-read",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "读取控制器modbus-di控制-后段",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "Input",
+        "adr": "0",
+        "quantity": "100",
+        "rate": "200",
+        "rateUnit": "ms",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "1a3a610758658ecb",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 210,
+        "y": 220,
+        "wires": [
+            [
+                "7f573a2b4067baa6",
+                "05f3f7d57a0dc813"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7f573a2b4067baa6",
+        "type": "function",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "写入到本地内存",
+        "func": "var DI_Names = [\n    \"DI_JiTing\",\n    \"DI_QiDong\",\n    \"DI_TingZhi\",\n    \"DI_ZiDong\",\n    \"DI_ShouDong\",\n    \"DI_L_GunTong_DaoWei\",\n    \"DI_R_GunTong_DaoWei\",\n    \"-\",\n    \"DI_L_ShenJiang_DaoWei\",\n    \"DI_R_ShenJiang_DaoWei\",\n    \"DI_ZhuaPan1_DaKaiDaoWei\",\n    \"DI_ZhuaPan2_GuanBiWei\",\n    \"DI_ZhuaPan1_DaKaiDaoWei\",\n    \"DI_ZhuaPan2_GuanBiWei\",\n    \"DI_HengYi_YouLiao\",\n    \"-\",\n    \"DI_NingJin_ShenDaoWei1\",\n    \"DI_NingJin_SuoDaoWei\",\n    \"DI_HengYi_SongKaiDaoWei\",\n    \"DI_HengYi_JiaJinDaoWei\",\n    \"DI_M5_FenLi1_DaKaiDaoWei\",\n    \"DI_M5_FenLi1_GuanBiDaoWei\",\n    \"DI_M6_FenLi_DaKaiDaoWei\",\n    \"DI_M6_FenLi_GuanBiDaoWei\",\n    \"DI_HengYi_ShangShenDaoWei\",\n    \"DI_HengYi_XiaJiangDaoWei\",\n    \"DI_M5_SongLiao_GuanBiDaoWei\",\n    \"DI_M5_SongLiao_DaKaiDaoWei\",\n    \"-\",\n    \"-\",\n    \"DI_NingJin_ShenDaoWei2\",\n    \"-\",\n    \"DI_DingWei_GuanBiDaoWei1\",\n    \"DI_DingWei_DaKaiDaoWei1\",\n    \"DI_DingWei_GuanBiDaoWei2\",\n    \"DI_DingWei_DaKaiDaoWei2\",\n    \"DI_M6_FenLiao_DaKaiDaoWei\",\n    \"DI_M6_FenLiao_GuanBiDaoWei\",\n    \"DI_ROB_JiaJinDaoWei2\",\n    \"-\",\n    \"DI_DingWei_GuanBiDaoWei3\",\n    \"DI_DingWei_DaKaiDaoWei3\",\n    \"DI_M5_FenLi2_DaKaiDaoWei\",\n    \"DI_M5_FenLi2_GuanBiDaoWei\",\n    \"DI_M5_ZDP_YouLiao\",\n    \"DI_M6_ZDP_DaoKaiDaoWei1\",\n    \"DI_M6_ZDP_GuanBiDaoWei1\",\n    \"DI_M6_ZDP_DaoKaiDaoWei2\",\n    \"DI_M6_ZDP_YouLiao\",\n    \"DI_ROB_DaKaiDaoWei1\",\n    \"DI_ROB_JiaJinDaoWei1\",\n    \"DI_ZDP_ZhengFanJianCe\",\n    \"DI_FuWei\",\n    \"DI_LianJi\",\n    \"DI_DanBuQianJin\",\n    \"DI_DanBuHouTui\",\n    ];\n\nvar IO_10 = global.get(\"IO_10\");\nconst data = msg.payload;\nfor(var i=0;i<DI_Names.length;i++){\n    if(DI_Names[i]!='-'){\n        IO_10.DI[DI_Names[i]] = data[i];\n    }\n}\nglobal.set(\"IO_10\",IO_10);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5510cac9c6e89b5c",
+        "type": "inject",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "OP100数据初始化",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 40,
+        "wires": [
+            [
+                "1ea186152dc1a1ba"
+            ]
+        ]
+    },
+    {
+        "id": "d173ea419e8a649d",
+        "type": "function",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "IO初始化",
+        "func": "var IO_100 = {\n    DO:{},\n    DI:{\n        DI_JiTing:0,\n        DI_QiDong:0,\n        DI_TingZhi:0,\n        DI_ZiDong:0,\n        DI_ShouDong:0,\n        DI_L_GunTong_DaoWei:0,\n        DI_R_GunTong_DaoWei:0,\n        \n        DI_L_ShenJiang_DaoWei:0,\n        DI_R_ShenJiang_DaoWei:0,\n        DI_ZhuaPan1_DaKaiDaoWei:0,\n        DI_ZhuaPan2_GuanBiWei:0,\n        DI_HengYi_YouLiao:0,\n        \n        DI_NingJin_ShenDaoWei1:0,\n        DI_NingJin_SuoDaoWei:0,\n        DI_HengYi_SongKaiDaoWei:0,\n        DI_HengYi_JiaJinDaoWei:0,\n        DI_M5_FenLi1_DaKaiDaoWei:0,\n        DI_M5_FenLi1_GuanBiDaoWei:0,\n        DI_M6_FenLi_DaKaiDaoWei:0,\n        DI_M6_FenLi_GuanBiDaoWei:0,\n        DI_HengYi_ShangShenDaoWei:0,\n        DI_HengYi_XiaJiangDaoWei:0,\n        DI_M5_SongLiao_GuanBiDaoWei:0,\n        DI_M5_SongLiao_DaKaiDaoWei:0,\n        \n        DI_NingJin_ShenDaoWei2:0,\n        \n        DI_DingWei_GuanBiDaoWei1:0,\n        DI_DingWei_DaKaiDaoWei1:0,\n        DI_DingWei_GuanBiDaoWei2:0,\n        DI_DingWei_DaKaiDaoWei2:0,\n        DI_M6_FenLiao_DaKaiDaoWei:0,\n        DI_M6_FenLiao_GuanBiDaoWei:0,\n        DI_ROB_JiaJinDaoWei2:0,\n        \n        DI_DingWei_GuanBiDaoWei3:0,\n        DI_DingWei_DaKaiDaoWei3:0,\n        DI_M5_FenLi2_DaKaiDaoWei:0,\n        DI_M5_FenLi2_GuanBiDaoWei:0,\n        DI_M5_ZDP_YouLiao:0,\n        DI_M6_ZDP_DaoKaiDaoWei1:0,\n        DI_M6_ZDP_GuanBiDaoWei1:0,\n        DI_M6_ZDP_DaoKaiDaoWei2:0,\n        DI_M6_ZDP_YouLiao:0,\n        DI_ROB_DaKaiDaoWei1:0,\n        DI_ROB_JiaJinDaoWei1:0,\n        DI_ZDP_ZhengFanJianCe:0,\n        DI_FuWei:0,\n        DI_LianJi:0,\n        DI_DanBuQianJin:0,\n        DI_DanBuHouTui:0,\n    },\n    AI:{//node-red收到来自控制器的逻辑变量\n        response: 0,//控制器端动作端的完成信号\n        error: 0,//控制器端的故障码\n        status: 0,//控制器端的状态\n        screw_reset : 0,\n        screw_run : 0,\n        screw_clockwise : 0,\n        screw_pause : 0,     \n        screw_mode : 0, \n        request_vision: 0,\n    },\n    AO:{//node-red要发送下去的逻辑变量\n        request: 0,//下发给控制器的动作号\n        tray_in_count: 6,//AGV进口区的托盘号\n        tray_out_count: 6,//AGV出口区的托盘号y\n        tray_count: 30,//当前料盘上的先导阀数量\n        truss_vision_x: 90,//3轴桁架拍照纠偏的X坐标\n        assembled: 0,\n        screw_status: 0,\n        material_status: 0,\n        work_object: 0, //产品类型\n        response_vision: 0,\n        LCS: 0,\n    },    \n    AI_6axes:{\n        response: 0,//6轴机械臂端动作的完成信号\n        error: 0,//6轴机械臂的故障码\n        status: 0,//6轴机械臂状态\n        request_vission:0,\n    },\n\n    AO_6axes:{\n        Vision_X_1: 90,//料盘拍照纠偏得y到的X坐标\n        Vision_Y_1: 90,//料盘拍照纠偏得到的y坐标\n        Vision_QueXian: 0,\n        request:0,\n        M1 : 0,\n        assembled: 0,\n        response_vission: 0,\n        LCS: 0,\n    },\n    AI_LCS:{\n        request: 0,\n    },\n    AO_LCS:{\n        response: 0,\n    },\n    AI_AGV:{\n        request: 0,\n    },\n    AO_AGV:{\n        response: 0,\n    },    \n      \n};\n\nglobal.set(\"IO_100\",IO_100);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 40,
+        "wires": [
+            [
+                "604d8873ecf1a876"
+            ]
+        ]
+    },
+    {
+        "id": "ec1227fef549c0f8",
+        "type": "modbus-read",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "6轴机械臂modbus-ao-逻辑变量",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "0",
+        "quantity": "100",
+        "rate": "200",
+        "rateUnit": "ms",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "1a3a610758658ecb",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 210,
+        "y": 360,
+        "wires": [
+            [
+                "4633ab44f4e2cfef"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4633ab44f4e2cfef",
+        "type": "function",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "写入到本地内存",
+        "func": "const data = msg.payload;\nvar IO = global.get(\"IO_90\");\nvar i = 0;\nIO.AI_6axes.response = data[i]; i++;\nIO.AI_6axes.error = data[i]; i++;\nIO.AI_6axes.status = data[i]; i++;\nIO.AI_6axes.request_vission = data[i]; i++;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "05f3f7d57a0dc813",
+        "type": "modbus-write",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "DI信号同步到虚拟modbus-10",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "MCoils",
+        "adr": "0",
+        "quantity": "100",
+        "server": "ebdc7b3b4236640e",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 520,
+        "y": 240,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "581258e7ec76ca3f",
+        "type": "inject",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 480,
+        "wires": [
+            [
+                "992229330d7f0aa0"
+            ]
+        ]
+    },
+    {
+        "id": "992229330d7f0aa0",
+        "type": "trigger",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "val",
+        "op2type": "val",
+        "duration": "250",
+        "extend": "false",
+        "overrideDelay": "false",
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 310,
+        "y": 480,
+        "wires": [
+            [
+                "3f5bb7c3b3a49d19",
+                "05ac1629b6a0b772"
+            ]
+        ]
+    },
+    {
+        "id": "db2fd7353bc50f2b",
+        "type": "modbus-write",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "写入到6轴",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "MHoldingRegisters",
+        "adr": "0",
+        "quantity": "100",
+        "server": "1a3a610758658ecb",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 730,
+        "y": 540,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "3f5bb7c3b3a49d19",
+        "type": "function",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "写入到6轴机械臂",
+        "func": "var data = [];\nvar IO = global.get(\"IO_90\");\ndata.push(IO.AO2.controller_6axes);\ndata.push(IO.AO2.tray_vision_x);\ndata.push(IO.AO2.tray_vision_y);\nmsg.payload = data;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 540,
+        "wires": [
+            [
+                "db2fd7353bc50f2b"
+            ]
+        ]
+    },
+    {
+        "id": "357e91fad310949b",
+        "type": "modbus-read",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "LCS 调度命令读取",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "4090",
+        "quantity": "7",
+        "rate": "200",
+        "rateUnit": "ms",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "ebdc7b3b4236640e",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 170,
+        "y": 420,
+        "wires": [
+            [
+                "0b44f277f7555902"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "0b44f277f7555902",
+        "type": "function",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "写入到本地内存",
+        "func": "\nconst data = msg.payload;\nvar IO = global.get(\"IO_100\");\nvar i = 0;\nIO.AI_LCS.request = data[i]; i++;\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "05ac1629b6a0b772",
+        "type": "function",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "发送给LCS呼叫AGV",
+        "func": "var data = [];\nvar IO = global.get(\"IO_90\");\ndata.push(IO.AO_LCS.Pos_In);\ndata.push(IO.AO_LCS.Pos_Out);\n\nmsg.payload = data;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 600,
+        "wires": [
+            [
+                "a065307aaef40619"
+            ]
+        ]
+    },
+    {
+        "id": "a065307aaef40619",
+        "type": "modbus-write",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "写入到虚拟modbus",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "MHoldingRegisters",
+        "adr": "0",
+        "quantity": "100",
+        "server": "ebdc7b3b4236640e",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 750,
+        "y": 600,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "604d8873ecf1a876",
+        "type": "function",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "物料-视觉-工单 初始化",
+        "func": "\nvar Vision_100 = {\n    sessin: \"\",\n    v1: {//第一层料盘上的物料,总计20个坐标,由视觉计算反馈\n        request: \"\",\n        response: \"\",\n        positions: [ [0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0] ],\n        result: 0,\n        step: 0,\n    },\n};\nvar ErrorMap_100 = [\n    \"视觉通信故障\",\n    \"螺丝刀通信故障\",\n    \"伺服1故障\",\n    \"伺服2故障\",\n    \"伺服3故障\",\n    \"伺服4故障\",   \n    \"伺服5故障\",\n    \"伺服6故障\",\n    \"伺服7故障\",\n    ];\n    \nglobal.set(\"StationTask_100\",{\n    BillCode: \"-\",\n    ProductCode: \"-\",\n    ProductName:\"-\",\n    ProcessDetail: [{\n        ProcessCode: \"OP100\",\n        ProcessName: \"-\",\n        EquipmentCode: \"OP100\",\n        ProgramNumer: 1,\n        Num: 0,\n        MaterialDetails: [\n           \n      \n        ]\n    }]\n});\n\nglobal.set(\"Vision_100\",Vision_100);\nglobal.set(\"ErrorMap_100\", ErrorMap_100);\nvar t = (new Date()).toISOString();\nglobal.set(\"StartTime_100\", t);\nglobal.set(\"EndTime_100\", t);\nglobal.set(\"RequestID_100\", \"-\");\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1ea186152dc1a1ba",
+        "type": "function",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "定义变量名",
+        "func": "global.set(\"n10\",{\n \n    \n    \n});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 40,
+        "wires": [
+            [
+                "d173ea419e8a649d"
+            ]
+        ]
+    },
+    {
+        "id": "def7b74dd73c77b9",
+        "type": "http in",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "",
+        "url": "/100/data",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 150,
+        "y": 860,
+        "wires": [
+            [
+                "9bc3906f868c0782"
+            ]
+        ]
+    },
+    {
+        "id": "1e57f8f96e834f72",
+        "type": "http response",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "9bc3906f868c0782",
+        "type": "function",
+        "z": "f9ed7ce98dfb48f5",
+        "name": "function 30",
+        "func": "const p = msg.payload.key;\nvar arr = p.split(\".\");\nconst obj = global.get(arr[0]);\neval(\"var \"+arr[0]+\" = obj;\");\nconsole.debug(1);\neval(\"msg.payload = \"+p+\";\");\nconsole.debug(2);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 860,
+        "wires": [
+            [
+                "1e57f8f96e834f72"
+            ]
+        ]
+    },
+    {
+        "id": "5b4e21d2e264a3b8",
+        "type": "inject",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 640,
+        "wires": [
+            [
+                "3a2763e16069b1ca"
+            ]
+        ]
+    },
+    {
+        "id": "3a2763e16069b1ca",
+        "type": "trigger",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "-250",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 310,
+        "y": 640,
+        "wires": [
+            [
+                "b432f21ea8a0c076",
+                "6e1662cb6cf9703d"
+            ]
+        ]
+    },
+    {
+        "id": "7bd5064aa60abc6c",
+        "type": "http in",
+        "z": "b60c316ff0a6b6c0",
+        "name": "通用读多个接口",
+        "url": "/10/ReadValue",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 480,
+        "wires": [
+            [
+                "abf419e4087513ea",
+                "46cf809cb9daa3a5"
+            ]
+        ]
+    },
+    {
+        "id": "23ed647795da08ac",
+        "type": "modbus-flex-getter",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "server": "f45c8577844ced46",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 830,
+        "y": 480,
+        "wires": [
+            [
+                "4356d9605954ea3e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "abf419e4087513ea",
+        "type": "change",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ReadValue_10",
+                "pt": "global",
+                "to": "[]",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 480,
+        "wires": [
+            [
+                "6d2816ce6f58614a"
+            ]
+        ]
+    },
+    {
+        "id": "6d2816ce6f58614a",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "modbus 报文拆分",
+        "func": "var arr = msg.payload;\nfor(var i=0;i<arr.length;i++){\n    var t = arr[i];\n    node.send({payload:{fc:3, address: parseInt(t.Address), quantity:1},temp:parseInt(t.Address)});\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 480,
+        "wires": [
+            [
+                "23ed647795da08ac"
+            ]
+        ]
+    },
+    {
+        "id": "4356d9605954ea3e",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "函数 4",
+        "func": "var arr = global.get(\"ReadValue_10\");\narr.push({\n    Address: msg.modbusRequest.address,\n    Value: msg.payload[0],\n    ValueType: \"int\"\n});\nglobal.set(\"ReadValue_10\",arr);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bf64874f8de1d1f2",
+        "type": "change",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.Code",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "payload.Msg",
+                "pt": "msg",
+                "to": "操作成功",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.Data",
+                "pt": "msg",
+                "to": "ReadValue_10",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 660,
+        "y": 520,
+        "wires": [
+            [
+                "8c67c6b28b652f9f"
+            ]
+        ]
+    },
+    {
+        "id": "8c67c6b28b652f9f",
+        "type": "http response",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 810,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "46cf809cb9daa3a5",
+        "type": "delay",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 300,
+        "y": 520,
+        "wires": [
+            [
+                "e55f366c9e5b8dd4"
+            ]
+        ]
+    },
+    {
+        "id": "a7fe531c9b8b9c41",
+        "type": "rbe",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": false,
+        "property": "payload",
+        "topi": "topic",
+        "x": 370,
+        "y": 720,
+        "wires": [
+            [
+                "1796bf9ffd5535ad"
+            ]
+        ]
+    },
+    {
+        "id": "b432f21ea8a0c076",
+        "type": "change",
+        "z": "b60c316ff0a6b6c0",
+        "name": "状态变化监听",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "IO_10.AI.status",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 720,
+        "wires": [
+            [
+                "a7fe531c9b8b9c41"
+            ]
+        ]
+    },
+    {
+        "id": "1796bf9ffd5535ad",
+        "type": "switch",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "5",
+                "vt": "num"
+            },
+            {
+                "t": "btwn",
+                "v": "40",
+                "vt": "num",
+                "v2": "49",
+                "v2t": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 490,
+        "y": 720,
+        "wires": [
+            [
+                "de27a252b48ff1b5"
+            ],
+            [
+                "d63158632bc80206"
+            ]
+        ]
+    },
+    {
+        "id": "44d4e7db3305d62e",
+        "type": "http request",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1060,
+        "y": 720,
+        "wires": [
+            [
+                "b62ca316eb13ad1a"
+            ]
+        ]
+    },
+    {
+        "id": "c776a0aa2699059e",
+        "type": "rbe",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": false,
+        "property": "payload",
+        "topi": "topic",
+        "x": 370,
+        "y": 800,
+        "wires": [
+            [
+                "b53c94fcf893ec7d"
+            ]
+        ]
+    },
+    {
+        "id": "6e1662cb6cf9703d",
+        "type": "change",
+        "z": "b60c316ff0a6b6c0",
+        "name": "故障信号监听",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "IO_10.AI.error",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 800,
+        "wires": [
+            [
+                "c776a0aa2699059e"
+            ]
+        ]
+    },
+    {
+        "id": "b53c94fcf893ec7d",
+        "type": "switch",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 490,
+        "y": 800,
+        "wires": [
+            [
+                "c494ac7f58b40cf2"
+            ]
+        ]
+    },
+    {
+        "id": "f25ba9e302a386fd",
+        "type": "http request",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Accept",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 860,
+        "y": 800,
+        "wires": [
+            [
+                "f4e4deeed0f9c88a"
+            ]
+        ]
+    },
+    {
+        "id": "e55f366c9e5b8dd4",
+        "type": "change",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 520,
+        "wires": [
+            [
+                "bf64874f8de1d1f2"
+            ]
+        ]
+    },
+    {
+        "id": "b62ca316eb13ad1a",
+        "type": "debug",
+        "z": "b60c316ff0a6b6c0",
+        "name": "调试 16",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "f4e4deeed0f9c88a",
+        "type": "debug",
+        "z": "b60c316ff0a6b6c0",
+        "name": "调试 17",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "ede19c1dd1a48804",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "function 31",
+        "func": "msg.payload = {\n \t\"requestID\": global.get(\"RequestID_10\"),\n\t\"startTime\": global.get(\"StartTime_10\"),\n\t\"endTime\": global.get(\"EndTime_10\")\n};\n\nmsg.url = global.get(\"LCS\")+\"actionCompletedSignal\";\n//msg.method = \"POST\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 860,
+        "y": 720,
+        "wires": [
+            [
+                "44d4e7db3305d62e"
+            ]
+        ]
+    },
+    {
+        "id": "c494ac7f58b40cf2",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "function 32",
+        "func": "var ErrorMap_10 = global.get(\"ErrorMap_10\");\nmsg.payload ={\t\t\t\t\n\tEquipmentCode: \"OP10\",\t\t\t\n\tEquipmentName: \"上料泛在控制器\",\t\t\t\n\tStatus: 0,\n    WarnContent: ErrorMap_10[msg.payload]\t\t\n};\nmsg.url = global.get(\"LCS\")+\"receiveUbiquitousWarn\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 800,
+        "wires": [
+            [
+                "f25ba9e302a386fd"
+            ]
+        ]
+    },
+    {
+        "id": "d63158632bc80206",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "开始生产",
+        "func": "\nvar t = (new Date()).toISOString();\nglobal.set(\"StartTime_10\", t);\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de27a252b48ff1b5",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "生产完成",
+        "func": "\nvar t = (new Date()).toISOString();\nglobal.set(\"EndTime_10\", t);\nglobal.set(\"RequestID_10\", \"-\");\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 680,
+        "wires": [
+            [
+                "ede19c1dd1a48804"
+            ]
+        ]
+    },
+    {
+        "id": "fbf2750d95e5d960",
+        "type": "inject",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 490,
+        "y": 680,
+        "wires": [
+            [
+                "de27a252b48ff1b5"
+            ]
+        ]
+    },
+    {
+        "id": "fb27549faaf4df38",
+        "type": "http response",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1090,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "4a2521e0cea6f181",
+        "type": "http in",
+        "z": "b60c316ff0a6b6c0",
+        "name": "工位任务接收",
+        "url": "/10/ReceiveStationTask",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "249c701a144c7661"
+            ]
+        ]
+    },
+    {
+        "id": "6a4c6646110d08c5",
+        "type": "http in",
+        "z": "b60c316ff0a6b6c0",
+        "name": "泛在通用写多个接口",
+        "url": "/10/WriteValue",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 440,
+        "wires": [
+            [
+                "728d158acf67d988"
+            ]
+        ]
+    },
+    {
+        "id": "728d158acf67d988",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "modbus 报文拆分",
+        "func": "var arr = msg.payload;\nfor(var i=0;i<arr.length;i++){\n    var t = arr[i];\n    msg.payload = { value: parseInt(t.Value), 'fc': 6, 'unitid': 1, 'address': parseInt(t.Address), 'quantity': 1 } \n    node.send(msg);\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 440,
+        "wires": [
+            [
+                "f6cce74e561807da"
+            ]
+        ]
+    },
+    {
+        "id": "f6cce74e561807da",
+        "type": "modbus-flex-write",
+        "z": "b60c316ff0a6b6c0",
+        "name": "批量修改modbus值",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "server": "f45c8577844ced46",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 830,
+        "y": 440,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "4b08f8c03e37af75",
+        "type": "change",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "StationTask_10",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 240,
+        "wires": [
+            [
+                "5422fe3beb921c6c"
+            ]
+        ]
+    },
+    {
+        "id": "5422fe3beb921c6c",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "反馈",
+        "func": "msg.payload = {\n    Code: 0,\n    Msg:\"操作成功\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 240,
+        "wires": [
+            [
+                "fb27549faaf4df38"
+            ]
+        ]
+    },
+    {
+        "id": "5f2d50fe11da5433",
+        "type": "http in",
+        "z": "b60c316ff0a6b6c0",
+        "name": "ReceiveEndSignal",
+        "url": "/10/ReceiveEndSignal",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "aa38984a734707e1"
+            ]
+        ]
+    },
+    {
+        "id": "13f19cbb678fecfc",
+        "type": "http response",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "a87a85b7794a1a6e",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "反馈",
+        "func": "msg.payload = {\n    Code: 0,\n    Msg: \"操作成功\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 120,
+        "wires": [
+            [
+                "13f19cbb678fecfc"
+            ]
+        ]
+    },
+    {
+        "id": "aa38984a734707e1",
+        "type": "switch",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "property": "payload.BillCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "StationTask_90.BillCode",
+                "vt": "global"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 370,
+        "y": 120,
+        "wires": [
+            [
+                "410e90894f9b82f8",
+                "a87a85b7794a1a6e",
+                "168aa29d0a82a483"
+            ],
+            [
+                "649e5fadeb818fa6"
+            ]
+        ]
+    },
+    {
+        "id": "410e90894f9b82f8",
+        "type": "change",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "IO_10.AO.production",
+                "pt": "global",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 700,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "649e5fadeb818fa6",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "反馈",
+        "func": "msg.payload = {\n    Code: 1,\n    Msg: \"操作失败,当前设备执行的工单和下发的结束工单不一致\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 160,
+        "wires": [
+            [
+                "13f19cbb678fecfc"
+            ]
+        ]
+    },
+    {
+        "id": "1d0ee5f6d13974f7",
+        "type": "http response",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 770,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "b24efc27b16de1e8",
+        "type": "http in",
+        "z": "b60c316ff0a6b6c0",
+        "name": "工位状态-轮询",
+        "url": "/10/GetStationState",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "a02d16b74ebe1b1d",
+                "737dbe855f4c2330"
+            ]
+        ]
+    },
+    {
+        "id": "a02d16b74ebe1b1d",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "反馈",
+        "func": "const IO_10 = global.get(\"IO_10\");\nmsg.payload = {\n\t\"Code\": 0,\n\t\"Msg\": \"操作成功\",\n\t\"Data\": [{\n\t\t\"StationCode\": \"OP10\",\n\t\t\"StationName\": \"阀体上料调度\",\n\t\t\"Status\": IO_10.AI.status\n\t}]\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 280,
+        "wires": [
+            [
+                "1d0ee5f6d13974f7"
+            ]
+        ]
+    },
+    {
+        "id": "a28f18a533722341",
+        "type": "http in",
+        "z": "b60c316ff0a6b6c0",
+        "name": "动作执行",
+        "url": "/10/DoAction",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 400,
+        "wires": [
+            [
+                "b3b717bf872f4930"
+            ]
+        ]
+    },
+    {
+        "id": "cd601a9f82909663",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "modbus 报文拆分",
+        "func": "var t = msg.payload;\nvar RequestID = t.RequestID;\nglobal.set(\"RequestID_90\",RequestID);\nmsg.payload = { value: parseInt(t.Value), 'fc': 6, 'unitid': 1, 'address': parseInt(t.Address), 'quantity': 1 } \nnode.send(msg);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 360,
+        "wires": [
+            [
+                "f6cce74e561807da"
+            ]
+        ]
+    },
+    {
+        "id": "b3b717bf872f4930",
+        "type": "switch",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "property": "RequestID_90",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "-",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 310,
+        "y": 400,
+        "wires": [
+            [
+                "cd601a9f82909663",
+                "67c0b81032f7cf6e"
+            ],
+            [
+                "d16be92a0471a0e4"
+            ]
+        ]
+    },
+    {
+        "id": "67c0b81032f7cf6e",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "反馈",
+        "func": "msg.payload = {\n    Code: 0,\n    Msg: \"操作成功\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 320,
+        "wires": [
+            [
+                "2c21729d8f477c36"
+            ]
+        ]
+    },
+    {
+        "id": "2c21729d8f477c36",
+        "type": "http response",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "d16be92a0471a0e4",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "反馈",
+        "func": "msg.payload = {\n    Code: 1,\n    Msg: \"上一个动作还未完成\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 400,
+        "wires": [
+            [
+                "2c21729d8f477c36"
+            ]
+        ]
+    },
+    {
+        "id": "249c701a144c7661",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "格式解析",
+        "func": "msg.error = 0;\n\nvar task = global.get(\"StationTask_10\");\nif(task.BillCode!='-'){\n    msg.error = 1;\n    msg.errorMsg = \"previese task is on going\";\n    return msg;\n}\n\nconst data = msg.payload;\nif((typeof(data)!='object')){\n    msg.error = 2;\n    msg.errorMsg = \"format wrong\";\n    return msg;\n}\n\nif (!('BillCode' in data)){\n    msg.error = 3;\n    msg.errorMsg = \"no BillCode\";\n    return msg;\n}\nif (!('ProductCode' in data)){\n    msg.error = 4;\n    msg.errorMsg = \"no ProductCode\";\n    return msg;\n}\n\nif (!('ProcessDetail' in data)){\n    msg.error = 5;\n    msg.errorMsg = \"no ProcessDetail\";\n    return msg;\n}\n\nif(data.ProcessDetail.length==1){\n    const data2 = data.ProcessDetail[0];\n    if (!('EquipmentCode' in data2)){\n        msg.error = 6;\n        msg.errorMsg = \"no EquipmentCode\";\n        return msg;\n    }\n    if(data2.EquipmentCode!='OP10'){\n        msg.error = 7;\n        msg.errorMsg = \"no OP10\";\n        return msg;\n    }\n    if (!('Num' in data2)){\n        msg.error = 8;\n        msg.errorMsg = \"no Num\";\n        return msg;\n    }\n}\nelse{\n    msg.error = 13;\n    msg.errorMsg = \"ProcessDetail.length should be 1\";\n    return msg;\n}\n\n\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 240,
+        "wires": [
+            [
+                "7450e7532a9133c3",
+                "1426ab1e430853ca"
+            ]
+        ]
+    },
+    {
+        "id": "7450e7532a9133c3",
+        "type": "switch",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "property": "error",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 450,
+        "y": 240,
+        "wires": [
+            [
+                "4b08f8c03e37af75"
+            ],
+            [
+                "6b55599cd966446c"
+            ]
+        ]
+    },
+    {
+        "id": "6b55599cd966446c",
+        "type": "function",
+        "z": "b60c316ff0a6b6c0",
+        "name": "反馈",
+        "func": "msg.payload = {\n    Code: 1,\n    Msg:\"失败\"+msg.errorMsg\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 200,
+        "wires": [
+            [
+                "fb27549faaf4df38"
+            ]
+        ]
+    },
+    {
+        "id": "1426ab1e430853ca",
+        "type": "debug",
+        "z": "b60c316ff0a6b6c0",
+        "name": "debug 31",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "168aa29d0a82a483",
+        "type": "change",
+        "z": "b60c316ff0a6b6c0",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "StationTask_10.BillCode",
+                "pt": "global",
+                "to": "-",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "737dbe855f4c2330",
+        "type": "debug",
+        "z": "b60c316ff0a6b6c0",
+        "name": "debug 33",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 200,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "fd3afd4f2b7d8287",
+        "type": "inject",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 640,
+        "wires": [
+            [
+                "6f9732e0ad0d5681"
+            ]
+        ]
+    },
+    {
+        "id": "6f9732e0ad0d5681",
+        "type": "trigger",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "-250",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 290,
+        "y": 640,
+        "wires": [
+            [
+                "ead9fc87ea3d0f27",
+                "466602296230bfe9"
+            ]
+        ]
+    },
+    {
+        "id": "4608b52bd0e963be",
+        "type": "http in",
+        "z": "efd4a3479ccb4ba6",
+        "name": "通用读多个接口",
+        "url": "/100/ReadValue",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 480,
+        "wires": [
+            [
+                "6cdf453a33781e84",
+                "2bcb5d2052f1f022"
+            ]
+        ]
+    },
+    {
+        "id": "7bc82b7b8931c0e9",
+        "type": "modbus-flex-getter",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "server": "f45c8577844ced46",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 810,
+        "y": 480,
+        "wires": [
+            [
+                "09bf2352b623f159"
+            ],
+            [
+                "6e00afefcd1f8d56"
+            ]
+        ]
+    },
+    {
+        "id": "6cdf453a33781e84",
+        "type": "change",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ReadValue_10",
+                "pt": "global",
+                "to": "[]",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 480,
+        "wires": [
+            [
+                "6f68c83cbeef6995"
+            ]
+        ]
+    },
+    {
+        "id": "6f68c83cbeef6995",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "modbus 报文拆分",
+        "func": "var arr = msg.payload;\nfor(var i=0;i<arr.length;i++){\n    var t = arr[i];\n    node.send({payload:{fc:3, address: parseInt(t.Address), quantity:1},temp:parseInt(t.Address)});\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 480,
+        "wires": [
+            [
+                "7bc82b7b8931c0e9"
+            ]
+        ]
+    },
+    {
+        "id": "09bf2352b623f159",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "函数 4",
+        "func": "var arr = global.get(\"ReadValue_10\");\narr.push({\n    Address: msg.modbusRequest.address,\n    Value: msg.payload[0],\n    ValueType: \"int\"\n});\nconsole.debug(arr);\nglobal.set(\"ReadValue_10\",arr);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f935a45c14451e53",
+        "type": "change",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.Code",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "payload.Msg",
+                "pt": "msg",
+                "to": "操作成功",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload.Data",
+                "pt": "msg",
+                "to": "ReadValue_10",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 520,
+        "wires": [
+            [
+                "c1578a5ac1b3e7aa"
+            ]
+        ]
+    },
+    {
+        "id": "c1578a5ac1b3e7aa",
+        "type": "http response",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 790,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "2bcb5d2052f1f022",
+        "type": "delay",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 280,
+        "y": 520,
+        "wires": [
+            [
+                "773bba15772d7918"
+            ]
+        ]
+    },
+    {
+        "id": "dea945d4f22dc2ce",
+        "type": "rbe",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": false,
+        "property": "payload",
+        "topi": "topic",
+        "x": 350,
+        "y": 720,
+        "wires": [
+            [
+                "3217afeb1df75b6b"
+            ]
+        ]
+    },
+    {
+        "id": "ead9fc87ea3d0f27",
+        "type": "change",
+        "z": "efd4a3479ccb4ba6",
+        "name": "状态变化监听",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "IO_10.AI.status",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 180,
+        "y": 720,
+        "wires": [
+            [
+                "dea945d4f22dc2ce"
+            ]
+        ]
+    },
+    {
+        "id": "3217afeb1df75b6b",
+        "type": "switch",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "5",
+                "vt": "num"
+            },
+            {
+                "t": "btwn",
+                "v": "40",
+                "vt": "num",
+                "v2": "49",
+                "v2t": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 470,
+        "y": 720,
+        "wires": [
+            [
+                "341931a00f4feca5"
+            ],
+            [
+                "cb29d5fa639735b7"
+            ]
+        ]
+    },
+    {
+        "id": "696f860f4ca50d42",
+        "type": "http request",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1040,
+        "y": 720,
+        "wires": [
+            [
+                "f1ed78dc7c163209"
+            ]
+        ]
+    },
+    {
+        "id": "34845c9d97eae208",
+        "type": "rbe",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": false,
+        "property": "payload",
+        "topi": "topic",
+        "x": 350,
+        "y": 800,
+        "wires": [
+            [
+                "c125392c542e73ab"
+            ]
+        ]
+    },
+    {
+        "id": "466602296230bfe9",
+        "type": "change",
+        "z": "efd4a3479ccb4ba6",
+        "name": "故障信号监听",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "IO_10.AI.error",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 180,
+        "y": 800,
+        "wires": [
+            [
+                "34845c9d97eae208"
+            ]
+        ]
+    },
+    {
+        "id": "c125392c542e73ab",
+        "type": "switch",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 470,
+        "y": 800,
+        "wires": [
+            [
+                "1f79a6b42a7951c4"
+            ]
+        ]
+    },
+    {
+        "id": "c5d0d032b5cdf62c",
+        "type": "http request",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "other",
+                "keyValue": "Accept",
+                "valueType": "other",
+                "valueValue": "application/json"
+            }
+        ],
+        "x": 840,
+        "y": 800,
+        "wires": [
+            [
+                "8ca7421c5b46b4c2"
+            ]
+        ]
+    },
+    {
+        "id": "6e00afefcd1f8d56",
+        "type": "debug",
+        "z": "efd4a3479ccb4ba6",
+        "name": "调试 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "773bba15772d7918",
+        "type": "change",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 520,
+        "wires": [
+            [
+                "f935a45c14451e53"
+            ]
+        ]
+    },
+    {
+        "id": "f1ed78dc7c163209",
+        "type": "debug",
+        "z": "efd4a3479ccb4ba6",
+        "name": "调试 16",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "8ca7421c5b46b4c2",
+        "type": "debug",
+        "z": "efd4a3479ccb4ba6",
+        "name": "调试 17",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "7f64bfddf8699ab1",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "function 33",
+        "func": "msg.payload = {\n \t\"requestID\": global.get(\"RequestID_60\"),\n\t\"startTime\": global.get(\"StartTime_60\"),\n\t\"endTime\": global.get(\"EndTime_60\")\n};\n\nmsg.url = global.get(\"LCS\")+\"actionCompletedSignal\";\n//msg.method = \"POST\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 720,
+        "wires": [
+            [
+                "696f860f4ca50d42"
+            ]
+        ]
+    },
+    {
+        "id": "1f79a6b42a7951c4",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "function 34",
+        "func": "var ErrorMap_60 = global.get(\"ErrorMap_10\");\nmsg.payload ={\t\t\t\t\n\tEquipmentCode: \"OP10\",\t\t\t\n\tEquipmentName: \"泛在控制器\",\t\t\t\n\tStatus: 0,\n    WarnContent: ErrorMap_60[msg.payload]\t\t\n};\nmsg.url = global.get(\"LCS\")+\"receiveUbiquitousWarn\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 800,
+        "wires": [
+            [
+                "c5d0d032b5cdf62c"
+            ]
+        ]
+    },
+    {
+        "id": "cb29d5fa639735b7",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "开始生产",
+        "func": "\nvar t = (new Date()).toISOString();\nglobal.set(\"StartTime_10\", t);\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "341931a00f4feca5",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "生产完成",
+        "func": "\nvar t = (new Date()).toISOString();\nglobal.set(\"EndTime_10\", t);\nglobal.set(\"RequestID_10\", \"-\");\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 680,
+        "wires": [
+            [
+                "7f64bfddf8699ab1"
+            ]
+        ]
+    },
+    {
+        "id": "cd43772a1bfd0652",
+        "type": "inject",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 470,
+        "y": 680,
+        "wires": [
+            [
+                "341931a00f4feca5"
+            ]
+        ]
+    },
+    {
+        "id": "f8d1dbf6b0dbfbeb",
+        "type": "http response",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1070,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "2d305db09f3358f5",
+        "type": "http in",
+        "z": "efd4a3479ccb4ba6",
+        "name": "工位任务接收",
+        "url": "/100/ReceiveStationTask",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 240,
+        "wires": [
+            [
+                "8924cb91e4255f67"
+            ]
+        ]
+    },
+    {
+        "id": "069cd12c59655e36",
+        "type": "http in",
+        "z": "efd4a3479ccb4ba6",
+        "name": "泛在通用写多个接口",
+        "url": "/100/WriteValue",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 440,
+        "wires": [
+            [
+                "e650501ef7c8bd5d"
+            ]
+        ]
+    },
+    {
+        "id": "e650501ef7c8bd5d",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "modbus 报文拆分",
+        "func": "var arr = msg.payload;\nfor(var i=0;i<arr.length;i++){\n    var t = arr[i];\n    msg.payload = { value: parseInt(t.Value), 'fc': 6, 'unitid': 1, 'address': parseInt(t.Address), 'quantity': 1 } \n    node.send(msg);\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 440,
+        "wires": [
+            [
+                "bf70b1ac9f63a3ce"
+            ]
+        ]
+    },
+    {
+        "id": "bf70b1ac9f63a3ce",
+        "type": "modbus-flex-write",
+        "z": "efd4a3479ccb4ba6",
+        "name": "批量修改modbus值",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "server": "f45c8577844ced46",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 810,
+        "y": 440,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "deb61c6e5a96a297",
+        "type": "change",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "StationTask_90",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 660,
+        "y": 240,
+        "wires": [
+            [
+                "ad1349edb4a3a7a9"
+            ]
+        ]
+    },
+    {
+        "id": "ad1349edb4a3a7a9",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "反馈",
+        "func": "msg.payload = {\n    Code: 0,\n    Msg:\"操作成功\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 240,
+        "wires": [
+            [
+                "f8d1dbf6b0dbfbeb"
+            ]
+        ]
+    },
+    {
+        "id": "237dec7981d46117",
+        "type": "http in",
+        "z": "efd4a3479ccb4ba6",
+        "name": "ReceiveEndSignal",
+        "url": "/100/ReceiveEndSignal",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "943af9003c75f030"
+            ]
+        ]
+    },
+    {
+        "id": "363625936814d627",
+        "type": "http response",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 730,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "1dae50e8eeeb5c98",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "反馈",
+        "func": "msg.payload = {\n    Code: 0,\n    Msg: \"操作成功\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 120,
+        "wires": [
+            [
+                "363625936814d627"
+            ]
+        ]
+    },
+    {
+        "id": "943af9003c75f030",
+        "type": "switch",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "property": "payload.BillCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "StationTask_90.BillCode",
+                "vt": "global"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 350,
+        "y": 120,
+        "wires": [
+            [
+                "d900939695adac7e",
+                "1dae50e8eeeb5c98",
+                "c4a8d332b6ef6e97"
+            ],
+            [
+                "896b57cae6d989da"
+            ]
+        ]
+    },
+    {
+        "id": "d900939695adac7e",
+        "type": "change",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "IO_10.AO.production",
+                "pt": "global",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "896b57cae6d989da",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "反馈",
+        "func": "msg.payload = {\n    Code: 1,\n    Msg: \"操作失败,当前设备执行的工单和下发的结束工单不一致\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 160,
+        "wires": [
+            [
+                "363625936814d627"
+            ]
+        ]
+    },
+    {
+        "id": "efd3c09feee9ba70",
+        "type": "http response",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "d3c523395d32e574",
+        "type": "http in",
+        "z": "efd4a3479ccb4ba6",
+        "name": "工位状态-轮询",
+        "url": "/100/GetStationState",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 280,
+        "wires": [
+            [
+                "5e8425ab74d15c64"
+            ]
+        ]
+    },
+    {
+        "id": "5e8425ab74d15c64",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "反馈",
+        "func": "var IO_100 = global.get(\"IO_100\");\nmsg.payload = {\n\t\"Code\": 0,\n\t\"Msg\": \"操作成功\",\n\t\"Data\": [{\n\t\t\"StationCode\": \"IO_100\",\n\t\t\"StationName\": \"产线下料\",\n\t\t\"Status\": IO_100.AI.status\n\t}]\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 280,
+        "wires": [
+            [
+                "efd3c09feee9ba70"
+            ]
+        ]
+    },
+    {
+        "id": "895ab5888ce9d012",
+        "type": "http in",
+        "z": "efd4a3479ccb4ba6",
+        "name": "动作执行",
+        "url": "/100/DoAction",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 400,
+        "wires": [
+            [
+                "e759e7cdef9ed3b0"
+            ]
+        ]
+    },
+    {
+        "id": "9cad25a40f338606",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "modbus 报文拆分",
+        "func": "var t = msg.payload;\nvar RequestID = t.RequestID;\nglobal.set(\"RequestID_90\",RequestID);\nmsg.payload = { value: parseInt(t.Value), 'fc': 6, 'unitid': 1, 'address': parseInt(t.Address), 'quantity': 1 } \nnode.send(msg);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 360,
+        "wires": [
+            [
+                "bf70b1ac9f63a3ce"
+            ]
+        ]
+    },
+    {
+        "id": "e759e7cdef9ed3b0",
+        "type": "switch",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "property": "RequestID_90",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "-",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 290,
+        "y": 400,
+        "wires": [
+            [
+                "9cad25a40f338606",
+                "5247ce7eefc505b5"
+            ],
+            [
+                "49cabd21c330f7f7"
+            ]
+        ]
+    },
+    {
+        "id": "5247ce7eefc505b5",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "反馈",
+        "func": "msg.payload = {\n    Code: 0,\n    Msg: \"操作成功\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 320,
+        "wires": [
+            [
+                "aaeb451f35e295ca"
+            ]
+        ]
+    },
+    {
+        "id": "aaeb451f35e295ca",
+        "type": "http response",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 590,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "49cabd21c330f7f7",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "反馈",
+        "func": "msg.payload = {\n    Code: 1,\n    Msg: \"上一个动作还未完成\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 400,
+        "wires": [
+            [
+                "aaeb451f35e295ca"
+            ]
+        ]
+    },
+    {
+        "id": "8924cb91e4255f67",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "格式解析",
+        "func": "msg.error = 0;\n\nvar task = global.get(\"StationTask_100\");\nif(task.BillCode!='-'){\n    msg.error = 1;\n    msg.errorMsg = \"previese task is on going\";\n    return msg;\n}\n\nconst data = msg.payload;\nif((typeof(data)!='object')){\n    msg.error = 2;\n    msg.errorMsg = \"format wrong\";\n    return msg;\n}\n\nif (!('BillCode' in data)){\n    msg.error = 3;\n    msg.errorMsg = \"no BillCode\";\n    return msg;\n}\nif (!('ProductCode' in data)){\n    msg.error = 4;\n    msg.errorMsg = \"no ProductCode\";\n    return msg;\n}\n\nif (!('ProcessDetail' in data)){\n    msg.error = 5;\n    msg.errorMsg = \"no ProcessDetail\";\n    return msg;\n}\n\nif(data.ProcessDetail.length==1){\n    const data2 = data.ProcessDetail[0];\n    if (!('EquipmentCode' in data2)){\n        msg.error = 6;\n        msg.errorMsg = \"no EquipmentCode\";\n        return msg;\n    }\n    if(data2.EquipmentCode!='OP100'){\n        msg.error = 7;\n        msg.errorMsg = \"no OP100\";\n        return msg;\n    }\n    if (!('Num' in data2)){\n        msg.error = 8;\n        msg.errorMsg = \"no Num\";\n        return msg;\n    }\n}\nelse{\n    msg.error = 13;\n    msg.errorMsg = \"ProcessDetail.length should be 1\";\n    return msg;\n}\n\n\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 240,
+        "wires": [
+            [
+                "15b4780638b47f24",
+                "06df6e550f8e8a62"
+            ]
+        ]
+    },
+    {
+        "id": "15b4780638b47f24",
+        "type": "switch",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "property": "error",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 430,
+        "y": 240,
+        "wires": [
+            [
+                "deb61c6e5a96a297"
+            ],
+            [
+                "28eceff2f21345ee"
+            ]
+        ]
+    },
+    {
+        "id": "28eceff2f21345ee",
+        "type": "function",
+        "z": "efd4a3479ccb4ba6",
+        "name": "反馈",
+        "func": "msg.payload = {\n    Code: 1,\n    Msg:\"失败\"+msg.errorMsg\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 200,
+        "wires": [
+            [
+                "f8d1dbf6b0dbfbeb"
+            ]
+        ]
+    },
+    {
+        "id": "06df6e550f8e8a62",
+        "type": "debug",
+        "z": "efd4a3479ccb4ba6",
+        "name": "debug 32",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 300,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c4a8d332b6ef6e97",
+        "type": "change",
+        "z": "efd4a3479ccb4ba6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "StationTask_10.BillCode",
+                "pt": "global",
+                "to": "-",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 690,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    }
+]

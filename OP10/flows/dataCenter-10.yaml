@@ -1,0 +1,683 @@
+- id: 8c57d52fe6250639
+  type: tab
+  label: dataCenter-10
+  disabled: false
+  info: ''
+  env: []
+- id: 2b5ad56c2341e602
+  type: modbus-server
+  z: 8c57d52fe6250639
+  name: OP10
+  logEnabled: false
+  hostname: 0.0.0.0
+  serverPort: '10010'
+  responseDelay: 100
+  delayUnit: ms
+  coilsBufferSize: 10000
+  holdingBufferSize: 10000
+  inputBufferSize: 10000
+  discreteBufferSize: 10000
+  showErrors: true
+  x: 130
+  'y': 480
+  wires:
+    - []
+    - []
+    - []
+    - []
+    - []
+- id: 1ed90e87ef0ab5ce
+  type: modbus-read
+  z: 8c57d52fe6250639
+  name: 读取控制器modbus-di控制-前段
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: Input
+  adr: '0'
+  quantity: '100'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: b491bf7158494622
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 210
+  'y': 120
+  wires:
+    - - 1cd97ef4953b89a0
+      - 90f2a6da81217d8d
+    - []
+- id: 1cd97ef4953b89a0
+  type: function
+  z: 8c57d52fe6250639
+  name: 写入到本地内存
+  func: |-
+    var DI_Names = [
+        "DI_JiTing",
+        "DI_QiDong",
+        "DI_TingZhi",
+        "DI_ZiDong",
+        "DI_ShouDong",
+        "DI_L_GunTong_DaoWei",
+        "DI_R_GunTong_DaoWei",
+        "-",
+        "DI_L_ShenJiang_DaoWei",
+        "DI_R_ShenJiang_DaoWei",
+        "DI_ZhuaPan1_DaKaiDaoWei",
+        "DI_ZhuaPan2_GuanBiWei",
+        "DI_ZhuaPan1_DaKaiDaoWei",
+        "DI_ZhuaPan2_GuanBiWei",
+        "DI_HengYi_YouLiao",
+        "-",
+        "DI_NingJin_ShenDaoWei1",
+        "DI_NingJin_SuoDaoWei",
+        "DI_HengYi_SongKaiDaoWei",
+        "DI_HengYi_JiaJinDaoWei",
+        "DI_M5_FenLi1_DaKaiDaoWei",
+        "DI_M5_FenLi1_GuanBiDaoWei",
+        "DI_M6_FenLi_DaKaiDaoWei",
+        "DI_M6_FenLi_GuanBiDaoWei",
+        "DI_HengYi_ShangShenDaoWei",
+        "DI_HengYi_XiaJiangDaoWei",
+        "DI_M5_SongLiao_GuanBiDaoWei",
+        "DI_M5_SongLiao_DaKaiDaoWei",
+        "-",
+        "-",
+        "DI_NingJin_ShenDaoWei2",
+        "-",
+        "DI_DingWei_GuanBiDaoWei1",
+        "DI_DingWei_DaKaiDaoWei1",
+        "DI_DingWei_GuanBiDaoWei2",
+        "DI_DingWei_DaKaiDaoWei2",
+        "DI_M6_FenLiao_DaKaiDaoWei",
+        "DI_M6_FenLiao_GuanBiDaoWei",
+        "DI_ROB_JiaJinDaoWei2",
+        "-",
+        "DI_DingWei_GuanBiDaoWei3",
+        "DI_DingWei_DaKaiDaoWei3",
+        "DI_M5_FenLi2_DaKaiDaoWei",
+        "DI_M5_FenLi2_GuanBiDaoWei",
+        "DI_M5_ZDP_YouLiao",
+        "DI_M6_ZDP_DaoKaiDaoWei1",
+        "DI_M6_ZDP_GuanBiDaoWei1",
+        "DI_M6_ZDP_DaoKaiDaoWei2",
+        "DI_M6_ZDP_YouLiao",
+        "DI_ROB_DaKaiDaoWei1",
+        "DI_ROB_JiaJinDaoWei1",
+        "DI_ZDP_ZhengFanJianCe",
+        "DI_FuWei",
+        "DI_LianJi",
+        "DI_DanBuQianJin",
+        "DI_DanBuHouTui",
+        ];
+
+    var IO_10 = global.get("IO_10");
+    const data = msg.payload;
+    for(var i=0;i<DI_Names.length;i++){
+        if(DI_Names[i]!='-'){
+            IO_10.DI[DI_Names[i]] = data[i];
+        }
+    }
+    global.set("IO_10",IO_10);
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 480
+  'y': 100
+  wires:
+    - []
+- id: 6438a2b608a115ee
+  type: inject
+  z: 8c57d52fe6250639
+  name: OP10数据初始化
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: '1'
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 170
+  'y': 40
+  wires:
+    - - 9c22b32ef6374ba0
+- id: 1897a224540a3006
+  type: function
+  z: 8c57d52fe6250639
+  name: IO初始化
+  func: |-
+    var IO_10 = {
+        DO:{},
+        DI:{
+            DI_JiTing:0,
+            DI_QiDong:0,
+            DI_TingZhi:0,
+            DI_ZiDong:0,
+            DI_ShouDong:0,
+            DI_L_GunTong_DaoWei:0,
+            DI_R_GunTong_DaoWei:0,
+            
+            DI_L_ShenJiang_DaoWei:0,
+            DI_R_ShenJiang_DaoWei:0,
+            DI_ZhuaPan1_DaKaiDaoWei:0,
+            DI_ZhuaPan2_GuanBiWei:0,
+            DI_HengYi_YouLiao:0,
+            
+            DI_NingJin_ShenDaoWei1:0,
+            DI_NingJin_SuoDaoWei:0,
+            DI_HengYi_SongKaiDaoWei:0,
+            DI_HengYi_JiaJinDaoWei:0,
+            DI_M5_FenLi1_DaKaiDaoWei:0,
+            DI_M5_FenLi1_GuanBiDaoWei:0,
+            DI_M6_FenLi_DaKaiDaoWei:0,
+            DI_M6_FenLi_GuanBiDaoWei:0,
+            DI_HengYi_ShangShenDaoWei:0,
+            DI_HengYi_XiaJiangDaoWei:0,
+            DI_M5_SongLiao_GuanBiDaoWei:0,
+            DI_M5_SongLiao_DaKaiDaoWei:0,
+            
+            DI_NingJin_ShenDaoWei2:0,
+            
+            DI_DingWei_GuanBiDaoWei1:0,
+            DI_DingWei_DaKaiDaoWei1:0,
+            DI_DingWei_GuanBiDaoWei2:0,
+            DI_DingWei_DaKaiDaoWei2:0,
+            DI_M6_FenLiao_DaKaiDaoWei:0,
+            DI_M6_FenLiao_GuanBiDaoWei:0,
+            DI_ROB_JiaJinDaoWei2:0,
+            
+            DI_DingWei_GuanBiDaoWei3:0,
+            DI_DingWei_DaKaiDaoWei3:0,
+            DI_M5_FenLi2_DaKaiDaoWei:0,
+            DI_M5_FenLi2_GuanBiDaoWei:0,
+            DI_M5_ZDP_YouLiao:0,
+            DI_M6_ZDP_DaoKaiDaoWei1:0,
+            DI_M6_ZDP_GuanBiDaoWei1:0,
+            DI_M6_ZDP_DaoKaiDaoWei2:0,
+            DI_M6_ZDP_YouLiao:0,
+            DI_ROB_DaKaiDaoWei1:0,
+            DI_ROB_JiaJinDaoWei1:0,
+            DI_ZDP_ZhengFanJianCe:0,
+            DI_FuWei:0,
+            DI_LianJi:0,
+            DI_DanBuQianJin:0,
+            DI_DanBuHouTui:0,
+        },
+        AI:{//node-red收到来自控制器的逻辑变量
+            response: 0,//控制器端动作端的完成信号
+            request_vision: 0,
+        },
+        AO:{//node-red要发送下去的逻辑变量
+            request: 0,//下发给控制器的动作号
+            LCS: 0,
+        },    
+        AI_6axes:{
+            response: 0,//6轴机械臂端动作的完成信号
+            error: 0,//6轴机械臂的故障码
+            status: 0,//6轴机械臂状态
+            request_vission:0,
+        },
+
+        AO_6axes:{
+            Vision_X_1: 90,//料盘拍照纠偏得y到的X坐标
+            Vision_Y_1: 90,//料盘拍照纠偏得到的y坐标
+            Vision_QueXian: 0,
+            request:0,
+            M1 : 0,
+            assembled: 0,
+            response_vission: 0,
+            LCS: 0,
+        },
+        AI_LCS:{
+            request: 0,
+        },
+        AO_LCS:{
+            response: 0,
+        },
+        AI_AGV:{
+            request: 0,
+        },
+        AO_AGV:{
+            response: 0,
+        },    
+          
+    };
+
+    global.set("IO_10",IO_10);
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 620
+  'y': 40
+  wires:
+    - - e0fd6c2d76fabf9f
+- id: 33511cf9790c1661
+  type: modbus-read
+  z: 8c57d52fe6250639
+  name: 6轴机械臂modbus-ao-逻辑变量
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: HoldingRegister
+  adr: '0'
+  quantity: '100'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: b491bf7158494622
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 210
+  'y': 220
+  wires:
+    - - 77b0106cb3348651
+    - []
+- id: 77b0106cb3348651
+  type: function
+  z: 8c57d52fe6250639
+  name: 写入到本地内存
+  func: |-
+    const data = msg.payload;
+    var IO = global.get("IO_90");
+    var i = 0;
+    IO.AI_6axes.response = data[i]; i++;
+    IO.AI_6axes.error = data[i]; i++;
+    IO.AI_6axes.status = data[i]; i++;
+    IO.AI_6axes.request_vission = data[i]; i++;
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 480
+  'y': 220
+  wires:
+    - []
+- id: 90f2a6da81217d8d
+  type: modbus-write
+  z: 8c57d52fe6250639
+  name: DI信号同步到虚拟modbus-10
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: ''
+  dataType: MCoils
+  adr: '0'
+  quantity: '100'
+  server: f45c8577844ced46
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 520
+  'y': 140
+  wires:
+    - []
+    - []
+- id: c6d9732bbca85682
+  type: inject
+  z: 8c57d52fe6250639
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: '2'
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 140
+  'y': 340
+  wires:
+    - - 9a16d87b386f27e5
+- id: 9a16d87b386f27e5
+  type: trigger
+  z: 8c57d52fe6250639
+  name: ''
+  op1: '1'
+  op2: '0'
+  op1type: val
+  op2type: val
+  duration: '250'
+  extend: 'false'
+  overrideDelay: 'false'
+  units: ms
+  reset: ''
+  bytopic: all
+  topic: topic
+  outputs: 1
+  x: 310
+  'y': 340
+  wires:
+    - - 272db971681b6aaf
+      - 3c2d34047f6139bf
+- id: 6cea8a9c9676e2f4
+  type: modbus-write
+  z: 8c57d52fe6250639
+  name: 写入到6轴
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: ''
+  dataType: MHoldingRegisters
+  adr: '0'
+  quantity: '100'
+  server: b491bf7158494622
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 730
+  'y': 340
+  wires:
+    - []
+    - []
+- id: 272db971681b6aaf
+  type: function
+  z: 8c57d52fe6250639
+  name: 写入到6轴机械臂
+  func: |-
+    var data = [];
+    var IO = global.get("IO_90");
+    data.push(IO.AO2.controller_6axes);
+    data.push(IO.AO2.tray_vision_x);
+    data.push(IO.AO2.tray_vision_y);
+    msg.payload = data;
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 530
+  'y': 340
+  wires:
+    - - 6cea8a9c9676e2f4
+- id: b440bba5e4e9cb92
+  type: modbus-read
+  z: 8c57d52fe6250639
+  name: LCS 调度命令读取
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: HoldingRegister
+  adr: '4090'
+  quantity: '7'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: f45c8577844ced46
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 170
+  'y': 280
+  wires:
+    - - 5d240a04c4c77d19
+    - []
+- id: 5d240a04c4c77d19
+  type: function
+  z: 8c57d52fe6250639
+  name: 写入到本地内存
+  func: |-
+
+    const data = msg.payload;
+    var IO = global.get("IO_10");
+    var i = 0;
+    IO.AI_LCS.request = data[i]; i++;
+
+
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 480
+  'y': 280
+  wires:
+    - []
+- id: 3c2d34047f6139bf
+  type: function
+  z: 8c57d52fe6250639
+  name: 发送给LCS呼叫AGV
+  func: |-
+    var data = [];
+    var IO = global.get("IO_90");
+    data.push(IO.AO_LCS.Pos_In);
+    data.push(IO.AO_LCS.Pos_Out);
+
+    msg.payload = data;
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 540
+  'y': 400
+  wires:
+    - - b5be94f7376aad73
+- id: b5be94f7376aad73
+  type: modbus-write
+  z: 8c57d52fe6250639
+  name: 写入到虚拟modbus
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: ''
+  dataType: MHoldingRegisters
+  adr: '0'
+  quantity: '100'
+  server: f45c8577844ced46
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 750
+  'y': 400
+  wires:
+    - []
+    - []
+- id: e0fd6c2d76fabf9f
+  type: function
+  z: 8c57d52fe6250639
+  name: 物料-视觉-工单 初始化
+  func: |-
+
+    var Vision_10 = {
+        sessin: "",
+        v1:{//阀体上料后拍照
+            request: "",
+            response: "",
+            x:0,
+            result: 0,
+        },
+    };
+    var ErrorMap_10 = [
+        "视觉通信故障",
+        "螺丝刀通信故障",
+        "伺服1故障",
+        "伺服2故障",
+        "伺服3故障",
+        "伺服4故障",   
+        "伺服5故障",
+        "伺服6故障",
+        "伺服7故障",
+        ];
+        
+    global.set("StationTask_10",{
+        BillCode: "-",
+        ProductCode: "-",
+        ProductName:"-",
+        ProcessDetail: [{
+            ProcessCode: "OP10",
+            ProcessName: "-",
+            EquipmentCode: "OP10",
+            ProgramNumer: 1,
+            Num: 0,
+            MaterialDetails: [
+            ]
+        }]
+    });
+
+    global.set("Vision_10",Vision_10);
+    global.set("ErrorMap_10", ErrorMap_10);
+    var t = (new Date()).toISOString();
+    global.set("StartTime_10", t);
+    global.set("EndTime_10", t);
+    global.set("RequestID_10", "-");
+    global.set("LCS","http://192.168.130.245:30009/openApiUbiquitous/");
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 840
+  'y': 40
+  wires:
+    - []
+- id: 9c22b32ef6374ba0
+  type: function
+  z: 8c57d52fe6250639
+  name: 定义变量名
+  func: |-
+    global.set("n1",{
+     
+        
+        
+    });
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 450
+  'y': 40
+  wires:
+    - - 1897a224540a3006
+- id: 9ab459d877bebb3a
+  type: http in
+  z: 8c57d52fe6250639
+  name: ''
+  url: /10/data
+  method: get
+  upload: false
+  swaggerDoc: ''
+  x: 150
+  'y': 580
+  wires:
+    - - b0e241d043d4d797
+- id: 62db20fb3815ac1e
+  type: http response
+  z: 8c57d52fe6250639
+  name: ''
+  statusCode: ''
+  headers: {}
+  x: 610
+  'y': 580
+  wires: []
+- id: b0e241d043d4d797
+  type: function
+  z: 8c57d52fe6250639
+  name: function 29
+  func: |-
+    const p = msg.payload.key;
+    var arr = p.split(".");
+    const obj = global.get(arr[0]);
+    eval("var "+arr[0]+" = obj;");
+    console.debug(1);
+    eval("msg.payload = "+p+";");
+    console.debug(2);
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 370
+  'y': 580
+  wires:
+    - - 62db20fb3815ac1e
+- id: bc045cf5971608f9
+  type: inject
+  z: 8c57d52fe6250639
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 210
+  'y': 880
+  wires:
+    - - 6ed5555394507848
+- id: 6ed5555394507848
+  type: function
+  z: 8c57d52fe6250639
+  name: function 35
+  func: |-
+    node.status({fill:"red",shape:"ring",text:"disconnected"});
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 410
+  'y': 880
+  wires:
+    - []
