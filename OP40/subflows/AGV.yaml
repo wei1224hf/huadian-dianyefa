@@ -1,0 +1,188 @@
+- id: ed2d3b8b6410ccea
+  type: subflow
+  name: AGV
+  info: ''
+  category: ''
+  in:
+    - x: 50
+      'y': 30
+      wires:
+        - id: dbdeac469168c8de
+  out:
+    - x: 680
+      'y': 80
+      wires:
+        - id: b26b77e4ac026cc9
+          port: 0
+  env:
+    - name: AGV
+      type: num
+      value: '0'
+  meta: {}
+  color: '#DDAA99'
+  status:
+    x: 500
+    'y': 280
+    wires:
+      - id: e86d0209272d3c5c
+        port: 0
+      - id: 0a947f924fed0048
+        port: 0
+- id: 3e50d1d06fd76c6c
+  type: trigger
+  z: ed2d3b8b6410ccea
+  name: ''
+  op1: IO_40.AI_SCARA_R.response
+  op2: '0'
+  op1type: global
+  op2type: str
+  duration: '-250'
+  extend: false
+  overrideDelay: false
+  units: ms
+  reset: ''
+  bytopic: all
+  topic: topic
+  outputs: 1
+  x: 355
+  'y': 80
+  wires:
+    - - a213f08971caceed
+      - e86d0209272d3c5c
+  l: false
+- id: 3c0dc59e991ed3a0
+  type: delay
+  z: ed2d3b8b6410ccea
+  name: ''
+  pauseType: delay
+  timeout: '2'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: false
+  allowrate: false
+  outputs: 1
+  x: 355
+  'y': 40
+  wires:
+    - - f1d273f2dd19f86c
+  l: false
+- id: a213f08971caceed
+  type: function
+  z: ed2d3b8b6410ccea
+  name: 函数 42
+  func: |+
+    const IO = global.get("IO_40");
+    if (IO.AI_AGV.response == (IO.AO_AGV.request_+1)){
+        return {reset:1};
+    }
+
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 415
+  'y': 80
+  wires:
+    - - 3e50d1d06fd76c6c
+      - b26b77e4ac026cc9
+  l: false
+- id: b26b77e4ac026cc9
+  type: function
+  z: ed2d3b8b6410ccea
+  name: 函数 43
+  func: 'return {payload: 1}'
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 495
+  'y': 80
+  wires:
+    - - 0a947f924fed0048
+  l: false
+- id: dbdeac469168c8de
+  type: function
+  z: ed2d3b8b6410ccea
+  name: 函数 44
+  func: |-
+    var IO = global.get("IO_40");
+    IO.AO_AGV.request = env.get("AGV");
+    IO.AO_AGV.request_ = env.get("AGV");
+    flow.set("agv_c",1);
+    return {payload: 1};
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 170
+  'y': 80
+  wires:
+    - - 3e50d1d06fd76c6c
+      - 3c0dc59e991ed3a0
+- id: f1d273f2dd19f86c
+  type: function
+  z: ed2d3b8b6410ccea
+  name: 函数 45
+  func: |-
+    var IO = global.get("IO_40");
+    IO.AO_AGV.request = 0;
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 450
+  'y': 40
+  wires:
+    - []
+- id: e86d0209272d3c5c
+  type: function
+  z: ed2d3b8b6410ccea
+  name: 函数 46
+  func: |-
+    var agv_c = flow.get("agv_c");
+    const IO = global.get("IO_40");
+
+    msg.payload = agv_c + ":" + IO.AO_AGV.request_;
+    flow.set("agv_c",agv_c+1);
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 330
+  'y': 220
+  wires:
+    - []
+- id: 0a947f924fed0048
+  type: function
+  z: ed2d3b8b6410ccea
+  name: 函数 47
+  func: |-
+    msg.payload = "DONE";
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 530
+  'y': 160
+  wires:
+    - []

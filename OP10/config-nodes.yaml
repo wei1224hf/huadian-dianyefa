@@ -1,13 +1,13 @@
-- id: b491bf7158494622
+- id: 1a3a610758658ecb
   type: modbus-client
-  name: 大负载-10
+  name: 大负载
   clienttype: tcp
   bufferCommands: true
   stateLogEnabled: false
   queueLogEnabled: false
   failureLogEnabled: true
   tcpHost: 192.168.110.10
-  tcpPort: '502'
+  tcpPort: '503'
   tcpType: DEFAULT
   serialPort: /dev/ttyUSB
   serialType: RTU-BUFFERD
@@ -23,38 +23,12 @@
   reconnectOnTimeout: true
   reconnectTimeout: '2000'
   parallelUnitIdsAllowed: true
+  showErrors: false
   showWarnings: true
   showLogs: true
-- id: 1a3a610758658ecb
+- id: ebdc7b3b4236640e
   type: modbus-client
-  name: 大负载-100
-  clienttype: tcp
-  bufferCommands: true
-  stateLogEnabled: false
-  queueLogEnabled: false
-  failureLogEnabled: true
-  tcpHost: 192.168.110.100
-  tcpPort: '502'
-  tcpType: DEFAULT
-  serialPort: /dev/ttyUSB
-  serialType: RTU-BUFFERD
-  serialBaudrate: '9600'
-  serialDatabits: '8'
-  serialStopbits: '1'
-  serialParity: none
-  serialConnectionDelay: '100'
-  serialAsciiResponseStartDelimiter: '0x3A'
-  unit_id: '1'
-  commandDelay: '1'
-  clientTimeout: '1000'
-  reconnectOnTimeout: true
-  reconnectTimeout: '2000'
-  parallelUnitIdsAllowed: true
-  showWarnings: true
-  showLogs: true
-- id: f45c8577844ced46
-  type: modbus-client
-  name: 虚拟modbus-10
+  name: 虚拟modbus
   clienttype: tcp
   bufferCommands: true
   stateLogEnabled: false
@@ -77,32 +51,6 @@
   reconnectOnTimeout: true
   reconnectTimeout: '2000'
   parallelUnitIdsAllowed: true
-  showWarnings: true
-  showLogs: true
-- id: ebdc7b3b4236640e
-  type: modbus-client
-  name: 虚拟modbus-100
-  clienttype: tcp
-  bufferCommands: true
-  stateLogEnabled: false
-  queueLogEnabled: false
-  failureLogEnabled: true
-  tcpHost: 127.0.0.1
-  tcpPort: '10100'
-  tcpType: DEFAULT
-  serialPort: /dev/ttyUSB
-  serialType: RTU-BUFFERD
-  serialBaudrate: '9600'
-  serialDatabits: '8'
-  serialStopbits: '1'
-  serialParity: none
-  serialConnectionDelay: '100'
-  serialAsciiResponseStartDelimiter: '0x3A'
-  unit_id: '1'
-  commandDelay: '1'
-  clientTimeout: '1000'
-  reconnectOnTimeout: true
-  reconnectTimeout: '2000'
-  parallelUnitIdsAllowed: true
+  showErrors: false
   showWarnings: true
   showLogs: true

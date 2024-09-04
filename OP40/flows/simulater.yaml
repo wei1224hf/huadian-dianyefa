@@ -1,0 +1,2007 @@
+- id: 8f8e8467252874ad
+  type: tab
+  label: simulater
+  disabled: false
+  info: ''
+  env: []
+- id: 414874d689b6e1dc
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '120'
+  payloadType: num
+  x: 170
+  'y': 120
+  wires:
+    - - 9622da60cc25b215
+- id: 9622da60cc25b215
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO_SCARA_R.request
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 500
+  'y': 200
+  wires:
+    - - 0f8299d901218786
+- id: 785f9a3fe9dec3c6
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '130'
+  payloadType: num
+  x: 170
+  'y': 160
+  wires:
+    - - 9622da60cc25b215
+- id: 931bc6a8325b0dda
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '140'
+  payloadType: num
+  x: 170
+  'y': 200
+  wires:
+    - - 9622da60cc25b215
+- id: e674d8a8d486ac12
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '150'
+  payloadType: num
+  x: 171.23455810546875
+  'y': 245.6790008544922
+  wires:
+    - - 9622da60cc25b215
+- id: 261c6976f56fb44c
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '160'
+  payloadType: num
+  x: 170
+  'y': 280
+  wires:
+    - - 9622da60cc25b215
+- id: 74fb2772260520a0
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '120'
+  payloadType: num
+  x: 170
+  'y': 380
+  wires:
+    - - f978316501631720
+- id: f978316501631720
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO_SCARA_L.request
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 500
+  'y': 460
+  wires:
+    - - 1f54e1fb242b9e30
+- id: 186902d583f9c2de
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '130'
+  payloadType: num
+  x: 170
+  'y': 420
+  wires:
+    - - f978316501631720
+- id: 6d611782278f9927
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '140'
+  payloadType: num
+  x: 170
+  'y': 460
+  wires:
+    - - f978316501631720
+- id: 40e55c4b81339850
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '150'
+  payloadType: num
+  x: 171.23455810546875
+  'y': 505.6790008544922
+  wires:
+    - - f978316501631720
+- id: f13b9fbc35c64d99
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '160'
+  payloadType: num
+  x: 170
+  'y': 540
+  wires:
+    - - f978316501631720
+- id: fe63ef9f459b9443
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: Enum.OUTER_TO_CENTER
+  payloadType: global
+  x: 200
+  'y': 620
+  wires:
+    - - 2a1809c5f06d34fb
+- id: 2a1809c5f06d34fb
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO.request
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 530
+  'y': 700
+  wires:
+    - - 0ec8034b6d72a9b7
+- id: 8a4c34d34cd0aa9d
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '1'
+  payloadType: num
+  x: 770
+  'y': 120
+  wires:
+    - - 21ce9ad649e1c845
+- id: 0f236ed14951bc01
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '2'
+  payloadType: num
+  x: 770
+  'y': 160
+  wires:
+    - - 21ce9ad649e1c845
+- id: b686036de89562b5
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '3'
+  payloadType: num
+  x: 770
+  'y': 200
+  wires:
+    - - 21ce9ad649e1c845
+- id: e030163360192e5e
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '4'
+  payloadType: num
+  x: 771.2345581054688
+  'y': 245.6790008544922
+  wires:
+    - - 21ce9ad649e1c845
+- id: bf176ccc9f3aebb2
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '5'
+  payloadType: num
+  x: 770
+  'y': 280
+  wires:
+    - - 21ce9ad649e1c845
+- id: 21ce9ad649e1c845
+  type: function
+  z: 8f8e8467252874ad
+  name: 函数 5
+  func: |-
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 955
+  'y': 160
+  wires:
+    - - f0b7c7f32a49a9ab
+      - a9ce460c4f6adf3a
+  l: false
+- id: f0b7c7f32a49a9ab
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO_SCARA_L.idx_out_left
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1150
+  'y': 60
+  wires:
+    - []
+- id: a9ce460c4f6adf3a
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO_SCARA_L.idx_in_left
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1150
+  'y': 100
+  wires:
+    - []
+- id: 84c6948e8b699fd2
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '1'
+  payloadType: num
+  x: 830
+  'y': 400
+  wires:
+    - - 64dc39e7ee524487
+- id: 9433015016ac3f17
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '2'
+  payloadType: num
+  x: 830
+  'y': 440
+  wires:
+    - - 64dc39e7ee524487
+- id: d4dac47e22ec1711
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '3'
+  payloadType: num
+  x: 830
+  'y': 480
+  wires:
+    - - 64dc39e7ee524487
+- id: 040cc82864a57f2e
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '4'
+  payloadType: num
+  x: 831.2345581054688
+  'y': 525.6790008544922
+  wires:
+    - - 64dc39e7ee524487
+- id: 5b4f46bca7c2e8da
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '5'
+  payloadType: num
+  x: 830
+  'y': 560
+  wires:
+    - - 64dc39e7ee524487
+- id: 64dc39e7ee524487
+  type: function
+  z: 8f8e8467252874ad
+  name: 函数 6
+  func: |-
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 975
+  'y': 460
+  wires:
+    - - fc81c7d65415fe8e
+  l: false
+- id: fc81c7d65415fe8e
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO_SCARA_L.material_left
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1200
+  'y': 480
+  wires:
+    - []
+- id: 8a7e6d1cf822f561
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '1'
+  payloadType: num
+  x: 790
+  'y': 660
+  wires:
+    - - 706a55a7ad276631
+- id: 052b49c82645efc6
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '2'
+  payloadType: num
+  x: 790
+  'y': 700
+  wires:
+    - - 706a55a7ad276631
+- id: 459da1826abc695c
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '3'
+  payloadType: num
+  x: 790
+  'y': 740
+  wires:
+    - - 706a55a7ad276631
+- id: 604b1ff47c211f6b
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '4'
+  payloadType: num
+  x: 791.2345581054688
+  'y': 785.6790008544922
+  wires:
+    - - 706a55a7ad276631
+- id: 8aff030350d65895
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '5'
+  payloadType: num
+  x: 790
+  'y': 820
+  wires:
+    - - 706a55a7ad276631
+- id: 706a55a7ad276631
+  type: function
+  z: 8f8e8467252874ad
+  name: 函数 7
+  func: |-
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 935
+  'y': 720
+  wires:
+    - - 37855cd6423a27a8
+      - 49c5682ce67a0cb5
+  l: false
+- id: 37855cd6423a27a8
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO_SCARA_R.trash_right
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1150
+  'y': 700
+  wires:
+    - []
+- id: 49c5682ce67a0cb5
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO_SCARA_L.trash_left
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1150
+  'y': 780
+  wires:
+    - []
+- id: e108739627111653
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: Enum.OUTER_TO_LEFT
+  payloadType: global
+  x: 190
+  'y': 660
+  wires:
+    - - 2a1809c5f06d34fb
+- id: 5a3cf0dbef3ef395
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: Enum.OUTER_TO_RIGHT
+  payloadType: global
+  x: 190
+  'y': 700
+  wires:
+    - - 2a1809c5f06d34fb
+- id: 91dc3645dc493741
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: Enum.INNER_TO_CENTER
+  payloadType: global
+  x: 200
+  'y': 740
+  wires:
+    - - 2a1809c5f06d34fb
+- id: 743cfac815f0bfc8
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: Enum.INNER_TO_LEFT
+  payloadType: global
+  x: 190
+  'y': 780
+  wires:
+    - - 2a1809c5f06d34fb
+- id: 28e34d093a6fddde
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: Enum.INNER_TO_RIGHT
+  payloadType: global
+  x: 190
+  'y': 820
+  wires:
+    - - 2a1809c5f06d34fb
+- id: d607c00bc81bf1c3
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: Enum.BUNK_LEFT_FULL_IN
+  payloadType: global
+  x: 200
+  'y': 860
+  wires:
+    - - 2a1809c5f06d34fb
+- id: 13b4f32c66c195a7
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO.request
+      pt: global
+      to: '0'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 530
+  'y': 800
+  wires:
+    - []
+- id: 0ec8034b6d72a9b7
+  type: delay
+  z: 8f8e8467252874ad
+  name: ''
+  pauseType: delay
+  timeout: '3'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: false
+  allowrate: false
+  outputs: 1
+  x: 480
+  'y': 760
+  wires:
+    - - 13b4f32c66c195a7
+- id: cd049954f91c569c
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: Enum.BUNK_LEFT_SHIFT
+  payloadType: global
+  x: 200
+  'y': 900
+  wires:
+    - - 2a1809c5f06d34fb
+- id: 118772998e5ec387
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '1'
+  payloadType: num
+  x: 730
+  'y': 900
+  wires:
+    - - '771198630619e192'
+- id: f644dc54c7281a9a
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '2'
+  payloadType: num
+  x: 730
+  'y': 940
+  wires:
+    - - '771198630619e192'
+- id: 9e4540749e2625f7
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '3'
+  payloadType: num
+  x: 730
+  'y': 980
+  wires:
+    - - '771198630619e192'
+- id: fb6ee40bf1adef68
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '4'
+  payloadType: num
+  x: 731.2345581054688
+  'y': 1025.6790008544922
+  wires:
+    - - '771198630619e192'
+- id: 44c3af687f47fd68
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '5'
+  payloadType: num
+  x: 730
+  'y': 1060
+  wires:
+    - - '771198630619e192'
+- id: '771198630619e192'
+  type: function
+  z: 8f8e8467252874ad
+  name: 函数 8
+  func: |-
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 875
+  'y': 960
+  wires:
+    - - 8be4aa26d8a93a12
+  l: false
+- id: 8be4aa26d8a93a12
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO.tray_in_right
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1060
+  'y': 960
+  wires:
+    - []
+- id: 5fadea575a87fa70
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '1'
+  payloadType: num
+  x: 710
+  'y': 1120
+  wires:
+    - - 4f6e3b5c06320ade
+- id: 928875d9cb5e50a7
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '2'
+  payloadType: num
+  x: 710
+  'y': 1160
+  wires:
+    - - 4f6e3b5c06320ade
+- id: 55efebf132f41a04
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '3'
+  payloadType: num
+  x: 710
+  'y': 1200
+  wires:
+    - - 4f6e3b5c06320ade
+- id: eb9c98af3481f75f
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '4'
+  payloadType: num
+  x: 711.2345581054688
+  'y': 1245.6790008544922
+  wires:
+    - - 4f6e3b5c06320ade
+- id: 4f0275ee36bb5991
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '5'
+  payloadType: num
+  x: 710
+  'y': 1280
+  wires:
+    - - 4f6e3b5c06320ade
+- id: 4f6e3b5c06320ade
+  type: function
+  z: 8f8e8467252874ad
+  name: 函数 9
+  func: |-
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 855
+  'y': 1180
+  wires:
+    - - 2bc78dd94b8c6366
+  l: false
+- id: 2bc78dd94b8c6366
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO.tray_out_right
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1050
+  'y': 1180
+  wires:
+    - []
+- id: 1d50f5999f68be07
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: Enum.BUNK_LEFT_FULL_CHECK
+  payloadType: global
+  x: 220
+  'y': 940
+  wires:
+    - - 2a1809c5f06d34fb
+- id: aa2e17b92050a685
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: Enum.BUNK_RIGHT_FULL_IN
+  payloadType: global
+  x: 210
+  'y': 1060
+  wires:
+    - - 2a1809c5f06d34fb
+- id: e0ed25cf3d8aa977
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: Enum.BUNK_LEFT_EMPTY_OUT
+  payloadType: global
+  x: 220
+  'y': 980
+  wires:
+    - - 2a1809c5f06d34fb
+- id: 7d3004467a2d7d56
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '0'
+  payloadType: num
+  x: 710
+  'y': 1320
+  wires:
+    - - 4f6e3b5c06320ade
+- id: 692fbae64df2bf60
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '0'
+  payloadType: num
+  x: 770
+  'y': 80
+  wires:
+    - - 21ce9ad649e1c845
+- id: cb8f9443897cca57
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '20'
+  payloadType: num
+  x: 830
+  'y': 600
+  wires:
+    - - 64dc39e7ee524487
+- id: 18b70f6cd76c1fec
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO_SCARA_R.request
+      pt: global
+      to: '0'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 500
+  'y': 280
+  wires:
+    - []
+- id: 0f8299d901218786
+  type: delay
+  z: 8f8e8467252874ad
+  name: ''
+  pauseType: delay
+  timeout: '2'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: false
+  allowrate: false
+  outputs: 1
+  x: 420
+  'y': 240
+  wires:
+    - - 18b70f6cd76c1fec
+- id: 3ea13b30ec34c482
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO_SCARA_L.request
+      pt: global
+      to: '0'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 480
+  'y': 540
+  wires:
+    - []
+- id: 1f54e1fb242b9e30
+  type: delay
+  z: 8f8e8467252874ad
+  name: ''
+  pauseType: delay
+  timeout: '2'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: false
+  allowrate: false
+  outputs: 1
+  x: 400
+  'y': 500
+  wires:
+    - - 3ea13b30ec34c482
+- id: 90ed1b9a5227fb4b
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: '1'
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: IO_40.AI_SCARA_L.response
+  payloadType: global
+  x: 370
+  'y': 320
+  wires:
+    - - c571c4a020d9f452
+- id: c571c4a020d9f452
+  type: debug
+  z: 8f8e8467252874ad
+  name: 调试 19
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: true
+  complete: payload
+  targetType: msg
+  statusVal: payload
+  statusType: auto
+  x: 420
+  'y': 360
+  wires: []
+- id: 26be4cf90cacbd98
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: Enum.BUNK_RIGHT_SHIFT
+  payloadType: global
+  x: 200
+  'y': 1100
+  wires:
+    - - 2a1809c5f06d34fb
+- id: 1acf04f67e8fce6b
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: Enum.BUNK_RIGHT_FULL_CHECK
+  payloadType: global
+  x: 230
+  'y': 1140
+  wires:
+    - - 2a1809c5f06d34fb
+- id: 2a264fd2f1a2a095
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '1'
+  payloadType: num
+  x: 710
+  'y': 1520
+  wires:
+    - - 57457e3492990f51
+- id: d0307c8979d73269
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '2'
+  payloadType: num
+  x: 710
+  'y': 1560
+  wires:
+    - - 57457e3492990f51
+- id: d20534c6b1656ba6
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '3'
+  payloadType: num
+  x: 710
+  'y': 1600
+  wires:
+    - - 57457e3492990f51
+- id: 8de76b15c4b6ba6c
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '4'
+  payloadType: num
+  x: 711.2345581054688
+  'y': 1645.6790008544922
+  wires:
+    - - 57457e3492990f51
+- id: bbb2dbc75f51af85
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '5'
+  payloadType: num
+  x: 710
+  'y': 1680
+  wires:
+    - - 57457e3492990f51
+- id: 57457e3492990f51
+  type: function
+  z: 8f8e8467252874ad
+  name: 函数 38
+  func: |-
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 855
+  'y': 1580
+  wires:
+    - - ae830de1d57fa163
+  l: false
+- id: ae830de1d57fa163
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO.tray_in_left
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1040
+  'y': 1520
+  wires:
+    - []
+- id: 0f18eebc4b1c8601
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '1'
+  payloadType: num
+  x: 690
+  'y': 1740
+  wires:
+    - - 0bd1fdb7cf5f3626
+- id: 60813607606fabbc
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '2'
+  payloadType: num
+  x: 690
+  'y': 1780
+  wires:
+    - - 0bd1fdb7cf5f3626
+- id: f299ab6facd6728e
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '3'
+  payloadType: num
+  x: 690
+  'y': 1820
+  wires:
+    - - 0bd1fdb7cf5f3626
+- id: 3878689afc3085c8
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '4'
+  payloadType: num
+  x: 691.2345581054688
+  'y': 1865.6790008544922
+  wires:
+    - - 0bd1fdb7cf5f3626
+- id: 39eb05a902a9bb24
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '5'
+  payloadType: num
+  x: 690
+  'y': 1900
+  wires:
+    - - 0bd1fdb7cf5f3626
+- id: 0bd1fdb7cf5f3626
+  type: function
+  z: 8f8e8467252874ad
+  name: 函数 39
+  func: |-
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 835
+  'y': 1800
+  wires:
+    - - 154bbb32b5d87b78
+  l: false
+- id: 154bbb32b5d87b78
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO.tray_out_left
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1040
+  'y': 1740
+  wires:
+    - []
+- id: 35b6a621f6a188a2
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '0'
+  payloadType: num
+  x: 690
+  'y': 1940
+  wires:
+    - - 0bd1fdb7cf5f3626
+- id: 8baad8682ca12b4d
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '1'
+  payloadType: num
+  x: 1110
+  'y': 220
+  wires:
+    - - 3739881031b29bb1
+- id: e25c449e5bfb269a
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO_SCARA_R.idx_out_right
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1540
+  'y': 200
+  wires:
+    - []
+- id: e40267826818f62c
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '2'
+  payloadType: num
+  x: 1110
+  'y': 260
+  wires:
+    - - 3739881031b29bb1
+- id: 1203c7bc5d93fad7
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '3'
+  payloadType: num
+  x: 1110
+  'y': 300
+  wires:
+    - - 3739881031b29bb1
+- id: ce47b422eeaf89ce
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '4'
+  payloadType: num
+  x: 1111.2345581054688
+  'y': 345.6790008544922
+  wires:
+    - - 3739881031b29bb1
+- id: d903cf9ab5b27727
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '5'
+  payloadType: num
+  x: 1110
+  'y': 380
+  wires:
+    - - 3739881031b29bb1
+- id: 386438f1448b9ed9
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO_SCARA_R.idx_in_right
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1540
+  'y': 240
+  wires:
+    - []
+- id: 3739881031b29bb1
+  type: function
+  z: 8f8e8467252874ad
+  name: 函数 40
+  func: |-
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 1295
+  'y': 260
+  wires:
+    - - e25c449e5bfb269a
+      - 386438f1448b9ed9
+  l: false
+- id: 6e2815ab7dbc790e
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '0'
+  payloadType: num
+  x: 1110
+  'y': 180
+  wires:
+    - - 3739881031b29bb1
+- id: 38796294bafa5441
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '1'
+  payloadType: num
+  x: 1390
+  'y': 540
+  wires:
+    - - 208d6df2cd4ef4a0
+- id: ecbc6752de371a44
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '2'
+  payloadType: num
+  x: 1390
+  'y': 580
+  wires:
+    - - 208d6df2cd4ef4a0
+- id: 24074d398bc3f5aa
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '3'
+  payloadType: num
+  x: 1390
+  'y': 620
+  wires:
+    - - 208d6df2cd4ef4a0
+- id: 72a1e8baddc4d4d4
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '4'
+  payloadType: num
+  x: 1391.2345581054688
+  'y': 665.6790008544922
+  wires:
+    - - 208d6df2cd4ef4a0
+- id: 15e78fe94f5dff8a
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '5'
+  payloadType: num
+  x: 1390
+  'y': 700
+  wires:
+    - - 208d6df2cd4ef4a0
+- id: 208d6df2cd4ef4a0
+  type: function
+  z: 8f8e8467252874ad
+  name: 函数 41
+  func: |-
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 1535
+  'y': 600
+  wires:
+    - - 02d2d61aaa75bebd
+  l: false
+- id: 02d2d61aaa75bebd
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO_SCARA_R.material_right
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1760
+  'y': 580
+  wires:
+    - []
+- id: bcdf9f66300edf99
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '14'
+  payloadType: num
+  x: 1390
+  'y': 740
+  wires:
+    - - 208d6df2cd4ef4a0
+- id: 29182b52b28fe6ca
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '14'
+  payloadType: num
+  x: 1110
+  'y': 420
+  wires:
+    - - 3739881031b29bb1
+- id: 9e04f138f9359ad8
+  type: inject
+  z: 8f8e8467252874ad
+  name: 满盘模拟
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 260
+  'y': 60
+  wires:
+    - - 6e882ae7c2a9d397
+- id: 6e882ae7c2a9d397
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: IO_40.AO_SCARA_L.material_left
+      pt: global
+      to: '21'
+      tot: num
+    - t: set
+      p: IO_40.AO_SCARA_R.material_right
+      pt: global
+      to: '31'
+      tot: num
+    - t: set
+      p: IO_40.AO.shifted
+      pt: global
+      to: 'false'
+      tot: bool
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 395
+  'y': 60
+  wires:
+    - []
+  l: false
+- id: 647157037f20c3a8
+  type: inject
+  z: 8f8e8467252874ad
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '-'
+  payloadType: str
+  x: 250
+  'y': 1240
+  wires:
+    - - 3f4e4cb4d6b06af4
+- id: 3f4e4cb4d6b06af4
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: Request_40.RequestID
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 460
+  'y': 1280
+  wires:
+    - []
+- id: 36a89f6b5c0bc662
+  type: http in
+  z: 8f8e8467252874ad
+  name: ''
+  url: /40/RequestID
+  method: get
+  upload: false
+  swaggerDoc: ''
+  x: 150
+  'y': 1280
+  wires:
+    - - 45e29054f0b73dce
+      - 9cf2fe5c598ef5cb
+- id: 45e29054f0b73dce
+  type: change
+  z: 8f8e8467252874ad
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '-'
+      tot: str
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 275
+  'y': 1280
+  wires:
+    - - 3f4e4cb4d6b06af4
+  l: false
+- id: 9cf2fe5c598ef5cb
+  type: http response
+  z: 8f8e8467252874ad
+  name: ''
+  statusCode: ''
+  headers: {}
+  x: 310
+  'y': 1340
+  wires: []

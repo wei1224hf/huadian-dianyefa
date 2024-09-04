@@ -1,0 +1,1141 @@
+- id: efd4a3479ccb4ba6
+  type: tab
+  label: scheduler-30
+  disabled: false
+  info: ''
+  env: []
+- id: 4608b52bd0e963be
+  type: http in
+  z: efd4a3479ccb4ba6
+  name: 通用读多个接口
+  url: /30/ReadValue
+  method: post
+  upload: false
+  swaggerDoc: ''
+  x: 100
+  'y': 480
+  wires:
+    - - 6cdf453a33781e84
+      - 2bcb5d2052f1f022
+- id: 7bc82b7b8931c0e9
+  type: modbus-flex-getter
+  z: efd4a3479ccb4ba6
+  name: ''
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  logIOActivities: false
+  server: ebdc7b3b4236640e
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 810
+  'y': 480
+  wires:
+    - - 09bf2352b623f159
+    - - 6e00afefcd1f8d56
+- id: 6cdf453a33781e84
+  type: change
+  z: efd4a3479ccb4ba6
+  name: ''
+  rules:
+    - t: set
+      p: ReadValue_30
+      pt: global
+      to: '[]'
+      tot: jsonata
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 360
+  'y': 480
+  wires:
+    - - 6f68c83cbeef6995
+- id: 6f68c83cbeef6995
+  type: function
+  z: efd4a3479ccb4ba6
+  name: modbus 报文拆分
+  func: |-
+    var arr = msg.payload;
+    for(var i=0;i<arr.length;i++){
+        var t = arr[i];
+        node.send({payload:{fc:3, address: parseInt(t.Address), quantity:1},temp:parseInt(t.Address)});
+    }
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 610
+  'y': 480
+  wires:
+    - - 7bc82b7b8931c0e9
+- id: 09bf2352b623f159
+  type: function
+  z: efd4a3479ccb4ba6
+  name: 函数 4
+  func: |-
+    var arr = global.get("ReadValue_30");
+    arr.push({
+        Address: msg.modbusRequest.address,
+        Value: msg.payload[0],
+        ValueType: "int"
+    });
+    console.debug(arr);
+    global.set("ReadValue_30",arr);
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 990
+  'y': 480
+  wires:
+    - []
+- id: f935a45c14451e53
+  type: change
+  z: efd4a3479ccb4ba6
+  name: ''
+  rules:
+    - t: set
+      p: payload.Code
+      pt: msg
+      to: '0'
+      tot: num
+    - t: set
+      p: payload.Msg
+      pt: msg
+      to: 操作成功
+      tot: str
+    - t: set
+      p: payload.Data
+      pt: msg
+      to: ReadValue_30
+      tot: global
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 640
+  'y': 520
+  wires:
+    - - c1578a5ac1b3e7aa
+- id: c1578a5ac1b3e7aa
+  type: http response
+  z: efd4a3479ccb4ba6
+  name: ''
+  statusCode: ''
+  headers: {}
+  x: 790
+  'y': 520
+  wires: []
+- id: 2bcb5d2052f1f022
+  type: delay
+  z: efd4a3479ccb4ba6
+  name: ''
+  pauseType: delay
+  timeout: '1'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: false
+  allowrate: false
+  outputs: 1
+  x: 280
+  'y': 520
+  wires:
+    - - 773bba15772d7918
+- id: 6e00afefcd1f8d56
+  type: debug
+  z: efd4a3479ccb4ba6
+  name: 调试 15
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: payload
+  targetType: msg
+  statusVal: ''
+  statusType: auto
+  x: 980
+  'y': 540
+  wires: []
+- id: 773bba15772d7918
+  type: change
+  z: efd4a3479ccb4ba6
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '{}'
+      tot: jsonata
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 450
+  'y': 520
+  wires:
+    - - f935a45c14451e53
+- id: f8d1dbf6b0dbfbeb
+  type: http response
+  z: efd4a3479ccb4ba6
+  name: ''
+  statusCode: ''
+  headers: {}
+  x: 970
+  'y': 200
+  wires: []
+- id: 2d305db09f3358f5
+  type: http in
+  z: efd4a3479ccb4ba6
+  name: 工位任务接收
+  url: /30/ReceiveStationTask
+  method: post
+  upload: false
+  swaggerDoc: ''
+  x: 90
+  'y': 200
+  wires:
+    - - 8924cb91e4255f67
+- id: 069cd12c59655e36
+  type: http in
+  z: efd4a3479ccb4ba6
+  name: 泛在通用写多个接口
+  url: /30/WriteValue
+  method: post
+  upload: false
+  swaggerDoc: ''
+  x: 110
+  'y': 440
+  wires:
+    - - e650501ef7c8bd5d
+- id: e650501ef7c8bd5d
+  type: function
+  z: efd4a3479ccb4ba6
+  name: modbus 报文拆分
+  func: |-
+    var arr = msg.payload;
+    for(var i=0;i<arr.length;i++){
+        var t = arr[i];
+        msg.payload = { value: parseInt(t.Value), 'fc': 6, 'unitid': 1, 'address': parseInt(t.Address), 'quantity': 1 } 
+        node.send(msg);
+    }
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 330
+  'y': 440
+  wires:
+    - - bf70b1ac9f63a3ce
+- id: bf70b1ac9f63a3ce
+  type: modbus-flex-write
+  z: efd4a3479ccb4ba6
+  name: 批量修改modbus值
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  server: ebdc7b3b4236640e
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 810
+  'y': 440
+  wires:
+    - []
+    - []
+- id: deb61c6e5a96a297
+  type: change
+  z: efd4a3479ccb4ba6
+  name: ''
+  rules:
+    - t: set
+      p: StationTask_30
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 660
+  'y': 240
+  wires:
+    - - ad1349edb4a3a7a9
+- id: ad1349edb4a3a7a9
+  type: function
+  z: efd4a3479ccb4ba6
+  name: 反馈
+  func: |-
+    msg.payload = {
+        Code: 0,
+        Msg:"操作成功"
+    };
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 850
+  'y': 240
+  wires:
+    - - f8d1dbf6b0dbfbeb
+- id: 237dec7981d46117
+  type: http in
+  z: efd4a3479ccb4ba6
+  name: 工单结束
+  url: /30/ReceiveEndSignal
+  method: post
+  upload: false
+  swaggerDoc: ''
+  x: 80
+  'y': 120
+  wires:
+    - - 943af9003c75f030
+- id: 363625936814d627
+  type: http response
+  z: efd4a3479ccb4ba6
+  name: ''
+  statusCode: ''
+  headers: {}
+  x: 730
+  'y': 140
+  wires: []
+- id: 1dae50e8eeeb5c98
+  type: function
+  z: efd4a3479ccb4ba6
+  name: 反馈
+  func: |-
+    msg.payload = {
+        Code: 0,
+        Msg: "操作成功"
+    };
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 590
+  'y': 120
+  wires:
+    - - 363625936814d627
+- id: 943af9003c75f030
+  type: switch
+  z: efd4a3479ccb4ba6
+  name: ''
+  property: payload.BillCode
+  propertyType: msg
+  rules:
+    - t: eq
+      v: StationTask_90.BillCode
+      vt: global
+    - t: else
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 350
+  'y': 120
+  wires:
+    - - 1dae50e8eeeb5c98
+      - c4a8d332b6ef6e97
+    - - 896b57cae6d989da
+- id: 896b57cae6d989da
+  type: function
+  z: efd4a3479ccb4ba6
+  name: 反馈
+  func: |-
+    msg.payload = {
+        Code: 1,
+        Msg: "操作失败,当前设备执行的工单和下发的结束工单不一致"
+    };
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 590
+  'y': 160
+  wires:
+    - - 363625936814d627
+- id: efd3c09feee9ba70
+  type: http response
+  z: efd4a3479ccb4ba6
+  name: ''
+  statusCode: ''
+  headers: {}
+  x: 430
+  'y': 240
+  wires: []
+- id: d3c523395d32e574
+  type: http in
+  z: efd4a3479ccb4ba6
+  name: 工位状态-轮询
+  url: /30/GetStationState
+  method: post
+  upload: false
+  swaggerDoc: ''
+  x: 90
+  'y': 240
+  wires:
+    - - 5e8425ab74d15c64
+- id: 5e8425ab74d15c64
+  type: function
+  z: efd4a3479ccb4ba6
+  name: 反馈
+  func: |-
+    var IO = global.get("IO_30");
+    msg.payload = {
+    "Code": 0,
+    "Msg": "操作成功",
+    "Data": [{
+    "StationCode": "OP_30",
+    "StationName": "上润滑油",
+    "Status": IO.AI.status
+    }]
+    };
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 250
+  'y': 240
+  wires:
+    - - efd3c09feee9ba70
+- id: 895ab5888ce9d012
+  type: http in
+  z: efd4a3479ccb4ba6
+  name: 动作执行
+  url: /30/DoAction
+  method: post
+  upload: false
+  swaggerDoc: ''
+  x: 80
+  'y': 340
+  wires:
+    - - 1a57418033fe0137
+      - a6b15b16dbe29a69
+- id: 9cad25a40f338606
+  type: function
+  z: efd4a3479ccb4ba6
+  name: modbus 报文拆分
+  func: >-
+    var t = msg.payload;
+
+    if (t.Value == 0 && t.Address == 4030) {
+        t.RequestID = "-";
+    }
+
+    var Request = global.get("Request_30");
+
+    Request.RequestID = t.RequestID;
+
+    var t2 = (new Date()).toISOString();
+
+    Request.StartTime = t2;
+
+    Request.EndTime = "";
+
+    msg.payload = { value: parseInt(t.Value), 'fc': 6, 'unitid': 1, 'address':
+    parseInt(t.Address), 'quantity': 1 }
+
+    node.send(msg);
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 470
+  'y': 360
+  wires:
+    - - bf70b1ac9f63a3ce
+      - 397d0296a33d4e7d
+      - abfd434d7d0f4395
+- id: e759e7cdef9ed3b0
+  type: switch
+  z: efd4a3479ccb4ba6
+  name: ''
+  property: Request_30.RequestID
+  propertyType: global
+  rules:
+    - t: eq
+      v: '-'
+      vt: str
+    - t: else
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 295
+  'y': 340
+  wires:
+    - - 9cad25a40f338606
+      - 5247ce7eefc505b5
+    - - 49cabd21c330f7f7
+  l: false
+- id: 5247ce7eefc505b5
+  type: function
+  z: efd4a3479ccb4ba6
+  name: 反馈
+  func: |-
+    msg.payload = {
+        Code: 0,
+        Msg: "操作成功"
+    };
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 430
+  'y': 320
+  wires:
+    - - aaeb451f35e295ca
+- id: aaeb451f35e295ca
+  type: http response
+  z: efd4a3479ccb4ba6
+  name: ''
+  statusCode: ''
+  headers: {}
+  x: 590
+  'y': 320
+  wires: []
+- id: 49cabd21c330f7f7
+  type: function
+  z: efd4a3479ccb4ba6
+  name: 反馈
+  func: |-
+    msg.payload = {
+        Code: 1,
+        Msg: "上一个动作还未完成"
+    };
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 430
+  'y': 400
+  wires:
+    - - aaeb451f35e295ca
+- id: 8924cb91e4255f67
+  type: function
+  z: efd4a3479ccb4ba6
+  name: 格式解析
+  func: |
+    msg.error = 0;
+
+    var task = global.get("StationTask_30");
+    if(task.BillCode!='-'){
+        msg.error = 1;
+        msg.errorMsg = "previese task is on going";
+        return msg;
+    }
+
+    const data = msg.payload;
+    if((typeof(data)!='object')){
+        msg.error = 2;
+        msg.errorMsg = "format wrong";
+        return msg;
+    }
+
+    if (!('BillCode' in data)){
+        msg.error = 3;
+        msg.errorMsg = "no BillCode";
+        return msg;
+    }
+    if (!('ProductCode' in data)){
+        msg.error = 4;
+        msg.errorMsg = "no ProductCode";
+        return msg;
+    }
+
+    if (!('ProcessDetail' in data)){
+        msg.error = 5;
+        msg.errorMsg = "no ProcessDetail";
+        return msg;
+    }
+
+    if(data.ProcessDetail.length==1){
+        const data2 = data.ProcessDetail[0];
+        if (!('EquipmentCode' in data2)){
+            msg.error = 6;
+            msg.errorMsg = "no EquipmentCode";
+            return msg;
+        }
+        if(data2.EquipmentCode!='OP30'){
+            msg.error = 7;
+            msg.errorMsg = "no OP30";
+            return msg;
+        }
+        if (!('Num' in data2)){
+            msg.error = 8;
+            msg.errorMsg = "no Num";
+            return msg;
+        }
+    }
+    else{
+        msg.error = 13;
+        msg.errorMsg = "ProcessDetail.length should be 1";
+        return msg;
+    }
+
+
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 260
+  'y': 200
+  wires:
+    - - 15b4780638b47f24
+- id: 15b4780638b47f24
+  type: switch
+  z: efd4a3479ccb4ba6
+  name: ''
+  property: error
+  propertyType: msg
+  rules:
+    - t: neq
+      v: '0'
+      vt: num
+    - t: eq
+      v: '0'
+      vt: num
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 430
+  'y': 200
+  wires:
+    - - 28eceff2f21345ee
+    - - deb61c6e5a96a297
+- id: 28eceff2f21345ee
+  type: function
+  z: efd4a3479ccb4ba6
+  name: 反馈
+  func: |-
+    msg.payload = {
+        Code: 1,
+        Msg:"失败"+msg.errorMsg
+    };
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 590
+  'y': 200
+  wires:
+    - - f8d1dbf6b0dbfbeb
+- id: c4a8d332b6ef6e97
+  type: change
+  z: efd4a3479ccb4ba6
+  name: ''
+  rules:
+    - t: set
+      p: StationTask_30.BillCode
+      pt: global
+      to: '-'
+      tot: str
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 690
+  'y': 40
+  wires:
+    - []
+- id: 46f43e7304413938
+  type: inject
+  z: efd4a3479ccb4ba6
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: '2'
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 120
+  'y': 700
+  wires:
+    - - 0f324691ac3b0976
+- id: 0f324691ac3b0976
+  type: trigger
+  z: efd4a3479ccb4ba6
+  name: ''
+  op1: '1'
+  op2: '0'
+  op1type: str
+  op2type: str
+  duration: '-250'
+  extend: false
+  overrideDelay: false
+  units: ms
+  reset: ''
+  bytopic: all
+  topic: topic
+  outputs: 1
+  x: 235
+  'y': 700
+  wires:
+    - - 8e6ec26cf97ae0d3
+      - e95367c3fa79d736
+  l: false
+- id: b948b482b1c58187
+  type: rbe
+  z: efd4a3479ccb4ba6
+  name: ''
+  func: rbei
+  gap: ''
+  start: ''
+  inout: out
+  septopics: false
+  property: payload
+  topi: topic
+  x: 370
+  'y': 780
+  wires:
+    - - b57f4df7898d9cc1
+- id: 8e6ec26cf97ae0d3
+  type: change
+  z: efd4a3479ccb4ba6
+  name: 状态变化监听
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: IO_30.AI.work_over
+      tot: global
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 200
+  'y': 780
+  wires:
+    - - b948b482b1c58187
+- id: b57f4df7898d9cc1
+  type: switch
+  z: efd4a3479ccb4ba6
+  name: ''
+  property: payload
+  propertyType: msg
+  rules:
+    - t: eq
+      v: '1'
+      vt: num
+    - t: else
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 490
+  'y': 780
+  wires:
+    - - d72a99f95f1edb40
+    - []
+- id: c5e61641d6e5b189
+  type: http request
+  z: efd4a3479ccb4ba6
+  name: ''
+  method: POST
+  ret: txt
+  paytoqs: ignore
+  url: ''
+  tls: ''
+  persist: false
+  proxy: ''
+  insecureHTTPParser: false
+  authType: ''
+  senderr: false
+  headers: []
+  x: 860
+  'y': 780
+  wires:
+    - - 222fe37a347bb203
+      - b1e9dd4e8f91a4a7
+- id: 05d712aa2ddbc3be
+  type: rbe
+  z: efd4a3479ccb4ba6
+  name: ''
+  func: rbei
+  gap: ''
+  start: ''
+  inout: out
+  septopics: false
+  property: payload
+  topi: topic
+  x: 370
+  'y': 860
+  wires:
+    - - 03abd2d07a232149
+- id: e95367c3fa79d736
+  type: change
+  z: efd4a3479ccb4ba6
+  name: 故障信号监听
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: IO_10.AI.error
+      tot: global
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 200
+  'y': 860
+  wires:
+    - - 05d712aa2ddbc3be
+- id: 03abd2d07a232149
+  type: switch
+  z: efd4a3479ccb4ba6
+  name: ''
+  property: payload
+  propertyType: msg
+  rules:
+    - t: gt
+      v: '0'
+      vt: num
+  checkall: 'true'
+  repair: false
+  outputs: 1
+  x: 490
+  'y': 860
+  wires:
+    - - d80e5268ce36d952
+- id: adcef80be12aedc0
+  type: http request
+  z: efd4a3479ccb4ba6
+  name: ''
+  method: POST
+  ret: txt
+  paytoqs: ignore
+  url: ''
+  tls: ''
+  persist: false
+  proxy: ''
+  insecureHTTPParser: false
+  authType: ''
+  senderr: false
+  headers:
+    - keyType: other
+      keyValue: Accept
+      valueType: other
+      valueValue: application/json
+  x: 860
+  'y': 860
+  wires:
+    - - 37552ffe7abdbb5e
+- id: 222fe37a347bb203
+  type: debug
+  z: efd4a3479ccb4ba6
+  name: 调试 22
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'false'
+  statusVal: ''
+  statusType: auto
+  x: 1020
+  'y': 780
+  wires: []
+- id: 37552ffe7abdbb5e
+  type: debug
+  z: efd4a3479ccb4ba6
+  name: 调试 23
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: payload
+  targetType: msg
+  statusVal: ''
+  statusType: auto
+  x: 1020
+  'y': 860
+  wires: []
+- id: d80e5268ce36d952
+  type: function
+  z: efd4a3479ccb4ba6
+  name: 读取故障描述
+  func: |-
+    var ErrorMap = global.get("ErrorMap_30");
+    msg.payload ={
+    EquipmentCode: "OP30",
+    EquipmentName: "泛在控制器",
+    Status: 0,
+    WarnContent: ErrorMap[msg.payload]
+    };
+    msg.url = global.get("LCS")+"receiveUbiquitousWarn";
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 670
+  'y': 860
+  wires:
+    - - adcef80be12aedc0
+- id: d72a99f95f1edb40
+  type: function
+  z: efd4a3479ccb4ba6
+  name: 生产完成
+  func: |-
+    const t = (new Date()).toISOString();
+    var Request = global.get("Request_30");
+    Request.EndTime = t;
+    msg.payload = Request;
+    msg.url = global.get("LCS") + "actionCompletedSignal";
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 680
+  'y': 780
+  wires:
+    - - c5e61641d6e5b189
+- id: bc9637cc0a3baaba
+  type: inject
+  z: efd4a3479ccb4ba6
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 490
+  'y': 740
+  wires:
+    - - d72a99f95f1edb40
+- id: b1e9dd4e8f91a4a7
+  type: delay
+  z: efd4a3479ccb4ba6
+  name: ''
+  pauseType: delay
+  timeout: '1'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: false
+  allowrate: false
+  outputs: 1
+  x: 1020
+  'y': 820
+  wires:
+    - - 366db6dd22a1471c
+- id: 366db6dd22a1471c
+  type: change
+  z: efd4a3479ccb4ba6
+  name: ''
+  rules:
+    - t: set
+      p: Request_30.RequestID
+      pt: global
+      to: '-'
+      tot: str
+    - t: set
+      p: Request_30.RequestID_
+      pt: global
+      to: '-'
+      tot: str
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1180
+  'y': 820
+  wires:
+    - []
+- id: 397d0296a33d4e7d
+  type: delay
+  z: efd4a3479ccb4ba6
+  name: ''
+  pauseType: delay
+  timeout: '3'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: false
+  allowrate: false
+  outputs: 1
+  x: 625
+  'y': 360
+  wires:
+    - - e97d3a9cf5bb6e41
+  l: false
+- id: e97d3a9cf5bb6e41
+  type: function
+  z: efd4a3479ccb4ba6
+  name: 动作置位
+  func: |-
+    msg.payload = { value: 0, fc: 6, unitid: 1, address: 4030, quantity: 1 }; 
+    node.send(msg);
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 730
+  'y': 360
+  wires:
+    - - bf70b1ac9f63a3ce
+- id: 1a57418033fe0137
+  type: switch
+  z: efd4a3479ccb4ba6
+  name: ''
+  property: IO_30.AI.status
+  propertyType: global
+  rules:
+    - t: eq
+      v: '22'
+      vt: num
+    - t: else
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 195
+  'y': 340
+  wires:
+    - - e759e7cdef9ed3b0
+    - - f12d04b26351639b
+  l: false
+- id: f12d04b26351639b
+  type: function
+  z: efd4a3479ccb4ba6
+  name: 反馈
+  func: |-
+    const IO = global.get("IO_30");
+    msg.payload = {
+        Code: 1,
+        Msg: "当前状态无法执行动作:"+IO.AI.status,
+    };
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 290
+  'y': 400
+  wires:
+    - - aaeb451f35e295ca
+- id: abfd434d7d0f4395
+  type: debug
+  z: efd4a3479ccb4ba6
+  name: 调试 24
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'false'
+  statusVal: ''
+  statusType: auto
+  x: 760
+  'y': 320
+  wires: []
+- id: 1f3ee82275b60d3a
+  type: file
+  z: efd4a3479ccb4ba6
+  name: ''
+  filename: 'C:/tmp/request.txt'
+  filenameType: str
+  appendNewline: true
+  createDir: false
+  overwriteFile: 'false'
+  encoding: none
+  x: 310
+  'y': 280
+  wires:
+    - []
+- id: a6b15b16dbe29a69
+  type: function
+  z: efd4a3479ccb4ba6
+  name: 函数 26
+  func: |-
+    var txt = msg.payload.Value + "," + msg.payload.RequestID;
+    var date = (new Date()).toISOString();
+    msg.payload = date + " : " + txt;
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 185
+  'y': 280
+  wires:
+    - - 1f3ee82275b60d3a
+  l: false

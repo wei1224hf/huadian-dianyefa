@@ -1,0 +1,101 @@
+- id: da53119d7e90a265
+  type: subflow
+  name: 左侧干涉
+  info: ''
+  category: ''
+  in:
+    - x: 60
+      'y': 80
+      wires:
+        - id: 8f51986f924c56b3
+  out:
+    - x: 480
+      'y': 80
+      wires:
+        - id: 72863147396d9efe
+          port: 0
+  env: []
+  meta: {}
+  color: '#E2D96E'
+  icon: font-awesome/fa-chain-broken
+  status:
+    x: 360
+    'y': 260
+    wires:
+      - id: 8f51986f924c56b3
+        port: 0
+      - id: 72863147396d9efe
+        port: 0
+- id: 8f51986f924c56b3
+  type: trigger
+  z: da53119d7e90a265
+  name: ''
+  op1: ''
+  op2: '0'
+  op1type: date
+  op2type: str
+  duration: '-250'
+  extend: false
+  overrideDelay: false
+  units: ms
+  reset: ''
+  bytopic: all
+  topic: topic
+  outputs: 1
+  x: 145
+  'y': 80
+  wires:
+    - - de28ca88fcc75e26
+  l: false
+- id: de28ca88fcc75e26
+  type: switch
+  z: da53119d7e90a265
+  name: 左侧不互斥
+  property: IO_40.AI_SCARA_L.response
+  propertyType: global
+  rules:
+    - t: eq
+      v: Enum.SCARA_LEFT_HOEM_TO_OIL
+      vt: global
+    - t: eq
+      v: Enum.SCARA_LEFT_OIL_TO_TRASH
+      vt: global
+    - t: eq
+      v: Enum.SCARA_LEFT_OIL_TO_PRODUCT
+      vt: global
+    - t: else
+  checkall: 'true'
+  repair: false
+  outputs: 4
+  x: 270
+  'y': 80
+  wires:
+    - []
+    - []
+    - []
+    - - 72863147396d9efe
+- id: 72863147396d9efe
+  type: change
+  z: da53119d7e90a265
+  name: ''
+  rules:
+    - t: set
+      p: reset
+      pt: msg
+      to: 'true'
+      tot: bool
+    - t: set
+      p: payload
+      pt: msg
+      to: '1'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 375
+  'y': 80
+  wires:
+    - - 8f51986f924c56b3
+  l: false

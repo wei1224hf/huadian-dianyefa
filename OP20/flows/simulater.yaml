@@ -1,0 +1,146 @@
+- id: d8280152e0f21cc5
+  type: tab
+  label: simulater
+  disabled: false
+  info: ''
+  env: []
+- id: 647157037f20c3a8
+  type: inject
+  z: d8280152e0f21cc5
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '-'
+  payloadType: str
+  x: 150
+  'y': 260
+  wires:
+    - - 3f4e4cb4d6b06af4
+      - 68f6b8591b36d4ae
+- id: 3f4e4cb4d6b06af4
+  type: change
+  z: d8280152e0f21cc5
+  name: ''
+  rules:
+    - t: set
+      p: Request_20.RequestID
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 400
+  'y': 200
+  wires:
+    - []
+- id: 68f6b8591b36d4ae
+  type: change
+  z: d8280152e0f21cc5
+  name: ''
+  rules:
+    - t: set
+      p: Request_30.RequestID
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 400
+  'y': 300
+  wires:
+    - []
+- id: 36a89f6b5c0bc662
+  type: http in
+  z: d8280152e0f21cc5
+  name: ''
+  url: /20/RequestID
+  method: get
+  upload: false
+  swaggerDoc: ''
+  x: 350
+  'y': 140
+  wires:
+    - - 45e29054f0b73dce
+      - 15888784eb98e7e3
+- id: 45e29054f0b73dce
+  type: change
+  z: d8280152e0f21cc5
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '-'
+      tot: str
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 475
+  'y': 140
+  wires:
+    - - 3f4e4cb4d6b06af4
+  l: false
+- id: a1f3f03298325642
+  type: http in
+  z: d8280152e0f21cc5
+  name: ''
+  url: /30/RequestID
+  method: get
+  upload: false
+  swaggerDoc: ''
+  x: 350
+  'y': 360
+  wires:
+    - - 6b5996185a552e98
+      - 6e4fa3dbce3936cf
+- id: 6b5996185a552e98
+  type: change
+  z: d8280152e0f21cc5
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '-'
+      tot: str
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 475
+  'y': 360
+  wires:
+    - - 68f6b8591b36d4ae
+  l: false
+- id: 15888784eb98e7e3
+  type: http response
+  z: d8280152e0f21cc5
+  name: ''
+  statusCode: ''
+  headers: {}
+  x: 510
+  'y': 100
+  wires: []
+- id: 6e4fa3dbce3936cf
+  type: http response
+  z: d8280152e0f21cc5
+  name: ''
+  statusCode: ''
+  headers: {}
+  x: 510
+  'y': 400
+  wires: []

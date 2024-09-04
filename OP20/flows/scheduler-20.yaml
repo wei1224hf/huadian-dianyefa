@@ -1,12 +1,12 @@
-- id: efd4a3479ccb4ba6
+- id: b60c316ff0a6b6c0
   type: tab
-  label: scheduler-100
+  label: scheduler-20
   disabled: false
   info: ''
   env: []
-- id: fd3afd4f2b7d8287
+- id: 5b4e21d2e264a3b8
   type: inject
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   props:
     - p: payload
@@ -19,13 +19,13 @@
   topic: ''
   payload: ''
   payloadType: date
-  x: 100
+  x: 120
   'y': 640
   wires:
-    - - 6f9732e0ad0d5681
-- id: 6f9732e0ad0d5681
+    - - 3a2763e16069b1ca
+- id: 3a2763e16069b1ca
   type: trigger
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   op1: '1'
   op2: '0'
@@ -39,27 +39,27 @@
   bytopic: all
   topic: topic
   outputs: 1
-  x: 290
+  x: 310
   'y': 640
   wires:
-    - - ead9fc87ea3d0f27
-      - 466602296230bfe9
-- id: 4608b52bd0e963be
+    - - b432f21ea8a0c076
+      - 6e1662cb6cf9703d
+- id: 7bd5064aa60abc6c
   type: http in
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 通用读多个接口
-  url: /100/ReadValue
+  url: /20/ReadValue
   method: post
   upload: false
   swaggerDoc: ''
-  x: 100
-  'y': 480
+  x: 120
+  'y': 520
   wires:
-    - - 6cdf453a33781e84
-      - 2bcb5d2052f1f022
-- id: 7bc82b7b8931c0e9
+    - - abf419e4087513ea
+      - 46cf809cb9daa3a5
+- id: 23ed647795da08ac
   type: modbus-flex-getter
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   showStatusActivities: false
   showErrors: false
@@ -73,18 +73,18 @@
   keepMsgProperties: false
   delayOnStart: false
   startDelayTime: ''
-  x: 810
-  'y': 480
+  x: 830
+  'y': 520
   wires:
-    - - 09bf2352b623f159
-    - - 6e00afefcd1f8d56
-- id: 6cdf453a33781e84
+    - - 4356d9605954ea3e
+    - - 53462c6c5f5c6254
+- id: abf419e4087513ea
   type: change
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   rules:
     - t: set
-      p: ReadValue_10
+      p: ReadValue_20
       pt: global
       to: '[]'
       tot: jsonata
@@ -93,13 +93,13 @@
   from: ''
   to: ''
   reg: false
-  x: 360
-  'y': 480
+  x: 380
+  'y': 520
   wires:
-    - - 6f68c83cbeef6995
-- id: 6f68c83cbeef6995
+    - - 6d2816ce6f58614a
+- id: 6d2816ce6f58614a
   type: function
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: modbus 报文拆分
   func: |-
     var arr = msg.payload;
@@ -113,23 +113,23 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 610
-  'y': 480
+  x: 630
+  'y': 520
   wires:
-    - - 7bc82b7b8931c0e9
-- id: 09bf2352b623f159
+    - - 23ed647795da08ac
+- id: 4356d9605954ea3e
   type: function
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 函数 4
   func: |-
-    var arr = global.get("ReadValue_10");
+    var arr = global.get("ReadValue_90");
     arr.push({
         Address: msg.modbusRequest.address,
         Value: msg.payload[0],
         ValueType: "int"
     });
     console.debug(arr);
-    global.set("ReadValue_10",arr);
+    global.set("ReadValue_90",arr);
     return msg;
   outputs: 1
   timeout: 0
@@ -137,13 +137,13 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 990
-  'y': 480
+  x: 1010
+  'y': 520
   wires:
     - []
-- id: f935a45c14451e53
+- id: bf64874f8de1d1f2
   type: change
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   rules:
     - t: set
@@ -159,29 +159,29 @@
     - t: set
       p: payload.Data
       pt: msg
-      to: ReadValue_10
+      to: ReadValue_20
       tot: global
   action: ''
   property: ''
   from: ''
   to: ''
   reg: false
-  x: 640
-  'y': 520
+  x: 660
+  'y': 560
   wires:
-    - - c1578a5ac1b3e7aa
-- id: c1578a5ac1b3e7aa
+    - - 8c67c6b28b652f9f
+- id: 8c67c6b28b652f9f
   type: http response
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   statusCode: ''
   headers: {}
-  x: 790
-  'y': 520
+  x: 810
+  'y': 560
   wires: []
-- id: 2bcb5d2052f1f022
+- id: 46cf809cb9daa3a5
   type: delay
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   pauseType: delay
   timeout: '1'
@@ -195,70 +195,66 @@
   drop: false
   allowrate: false
   outputs: 1
-  x: 280
-  'y': 520
+  x: 300
+  'y': 560
   wires:
-    - - 773bba15772d7918
-- id: dea945d4f22dc2ce
+    - - e55f366c9e5b8dd4
+- id: a7fe531c9b8b9c41
   type: rbe
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
-  func: rbe
+  func: rbei
   gap: ''
   start: ''
   inout: out
   septopics: false
   property: payload
   topi: topic
-  x: 350
+  x: 370
   'y': 720
   wires:
-    - - 3217afeb1df75b6b
-- id: ead9fc87ea3d0f27
+    - - 1796bf9ffd5535ad
+- id: b432f21ea8a0c076
   type: change
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 状态变化监听
   rules:
     - t: set
       p: payload
       pt: msg
-      to: IO_10.AI.status
+      to: IO_20.AI.work_over
       tot: global
   action: ''
   property: ''
   from: ''
   to: ''
   reg: false
-  x: 180
+  x: 200
   'y': 720
   wires:
-    - - dea945d4f22dc2ce
-- id: 3217afeb1df75b6b
+    - - a7fe531c9b8b9c41
+- id: 1796bf9ffd5535ad
   type: switch
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   property: payload
   propertyType: msg
   rules:
     - t: eq
-      v: '5'
+      v: '1'
       vt: num
-    - t: btwn
-      v: '40'
-      vt: num
-      v2: '49'
-      v2t: num
+    - t: else
   checkall: 'true'
   repair: false
   outputs: 2
-  x: 470
+  x: 490
   'y': 720
   wires:
-    - - 341931a00f4feca5
-    - - cb29d5fa639735b7
-- id: 696f860f4ca50d42
+    - - de27a252b48ff1b5
+    - []
+- id: 44d4e7db3305d62e
   type: http request
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   method: POST
   ret: txt
@@ -271,28 +267,29 @@
   authType: ''
   senderr: false
   headers: []
-  x: 1040
+  x: 840
   'y': 720
   wires:
-    - - f1ed78dc7c163209
-- id: 34845c9d97eae208
+    - - b62ca316eb13ad1a
+      - d0a1dd65148e46a8
+- id: c776a0aa2699059e
   type: rbe
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
-  func: rbe
+  func: rbei
   gap: ''
   start: ''
   inout: out
   septopics: false
   property: payload
   topi: topic
-  x: 350
+  x: 370
   'y': 800
   wires:
-    - - c125392c542e73ab
-- id: 466602296230bfe9
+    - - b53c94fcf893ec7d
+- id: 6e1662cb6cf9703d
   type: change
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 故障信号监听
   rules:
     - t: set
@@ -305,13 +302,13 @@
   from: ''
   to: ''
   reg: false
-  x: 180
+  x: 200
   'y': 800
   wires:
-    - - 34845c9d97eae208
-- id: c125392c542e73ab
+    - - c776a0aa2699059e
+- id: b53c94fcf893ec7d
   type: switch
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   property: payload
   propertyType: msg
@@ -322,13 +319,13 @@
   checkall: 'true'
   repair: false
   outputs: 1
-  x: 470
+  x: 490
   'y': 800
   wires:
-    - - 1f79a6b42a7951c4
-- id: c5d0d032b5cdf62c
+    - - c494ac7f58b40cf2
+- id: f25ba9e302a386fd
   type: http request
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   method: POST
   ret: txt
@@ -345,13 +342,13 @@
       keyValue: Accept
       valueType: other
       valueValue: application/json
-  x: 840
+  x: 860
   'y': 800
   wires:
-    - - 8ca7421c5b46b4c2
-- id: 6e00afefcd1f8d56
+    - - f4e4deeed0f9c88a
+- id: 53462c6c5f5c6254
   type: debug
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 调试 15
   active: true
   tosidebar: true
@@ -360,12 +357,12 @@
   complete: 'false'
   statusVal: ''
   statusType: auto
-  x: 980
-  'y': 540
+  x: 1000
+  'y': 580
   wires: []
-- id: 773bba15772d7918
+- id: e55f366c9e5b8dd4
   type: change
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   rules:
     - t: set
@@ -378,27 +375,27 @@
   from: ''
   to: ''
   reg: false
-  x: 450
-  'y': 520
+  x: 470
+  'y': 560
   wires:
-    - - f935a45c14451e53
-- id: f1ed78dc7c163209
+    - - bf64874f8de1d1f2
+- id: b62ca316eb13ad1a
   type: debug
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 调试 16
-  active: false
+  active: true
   tosidebar: true
   console: false
   tostatus: false
   complete: 'false'
   statusVal: ''
   statusType: auto
-  x: 1200
+  x: 1000
   'y': 720
   wires: []
-- id: 8ca7421c5b46b4c2
+- id: f4e4deeed0f9c88a
   type: debug
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 调试 17
   active: false
   tosidebar: true
@@ -408,69 +405,22 @@
   targetType: msg
   statusVal: ''
   statusType: auto
-  x: 1000
+  x: 1020
   'y': 800
   wires: []
-- id: 7f64bfddf8699ab1
+- id: c494ac7f58b40cf2
   type: function
-  z: efd4a3479ccb4ba6
-  name: function 33
-  func: "msg.payload = {\n \t\"requestID\": global.get(\"RequestID_60\"),\n\t\"startTime\": global.get(\"StartTime_60\"),\n\t\"endTime\": global.get(\"EndTime_60\")\n};\n\nmsg.url = global.get(\"LCS\")+\"actionCompletedSignal\";\n//msg.method = \"POST\";\nreturn msg;"
-  outputs: 1
-  timeout: 0
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 840
-  'y': 720
-  wires:
-    - - 696f860f4ca50d42
-- id: 1f79a6b42a7951c4
-  type: function
-  z: efd4a3479ccb4ba6
-  name: function 34
-  func: "var ErrorMap_60 = global.get(\"ErrorMap_10\");\nmsg.payload ={\t\t\t\t\n\tEquipmentCode: \"OP10\",\t\t\t\n\tEquipmentName: \"泛在控制器\",\t\t\t\n\tStatus: 0,\n    WarnContent: ErrorMap_60[msg.payload]\t\t\n};\nmsg.url = global.get(\"LCS\")+\"receiveUbiquitousWarn\";\n\nreturn msg;"
-  outputs: 1
-  timeout: 0
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 640
-  'y': 800
-  wires:
-    - - c5d0d032b5cdf62c
-- id: cb29d5fa639735b7
-  type: function
-  z: efd4a3479ccb4ba6
-  name: 开始生产
-  func: |+
-
-    var t = (new Date()).toISOString();
-    global.set("StartTime_10", t);
-
-  outputs: 1
-  timeout: 0
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 640
-  'y': 740
-  wires:
-    - []
-- id: 341931a00f4feca5
-  type: function
-  z: efd4a3479ccb4ba6
-  name: 生产完成
+  z: b60c316ff0a6b6c0
+  name: 读取故障描述
   func: |-
-
-    var t = (new Date()).toISOString();
-    global.set("EndTime_10", t);
-    global.set("RequestID_10", "-");
-
-
+    var ErrorMap = global.get("ErrorMap_20");
+    msg.payload ={
+    EquipmentCode: "OP20",
+    EquipmentName: "泛在控制器",
+    Status: 0,
+    WarnContent: ErrorMap[msg.payload]
+    };
+    msg.url = global.get("LCS")+"receiveUbiquitousWarn";
 
     return msg;
   outputs: 1
@@ -479,13 +429,34 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 640
-  'y': 680
+  x: 670
+  'y': 800
   wires:
-    - - 7f64bfddf8699ab1
-- id: cd43772a1bfd0652
+    - - f25ba9e302a386fd
+- id: de27a252b48ff1b5
+  type: function
+  z: b60c316ff0a6b6c0
+  name: 生产完成
+  func: |-
+    const t = (new Date()).toISOString();
+    var Request_20 = global.get("Request_20");
+    Request_20.EndTime = t;
+    msg.payload = Request_20;
+    msg.url = global.get("LCS") + "actionCompletedSignal";
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 680
+  'y': 720
+  wires:
+    - - 44d4e7db3305d62e
+- id: fbf2750d95e5d960
   type: inject
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   props:
     - p: payload
@@ -498,46 +469,47 @@
   topic: ''
   payload: ''
   payloadType: date
-  x: 470
+  x: 490
   'y': 680
   wires:
-    - - 341931a00f4feca5
-- id: f8d1dbf6b0dbfbeb
+    - - de27a252b48ff1b5
+- id: fb27549faaf4df38
   type: http response
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   statusCode: ''
   headers: {}
-  x: 1070
+  x: 1090
   'y': 220
   wires: []
-- id: 2d305db09f3358f5
+- id: 4a2521e0cea6f181
   type: http in
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 工位任务接收
-  url: /100/ReceiveStationTask
-  method: post
-  upload: false
-  swaggerDoc: ''
-  x: 90
-  'y': 240
-  wires:
-    - - 8924cb91e4255f67
-- id: 069cd12c59655e36
-  type: http in
-  z: efd4a3479ccb4ba6
-  name: 泛在通用写多个接口
-  url: /100/WriteValue
+  url: /20/ReceiveStationTask
   method: post
   upload: false
   swaggerDoc: ''
   x: 110
+  'y': 220
+  wires:
+    - - 249c701a144c7661
+- id: 6a4c6646110d08c5
+  type: http in
+  z: b60c316ff0a6b6c0
+  name: 泛在通用写多个接口
+  url: /20/WriteValue
+  method: post
+  upload: false
+  swaggerDoc: ''
+  x: 130
   'y': 440
   wires:
-    - - e650501ef7c8bd5d
-- id: e650501ef7c8bd5d
+    - - 728d158acf67d988
+      - b672d820b2632e17
+- id: 728d158acf67d988
   type: function
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: modbus 报文拆分
   func: |-
     var arr = msg.payload;
@@ -552,13 +524,13 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 330
+  x: 350
   'y': 440
   wires:
-    - - bf70b1ac9f63a3ce
-- id: bf70b1ac9f63a3ce
+    - - f6cce74e561807da
+- id: f6cce74e561807da
   type: modbus-flex-write
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 批量修改modbus值
   showStatusActivities: false
   showErrors: false
@@ -568,18 +540,18 @@
   keepMsgProperties: false
   delayOnStart: false
   startDelayTime: ''
-  x: 810
+  x: 830
   'y': 440
   wires:
     - []
     - []
-- id: deb61c6e5a96a297
+- id: 4b08f8c03e37af75
   type: change
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   rules:
     - t: set
-      p: StationTask_90
+      p: StationTask_20
       pt: global
       to: payload
       tot: msg
@@ -588,13 +560,13 @@
   from: ''
   to: ''
   reg: false
-  x: 660
+  x: 680
   'y': 240
   wires:
-    - - ad1349edb4a3a7a9
-- id: ad1349edb4a3a7a9
+    - - 5422fe3beb921c6c
+- id: 5422fe3beb921c6c
   type: function
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 反馈
   func: |-
     msg.payload = {
@@ -608,34 +580,34 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 910
+  x: 930
   'y': 240
   wires:
-    - - f8d1dbf6b0dbfbeb
-- id: 237dec7981d46117
+    - - fb27549faaf4df38
+- id: 5f2d50fe11da5433
   type: http in
-  z: efd4a3479ccb4ba6
-  name: ReceiveEndSignal
-  url: /100/ReceiveEndSignal
+  z: b60c316ff0a6b6c0
+  name: 工单结束
+  url: /20/ReceiveEndSignal
   method: post
   upload: false
   swaggerDoc: ''
-  x: 110
+  x: 100
   'y': 120
   wires:
-    - - 943af9003c75f030
-- id: 363625936814d627
+    - - aa38984a734707e1
+- id: 13f19cbb678fecfc
   type: http response
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   statusCode: ''
   headers: {}
-  x: 730
+  x: 750
   'y': 140
   wires: []
-- id: 1dae50e8eeeb5c98
+- id: a87a85b7794a1a6e
   type: function
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 反馈
   func: |-
     msg.payload = {
@@ -649,38 +621,38 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 590
+  x: 610
   'y': 120
   wires:
-    - - 363625936814d627
-- id: 943af9003c75f030
+    - - 13f19cbb678fecfc
+- id: aa38984a734707e1
   type: switch
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   property: payload.BillCode
   propertyType: msg
   rules:
     - t: eq
-      v: StationTask_90.BillCode
+      v: StationTask_20.BillCode
       vt: global
     - t: else
   checkall: 'true'
   repair: false
   outputs: 2
-  x: 350
+  x: 370
   'y': 120
   wires:
-    - - d900939695adac7e
-      - 1dae50e8eeeb5c98
-      - c4a8d332b6ef6e97
-    - - 896b57cae6d989da
-- id: d900939695adac7e
+    - - 410e90894f9b82f8
+      - a87a85b7794a1a6e
+      - 168aa29d0a82a483
+    - - 649e5fadeb818fa6
+- id: 410e90894f9b82f8
   type: change
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   rules:
     - t: set
-      p: IO_10.AO.production
+      p: IO_20.AO.production
       pt: global
       to: '0'
       tot: num
@@ -689,13 +661,13 @@
   from: ''
   to: ''
   reg: false
-  x: 680
+  x: 700
   'y': 80
   wires:
     - []
-- id: 896b57cae6d989da
+- id: 649e5fadeb818fa6
   type: function
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 反馈
   func: |-
     msg.payload = {
@@ -709,68 +681,90 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 590
+  x: 610
   'y': 160
   wires:
-    - - 363625936814d627
-- id: efd3c09feee9ba70
+    - - 13f19cbb678fecfc
+- id: 1d0ee5f6d13974f7
   type: http response
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   statusCode: ''
   headers: {}
-  x: 750
-  'y': 280
+  x: 450
+  'y': 260
   wires: []
-- id: d3c523395d32e574
+- id: b24efc27b16de1e8
   type: http in
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 工位状态-轮询
-  url: /100/GetStationState
+  url: /20/GetStationState
   method: post
   upload: false
   swaggerDoc: ''
-  x: 90
-  'y': 280
+  x: 110
+  'y': 260
   wires:
-    - - 5e8425ab74d15c64
-- id: 5e8425ab74d15c64
+    - - a02d16b74ebe1b1d
+- id: a02d16b74ebe1b1d
   type: function
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 反馈
-  func: "var IO_100 = global.get(\"IO_100\");\nmsg.payload = {\n\t\"Code\": 0,\n\t\"Msg\": \"操作成功\",\n\t\"Data\": [{\n\t\t\"StationCode\": \"IO_100\",\n\t\t\"StationName\": \"产线下料\",\n\t\t\"Status\": IO_100.AI.status\n\t}]\n};\nreturn msg;"
+  func: |-
+    var IO = global.get("IO_20");
+    msg.payload = {
+    "Code": 0,
+    "Msg": "操作成功",
+    "Data": [{
+    "StationCode": "OP_20",
+    "StationName": "激光打标",
+    "Status": IO.AI.status
+    }]
+    };
+    return msg;
   outputs: 1
   timeout: 0
   noerr: 0
   initialize: ''
   finalize: ''
   libs: []
-  x: 590
-  'y': 280
+  x: 270
+  'y': 260
   wires:
-    - - efd3c09feee9ba70
-- id: 895ab5888ce9d012
+    - - 1d0ee5f6d13974f7
+- id: a28f18a533722341
   type: http in
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 动作执行
-  url: /100/DoAction
+  url: /20/DoAction
   method: post
   upload: false
   swaggerDoc: ''
-  x: 80
-  'y': 400
+  x: 100
+  'y': 360
   wires:
-    - - e759e7cdef9ed3b0
-- id: 9cad25a40f338606
+    - - c55f99a67e6ac1ba
+      - 37c372a70ce118c4
+- id: cd601a9f82909663
   type: function
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: modbus 报文拆分
   func: >-
     var t = msg.payload;
 
-    var RequestID = t.RequestID;
+    if (t.Value == 0 && t.Address == 4020) {
+        t.RequestID = "-";
+    }
 
-    global.set("RequestID_90",RequestID);
+    var Request = global.get("Request_20");
+
+    Request.RequestID = t.RequestID;
+
+    var t2 = (new Date()).toISOString();
+
+    Request.StartTime = t2;
+
+    Request.EndTime = "";
 
     msg.payload = { value: parseInt(t.Value), 'fc': 6, 'unitid': 1, 'address':
     parseInt(t.Address), 'quantity': 1 } 
@@ -782,15 +776,16 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 470
+  x: 490
   'y': 360
   wires:
-    - - bf70b1ac9f63a3ce
-- id: e759e7cdef9ed3b0
+    - - f6cce74e561807da
+      - 3894772765d7ffd8
+- id: b3b717bf872f4930
   type: switch
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
-  property: RequestID_90
+  property: Request_20.RequestID
   propertyType: global
   rules:
     - t: eq
@@ -800,15 +795,16 @@
   checkall: 'true'
   repair: false
   outputs: 2
-  x: 290
-  'y': 400
+  x: 315
+  'y': 360
   wires:
-    - - 9cad25a40f338606
-      - 5247ce7eefc505b5
-    - - 49cabd21c330f7f7
-- id: 5247ce7eefc505b5
+    - - cd601a9f82909663
+      - 67c0b81032f7cf6e
+    - - d16be92a0471a0e4
+  l: false
+- id: 67c0b81032f7cf6e
   type: function
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 反馈
   func: |-
     msg.payload = {
@@ -822,22 +818,22 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 430
+  x: 450
   'y': 320
   wires:
-    - - aaeb451f35e295ca
-- id: aaeb451f35e295ca
+    - - 2c21729d8f477c36
+- id: 2c21729d8f477c36
   type: http response
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   statusCode: ''
   headers: {}
-  x: 590
+  x: 610
   'y': 320
   wires: []
-- id: 49cabd21c330f7f7
+- id: d16be92a0471a0e4
   type: function
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 反馈
   func: |-
     msg.payload = {
@@ -851,18 +847,18 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 430
+  x: 450
   'y': 400
   wires:
-    - - aaeb451f35e295ca
-- id: 8924cb91e4255f67
+    - - 2c21729d8f477c36
+- id: 249c701a144c7661
   type: function
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 格式解析
   func: |
     msg.error = 0;
 
-    var task = global.get("StationTask_100");
+    var task = global.get("StationTask_20");
     if(task.BillCode!='-'){
         msg.error = 1;
         msg.errorMsg = "previese task is on going";
@@ -900,9 +896,9 @@
             msg.errorMsg = "no EquipmentCode";
             return msg;
         }
-        if(data2.EquipmentCode!='OP100'){
+        if(data2.EquipmentCode!='OP20'){
             msg.error = 7;
-            msg.errorMsg = "no OP100";
+            msg.errorMsg = "no OP20";
             return msg;
         }
         if (!('Num' in data2)){
@@ -910,6 +906,7 @@
             msg.errorMsg = "no Num";
             return msg;
         }
+        data2.completed = 0;
     }
     else{
         msg.error = 13;
@@ -926,33 +923,34 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 260
-  'y': 240
+  x: 280
+  'y': 220
   wires:
-    - - 15b4780638b47f24
-      - 06df6e550f8e8a62
-- id: 15b4780638b47f24
+    - - 7450e7532a9133c3
+- id: 7450e7532a9133c3
   type: switch
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   property: error
   propertyType: msg
   rules:
+    - t: neq
+      v: '0'
+      vt: str
     - t: eq
       v: '0'
       vt: num
-    - t: else
   checkall: 'true'
   repair: false
   outputs: 2
-  x: 430
-  'y': 240
+  x: 450
+  'y': 220
   wires:
-    - - deb61c6e5a96a297
-    - - 28eceff2f21345ee
-- id: 28eceff2f21345ee
+    - - 6b55599cd966446c
+    - - 4b08f8c03e37af75
+- id: 6b55599cd966446c
   type: function
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: 反馈
   func: |-
     msg.payload = {
@@ -966,32 +964,17 @@
   initialize: ''
   finalize: ''
   libs: []
-  x: 590
+  x: 610
   'y': 200
   wires:
-    - - f8d1dbf6b0dbfbeb
-- id: 06df6e550f8e8a62
-  type: debug
-  z: efd4a3479ccb4ba6
-  name: debug 32
-  active: true
-  tosidebar: true
-  console: false
-  tostatus: false
-  complete: 'true'
-  targetType: full
-  statusVal: ''
-  statusType: auto
-  x: 300
-  'y': 180
-  wires: []
-- id: c4a8d332b6ef6e97
+    - - fb27549faaf4df38
+- id: 168aa29d0a82a483
   type: change
-  z: efd4a3479ccb4ba6
+  z: b60c316ff0a6b6c0
   name: ''
   rules:
     - t: set
-      p: StationTask_10.BillCode
+      p: StationTask_20.BillCode
       pt: global
       to: '-'
       tot: str
@@ -1000,7 +983,173 @@
   from: ''
   to: ''
   reg: false
-  x: 690
+  x: 710
   'y': 40
   wires:
     - []
+- id: b672d820b2632e17
+  type: http response
+  z: b60c316ff0a6b6c0
+  name: ''
+  statusCode: ''
+  headers: {}
+  x: 310
+  'y': 480
+  wires: []
+- id: d0a1dd65148e46a8
+  type: delay
+  z: b60c316ff0a6b6c0
+  name: ''
+  pauseType: delay
+  timeout: '1'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: false
+  allowrate: false
+  outputs: 1
+  x: 1000
+  'y': 760
+  wires:
+    - - 66d1a8bb9a78f9af
+- id: 66d1a8bb9a78f9af
+  type: change
+  z: b60c316ff0a6b6c0
+  name: ''
+  rules:
+    - t: set
+      p: Request_20.RequestID
+      pt: global
+      to: '-'
+      tot: str
+    - t: set
+      p: Request_20.RequestID_
+      pt: global
+      to: '-'
+      tot: str
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1160
+  'y': 760
+  wires:
+    - []
+- id: c55f99a67e6ac1ba
+  type: switch
+  z: b60c316ff0a6b6c0
+  name: ''
+  property: IO_20.AI.status
+  propertyType: global
+  rules:
+    - t: eq
+      v: '22'
+      vt: num
+    - t: else
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 245
+  'y': 360
+  wires:
+    - - b3b717bf872f4930
+    - - 1db433ff02a67902
+  l: false
+- id: 1db433ff02a67902
+  type: function
+  z: b60c316ff0a6b6c0
+  name: 反馈
+  func: |-
+    const IO = global.get("IO_20");
+    msg.payload = {
+        Code: 1,
+        Msg: "当前状态无法执行动作:"+IO.AI.status,
+    };
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 310
+  'y': 400
+  wires:
+    - - 2c21729d8f477c36
+- id: 3894772765d7ffd8
+  type: delay
+  z: b60c316ff0a6b6c0
+  name: ''
+  pauseType: delay
+  timeout: '3'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: false
+  allowrate: false
+  outputs: 1
+  x: 685
+  'y': 360
+  wires:
+    - - 9b5fa5f6325f55a4
+  l: false
+- id: 9b5fa5f6325f55a4
+  type: function
+  z: b60c316ff0a6b6c0
+  name: 动作置位
+  func: |-
+    msg.payload = { value: 0, fc: 6, unitid: 1, address: 4020, quantity: 1 } 
+    node.send(msg);
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 790
+  'y': 360
+  wires:
+    - - f6cce74e561807da
+- id: 53867554acb76cef
+  type: file
+  z: b60c316ff0a6b6c0
+  name: ''
+  filename: 'C:/tmp/request.txt'
+  filenameType: str
+  appendNewline: true
+  createDir: false
+  overwriteFile: 'false'
+  encoding: none
+  x: 290
+  'y': 300
+  wires:
+    - []
+- id: 37c372a70ce118c4
+  type: function
+  z: b60c316ff0a6b6c0
+  name: 函数 25
+  func: |-
+    var txt = msg.payload.Value + "," + msg.payload.RequestID;
+    var date = (new Date()).toISOString();
+    msg.payload = date + " : " + txt;
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 165
+  'y': 300
+  wires:
+    - - 53867554acb76cef
+  l: false

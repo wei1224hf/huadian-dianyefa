@@ -1,0 +1,360 @@
+- id: f9ed7ce98dfb48f5
+  type: tab
+  label: dataCenter-30
+  disabled: false
+  info: ''
+  env: []
+- id: 3dba3e8d93abf91f
+  type: modbus-server
+  z: f9ed7ce98dfb48f5
+  name: OP30
+  logEnabled: false
+  hostname: 0.0.0.0
+  serverPort: '10030'
+  responseDelay: 100
+  delayUnit: ms
+  coilsBufferSize: 10000
+  holdingBufferSize: 10000
+  inputBufferSize: 10000
+  discreteBufferSize: 10000
+  showErrors: true
+  x: 110
+  'y': 220
+  wires:
+    - []
+    - []
+    - []
+    - []
+    - []
+- id: 5510cac9c6e89b5c
+  type: inject
+  z: f9ed7ce98dfb48f5
+  name: OP30数据初始化
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: '1'
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 170
+  'y': 40
+  wires:
+    - - 1ea186152dc1a1ba
+- id: d173ea419e8a649d
+  type: function
+  z: f9ed7ce98dfb48f5
+  name: IO初始化
+  func: |-
+    var IO_30 = {
+        DO:{},
+        DI:{
+            "DI_ChanPin_DaoWei_2": 0,
+            "DI_JiaZhuaKai_DaoWei_2": 0,
+            "DI_JiaZhuaGuan_DaoWei_2": 0,
+            "DI_QianShen_DaoWei": 0,
+            "DI_HouSuo_DaoWei": 0,
+            "DI_MenKai_DaoWei": 0,
+            "DI_MenGuan_DaoWei": 0,
+        },
+        AI:{//node-red收到来自控制器的逻辑变量
+            "Error_code":0,
+            "status": 0,
+            "work_over": 0,
+
+
+        },
+        AO:{//node-red要发送下去的逻辑变量
+            request: 0,
+
+        },    
+
+
+        AI_LCS:{
+            request: 0,
+        },
+        AO_LCS:{
+            response: 0,
+        },
+      
+          
+    };
+
+    global.set("IO_30",IO_30);
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 620
+  'y': 40
+  wires:
+    - - 604d8873ecf1a876
+- id: ec1227fef549c0f8
+  type: modbus-read
+  z: f9ed7ce98dfb48f5
+  name: 6轴机械臂modbus-ao-逻辑变量
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: HoldingRegister
+  adr: '1'
+  quantity: '10'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: 1a3a610758658ecb
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 210
+  'y': 120
+  wires:
+    - - 4633ab44f4e2cfef
+      - 641ff6c1ec0993d0
+    - []
+- id: 4633ab44f4e2cfef
+  type: function
+  z: f9ed7ce98dfb48f5
+  name: 写入到本地内存
+  func: |-
+    var Names = [
+        "Error_code",
+        "status",
+        "work_over",
+
+        "DI_ChanPin_DaoWei_2",
+        "DI_JiaZhuaKai_DaoWei_2",
+        "DI_JiaZhuaGuan_DaoWei_2",
+        "DI_QianShen_DaoWei",
+        "DI_HouSuo_DaoWei",
+        "DI_MenKai_DaoWei",
+        "DI_MenGuan_DaoWei",
+    ];
+
+    var IO = global.get("IO_30");
+    const data = msg.payload;
+    for (var i = 0; i < Names.length; i++) {
+        if (Names[i] != '-') {
+            if (Names[i].startsWith("DI_")) {
+                IO.DI[Names[i]] = data[i];
+            }
+            else {
+                IO.AI[Names[i]] = data[i];
+            }
+        }
+    }
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 480
+  'y': 120
+  wires:
+    - []
+- id: 604d8873ecf1a876
+  type: function
+  z: f9ed7ce98dfb48f5
+  name: 物料-视觉-工单 初始化
+  func: |-
+
+    var ErrorMap_30 = [
+        "视觉通信故障",
+        "螺丝刀通信故障",
+        "伺服1故障",
+        "伺服2故障",
+        "伺服3故障",
+        "伺服4故障",   
+        "伺服5故障",
+        "伺服6故障",
+        "伺服7故障",
+        ];
+        
+    global.set("StationTask_30",{
+        BillCode: "-",
+        ProductCode: "-",
+        ProductName:"-",
+        ProcessDetail: [{
+            ProcessCode: "OP30",
+            ProcessName: "-",
+            EquipmentCode: "OP30",
+            ProgramNumer: 1,
+            Num: 0,
+            MaterialDetails: [
+               
+          
+            ]
+        }]
+    });
+
+    const t = (new Date()).toISOString();
+    global.set("Request_30",{
+        StartTime:t,
+        EndTime:t,
+        RequestID:"-",
+        barcode: "",
+    });
+
+
+    global.set("ErrorMap_30", ErrorMap_30);
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 840
+  'y': 40
+  wires:
+    - []
+- id: 1ea186152dc1a1ba
+  type: function
+  z: f9ed7ce98dfb48f5
+  name: 定义变量名
+  func: |-
+    global.set("ns",{
+     
+        
+        
+    });
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 450
+  'y': 40
+  wires:
+    - - d173ea419e8a649d
+- id: def7b74dd73c77b9
+  type: http in
+  z: f9ed7ce98dfb48f5
+  name: ''
+  url: /30/data
+  method: get
+  upload: false
+  swaggerDoc: ''
+  x: 130
+  'y': 320
+  wires:
+    - - 9bc3906f868c0782
+- id: 1e57f8f96e834f72
+  type: http response
+  z: f9ed7ce98dfb48f5
+  name: ''
+  statusCode: ''
+  headers: {}
+  x: 590
+  'y': 320
+  wires: []
+- id: 9bc3906f868c0782
+  type: function
+  z: f9ed7ce98dfb48f5
+  name: function 30
+  func: |-
+    const p = msg.payload.key;
+    var arr = p.split(".");
+    const obj = global.get(arr[0]);
+    eval("var "+arr[0]+" = obj;");
+    console.debug(1);
+    eval("msg.payload = "+p+";");
+    console.debug(2);
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 350
+  'y': 320
+  wires:
+    - - 1e57f8f96e834f72
+- id: 641ff6c1ec0993d0
+  type: modbus-write
+  z: f9ed7ce98dfb48f5
+  name: DI信号同步到虚拟modbus-30
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: ''
+  dataType: MCoils
+  adr: '10'
+  quantity: '10'
+  server: ebdc7b3b4236640e
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 520
+  'y': 160
+  wires:
+    - []
+    - []
+- id: 7c50b21d9ef49c99
+  type: modbus-write
+  z: f9ed7ce98dfb48f5
+  name: request 同步到控制器
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: MHoldingRegisters
+  adr: '18'
+  quantity: '1'
+  server: 1a3a610758658ecb
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 460
+  'y': 360
+  wires:
+    - []
+    - []
+- id: d58d5b52b3aabf8e
+  type: modbus-read
+  z: f9ed7ce98dfb48f5
+  name: LCS 调度命令读取
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: HoldingRegister
+  adr: '4030'
+  quantity: '1'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: ebdc7b3b4236640e
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 170
+  'y': 360
+  wires:
+    - - 7c50b21d9ef49c99
+    - []

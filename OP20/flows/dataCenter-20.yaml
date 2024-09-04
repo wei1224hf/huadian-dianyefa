@@ -1,0 +1,642 @@
+- id: 8c57d52fe6250639
+  type: tab
+  label: dataCenter-20
+  disabled: false
+  info: ''
+  env: []
+- id: 2b5ad56c2341e602
+  type: modbus-server
+  z: 8c57d52fe6250639
+  name: OP20
+  logEnabled: false
+  hostname: 0.0.0.0
+  serverPort: '10020'
+  responseDelay: 100
+  delayUnit: ms
+  coilsBufferSize: 10000
+  holdingBufferSize: 10000
+  inputBufferSize: 10000
+  discreteBufferSize: 10000
+  showErrors: true
+  x: 110
+  'y': 360
+  wires:
+    - []
+    - []
+    - []
+    - []
+    - []
+- id: 1ed90e87ef0ab5ce
+  type: modbus-read
+  z: 8c57d52fe6250639
+  name: 读-泛在控制器
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: HoldingRegister
+  adr: '0'
+  quantity: '16'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: b491bf7158494622
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 150
+  'y': 140
+  wires:
+    - - 90f2a6da81217d8d
+      - 1cd97ef4953b89a0
+    - []
+- id: 1cd97ef4953b89a0
+  type: function
+  z: 8c57d52fe6250639
+  name: 写入到本地内存
+  func: |-
+    const Names = [
+        "Home",
+        "error",
+        "status",
+        "work_over",
+        "response",
+        "DO_JiTing",
+        "DO_QiDong",
+        "DO_ZhiDong_ShouDong",
+        "DO_TingZhi",
+        "DO_ShiNeng",
+        "DOclearError",
+        "DOnetwork",
+        "DO_ZhiXingJiajian",
+        "DO_ChanPin_DaoWei_1",
+        "DO_JiaZhuaKai_DaoWei_1",
+        "DO_JiaZhuaGuan_DaoWei_1",
+        ];
+
+    var IO = global.get("IO_20");
+    const data = msg.payload;
+    for (var i = 0; i < Names.length;i++){
+        if (Names[i]!='-'){
+            if (Names[i].startsWith("DO_")){
+                IO.DI[Names[i]] = data[i];
+            }
+            else{
+                IO.AI[Names[i]] = data[i];
+            }
+        }
+        
+    }
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 480
+  'y': 120
+  wires:
+    - []
+- id: 6438a2b608a115ee
+  type: inject
+  z: 8c57d52fe6250639
+  name: OP20数据初始化
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: '1'
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 170
+  'y': 40
+  wires:
+    - - 9c22b32ef6374ba0
+- id: 1897a224540a3006
+  type: function
+  z: 8c57d52fe6250639
+  name: IO初始化
+  func: |-
+    var IO_20 = {
+        DO:{},
+        DI:{
+            DO_JiTing: 0,
+            DO_QiDong: 0,
+            DO_ZhiDong_ShouDong: 0,
+            DO_TingZhi: 0,
+            DO_ShiNeng: 0,
+            DOclearError: 0,
+            DOnetwork: 0,
+            DO_ZhiXingJiajian: 0,
+            DO_ChanPin_DaoWei_1: 0,
+            DO_JiaZhuaKai_DaoWei_1: 0,
+            DO_JiaZhuaGuan_DaoWei_1: 0,
+        },
+        AI:{//node-red收到来自控制器的逻辑变量
+            Home: 0,
+            error: 0,
+            status: 0,
+            work_over: 0,
+            response: 0,
+
+        },
+        AO:{//node-red要发送下去的逻辑变量
+            request: 0,//下发给控制器的动作号
+        },    
+
+        AI_LCS:{
+            request: 0,
+        },
+        AO_LCS:{
+            response: 0,
+        },
+      
+          
+    };
+
+    global.set("IO_20",IO_20);
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 620
+  'y': 40
+  wires:
+    - - e0fd6c2d76fabf9f
+- id: b440bba5e4e9cb92
+  type: modbus-read
+  z: 8c57d52fe6250639
+  name: LCS 调度命令读取
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: HoldingRegister
+  adr: '4020'
+  quantity: '1'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: f45c8577844ced46
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 170
+  'y': 280
+  wires:
+    - - d53f3335167a8bd4
+    - []
+- id: e0fd6c2d76fabf9f
+  type: function
+  z: 8c57d52fe6250639
+  name: 物料-视觉-工单 初始化
+  func: |-
+
+    var ErrorMap_20 = [
+        "视觉通信故障",
+        "螺丝刀通信故障",
+        "伺服1故障",
+        "伺服2故障",
+        "伺服3故障",
+        "伺服4故障",   
+        "伺服5故障",
+        "伺服6故障",
+        "伺服7故障",
+        ];
+        
+    global.set("StationTask_20",{
+        BillCode: "-",
+        ProductCode: "-",
+        ProductName:"-",
+        ProcessDetail: [{
+            ProcessCode: "OP20",
+            ProcessName: "-",
+            EquipmentCode: "OP20",
+            ProgramNumer: 1,
+            Num: 0,
+            completed: 0,
+            MaterialDetails: [
+            ]
+        }]
+    });
+    var t = (new Date()).toISOString();
+    global.set("Request_20",{
+        StartTime:t,
+        EndTime:t,
+        RequestID:"-",
+        RequestID_: "-",
+        barcode: "",
+    });
+
+
+    global.set("ErrorMap_20", ErrorMap_20);
+
+    global.set("LCS","http://192.168.110.200:9006/openApiUbiquitous/");
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 840
+  'y': 40
+  wires:
+    - []
+- id: 9c22b32ef6374ba0
+  type: function
+  z: 8c57d52fe6250639
+  name: 定义变量名
+  func: |-
+    global.set("ns",{
+     
+        
+        
+    });
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 450
+  'y': 40
+  wires:
+    - - 1897a224540a3006
+- id: 9ab459d877bebb3a
+  type: http in
+  z: 8c57d52fe6250639
+  name: ''
+  url: /20/data
+  method: get
+  upload: false
+  swaggerDoc: ''
+  x: 130
+  'y': 460
+  wires:
+    - - b0e241d043d4d797
+- id: 62db20fb3815ac1e
+  type: http response
+  z: 8c57d52fe6250639
+  name: ''
+  statusCode: ''
+  headers: {}
+  x: 590
+  'y': 460
+  wires: []
+- id: b0e241d043d4d797
+  type: function
+  z: 8c57d52fe6250639
+  name: function 29
+  func: |-
+    const p = msg.payload.key;
+    var arr = p.split(".");
+    const obj = global.get(arr[0]);
+    eval("var "+arr[0]+" = obj;");
+    console.debug(1);
+    eval("msg.payload = "+p+";");
+    console.debug(2);
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 350
+  'y': 460
+  wires:
+    - - 62db20fb3815ac1e
+- id: 90f2a6da81217d8d
+  type: modbus-write
+  z: 8c57d52fe6250639
+  name: DI信号同步到虚拟modbus-20
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: ''
+  dataType: MHoldingRegisters
+  adr: '5000'
+  quantity: '16'
+  server: f45c8577844ced46
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 520
+  'y': 160
+  wires:
+    - []
+    - []
+- id: d53f3335167a8bd4
+  type: modbus-write
+  z: 8c57d52fe6250639
+  name: request 同步到控制器
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: MHoldingRegisters
+  adr: '17'
+  quantity: '1'
+  server: b491bf7158494622
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 500
+  'y': 280
+  wires:
+    - []
+    - []
+- id: 19906394abaffc0f
+  type: inject
+  z: 8c57d52fe6250639
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 140
+  'y': 540
+  wires:
+    - - e32e5e582153ca88
+- id: e32e5e582153ca88
+  type: trigger
+  z: 8c57d52fe6250639
+  name: ''
+  op1: '1'
+  op2: '0'
+  op1type: str
+  op2type: str
+  duration: '-250'
+  extend: false
+  overrideDelay: false
+  units: ms
+  reset: ''
+  bytopic: all
+  topic: topic
+  outputs: 1
+  x: 330
+  'y': 540
+  wires:
+    - - 680e318bceb0a6a8
+- id: b5e8b66a9ef049ff
+  type: rbe
+  z: 8c57d52fe6250639
+  name: ''
+  func: rbe
+  gap: ''
+  start: ''
+  inout: out
+  septopics: true
+  property: payload
+  topi: topic
+  x: 690
+  'y': 540
+  wires:
+    - - 97abf37571ad5d31
+- id: 680e318bceb0a6a8
+  type: change
+  z: 8c57d52fe6250639
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: IO_20.AI.response
+      tot: global
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 530
+  'y': 540
+  wires:
+    - - b5e8b66a9ef049ff
+- id: 97abf37571ad5d31
+  type: switch
+  z: 8c57d52fe6250639
+  name: ''
+  property: payload
+  propertyType: msg
+  rules:
+    - t: eq
+      v: '20'
+      vt: num
+  checkall: 'true'
+  repair: false
+  outputs: 1
+  x: 830
+  'y': 540
+  wires:
+    - - 9b7432563bb4f50d
+- id: 40c923436f98382e
+  type: link out
+  z: 8c57d52fe6250639
+  name: 打标
+  mode: link
+  links:
+    - 42cc290853d6e3cc
+  x: 1405
+  'y': 500
+  wires: []
+- id: 2f1c3607e18c6e99
+  type: link in
+  z: 8c57d52fe6250639
+  name: 打标完成
+  links:
+    - d145910c082e9bc2
+  x: 1135
+  'y': 380
+  wires:
+    - - a9f5f7a386854552
+- id: 142e9d69137ac430
+  type: modbus-write
+  z: 8c57d52fe6250639
+  name: 打标完成
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: HoldingRegister
+  adr: '18'
+  quantity: '1'
+  server: b491bf7158494622
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 1360
+  'y': 380
+  wires:
+    - []
+    - []
+- id: a9f5f7a386854552
+  type: change
+  z: 8c57d52fe6250639
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '12'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1195
+  'y': 380
+  wires:
+    - - 142e9d69137ac430
+      - 4ce1a248049fc365
+  l: false
+- id: 4ce1a248049fc365
+  type: delay
+  z: 8c57d52fe6250639
+  name: ''
+  pauseType: delay
+  timeout: '3'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: false
+  allowrate: false
+  outputs: 1
+  x: 1260
+  'y': 300
+  wires:
+    - - 57e799bbbe0f029c
+- id: 57e799bbbe0f029c
+  type: change
+  z: 8c57d52fe6250639
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '0'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1375
+  'y': 300
+  wires:
+    - - 142e9d69137ac430
+  l: false
+- id: 9b7432563bb4f50d
+  type: http request
+  z: 8c57d52fe6250639
+  name: ''
+  method: POST
+  ret: txt
+  paytoqs: ignore
+  url: 'http://192.168.110.200:9006/openApiUbiquitous/getMarkInfo'
+  tls: ''
+  persist: false
+  proxy: ''
+  insecureHTTPParser: false
+  authType: ''
+  senderr: false
+  headers: []
+  x: 960
+  'y': 540
+  wires:
+    - - ef86fd1d7d077297
+- id: ef86fd1d7d077297
+  type: json
+  z: 8c57d52fe6250639
+  name: ''
+  property: payload
+  action: obj
+  pretty: false
+  x: 1090
+  'y': 540
+  wires:
+    - - cd11d79016dad9fd
+- id: 194d3c10d5df27e9
+  type: link out
+  z: 8c57d52fe6250639
+  name: 条码赋值
+  mode: link
+  links:
+    - 58526866ddd88303
+  x: 1405
+  'y': 540
+  wires: []
+- id: 1fd6530565644773
+  type: delay
+  z: 8c57d52fe6250639
+  name: ''
+  pauseType: delay
+  timeout: '1'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: false
+  allowrate: false
+  outputs: 1
+  x: 1325
+  'y': 500
+  wires:
+    - - 40c923436f98382e
+  l: false
+- id: cd11d79016dad9fd
+  type: function
+  z: 8c57d52fe6250639
+  name: 条码处理
+  func: |-
+    var Request = global.get("Request_20");
+    Request.barcode = msg.payload.markContent;
+    return {payload: msg.payload.markContent}
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 1240
+  'y': 540
+  wires:
+    - - 194d3c10d5df27e9
+      - 1fd6530565644773

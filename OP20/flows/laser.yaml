@@ -1,0 +1,221 @@
+- id: 6fe602d654619e6d
+  type: tab
+  label: laser
+  disabled: false
+  info: ''
+  env: []
+- id: e0213930665d04af
+  type: tcp in
+  z: 6fe602d654619e6d
+  name: ''
+  server: client
+  host: 192.168.110.21
+  port: '9001'
+  datamode: stream
+  datatype: utf8
+  newline: ''
+  topic: ''
+  trim: false
+  base64: false
+  tls: ''
+  x: 170
+  'y': 120
+  wires:
+    - - cd86f18069d34ab3
+      - b0455afaec0bcf52
+- id: e4f0fc7e98856f8f
+  type: tcp out
+  z: 6fe602d654619e6d
+  name: ''
+  host: ''
+  port: ''
+  beserver: reply
+  base64: false
+  end: false
+  tls: ''
+  x: 430
+  'y': 240
+  wires: []
+- id: 74f71fa878447d24
+  type: inject
+  z: 6fe602d654619e6d
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: '10'
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 140
+  'y': 240
+  wires:
+    - - 04312d205408944d
+- id: 04312d205408944d
+  type: function
+  z: 6fe602d654619e6d
+  name: 初始化
+  func: |-
+    msg.payload = "0x02$Initialize_A0x03";
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 270
+  'y': 240
+  wires:
+    - - e4f0fc7e98856f8f
+- id: cd86f18069d34ab3
+  type: debug
+  z: 6fe602d654619e6d
+  name: 调试 1
+  active: true
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: payload
+  targetType: msg
+  statusVal: ''
+  statusType: auto
+  x: 410
+  'y': 120
+  wires: []
+- id: b2946a25cb0143b9
+  type: inject
+  z: 6fe602d654619e6d
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 130
+  'y': 320
+  wires:
+    - - 74b4b878f05345a1
+- id: 74b4b878f05345a1
+  type: function
+  z: 6fe602d654619e6d
+  name: 条码
+  func: |-
+    msg.payload = "$Data_"+msg.payload;
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 270
+  'y': 320
+  wires:
+    - - e4f0fc7e98856f8f
+- id: b24cb198777fadc5
+  type: inject
+  z: 6fe602d654619e6d
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 130
+  'y': 400
+  wires:
+    - - c1d4120cc0a169df
+- id: c1d4120cc0a169df
+  type: function
+  z: 6fe602d654619e6d
+  name: 打标执行
+  func: |-
+    msg.payload = "0x02$MarkStart_0x03";
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 280
+  'y': 400
+  wires:
+    - - e4f0fc7e98856f8f
+- id: 42cc290853d6e3cc
+  type: link in
+  z: 6fe602d654619e6d
+  name: 打标
+  links:
+    - 40c923436f98382e
+  x: 185
+  'y': 460
+  wires:
+    - - c1d4120cc0a169df
+- id: b0455afaec0bcf52
+  type: switch
+  z: 6fe602d654619e6d
+  name: ''
+  property: payload
+  propertyType: msg
+  rules:
+    - t: cont
+      v: $Receive_OK
+      vt: str
+    - t: cont
+      v: MarkStart_OK
+      vt: str
+  checkall: 'true'
+  repair: false
+  outputs: 2
+  x: 430
+  'y': 180
+  wires:
+    - - c0637055082ee743
+    - - d145910c082e9bc2
+- id: 58526866ddd88303
+  type: link in
+  z: 6fe602d654619e6d
+  name: 条码
+  links:
+    - 194d3c10d5df27e9
+  x: 185
+  'y': 280
+  wires:
+    - - 74b4b878f05345a1
+- id: c0637055082ee743
+  type: link out
+  z: 6fe602d654619e6d
+  name: 条码完成
+  mode: link
+  links: []
+  x: 575
+  'y': 160
+  wires: []
+- id: d145910c082e9bc2
+  type: link out
+  z: 6fe602d654619e6d
+  name: 打标完成
+  mode: link
+  links:
+    - 2f1c3607e18c6e99
+  x: 575
+  'y': 200
+  wires: []
