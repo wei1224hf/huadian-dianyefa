@@ -1,0 +1,528 @@
+- id: 20ecc5cb793b2ee6
+  type: tab
+  label: dataCenter
+  disabled: false
+  info: ''
+  env: []
+- id: 9291dbbb055a3f08
+  type: modbus-server
+  z: 20ecc5cb793b2ee6
+  name: 本机modbus
+  logEnabled: false
+  hostname: 0.0.0.0
+  serverPort: '10060'
+  responseDelay: 100
+  delayUnit: ms
+  coilsBufferSize: 10000
+  holdingBufferSize: 10000
+  inputBufferSize: 10000
+  discreteBufferSize: 10000
+  showErrors: false
+  x: 310
+  'y': 180
+  wires:
+    - []
+    - []
+    - []
+    - []
+    - []
+- id: 5fbc6fce412c5ab8
+  type: inject
+  z: 20ecc5cb793b2ee6
+  name: 初始化
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: 0.1
+  topic: ''
+  payload: '{}'
+  payloadType: jsonata
+  x: 200
+  'y': 540
+  wires:
+    - - 115a9f0e59f34aba
+      - 934804a990cde569
+      - 99e63c918fa39ab2
+      - 010d587e20762c72
+- id: 115a9f0e59f34aba
+  type: change
+  z: 20ecc5cb793b2ee6
+  name: ''
+  rules:
+    - t: set
+      p: IO
+      pt: global
+      to: '{}'
+      tot: jsonata
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 420
+  'y': 540
+  wires:
+    - - 7c9998981ba3bd11
+- id: 7c9998981ba3bd11
+  type: change
+  z: 20ecc5cb793b2ee6
+  name: ''
+  rules:
+    - t: set
+      p: IO.AO
+      pt: global
+      to: '{}'
+      tot: jsonata
+    - t: set
+      p: IO.AI
+      pt: global
+      to: '{}'
+      tot: jsonata
+    - t: set
+      p: IO.DO
+      pt: global
+      to: '{}'
+      tot: jsonata
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 620
+  'y': 540
+  wires:
+    - - 2817f570591dafa7
+- id: 44871a7f1c687dd9
+  type: inject
+  z: 20ecc5cb793b2ee6
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 410
+  'y': 580
+  wires:
+    - - 7c9998981ba3bd11
+- id: 0f42adb68b0a3974
+  type: modbus-read
+  z: 20ecc5cb793b2ee6
+  name: controller-analog
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: ''
+  dataType: HoldingRegister
+  adr: '0'
+  quantity: '20'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: 967785e4049706c4
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 580
+  'y': 200
+  wires:
+    - - 3ef5c0b75d94258a
+      - cdacdaf5f7367456
+    - []
+- id: 3ef5c0b75d94258a
+  type: debug
+  z: 20ecc5cb793b2ee6
+  name: 调试 4
+  active: false
+  tosidebar: true
+  console: false
+  tostatus: false
+  complete: 'false'
+  statusVal: ''
+  statusType: auto
+  x: 770
+  'y': 220
+  wires: []
+- id: f1c754f87be25191
+  type: function
+  z: 20ecc5cb793b2ee6
+  name: 函数 1
+  func: |-
+    var IO = global.get("IO");
+
+    var arr = [
+        IO.AI.work_object,
+        IO.AI.product_status,
+        IO.AI.screw_status,
+        IO.AI.M1,
+        IO.AI.M2,
+        IO.AI.M3,
+        IO.AI.M4,
+        IO.AI.M5,
+        IO.AI.M6,
+        IO.AI.M7,   
+        IO.AI.material_status, 
+        ];
+    arr = msg.payload;  
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 490
+  'y': 320
+  wires:
+    - []
+- id: 934804a990cde569
+  type: function
+  z: 20ecc5cb793b2ee6
+  name: 螺丝扭力置零
+  func: >-
+
+    global.set("torques", [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 420
+  'y': 620
+  wires:
+    - []
+- id: 99e63c918fa39ab2
+  type: function
+  z: 20ecc5cb793b2ee6
+  name: 物料信息
+  func: |-
+    var materials = [
+        {name:"M18丝堵",code:"c1",max:100,remain:12,used:14,trash:1,position:1},
+        { name: "单向阀2", code: "c2", max: 100, remain: 12, used: 14, trash: 1, position: 2 },
+        { name: "滤芯", code: "c3", max: 100, remain: 12, used: 14, trash: 1, position: 3 },
+        { name: "单向阀1", code: "c1", max: 100, remain: 12, used: 14, trash: 1, position: 1 },
+        { name: "M24丝堵", code: "c2", max: 100, remain: 12, used: 14, trash: 1, position: 2 },
+        { name: "振动盘螺丝", code: "c3", max: 100, remain: 12, used: 14, trash: 1, position: 3 },
+        { name: "喷油", code: "c3", max: 100, remain: 12, used: 14, trash: 1, position: 3 },
+    ]
+    global.set("materials", materials);
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 400
+  'y': 660
+  wires:
+    - []
+- id: 2817f570591dafa7
+  type: function
+  z: 20ecc5cb793b2ee6
+  name: 函数 18
+  func: |-
+    var IO = global.get("IO");
+    var AO = IO.AO;
+    var AI = IO.AI;
+
+    AO.Home = 0;
+    AO.Ready = 0;
+    AO.error = 0;
+    AO.mode = 0;
+    AO.status = 0;
+    AO.screw_reset = 0;
+    AO.screw_run = 0;
+    AO.screw_clockwise = 0;
+    AO.screw_pause = 0;
+    AO.screw_mode = 0;
+    AO.work_over = 0;
+    AO.M1 = 0;
+    AO.M2 = 0;
+    AO.M3 = 0;
+    AO.M4 = 0;
+    AO.M5 = 0;
+    AO.M6 = 0;
+    AO.M7 = 0;
+
+    AI.work_object = 0;
+    AI.product_status = 0;
+    AI.screw_status = 0;
+    AI.M1 = 0;
+    AI.M2 = 0;
+    AI.M3 = 0;
+    AI.M4 = 0;
+    AI.M5 = 0;
+    AI.M6 = 0;
+    AI.M7 = 0;
+    AI.material_status = 0;
+
+    global.set("IO",IO);
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 800
+  'y': 540
+  wires:
+    - []
+- id: cdacdaf5f7367456
+  type: function
+  z: 20ecc5cb793b2ee6
+  name: 函数 19
+  func: |-
+    var IO = global.get("IO");
+    var idx = 0;
+    IO.AO.Home = msg.payload[idx]; idx ++;
+    IO.AO.Ready = msg.payload[idx]; idx++;
+    IO.AO.error = msg.payload[idx]; idx++;
+    IO.AO.mode = msg.payload[idx]; idx++;
+    IO.AO.status = msg.payload[idx]; idx++;
+    IO.AO.screw_reset = msg.payload[idx]; idx++;
+    IO.AO.screw_run = msg.payload[idx]; idx++;
+    IO.AO.screw_clockwise = msg.payload[idx]; idx++;
+    IO.AO.screw_pause = msg.payload[idx]; idx++;
+    IO.AO.screw_mode = msg.payload[idx]; idx++;
+    IO.AO.work_over = msg.payload[idx]; idx++;
+    IO.AO.M1 = msg.payload[idx]; idx++;
+    IO.AO.M2 = msg.payload[idx]; idx++;
+    IO.AO.M3 = msg.payload[idx]; idx++;
+    IO.AO.M4 = msg.payload[idx]; idx++;
+    IO.AO.M5 = msg.payload[idx]; idx++;
+    IO.AO.M6 = msg.payload[idx]; idx++;
+    IO.AO.M7 = msg.payload[idx]; idx++;
+    global.set("IO",IO);
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 800
+  'y': 160
+  wires:
+    - - 0a2c7fc64a951652
+- id: 0a2c7fc64a951652
+  type: modbus-write
+  z: 20ecc5cb793b2ee6
+  name: localhost
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: ''
+  dataType: MHoldingRegisters
+  adr: '0'
+  quantity: '20'
+  server: d6782a77eee52a2e
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 1100
+  'y': 160
+  wires:
+    - []
+    - []
+- id: af831fe136157038
+  type: modbus-read
+  z: 20ecc5cb793b2ee6
+  name: localhost-analog
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: ''
+  dataType: HoldingRegister
+  adr: '20'
+  quantity: '10'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: d6782a77eee52a2e
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 400
+  'y': 420
+  wires:
+    - - f1c754f87be25191
+    - []
+- id: 010d587e20762c72
+  type: function
+  z: 20ecc5cb793b2ee6
+  name: 函数 22
+  func: |-
+
+    var ErrorMap = [
+        "视觉通信故障",
+        "螺丝刀通信故障",
+        "伺服1故障",
+        "伺服2故障",
+        "伺服3故障",
+        "伺服4故障",
+        "伺服5故障",
+        "伺服6故障",
+        "伺服7故障",
+    ];
+
+    global.set("StationTask_60", {
+        BillCode: "-",
+        ProductCode: "-",
+        ProductName: "-",
+        ProcessDetail: [{
+            ProcessCode: "OP160",
+            ProcessName: "-",
+            EquipmentCode: "OP60",
+            ProgramNumer: 1,
+            Num: 0,
+            MaterialDetails: [
+
+
+            ]
+        }]
+    });
+
+
+    global.set("ErrorMap_60", ErrorMap);
+    const t = (new Date()).toISOString();
+    global.set("Request_60", {
+        StartTime: t,
+        EndTime: t,
+        RequestID: "-",
+        RequestID_: "-",
+        barcode: "",
+    });
+    global.set("LCS", "http://192.168.110.200:9006/openApiUbiquitous/");
+
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 420
+  'y': 500
+  wires:
+    - []
+- id: 5216724c59c530e4
+  type: inject
+  z: 20ecc5cb793b2ee6
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '-'
+  payloadType: str
+  x: 410
+  'y': 780
+  wires:
+    - - d4284e2180130236
+- id: d4284e2180130236
+  type: change
+  z: 20ecc5cb793b2ee6
+  name: ''
+  rules:
+    - t: set
+      p: Request_60.RequestID
+      pt: global
+      to: '-'
+      tot: str
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 640
+  'y': 820
+  wires:
+    - []
+- id: 36a89f6b5c0bc662
+  type: http in
+  z: 20ecc5cb793b2ee6
+  name: ''
+  url: /60/RequestID
+  method: get
+  upload: false
+  swaggerDoc: ''
+  x: 570
+  'y': 740
+  wires:
+    - - 45e29054f0b73dce
+      - 94c705f056ee3ec7
+- id: 45e29054f0b73dce
+  type: change
+  z: 20ecc5cb793b2ee6
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: '-'
+      tot: str
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 695
+  'y': 740
+  wires:
+    - - d4284e2180130236
+  l: false
+- id: 94c705f056ee3ec7
+  type: http response
+  z: 20ecc5cb793b2ee6
+  name: ''
+  statusCode: ''
+  headers: {}
+  x: 730
+  'y': 700
+  wires: []
+- id: d5ab5564c8543dde
+  type: inject
+  z: 20ecc5cb793b2ee6
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 190
+  'y': 620
+  wires:
+    - - 934804a990cde569

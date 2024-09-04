@@ -32,7 +32,7 @@ module.exports = {
  ******************************************************************************/
 
     /** The file containing the flows. If not set, defaults to flows_<hostname>.json **/
-    flowFile: 'D:/projects2024/dianyefa/flow_90.json',
+    flowFile: 'flow_90.json',
 
     /** By default, credentials are encrypted in storage using a generated key. To
      * specify your own secret, set the following property.
@@ -53,12 +53,12 @@ module.exports = {
      * the user's home directory. To use a different location, the following
      * property can be used
      */
-    userDir: 'D:/projects2023/nodered/node-red-master/node_red/',
+    userDir: 'D:\\projects2024\\dianyefa\\huadian-dianyefa\\OP90',
 
     /** Node-RED scans the `nodes` directory in the userDir to find local node files.
      * The following property can be used to specify an additional directory to scan.
      */
-    //nodesDir: '/home/nol/.node-red/nodes',
+    nodesDir: 'D:/projects2023/nodered/node-red-master/node_red/',
 
 /*******************************************************************************
  * Security

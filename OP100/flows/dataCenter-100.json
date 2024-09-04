@@ -1,0 +1,705 @@
+[
+  {
+    "id": "f9ed7ce98dfb48f5",
+    "type": "tab",
+    "label": "dataCenter-100",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "3dba3e8d93abf91f",
+    "type": "modbus-server",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "OP100",
+    "logEnabled": false,
+    "hostname": "0.0.0.0",
+    "serverPort": "10100",
+    "responseDelay": 100,
+    "delayUnit": "ms",
+    "coilsBufferSize": 10000,
+    "holdingBufferSize": 10000,
+    "inputBufferSize": 10000,
+    "discreteBufferSize": 10000,
+    "showErrors": true,
+    "x": 140,
+    "y": 620,
+    "wires": [
+      [],
+      [],
+      [],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "ae2ec5083c579d8e",
+    "type": "modbus-read",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "DI信号读取",
+    "topic": "",
+    "showStatusActivities": false,
+    "logIOActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "HoldingRegister",
+    "adr": "5",
+    "quantity": "9",
+    "rate": "200",
+    "rateUnit": "ms",
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "server": "1a3a610758658ecb",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "emptyMsgOnFail": false,
+    "x": 140,
+    "y": 220,
+    "wires": [
+      [
+        "7f573a2b4067baa6",
+        "05f3f7d57a0dc813"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "7f573a2b4067baa6",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到本地内存",
+    "func": "var DI_Names = [\n    \"MD_DO_tuici_ok\",\n    \"MD_DO_chongci_ok\",\n    \"MD_R_DItuopanyouliao\",\n    \"MD_L_DItuopanyouliao\",\n    \"MD_DI_1\",\n    \"MD_DI_2\",\n    \"MD_DI_3\",\n    \"MD_DI_4\",\n    \"MD_DI_5\",\n    ];\n\nvar IO = global.get(\"IO_100\");\nconst data = msg.payload;\nfor(var i=0;i<DI_Names.length;i++){\n    if(DI_Names[i]!='-'){\n        IO.DI[DI_Names[i]] = data[i];\n    }\n}\nglobal.set(\"IO_100\", IO);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 200,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "5510cac9c6e89b5c",
+    "type": "inject",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "OP100数据初始化",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 170,
+    "y": 40,
+    "wires": [
+      [
+        "1ea186152dc1a1ba"
+      ]
+    ]
+  },
+  {
+    "id": "d173ea419e8a649d",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "IO初始化",
+    "func": "var IO_100 = {\n    DO:{},\n    DI:{\n        \"MD_DO_tuici_ok\": 0,\n        \"MD_DO_chongci_ok\": 0,\n        \"MD_R_DItuopanyouliao\": 0,\n        \"MD_L_DItuopanyouliao\": 0,\n        \"MD_DI_1\": 0,\n        \"MD_DI_2\": 0,\n        \"MD_DI_3\": 0,\n        \"MD_DI_4\": 0,\n        \"MD_DI_5\": 0,\n\n    },\n    AI:{//node-red收到来自控制器的逻辑变量\n        response: 0,//控制器端动作端的完成信号\n        error: 0,//控制器端的故障码\n        status: 0,//控制器端的状态\n\n    },\n    AO:{//node-red要发送下去的逻辑变量\n        request: 0,//下发给控制器的动作号\n\n        index_product: 1,\n\n        work_object: 0, //产品类型\n\n        LCS: 0,\n    },    \n    AI_LCS:{\n        request: 0,\n    },\n    AO_LCS:{\n        response: 0,\n    },\n    AI_AGV:{\n        request: 0,\n    },\n    AO_AGV:{\n        response: 0,\n    },    \n      \n};\n\nglobal.set(\"IO_100\",IO_100);\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 620,
+    "y": 40,
+    "wires": [
+      [
+        "604d8873ecf1a876"
+      ]
+    ]
+  },
+  {
+    "id": "ec1227fef549c0f8",
+    "type": "modbus-read",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "6轴机械臂modbus-ao-逻辑变量",
+    "topic": "",
+    "showStatusActivities": false,
+    "logIOActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "HoldingRegister",
+    "adr": "1",
+    "quantity": "4",
+    "rate": "200",
+    "rateUnit": "ms",
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "server": "1a3a610758658ecb",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "emptyMsgOnFail": false,
+    "x": 210,
+    "y": 360,
+    "wires": [
+      [
+        "4633ab44f4e2cfef"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "4633ab44f4e2cfef",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到本地内存",
+    "func": "const data = msg.payload;\nvar IO = global.get(\"IO_100\");\nvar i = 0;\nIO.AI.error  = data[i]; i++;\nIO.AI.status  = data[i]; i++;\ni++;\nIO.AI.response = data[i]; i++;\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 360,
+    "wires": [
+      [
+        "c3c16df1b59e377a",
+        "a9e0a9a236c3ce1e"
+      ]
+    ]
+  },
+  {
+    "id": "05f3f7d57a0dc813",
+    "type": "modbus-write",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "DI信号同步",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "MHoldingRegisters",
+    "adr": "5000",
+    "quantity": "9",
+    "server": "ebdc7b3b4236640e",
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 470,
+    "y": 240,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "581258e7ec76ca3f",
+    "type": "inject",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "2",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 140,
+    "y": 480,
+    "wires": [
+      [
+        "992229330d7f0aa0"
+      ]
+    ]
+  },
+  {
+    "id": "992229330d7f0aa0",
+    "type": "trigger",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "str",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 330,
+    "y": 480,
+    "wires": [
+      [
+        "3f5bb7c3b3a49d19"
+      ]
+    ]
+  },
+  {
+    "id": "db2fd7353bc50f2b",
+    "type": "modbus-write",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到6轴",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "MHoldingRegisters",
+    "adr": "14",
+    "quantity": "3",
+    "server": "1a3a610758658ecb",
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 730,
+    "y": 540,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "3f5bb7c3b3a49d19",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到6轴机械臂",
+    "func": "var data = [];\nvar IO = global.get(\"IO_100\");\ndata.push(IO.AO.work_object);\ndata.push(IO.AO.request);\ndata.push(IO.AO.LCS);\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 530,
+    "y": 540,
+    "wires": [
+      [
+        "db2fd7353bc50f2b"
+      ]
+    ]
+  },
+  {
+    "id": "357e91fad310949b",
+    "type": "modbus-read",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "LCS 调度命令读取",
+    "topic": "",
+    "showStatusActivities": false,
+    "logIOActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "HoldingRegister",
+    "adr": "4100",
+    "quantity": "1",
+    "rate": "200",
+    "rateUnit": "ms",
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "server": "ebdc7b3b4236640e",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "emptyMsgOnFail": false,
+    "x": 170,
+    "y": 420,
+    "wires": [
+      [
+        "0b44f277f7555902"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "0b44f277f7555902",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到本地内存",
+    "func": "\nconst data = msg.payload;\nvar IO = global.get(\"IO_100\");\nvar i = 0;\nIO.AI_LCS.request = data[i]; i++;\n\n\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 420,
+    "wires": [
+      [
+        "7369146795800cbd"
+      ]
+    ]
+  },
+  {
+    "id": "05ac1629b6a0b772",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "发送给LCS呼叫AGV",
+    "func": "var data = [];\nvar IO = global.get(\"IO_100\");\ndata.push(IO.AO_LCS.Pos_In);\ndata.push(IO.AO_LCS.Pos_Out);\n\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 540,
+    "y": 600,
+    "wires": [
+      [
+        "a065307aaef40619"
+      ]
+    ]
+  },
+  {
+    "id": "a065307aaef40619",
+    "type": "modbus-write",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到虚拟modbus",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "MHoldingRegisters",
+    "adr": "0",
+    "quantity": "100",
+    "server": "ebdc7b3b4236640e",
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 750,
+    "y": 600,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "604d8873ecf1a876",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "物料-视觉-工单 初始化",
+    "func": "\nvar ErrorMap = [\n    \"视觉通信故障\",\n    \"螺丝刀通信故障\",\n    \"伺服1故障\",\n    \"伺服2故障\",\n    \"伺服3故障\",\n    \"伺服4故障\",   \n    \"伺服5故障\",\n    \"伺服6故障\",\n    \"伺服7故障\",\n    ];\n    \nglobal.set(\"StationTask_100\",{\n    BillCode: \"-\",\n    ProductCode: \"-\",\n    ProductName:\"-\",\n    ProcessDetail: [{\n        ProcessCode: \"OP100\",\n        ProcessName: \"-\",\n        EquipmentCode: \"OP100\",\n        ProgramNumer: 1,\n        Num: 0,\n        MaterialDetails: [\n           \n      \n        ]\n    }]\n});\n\n\nglobal.set(\"ErrorMap_100\", ErrorMap);\nconst t = (new Date()).toISOString();\nglobal.set(\"Request_100\", {\n    StartTime: t,\n    EndTime: t,\n    RequestID: \"-\",\n    RequestID_: \"-\",\n    barcode: \"\",\n});\nglobal.set(\"LCS\",\"http://192.168.110.200:9006/openApiUbiquitous/\");\nglobal.set(\"tray1\",[0,0,0]);\nglobal.set(\"tray2\", [0, 0, 0]);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 840,
+    "y": 40,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "1ea186152dc1a1ba",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "定义变量名",
+    "func": "global.set(\"ns\",{\n \n    \n    \n});\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 450,
+    "y": 40,
+    "wires": [
+      [
+        "d173ea419e8a649d"
+      ]
+    ]
+  },
+  {
+    "id": "def7b74dd73c77b9",
+    "type": "http in",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "url": "/100/data",
+    "method": "get",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 150,
+    "y": 860,
+    "wires": [
+      [
+        "9bc3906f868c0782"
+      ]
+    ]
+  },
+  {
+    "id": "1e57f8f96e834f72",
+    "type": "http response",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "statusCode": "",
+    "headers": {},
+    "x": 610,
+    "y": 860,
+    "wires": []
+  },
+  {
+    "id": "9bc3906f868c0782",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "function 30",
+    "func": "const p = msg.payload.key;\nvar arr = p.split(\".\");\nconst obj = global.get(arr[0]);\neval(\"var \"+arr[0]+\" = obj;\");\nconsole.debug(1);\neval(\"msg.payload = \"+p+\";\");\nconsole.debug(2);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 370,
+    "y": 860,
+    "wires": [
+      [
+        "1e57f8f96e834f72"
+      ]
+    ]
+  },
+  {
+    "id": "d5341e8da35f31f3",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "信号转换",
+    "func": "var tray1 = global.get(\"tray1\");\n\nconst IO = global.get(\"IO_100\");\nif (IO.AI_LCS.request==10){\n    IO.AO.request = 100;\n    tray1[0] = 0\n    tray1[1] = 0\n    tray1[2] = 0\n}\nelse if (IO.AI_LCS.request == 12) {\n\n    if (tray1[0] == 0){\n        IO.AO.request = 1011;\n        tray1[0] = 1;\n    }\n    else if (tray1[1] == 0) {\n        IO.AO.request = 1012;\n        tray1[1] = 1;\n    }\n    else if (tray1[2] == 0) {\n        IO.AO.request = 1013;\n        tray1[2] = 1;\n    }\n    else{\n        //TODO\n    }\n}\n\nelse{\n    IO.AO.request = IO.AI_LCS.request;\n}\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 900,
+    "y": 420,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "c3c16df1b59e377a",
+    "type": "change",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "IO_100.AI.response",
+        "tot": "global"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 730,
+    "y": 220,
+    "wires": [
+      [
+        "513111e3b2cb9d26"
+      ]
+    ]
+  },
+  {
+    "id": "513111e3b2cb9d26",
+    "type": "rbe",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "func": "rbei",
+    "gap": "",
+    "start": "",
+    "inout": "out",
+    "septopics": true,
+    "property": "payload",
+    "topi": "topic",
+    "x": 890,
+    "y": 220,
+    "wires": [
+      [
+        "244b7b66f883a55b"
+      ]
+    ]
+  },
+  {
+    "id": "92571880ef3ebb40",
+    "type": "file",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "filename": "C:/tmp/robot_response.txt",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1170,
+    "y": 220,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "a9e0a9a236c3ce1e",
+    "type": "change",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "IO_100.AI.status",
+        "tot": "global"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 730,
+    "y": 300,
+    "wires": [
+      [
+        "6798e3dd21597dbf"
+      ]
+    ]
+  },
+  {
+    "id": "6798e3dd21597dbf",
+    "type": "rbe",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "func": "rbei",
+    "gap": "",
+    "start": "",
+    "inout": "out",
+    "septopics": true,
+    "property": "payload",
+    "topi": "topic",
+    "x": 890,
+    "y": 300,
+    "wires": [
+      [
+        "a545dc42224e88c2"
+      ]
+    ]
+  },
+  {
+    "id": "f645e7dce8794c08",
+    "type": "file",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "filename": "C:/tmp/robot_status.txt",
+    "filenameType": "str",
+    "appendNewline": true,
+    "createDir": false,
+    "overwriteFile": "false",
+    "encoding": "none",
+    "x": 1160,
+    "y": 300,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "a545dc42224e88c2",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "函数 8",
+    "func": "var txt = msg.payload;\nvar date = (new Date()).toISOString();\nmsg.payload = date + \" : \" + txt;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1005,
+    "y": 300,
+    "wires": [
+      [
+        "f645e7dce8794c08"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "244b7b66f883a55b",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "函数 9",
+    "func": "var txt = msg.payload;\nvar date = (new Date()).toISOString();\nmsg.payload = date + \" : \" + txt;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1005,
+    "y": 220,
+    "wires": [
+      [
+        "92571880ef3ebb40"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "7369146795800cbd",
+    "type": "delay",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "pauseType": "rate",
+    "timeout": "5",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "3",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": true,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 680,
+    "y": 420,
+    "wires": [
+      [
+        "d5341e8da35f31f3"
+      ]
+    ]
+  }
+]

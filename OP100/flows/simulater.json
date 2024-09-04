@@ -1,0 +1,367 @@
+[
+  {
+    "id": "b66460ea0e50b266",
+    "type": "tab",
+    "label": "simulater",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "e99372f1315a6d4f",
+    "type": "inject",
+    "z": "b66460ea0e50b266",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "1",
+    "payloadType": "num",
+    "x": 150,
+    "y": 100,
+    "wires": [
+      [
+        "0834c085639c6b7f"
+      ]
+    ]
+  },
+  {
+    "id": "0834c085639c6b7f",
+    "type": "change",
+    "z": "b66460ea0e50b266",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_100.AO.index_product",
+        "pt": "global",
+        "to": "1",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 390,
+    "y": 140,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "a0e58908dee0eb49",
+    "type": "inject",
+    "z": "b66460ea0e50b266",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "2",
+    "payloadType": "num",
+    "x": 150,
+    "y": 140,
+    "wires": [
+      [
+        "0834c085639c6b7f"
+      ]
+    ]
+  },
+  {
+    "id": "6804ca8c88423933",
+    "type": "inject",
+    "z": "b66460ea0e50b266",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "3",
+    "payloadType": "num",
+    "x": 150,
+    "y": 180,
+    "wires": [
+      [
+        "0834c085639c6b7f"
+      ]
+    ]
+  },
+  {
+    "id": "5216724c59c530e4",
+    "type": "inject",
+    "z": "b66460ea0e50b266",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "-",
+    "payloadType": "str",
+    "x": 150,
+    "y": 300,
+    "wires": [
+      [
+        "d4284e2180130236"
+      ]
+    ]
+  },
+  {
+    "id": "d4284e2180130236",
+    "type": "change",
+    "z": "b66460ea0e50b266",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "Request_100.RequestID",
+        "pt": "global",
+        "to": "-",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 390,
+    "y": 340,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "18497f411dc1b356",
+    "type": "inject",
+    "z": "b66460ea0e50b266",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "12",
+    "payloadType": "num",
+    "x": 150,
+    "y": 380,
+    "wires": [
+      [
+        "8e2a1ce11b49fd38"
+      ]
+    ]
+  },
+  {
+    "id": "8e2a1ce11b49fd38",
+    "type": "change",
+    "z": "b66460ea0e50b266",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_100.AI_LCS.request",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 380,
+    "y": 460,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "4cfc6ff7c77c1ffd",
+    "type": "inject",
+    "z": "b66460ea0e50b266",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "0",
+    "payloadType": "num",
+    "x": 130,
+    "y": 480,
+    "wires": [
+      [
+        "8e2a1ce11b49fd38"
+      ]
+    ]
+  },
+  {
+    "id": "edeef6da9a04fb13",
+    "type": "inject",
+    "z": "b66460ea0e50b266",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "-",
+    "payloadType": "str",
+    "x": 110,
+    "y": 560,
+    "wires": [
+      [
+        "71aab574a73dbc38"
+      ]
+    ]
+  },
+  {
+    "id": "71aab574a73dbc38",
+    "type": "change",
+    "z": "b66460ea0e50b266",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "tray1",
+        "pt": "global",
+        "to": "[0,0,0]",
+        "tot": "jsonata"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 290,
+    "y": 600,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "042d76f378d04a73",
+    "type": "inject",
+    "z": "b66460ea0e50b266",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "99999",
+    "payloadType": "num",
+    "x": 130,
+    "y": 440,
+    "wires": [
+      [
+        "8e2a1ce11b49fd38"
+      ]
+    ]
+  },
+  {
+    "id": "36a89f6b5c0bc662",
+    "type": "http in",
+    "z": "b66460ea0e50b266",
+    "name": "",
+    "url": "/100/RequestID",
+    "method": "get",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 370,
+    "y": 300,
+    "wires": [
+      [
+        "45e29054f0b73dce"
+      ]
+    ]
+  },
+  {
+    "id": "45e29054f0b73dce",
+    "type": "change",
+    "z": "b66460ea0e50b266",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "-",
+        "tot": "str"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 495,
+    "y": 300,
+    "wires": [
+      [
+        "d4284e2180130236",
+        "e8dba85bf7727496"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e8dba85bf7727496",
+    "type": "http response",
+    "z": "b66460ea0e50b266",
+    "name": "",
+    "statusCode": "",
+    "headers": {},
+    "x": 650,
+    "y": 300,
+    "wires": []
+  }
+]

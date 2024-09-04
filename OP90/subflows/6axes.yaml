@@ -1,0 +1,188 @@
+- id: 54f147592a602955
+  type: subflow
+  name: 6axes
+  info: ''
+  category: ''
+  in:
+    - x: 50
+      'y': 30
+      wires:
+        - id: 95572ea14ecc22a6
+  out:
+    - x: 680
+      'y': 140
+      wires:
+        - id: c9d15a68ec85cae6
+          port: 0
+  env:
+    - name: 6axes
+      type: num
+      value: '0'
+  meta: {}
+  color: '#E2D96E'
+  icon: font-awesome/fa-puzzle-piece
+  status:
+    x: 500
+    'y': 340
+    wires:
+      - id: 68d49e9604c8a67f
+        port: 0
+      - id: ad5ef292ac14a07a
+        port: 0
+- id: c2626d94b9292dc2
+  type: trigger
+  z: 54f147592a602955
+  name: ''
+  op1: '1'
+  op2: '0'
+  op1type: num
+  op2type: str
+  duration: '-250'
+  extend: false
+  overrideDelay: false
+  units: ms
+  reset: ''
+  bytopic: all
+  topic: topic
+  outputs: 1
+  x: 365
+  'y': 140
+  wires:
+    - - 23d43301c92f0e0e
+      - 68d49e9604c8a67f
+  l: false
+- id: e8f0b18770c8c926
+  type: delay
+  z: 54f147592a602955
+  name: ''
+  pauseType: delay
+  timeout: '2'
+  timeoutUnits: seconds
+  rate: '1'
+  nbRateUnits: '1'
+  rateUnits: second
+  randomFirst: '1'
+  randomLast: '5'
+  randomUnits: seconds
+  drop: false
+  allowrate: false
+  outputs: 1
+  x: 365
+  'y': 100
+  wires:
+    - - 850bbfbbd321bb30
+  l: false
+- id: 23d43301c92f0e0e
+  type: function
+  z: 54f147592a602955
+  name: 函数 32
+  func: |+
+    const IO = global.get("IO_90");
+    if (IO.AI_6axes.response == (IO.AO_6axes.request_+100)){
+        return {reset:1};
+    }
+
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 425
+  'y': 140
+  wires:
+    - - c2626d94b9292dc2
+      - c9d15a68ec85cae6
+  l: false
+- id: c9d15a68ec85cae6
+  type: function
+  z: 54f147592a602955
+  name: 函数 33
+  func: 'return {payload: 1}'
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 505
+  'y': 140
+  wires:
+    - - ad5ef292ac14a07a
+  l: false
+- id: 95572ea14ecc22a6
+  type: function
+  z: 54f147592a602955
+  name: 函数 34
+  func: |-
+    var IO = global.get("IO_90");
+    IO.AO_6axes.request = env.get("6axes");
+    IO.AO_6axes.request_ = env.get("6axes");
+    flow.set("c1",1);
+    return {payload: 1};
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 180
+  'y': 140
+  wires:
+    - - c2626d94b9292dc2
+      - e8f0b18770c8c926
+- id: 850bbfbbd321bb30
+  type: function
+  z: 54f147592a602955
+  name: 函数 35
+  func: |-
+    var IO = global.get("IO_90");
+    IO.AO_6axes.request = 0;
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 460
+  'y': 100
+  wires:
+    - []
+- id: 68d49e9604c8a67f
+  type: function
+  z: 54f147592a602955
+  name: 函数 36
+  func: |-
+    var c1 = flow.get("c1");
+    const IO = global.get("IO_90");
+    msg.payload = c1 + ":" + IO.AO_6axes.request_;
+    flow.set("c1",c1+1);
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 340
+  'y': 280
+  wires:
+    - []
+- id: ad5ef292ac14a07a
+  type: function
+  z: 54f147592a602955
+  name: 函数 37
+  func: |-
+    msg.payload = "DONE";
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 540
+  'y': 220
+  wires:
+    - []

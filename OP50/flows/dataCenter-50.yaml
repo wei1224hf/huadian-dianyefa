@@ -1,0 +1,472 @@
+- id: 8c57d52fe6250639
+  type: tab
+  label: dataCenter-50
+  disabled: false
+  info: ''
+  env: []
+- id: 2b5ad56c2341e602
+  type: modbus-server
+  z: 8c57d52fe6250639
+  name: OP50
+  logEnabled: false
+  hostname: 0.0.0.0
+  serverPort: '10050'
+  responseDelay: 100
+  delayUnit: ms
+  coilsBufferSize: 10000
+  holdingBufferSize: 10000
+  inputBufferSize: 10000
+  discreteBufferSize: 10000
+  showErrors: true
+  x: 130
+  'y': 280
+  wires:
+    - []
+    - []
+    - []
+    - []
+    - []
+- id: 1ed90e87ef0ab5ce
+  type: modbus-read
+  z: 8c57d52fe6250639
+  name: 读取控制器modbus-di控制-前段
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: Input
+  adr: '0'
+  quantity: '100'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: b491bf7158494622
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 210
+  'y': 140
+  wires:
+    - - 1cd97ef4953b89a0
+    - []
+- id: 1cd97ef4953b89a0
+  type: function
+  z: 8c57d52fe6250639
+  name: 写入到本地内存
+  func: |-
+    var DI_Names = [
+        "DI_JiTing",
+        "DI_QiDong",
+        "DI_TingZhi",
+        "DI_ZiDong",
+        "DI_ShouDong",
+        "DI_L_GunTong_DaoWei",
+        "DI_R_GunTong_DaoWei",
+        "-",
+        "DI_L_ShenJiang_DaoWei",
+        "DI_R_ShenJiang_DaoWei",
+        "DI_ZhuaPan1_DaKaiDaoWei",
+        "DI_ZhuaPan2_GuanBiWei",
+        "DI_ZhuaPan1_DaKaiDaoWei",
+        "DI_ZhuaPan2_GuanBiWei",
+        "DI_HengYi_YouLiao",
+        "-",
+        "DI_NingJin_ShenDaoWei1",
+        "DI_NingJin_SuoDaoWei",
+        "DI_HengYi_SongKaiDaoWei",
+        "DI_HengYi_JiaJinDaoWei",
+        "DI_M5_FenLi1_DaKaiDaoWei",
+        "DI_M5_FenLi1_GuanBiDaoWei",
+        "DI_M6_FenLi_DaKaiDaoWei",
+        "DI_M6_FenLi_GuanBiDaoWei",
+        "DI_HengYi_ShangShenDaoWei",
+        "DI_HengYi_XiaJiangDaoWei",
+        "DI_M5_SongLiao_GuanBiDaoWei",
+        "DI_M5_SongLiao_DaKaiDaoWei",
+        "-",
+        "-",
+        "DI_NingJin_ShenDaoWei2",
+        "-",
+        "DI_DingWei_GuanBiDaoWei1",
+        "DI_DingWei_DaKaiDaoWei1",
+        "DI_DingWei_GuanBiDaoWei2",
+        "DI_DingWei_DaKaiDaoWei2",
+        "DI_M6_FenLiao_DaKaiDaoWei",
+        "DI_M6_FenLiao_GuanBiDaoWei",
+        "DI_ROB_JiaJinDaoWei2",
+        "-",
+        "DI_DingWei_GuanBiDaoWei3",
+        "DI_DingWei_DaKaiDaoWei3",
+        "DI_M5_FenLi2_DaKaiDaoWei",
+        "DI_M5_FenLi2_GuanBiDaoWei",
+        "DI_M5_ZDP_YouLiao",
+        "DI_M6_ZDP_DaoKaiDaoWei1",
+        "DI_M6_ZDP_GuanBiDaoWei1",
+        "DI_M6_ZDP_DaoKaiDaoWei2",
+        "DI_M6_ZDP_YouLiao",
+        "DI_ROB_DaKaiDaoWei1",
+        "DI_ROB_JiaJinDaoWei1",
+        "DI_ZDP_ZhengFanJianCe",
+        "DI_FuWei",
+        "DI_LianJi",
+        "DI_DanBuQianJin",
+        "DI_DanBuHouTui",
+        ];
+
+    var IO_10 = global.get("IO_10");
+    const data = msg.payload;
+    for(var i=0;i<DI_Names.length;i++){
+        if(DI_Names[i]!='-'){
+            IO_10.DI[DI_Names[i]] = data[i];
+        }
+    }
+    global.set("IO_10",IO_10);
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 480
+  'y': 140
+  wires:
+    - []
+- id: 6438a2b608a115ee
+  type: inject
+  z: 8c57d52fe6250639
+  name: OP50数据初始化
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: '1'
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 150
+  'y': 40
+  wires:
+    - - 9c22b32ef6374ba0
+- id: 1897a224540a3006
+  type: function
+  z: 8c57d52fe6250639
+  name: IO初始化
+  func: |-
+    var IO_50 = {
+        DO:{},
+        DI:{
+            DI_JiTing:0,
+            DI_QiDong:0,
+            DI_TingZhi:0,
+            DI_ZiDong:0,
+            DI_ShouDong:0,
+            DI_L_GunTong_DaoWei:0,
+            DI_R_GunTong_DaoWei:0,
+            
+            DI_L_ShenJiang_DaoWei:0,
+            DI_R_ShenJiang_DaoWei:0,
+            DI_ZhuaPan1_DaKaiDaoWei:0,
+            DI_ZhuaPan2_GuanBiWei:0,
+            DI_HengYi_YouLiao:0,
+            
+            DI_NingJin_ShenDaoWei1:0,
+            DI_NingJin_SuoDaoWei:0,
+            DI_HengYi_SongKaiDaoWei:0,
+            DI_HengYi_JiaJinDaoWei:0,
+            DI_M5_FenLi1_DaKaiDaoWei:0,
+            DI_M5_FenLi1_GuanBiDaoWei:0,
+            DI_M6_FenLi_DaKaiDaoWei:0,
+            DI_M6_FenLi_GuanBiDaoWei:0,
+            DI_HengYi_ShangShenDaoWei:0,
+            DI_HengYi_XiaJiangDaoWei:0,
+            DI_M5_SongLiao_GuanBiDaoWei:0,
+            DI_M5_SongLiao_DaKaiDaoWei:0,
+            
+            DI_NingJin_ShenDaoWei2:0,
+            
+            DI_DingWei_GuanBiDaoWei1:0,
+            DI_DingWei_DaKaiDaoWei1:0,
+            DI_DingWei_GuanBiDaoWei2:0,
+            DI_DingWei_DaKaiDaoWei2:0,
+            DI_M6_FenLiao_DaKaiDaoWei:0,
+            DI_M6_FenLiao_GuanBiDaoWei:0,
+            DI_ROB_JiaJinDaoWei2:0,
+            
+            DI_DingWei_GuanBiDaoWei3:0,
+            DI_DingWei_DaKaiDaoWei3:0,
+            DI_M5_FenLi2_DaKaiDaoWei:0,
+            DI_M5_FenLi2_GuanBiDaoWei:0,
+            DI_M5_ZDP_YouLiao:0,
+            DI_M6_ZDP_DaoKaiDaoWei1:0,
+            DI_M6_ZDP_GuanBiDaoWei1:0,
+            DI_M6_ZDP_DaoKaiDaoWei2:0,
+            DI_M6_ZDP_YouLiao:0,
+            DI_ROB_DaKaiDaoWei1:0,
+            DI_ROB_JiaJinDaoWei1:0,
+            DI_ZDP_ZhengFanJianCe:0,
+            DI_FuWei:0,
+            DI_LianJi:0,
+            DI_DanBuQianJin:0,
+            DI_DanBuHouTui:0,
+        },
+        AI:{//node-red收到来自控制器的逻辑变量
+            response: 0,//控制器端动作端的完成信号
+            error: 0,//控制器端的故障码
+            status: 0,//控制器端的状态
+            screw_reset : 0,
+            screw_run : 0,
+            screw_clockwise : 0,
+            screw_pause : 0,     
+            screw_mode : 0, 
+            request_vision: 0,
+        },
+        AO:{//node-red要发送下去的逻辑变量
+            request: 0,//下发给控制器的动作号
+            tray_in_count: 6,//AGV进口区的托盘号
+            tray_out_count: 6,//AGV出口区的托盘号y
+            tray_count: 30,//当前料盘上的先导阀数量
+            truss_vision_x: 90,//3轴桁架拍照纠偏的X坐标
+            assembled: 0,
+            screw_status: 0,
+            material_status: 0,
+            work_object: 0, //产品类型
+            response_vision: 0,
+            LCS: 0,
+        },    
+        AI_LCS:{
+            request: 0,
+        },
+        AO_LCS:{
+            response: 0,
+        },
+        AI_screw:{
+            status: 0,
+            error: 0,
+            torque: 0,
+        },
+        AO_screw:{
+            reset : 0,
+            run : 0,
+            clockwise : 0,
+            pause : 0,     
+            mode : 0, 
+        },
+        AI_screw2:{
+            status: 0,
+            error: 0,
+            torque: 0,
+        },
+        AO_screw2:{
+            reset : 0,
+            run : 0,
+            clockwise : 0,
+            pause : 0,     
+            mode : 0, 
+        }  
+    };
+
+    global.set("IO_50",IO_50);
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 620
+  'y': 40
+  wires:
+    - - e0fd6c2d76fabf9f
+- id: b440bba5e4e9cb92
+  type: modbus-read
+  z: 8c57d52fe6250639
+  name: LCS 调度命令读取
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: HoldingRegister
+  adr: '4090'
+  quantity: '7'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: f45c8577844ced46
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 150
+  'y': 200
+  wires:
+    - - 5d240a04c4c77d19
+    - []
+- id: 5d240a04c4c77d19
+  type: function
+  z: 8c57d52fe6250639
+  name: 写入到本地内存
+  func: |-
+
+    const data = msg.payload;
+    var IO = global.get("IO_50");
+    var i = 0;
+    IO.AI_LCS.request = data[i]; i++;
+
+
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 480
+  'y': 200
+  wires:
+    - []
+- id: e0fd6c2d76fabf9f
+  type: function
+  z: 8c57d52fe6250639
+  name: 物料-视觉-工单 初始化
+  func: |-
+
+    var Vision_50 = {
+        session_6axes: "",
+        sessin: "",
+        v1:{//阀体上料后拍照
+            request: "",
+            response: "",
+            x:0,
+            result: 0,
+        },
+        v2: {//第一层料盘上的物料,总计20个坐标,由视觉计算反馈
+            request: "",
+            response: "",
+            positions: [ [0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0] ],
+            result: 0,
+            step: 0,
+        },
+    };
+    var ErrorMap_50 = [
+        "视觉通信故障",
+        "螺丝刀通信故障",
+        "伺服1故障",
+        "伺服2故障",
+        "伺服3故障",
+        "伺服4故障",   
+        "伺服5故障",
+        "伺服6故障",
+        "伺服7故障",
+        ];
+        
+    global.set("StationTask_50",{
+        BillCode: "-",
+        ProductCode: "-",
+        ProductName:"-",
+        ProcessDetail: [{
+            ProcessCode: "OP50",
+            ProcessName: "-",
+            EquipmentCode: "OP50",
+            ProgramNumer: 1,
+            Num: 0,
+            MaterialDetails: [
+            ]
+        }]
+    });
+
+    global.set("Vision_50",Vision_50);
+    global.set("ErrorMap_50", ErrorMap_50);
+    var t = (new Date()).toISOString();
+    global.set("StartTime_50", t);
+    global.set("EndTime_50", t);
+    global.set("RequestID_50", "-");
+    global.set("LCS","http://192.168.130.245:30009/openApiUbiquitous/");
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 840
+  'y': 40
+  wires:
+    - []
+- id: 9c22b32ef6374ba0
+  type: function
+  z: 8c57d52fe6250639
+  name: 定义变量名
+  func: |-
+    global.set("n5",{
+     
+        
+        
+    });
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 450
+  'y': 40
+  wires:
+    - - 1897a224540a3006
+- id: 9ab459d877bebb3a
+  type: http in
+  z: 8c57d52fe6250639
+  name: ''
+  url: /10/data
+  method: get
+  upload: false
+  swaggerDoc: ''
+  x: 150
+  'y': 860
+  wires:
+    - - b0e241d043d4d797
+- id: 62db20fb3815ac1e
+  type: http response
+  z: 8c57d52fe6250639
+  name: ''
+  statusCode: ''
+  headers: {}
+  x: 610
+  'y': 860
+  wires: []
+- id: b0e241d043d4d797
+  type: function
+  z: 8c57d52fe6250639
+  name: function 29
+  func: |-
+    const p = msg.payload.key;
+    var arr = p.split(".");
+    const obj = global.get(arr[0]);
+    eval("var "+arr[0]+" = obj;");
+    console.debug(1);
+    eval("msg.payload = "+p+";");
+    console.debug(2);
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 350
+  'y': 860
+  wires:
+    - - 62db20fb3815ac1e

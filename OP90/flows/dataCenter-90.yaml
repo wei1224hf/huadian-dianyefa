@@ -1,0 +1,998 @@
+- id: 3b5216fa86e84cf0
+  type: tab
+  label: dataCenter-90
+  disabled: false
+  info: ''
+  env: []
+- id: 3bcf26799f73d963
+  type: modbus-server
+  z: 3b5216fa86e84cf0
+  name: OP90-虚拟modbus
+  logEnabled: false
+  hostname: 0.0.0.0
+  serverPort: '10090'
+  responseDelay: 100
+  delayUnit: ms
+  coilsBufferSize: 10000
+  holdingBufferSize: 10000
+  inputBufferSize: 10000
+  discreteBufferSize: 10000
+  showErrors: true
+  x: 150
+  'y': 620
+  wires:
+    - []
+    - []
+    - []
+    - []
+    - []
+- id: e5c13ce7b96e711b
+  type: modbus-read
+  z: 3b5216fa86e84cf0
+  name: 读取6轴modbus-do控制
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: HoldingRegister
+  adr: '90'
+  quantity: '37'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: 967785e4049706c4
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 160
+  'y': 80
+  wires:
+    - - abfcdf9120383db9
+    - []
+- id: 57a41c47a33fd710
+  type: modbus-read
+  z: 3b5216fa86e84cf0
+  name: 读取控制器modbus-di控制
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: HoldingRegister
+  adr: '40'
+  quantity: '44'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: 9644a7088aaca35d
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 170
+  'y': 180
+  wires:
+    - - 1ab3bd61098c4a2a
+      - 0a971699a2633268
+      - c337be33ef47db16
+    - []
+- id: 1ab3bd61098c4a2a
+  type: modbus-write
+  z: 3b5216fa86e84cf0
+  name: DI信号同步到6轴
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: ''
+  dataType: MHoldingRegisters
+  adr: '40'
+  quantity: '44'
+  server: 967785e4049706c4
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 470
+  'y': 180
+  wires:
+    - []
+    - []
+- id: abfcdf9120383db9
+  type: modbus-write
+  z: 3b5216fa86e84cf0
+  name: DO信号同步到控制器
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: MHoldingRegisters
+  adr: '90'
+  quantity: '37'
+  server: 9644a7088aaca35d
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 480
+  'y': 80
+  wires:
+    - []
+    - []
+- id: 8eb01bf9acb7562a
+  type: modbus-read
+  z: 3b5216fa86e84cf0
+  name: 读取控制器modbus-ao-逻辑变量
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: HoldingRegister
+  adr: '15'
+  quantity: '22'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: 9644a7088aaca35d
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 190
+  'y': 300
+  wires:
+    - - 3d78fd4e5044cab1
+    - []
+- id: c337be33ef47db16
+  type: function
+  z: 3b5216fa86e84cf0
+  name: 写入到本地内存
+  func: |-
+    var DI_Names = [
+    "DI_Jiting",
+    "DI_QiDong",
+    "DI_TingZhi",
+    "DI_ShouZiDong",
+    "DI_R_GunTong_DaoWei",
+    "DI_L_GunTong_DaoWei",
+    "DI_ShiNeng",
+    "DI_L_ShenJiang_DaoWei",
+    "DI_R_ShenJiang_DaoWei",
+    "DI_ZhuaPan1_DaKaiDaoWei",
+    "DI_ZhuaPan1_GuanBiWei",
+    "DI_ZhuaPan2_DaKaiDaoWei",
+    "DI_ZhuaPan2_GuanBiWei",
+    "DI_HengYi_YouLiao",
+    "DI_HengYi_SongKaiDaoWei",
+    "DI_HengYi_JiaJinDaoWei",
+    "DI_LuoSiQiang_shangshen",
+    "DI_LuoSiQiang_xiajiang",
+    "DI_M5_LuoSi_fenli_guanbi",
+    "DI_M5_LuoSi_fenli_dakai",
+    "DI_M6_LuoSi_fenli_dakai",
+    "DI_M6_LuoSi_fenli_guanbi",
+    "DI_Hengyi_xiajiang_Daowei",
+    "DI_Hengyi_shangshen_Daowei",
+    "DI_M5_Songliao_Dakai_1",
+    "DI_M5_Songliao_Guanbi_1",
+    "DI_M5_Songliao_Dakai_2",
+    "DI_M5_Songliao_Guanbi_2",
+    "DI_DingWei_GuanBiDaoWei1",
+    "DI_DingWei_DaKaiDaoWei1",
+    "DI_DingWei_GuanBiDaoWei2",
+    "DI_DingWei_DaKaiDaoWei2",
+    "DI_M6_LuoSi_Geli",
+    "DI_DingWei_GuanBiDaoWei3",
+    "DI_DingWei_DaKaiDaoWei3",
+    "DI_M5_LuoSi_Geli_dakai",
+    "DI_M5_LuoSi_Geli_guanbi",
+    "DI_M6_ZDP_DaoKaiDaoWei1",
+    "DI_M6_ZDP_GuanBiDaoWei1",
+    "DI_M6_ZDP_DaoKaiDaoWei2",
+    "DI_ZDP_ZhengFanJianCe",
+    "DI_Error_Fuwei",
+    "DI_Lianji",
+    "DI_ZhiXing",
+        ];
+
+    var IO_90 = global.get("IO_90");
+    const data = msg.payload;
+    for(var i=0;i<DI_Names.length;i++){
+        if(DI_Names[i]!='-'){
+            IO_90.DI[DI_Names[i]] = data[i];
+        }
+    }
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 460
+  'y': 140
+  wires:
+    - []
+- id: 3d78fd4e5044cab1
+  type: function
+  z: 3b5216fa86e84cf0
+  name: 写入到本地内存
+  func: |-
+    const data = msg.payload;
+    var IO = global.get("IO_90");
+    var i = 0;
+    IO.AI.Home = data[i]; i++;
+    IO.AI.error_to_node_red = data[i]; i++;
+    IO.AI.status = data[i]; i++;
+    IO.AI.J1 = data[i]; i++;
+    IO.AI.J2 = data[i]; i++;
+    IO.AI.J3 = data[i]; i++;
+    IO.AI.J4 = data[i]; i++;
+    IO.AI.J5 = data[i]; i++;
+    IO.AI.J6 = data[i]; i++;
+    IO.AI.J7 = data[i]; i++;
+    IO.AI.J8 = data[i]; i++;
+    IO.AI.J9 = data[i]; i++;
+    IO.AI.screw_reset = data[i]; i++;
+    IO.AI.screw_run = data[i]; i++;
+    IO.AI.screw_clockwise = data[i]; i++;
+    IO.AI.screw_pause = data[i]; i++;
+    IO.AI.screw_mode = data[i]; i++;
+    IO.AI.Networking = data[i]; i++;
+    IO.AI.response = data[i]; i++;
+    IO.AI.request_vision = data[i]; i++;
+    IO.AI.Md_home = data[i]; i++;
+    IO.AI.error_code = data[i]; i++;
+
+    IO.AO_screw.reset = IO.AI.screw_reset;
+    IO.AO_screw.run = IO.AI.screw_run;
+    IO.AO_screw.clockwise = IO.AI.screw_clockwise;
+    IO.AO_screw.pause = IO.AI.screw_pause;
+    IO.AO_screw.mode = IO.AI.screw_mode;
+
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 460
+  'y': 300
+  wires:
+    - []
+- id: 83fa0339e5960b43
+  type: inject
+  z: 3b5216fa86e84cf0
+  name: OP90数据初始化
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: '1'
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 150
+  'y': 40
+  wires:
+    - - fb8a9610e83c1ed9
+- id: 7935456f1150e60e
+  type: function
+  z: 3b5216fa86e84cf0
+  name: IO初始化
+  func: |-
+    var IO_90 = {
+        DO:{},
+        DI:{
+            DI_Jiting:0,
+            DI_QiDong:0,
+            DI_TingZhi:0,
+            DI_ShouZiDong:0,
+            DI_R_GunTong_DaoWei:0,
+            DI_L_GunTong_DaoWei:0,
+            DI_ShiNeng:0,
+            DI_L_ShenJiang_DaoWei:0,
+            DI_R_ShenJiang_DaoWei:0,
+            DI_ZhuaPan1_DaKaiDaoWei:0,
+            DI_ZhuaPan1_GuanBiWei:0,
+            DI_ZhuaPan2_DaKaiDaoWei:0,
+            DI_ZhuaPan2_GuanBiWei:0,
+            DI_HengYi_YouLiao:0,
+            DI_HengYi_SongKaiDaoWei:0,
+            DI_HengYi_JiaJinDaoWei:0,
+            DI_LuoSiQiang_shangshen:0,
+            DI_LuoSiQiang_xiajiang:0,
+            DI_M5_LuoSi_fenli_guanbi:0,
+            DI_M5_LuoSi_fenli_dakai:0,
+            DI_M6_LuoSi_fenli_dakai:0,
+            DI_M6_LuoSi_fenli_guanbi:0,
+            DI_Hengyi_xiajiang_Daowei:0,
+            DI_Hengyi_shangshen_Daowei:0,
+            DI_M5_Songliao_Dakai_1:0,
+            DI_M5_Songliao_Guanbi_1:0,
+            DI_M5_Songliao_Dakai_2:0,
+            DI_M5_Songliao_Guanbi_2:0,
+            DI_M6_LuoSi_Geli:0,
+            DI_M5_LuoSi_Geli_dakai:0,
+            DI_M5_LuoSi_Geli_guanbi:0,
+            DI_M6_ZDP_DaoKaiDaoWei1:0,
+            DI_M6_ZDP_GuanBiDaoWei1:0,
+            DI_M6_ZDP_DaoKaiDaoWei2:0,
+            DI_ZDP_ZhengFanJianCe:0,
+            DI_Error_Fuwei:0,
+            DI_Lianji:0,
+            DI_ZhiXing:0,
+        },
+        AI:{//node-red收到来自控制器的逻辑变量
+            Home: 0,
+            error_to_node_red: 0,
+            status: 0,
+            J1: 0,
+            J2: 0,
+            J3: 0,
+            J4: 0,
+            J5: 0,
+            J6: 0,
+            J7: 0,
+            J8: 0,
+            J9: 0,
+            screw_reset: 0,
+            screw_run: 0,
+            screw_clockwise: 0,
+            screw_pause: 0,
+            screw_mode: 0,
+            Networking: 0,
+            response: 0,
+            request_vision: 0,
+            Md_home: 0,
+            error_code: 0,
+        },
+        AO:{//node-red要发送下去的逻辑变量
+            work_object: 0,
+            LCS_command: 0,
+            screw_status: 0,
+            LCS_speed: 0,
+            tray_in_count: 0,
+            tray_out_count: 0,
+            material_status: 0,
+            vision_truss_x: 0,
+            Robot_6_Joint_Ready: 0,
+            request: 0,
+            index_screw: 0,
+            index_assembled: 0,
+            response_vision: 0,
+            index_screw_insert: 0,
+            AGV_Daowei: 0,
+        },    
+        AI_6axes:{
+            status: 0,
+            request_vision: 0,
+            response: 0,
+            error: 0,
+        },
+
+        AO_6axes:{
+            work_object: 0,
+            LCS: 0,
+            XianDao_Kind: 0,
+            M5_DaoKong: 0,
+            M6_DaoKong: 0,
+            Vision_X_1: 0,        
+            Vision_QueXian: 0,
+            request: 0,
+            index_assembled: 0,
+            index_top_tray: 0,
+            response_vision: 0,
+        },
+        AI_LCS:{
+            request: 0,
+        },
+        AO_LCS:{
+            response: 0,
+        },
+        AI_AGV:{
+            request: 0,
+        },
+        AO_AGV:{
+            response: 0,
+        },        
+        AI_screw:{
+            status: 0,
+            error: 0,
+            torque: 0,
+        },
+        AO_screw:{
+            reset : 0,
+            run : 0,
+            clockwise : 0,
+            pause : 0,     
+            mode : 0, 
+        }       
+    };
+
+    global.set("IO_90",IO_90);
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 600
+  'y': 40
+  wires:
+    - - 52e5c80254d5ee2a
+- id: 2b60c027eb43fa05
+  type: modbus-read
+  z: 3b5216fa86e84cf0
+  name: 6轴机械臂modbus-ao-逻辑变量
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: HoldingRegister
+  adr: '0'
+  quantity: '4'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: 967785e4049706c4
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 190
+  'y': 360
+  wires:
+    - - 24de9f2ffc261c53
+    - []
+- id: 24de9f2ffc261c53
+  type: function
+  z: 3b5216fa86e84cf0
+  name: 写入到本地内存
+  func: |-
+    const data = msg.payload;
+    var IO = global.get("IO_90");
+    var i = 0;
+    IO.AI_6axes.status = data[i]; i++;
+    IO.AI_6axes.request_vision = data[i]; i++;
+    IO.AI_6axes.response = data[i]; i++;
+    IO.AI_6axes.error = data[i]; i++;
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 460
+  'y': 360
+  wires:
+    - []
+- id: 0a971699a2633268
+  type: modbus-write
+  z: 3b5216fa86e84cf0
+  name: DI信号同步到虚拟modbus
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: MCoils
+  adr: '40'
+  quantity: '44'
+  server: 8b08ccb1dadce45a
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 490
+  'y': 240
+  wires:
+    - []
+    - []
+- id: cd6a596d07980434
+  type: inject
+  z: 3b5216fa86e84cf0
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: '2'
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 120
+  'y': 480
+  wires:
+    - - 116583a8a44a97b1
+- id: 116583a8a44a97b1
+  type: trigger
+  z: 3b5216fa86e84cf0
+  name: ''
+  op1: '1'
+  op2: '0'
+  op1type: str
+  op2type: str
+  duration: '-250'
+  extend: false
+  overrideDelay: false
+  units: ms
+  reset: ''
+  bytopic: all
+  topic: topic
+  outputs: 1
+  x: 290
+  'y': 520
+  wires:
+    - - 2dc73bd065955c8d
+      - 75cf6f4d68188369
+- id: 398ca89e7aedb8db
+  type: modbus-write
+  z: 3b5216fa86e84cf0
+  name: 写入到泛在控制器
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: ''
+  dataType: MHoldingRegisters
+  adr: '0'
+  quantity: '15'
+  server: 9644a7088aaca35d
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 730
+  'y': 480
+  wires:
+    - []
+    - []
+- id: 2dc73bd065955c8d
+  type: function
+  z: 3b5216fa86e84cf0
+  name: 写入到泛在控制器
+  func: |-
+
+    var IO = global.get("IO_90");
+    IO.AO.screw_status = IO.AI_screw.status;
+    var data = [
+        IO.AO.work_object,
+        IO.AO.LCS_command,
+        IO.AO.screw_status,
+        IO.AO.LCS_speed,
+        IO.AO.tray_in_count,
+        IO.AO.tray_out_count,
+        IO.AO.material_status,
+        IO.AO.vision_truss_x,
+        IO.AO.Robot_6_Joint_Ready,
+        IO.AO.request,
+        IO.AO.index_screw,
+        IO.AO.index_assembled,
+        IO.AO.response_vision,
+        IO.AO.index_screw_insert,
+        IO.AO.AGV_Daowei,
+    ]
+    msg.payload = data;
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 510
+  'y': 480
+  wires:
+    - - 398ca89e7aedb8db
+- id: 2a3a5be77c6b5d35
+  type: modbus-write
+  z: 3b5216fa86e84cf0
+  name: 写入到6轴
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: ''
+  dataType: MHoldingRegisters
+  adr: '4'
+  quantity: '11'
+  server: 967785e4049706c4
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 730
+  'y': 540
+  wires:
+    - []
+    - []
+- id: 75cf6f4d68188369
+  type: function
+  z: 3b5216fa86e84cf0
+  name: 写入到6轴机械臂
+  func: |-
+
+    var IO = global.get("IO_90");
+    var temp = IO.AO_6axes;
+    var data = [
+        temp.LCS,
+        temp.XianDao_Kind,
+        temp.M5_DaoKong,
+        temp.M6_DaoKong,
+        temp.Vision_X_1,
+        temp.work_object,
+        temp.Vision_QueXian,
+        temp.request,
+        temp.index_assembled,
+        temp.index_top_tray,
+        temp.response_vision,
+    ]
+    msg.payload = data;
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 510
+  'y': 540
+  wires:
+    - - 2a3a5be77c6b5d35
+- id: f51777edb24f4a29
+  type: modbus-read
+  z: 3b5216fa86e84cf0
+  name: LCS 调度命令读取
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: HoldingRegister
+  adr: '4090'
+  quantity: '7'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: 8b08ccb1dadce45a
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 150
+  'y': 420
+  wires:
+    - - d60024e9414279eb
+    - []
+- id: d60024e9414279eb
+  type: function
+  z: 3b5216fa86e84cf0
+  name: 写入到本地内存
+  func: |-
+
+    const data = msg.payload;
+    var IO = global.get("IO_90");
+    var i = 0;
+    IO.AI_LCS.request = data[i]; i++;
+
+
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 460
+  'y': 420
+  wires:
+    - []
+- id: 33daa1b70b329a4d
+  type: function
+  z: 3b5216fa86e84cf0
+  name: 发送给LCS呼叫AGV
+  func: |-
+    var data = [];
+    var IO = global.get("IO_90");
+    data.push(IO.AO_LCS.Pos_In);
+    data.push(IO.AO_LCS.Pos_Out);
+
+    msg.payload = data;
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 520
+  'y': 600
+  wires:
+    - - 39a996cf72ad3212
+- id: 39a996cf72ad3212
+  type: modbus-write
+  z: 3b5216fa86e84cf0
+  name: 写入到虚拟modbus
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: ''
+  dataType: MHoldingRegisters
+  adr: '0'
+  quantity: '100'
+  server: 8b08ccb1dadce45a
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 730
+  'y': 600
+  wires:
+    - []
+    - []
+- id: 52e5c80254d5ee2a
+  type: function
+  z: 3b5216fa86e84cf0
+  name: 物料-视觉-工单 初始化
+  func: >-
+
+    var Vision_90 = {
+        session: {
+            type:"",
+            id: "",
+        },
+        request: "",
+        response: "",
+        result: 0,
+    };
+
+    var ErrorMap_90 = [
+        "视觉通信故障",
+        "螺丝刀通信故障",
+        "伺服1故障",
+        "伺服2故障",
+        "伺服3故障",
+        "伺服4故障",   
+        "伺服5故障",
+        "伺服6故障",
+        "伺服7故障",
+        ];
+        
+    global.set("StationTask_90",{
+        BillCode: "-",
+        ProductCode: "-",
+        ProductName:"-",
+        ProcessDetail: [{
+            ProcessCode: "OP90",
+            ProcessName: "-",
+            EquipmentCode: "OP90",
+            ProgramNumer: 1,
+            Num: 0,
+            MaterialDetails: [
+                {
+                    MaterialCode: "M5x20",
+                    MaterialName: "M5x20内六角螺丝",
+                    Num: 0,
+                    consumption: 15,
+                    remain: 0,
+                    used: 0,
+                },
+                {
+                    MaterialCode: "M6x85",
+                    MaterialName: "M6x85内六角螺丝",
+                    Num: 0,
+                    consumption: 15,
+                    remain: 0,
+                    used: 0,
+                },
+                {
+                    MaterialCode: "XDF",
+                    MaterialName: "先导阀",
+                    Num: 0,
+                    consumption: 15,
+                    remain: 0,
+                    used: 0,
+                },
+          
+            ]
+        }]
+    });
+
+
+    global.set("Vision_90",Vision_90);
+
+    global.set("ErrorMap_90", ErrorMap_90);
+
+    const t = (new Date()).toISOString();
+
+    global.set("Request_90",{
+        StartTime:t,
+        EndTime:t,
+        RequestID:"-",
+        RequestID_:"-",
+        barcode: "",
+    });
+
+    global.set("LCS", "http://192.168.110.200:9006/openApiUbiquitous/");
+
+    global.set("torque", [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 820
+  'y': 40
+  wires:
+    - []
+- id: fb8a9610e83c1ed9
+  type: function
+  z: 3b5216fa86e84cf0
+  name: 定义变量名
+  func: |-
+    global.set("ns",{
+        truss3_vission:1,
+        panel_in_in:2,
+        panel_out_out:3,
+        panel_in_out:4,
+        truss2_screw:5,
+        truss3_screw:6,
+        all_home:7,
+        panel_shift:8,
+        truss2_release:9,
+        loader_home:10,
+            
+        truss3_vission_done:101,
+        panel_in_in_done:102,
+        panel_out_out_done:103,
+        panel_in_out_done:104,
+        truss2_screw_done:105,
+        truss3_screw_done:106,
+        all_home_done:107,
+        panel_shift_done:108,
+        truss2_release_done:109,
+        loader_home_done:110,  
+        
+        robot_moveToVission: 1,
+        robot_pick:2,
+        robot_grabToVission: 3,
+        robot_placeToTrash: 4,
+        robot_placeToProduct: 5,
+        robot_home: 6,
+        
+        robot_moveToVission_done:101,
+        robot_pick_done:102,
+        robot_grabToVission_done:103,
+        robot_placeToProduct_done:104,
+        robot_placeToTrash_done:105,
+        robot_home_done:106,
+        
+        LCS_start:1,
+        LCS_stop:2,
+        LCS_pause:3,
+        LCS_resume:4,
+        LCS_run:5,
+        
+        
+        vission_success: 1,
+        vission_fail: 2,
+        
+        tray_corner_1:101,
+        tray_corner_2:102,
+        tray_corner_3:103,
+        tray_corner_4:104,
+        material_check_1:201,
+        material_check_2:202,
+        screw_check:301,
+        
+        screw_product: 401,
+        
+        
+    });
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 430
+  'y': 40
+  wires:
+    - - 7935456f1150e60e
+- id: 3f333be6e9d1af15
+  type: function
+  z: 3b5216fa86e84cf0
+  name: 螺丝刀数据
+  func: |-
+
+    var IO = global.get("IO_90");
+    IO.AO_screw.reset = IO.AI.screw_reset;
+    IO.AO_screw.run = IO.AI.screw_run;
+    IO.AO_screw.clockwise = IO.AI.screw_clockwise;
+    IO.AO_screw.pause = IO.AI.screw_pause;
+    IO.AO_screw.mode = IO.AI.screw_mode;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 490
+  'y': 680
+  wires:
+    - []
+- id: 25c8ab4eb8155ac7
+  type: http in
+  z: 3b5216fa86e84cf0
+  name: ''
+  url: /90/data
+  method: get
+  upload: false
+  swaggerDoc: ''
+  x: 110
+  'y': 760
+  wires:
+    - - 0b9d3b84d0538dc7
+- id: 90978ca684a0d7d2
+  type: http response
+  z: 3b5216fa86e84cf0
+  name: ''
+  statusCode: ''
+  headers: {}
+  x: 570
+  'y': 760
+  wires: []
+- id: 0b9d3b84d0538dc7
+  type: function
+  z: 3b5216fa86e84cf0
+  name: function 28
+  func: |-
+    const p = msg.payload.key;
+    var arr = p.split(".");
+    console.debug(arr);
+    const obj = global.get(arr[0]);
+    eval("var "+arr[0]+" = obj;");
+    console.debug(1);
+    eval("msg.payload = "+p+";");
+    console.debug(2);
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 330
+  'y': 760
+  wires:
+    - - 90978ca684a0d7d2

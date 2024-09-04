@@ -1,0 +1,415 @@
+- id: e938579b29d3cf7f
+  type: tab
+  label: vision-90
+  disabled: false
+  info: ''
+  env: []
+- id: 47561ca890b23427
+  type: tcp in
+  z: e938579b29d3cf7f
+  name: ''
+  server: client
+  host: 192.168.105.231
+  port: '3344'
+  datamode: stream
+  datatype: utf8
+  newline: ''
+  topic: ''
+  trim: false
+  base64: false
+  tls: ''
+  x: 130
+  'y': 160
+  wires:
+    - - e1dbca2036be2385
+- id: 50cc819c6bf8d907
+  type: tcp out
+  z: e938579b29d3cf7f
+  name: ''
+  host: ''
+  port: ''
+  beserver: reply
+  base64: false
+  end: false
+  tls: ''
+  x: 1090
+  'y': 220
+  wires: []
+- id: 5e0be52bdb654ff5
+  type: inject
+  z: e938579b29d3cf7f
+  name: 先导阀料盘定位
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '#1'
+  payloadType: str
+  x: 660
+  'y': 360
+  wires:
+    - - b27518de2a57a0f1
+- id: c9302598456b8a85
+  type: inject
+  z: e938579b29d3cf7f
+  name: 阀体定位
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '#2'
+  payloadType: str
+  x: 400
+  'y': 360
+  wires:
+    - - b27518de2a57a0f1
+- id: 2ace157097b94190
+  type: inject
+  z: e938579b29d3cf7f
+  name: 螺丝定位
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '#3'
+  payloadType: str
+  x: 900
+  'y': 360
+  wires:
+    - - b27518de2a57a0f1
+- id: e1dbca2036be2385
+  type: function
+  z: e938579b29d3cf7f
+  name: 视觉报文解析
+  func: |-
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 360
+  'y': 160
+  wires:
+    - - 167f14fc927453a5
+- id: 167f14fc927453a5
+  type: switch
+  z: e938579b29d3cf7f
+  name: ''
+  property: payload
+  propertyType: msg
+  rules:
+    - t: eq
+      v: AGV
+      vt: str
+    - t: eq
+      v: truss
+      vt: str
+    - t: eq
+      v: relocate
+      vt: str
+  checkall: 'true'
+  repair: false
+  outputs: 3
+  x: 530
+  'y': 160
+  wires:
+    - - e5af5aed4a13802a
+    - - a5b47af96c629f58
+    - - 470fe16a5540a4de
+- id: 42b3a660ce7e3773
+  type: status
+  z: e938579b29d3cf7f
+  name: ''
+  scope:
+    - 47561ca890b23427
+  x: 230
+  'y': 80
+  wires:
+    - - f53881945ca4f8eb
+- id: b27518de2a57a0f1
+  type: function
+  z: e938579b29d3cf7f
+  name: 添加视觉session
+  func: |-
+    var Vision_90 = global.get("Vision_90");
+    msg._session = Vision_90.session;
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 900
+  'y': 220
+  wires:
+    - - 50cc819c6bf8d907
+- id: 5c7fec376aee60ee
+  type: change
+  z: e938579b29d3cf7f
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: Vision_90.request
+      tot: global
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 530
+  'y': 220
+  wires:
+    - - 96c51262bea65964
+- id: 96c51262bea65964
+  type: rbe
+  z: e938579b29d3cf7f
+  name: ''
+  func: rbei
+  gap: ''
+  start: ''
+  inout: out
+  septopics: true
+  property: payload
+  topi: topic
+  x: 675
+  'y': 220
+  wires:
+    - - b27518de2a57a0f1
+  l: false
+- id: e5af5aed4a13802a
+  type: function
+  z: e938579b29d3cf7f
+  name: 进料盘抓取拍照读坐标反馈
+  func: |
+    const str = msg.payload;
+    const arr = str.split(",");
+    const result = arr[0];
+    var x = 0;
+    var y = 0;
+    if(result == 1){
+        x = arr[1];
+        y = arr[2];
+    }
+    var Vision_90 = global.get("Vision_90");
+    Vision_90.p1.x = x;
+    Vision_90.p1.y = y;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 800
+  'y': 100
+  wires:
+    - []
+- id: a5b47af96c629f58
+  type: function
+  z: e938579b29d3cf7f
+  name: 三轴桁架打螺丝定位
+  func: |
+    const str = msg.payload;
+    const arr = str.split(",");
+    const result = arr[0];
+    var x = 0;
+    var y = 0;
+    if(result == 1){
+        x = arr[1];
+        y = arr[2];
+    }
+    var Vision_90 = global.get("Vision_90");
+    Vision_90.p2.x = x;
+    Vision_90.p2.y = y;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 780
+  'y': 140
+  wires:
+    - []
+- id: 470fe16a5540a4de
+  type: function
+  z: e938579b29d3cf7f
+  name: 进料盘抓取拍照读坐标反馈
+  func: |
+    const str = msg.payload;
+    const arr = str.split(",");
+    const result = arr[0];
+    var x = 0;
+    var y = 0;
+    if(result == 1){
+        x = arr[1];
+        y = arr[2];
+    }
+    var Vision_90 = global.get("Vision_90");
+    Vision_90.p1.x = x;
+    Vision_90.p1.y = y;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 800
+  'y': 180
+  wires:
+    - []
+- id: ea784a7aa298e9b7
+  type: inject
+  z: e938579b29d3cf7f
+  name: 先导阀料盘定位
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '#1'
+  payloadType: str
+  x: 660
+  'y': 400
+  wires:
+    - - b27518de2a57a0f1
+- id: fe64b8fb197ca0e1
+  type: inject
+  z: e938579b29d3cf7f
+  name: 先导阀料盘定位
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '#1'
+  payloadType: str
+  x: 660
+  'y': 440
+  wires:
+    - - b27518de2a57a0f1
+- id: 709b191b55cad137
+  type: inject
+  z: e938579b29d3cf7f
+  name: 先导阀料盘定位
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '#1'
+  payloadType: str
+  x: 660
+  'y': 480
+  wires:
+    - - b27518de2a57a0f1
+- id: 34f67a6b55d96ec1
+  type: inject
+  z: e938579b29d3cf7f
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: '2'
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 120
+  'y': 280
+  wires:
+    - - 80b3c83afbaee1a5
+- id: 80b3c83afbaee1a5
+  type: trigger
+  z: e938579b29d3cf7f
+  name: ''
+  op1: '1'
+  op2: '0'
+  op1type: str
+  op2type: str
+  duration: '-250'
+  extend: false
+  overrideDelay: false
+  units: ms
+  reset: ''
+  bytopic: all
+  topic: topic
+  outputs: 1
+  x: 290
+  'y': 280
+  wires:
+    - - 5c7fec376aee60ee
+- id: dc679eed5e8b3634
+  type: inject
+  z: e938579b29d3cf7f
+  name: 先导阀-缺漏检测
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '#1'
+  payloadType: str
+  x: 660
+  'y': 520
+  wires:
+    - - b27518de2a57a0f1
+- id: ea11736917aae1fa
+  type: inject
+  z: e938579b29d3cf7f
+  name: 先导阀-缺漏检测2
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '#1'
+  payloadType: str
+  x: 660
+  'y': 560
+  wires:
+    - - b27518de2a57a0f1
+- id: f53881945ca4f8eb
+  type: function
+  z: e938579b29d3cf7f
+  name: 函数 45
+  func: |-
+
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 460
+  'y': 80
+  wires:
+    - []

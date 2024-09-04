@@ -1,0 +1,562 @@
+- id: 71f537202ea9cf55
+  type: tab
+  label: screw
+  disabled: false
+  info: ''
+  env: []
+- id: 8d4d4b53cf1b63e2
+  type: modbus-read
+  z: 71f537202ea9cf55
+  name: screw-in
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: true
+  showWarnings: true
+  unitid: '1'
+  dataType: HoldingRegister
+  adr: '20'
+  quantity: '20'
+  rate: '200'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: 9a4dd78996491658
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 140
+  'y': 80
+  wires:
+    - - d514673c90fffe90
+      - 4e5f5713bc0f71f8
+      - 8c0135732e0ed9b9
+    - []
+- id: 4dab851a3090a4ee
+  type: modbus-write
+  z: 71f537202ea9cf55
+  name: screw
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: ''
+  dataType: HoldingRegister
+  adr: '3'
+  quantity: '1'
+  server: 9a4dd78996491658
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 1030
+  'y': 240
+  wires:
+    - []
+    - []
+- id: 49312cbe0536496d
+  type: inject
+  z: 71f537202ea9cf55
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '1'
+  payloadType: num
+  x: 750
+  'y': 240
+  wires:
+    - - 4dab851a3090a4ee
+- id: 1916e26398944d20
+  type: inject
+  z: 71f537202ea9cf55
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '8'
+  payloadType: num
+  x: 750
+  'y': 280
+  wires:
+    - - 4dab851a3090a4ee
+- id: dbb6283463f60b0e
+  type: inject
+  z: 71f537202ea9cf55
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '0'
+  payloadType: num
+  x: 750
+  'y': 320
+  wires:
+    - - 4dab851a3090a4ee
+- id: 182b0b97b21da321
+  type: trigger
+  z: 71f537202ea9cf55
+  name: ''
+  op1: '1'
+  op2: '0'
+  op1type: str
+  op2type: str
+  duration: '-250'
+  extend: false
+  overrideDelay: false
+  units: ms
+  reset: ''
+  bytopic: all
+  topic: topic
+  outputs: 1
+  x: 310
+  'y': 260
+  wires:
+    - - 7f9f5dfb8250b123
+- id: 9d8c504c1ac36899
+  type: function
+  z: 71f537202ea9cf55
+  name: screw
+  func: |-
+    var val = 0;
+    if(msg.payload.screw_run==1){
+        val += 1;
+    }
+    if (msg.payload.screw_clockwise==1){
+        val += 2;
+    }
+    if (msg.payload.screw_pause == 1) {
+        val += 4;
+    }
+    if (msg.payload.screw_reset == 1) {
+        val += 8;
+    }
+    msg.payload = val;
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 650
+  'y': 180
+  wires:
+    - - ecce777fee31e872
+- id: 7f9f5dfb8250b123
+  type: change
+  z: 71f537202ea9cf55
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: IO.AO
+      tot: global
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 510
+  'y': 260
+  wires:
+    - - 9d8c504c1ac36899
+      - 53731b7b0844da45
+- id: c093bb83b677bf58
+  type: modbus-read
+  z: 71f537202ea9cf55
+  name: screw
+  topic: ''
+  showStatusActivities: false
+  logIOActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: HoldingRegister
+  adr: '25'
+  quantity: '2'
+  rate: '300'
+  rateUnit: ms
+  delayOnStart: false
+  startDelayTime: ''
+  server: 9a4dd78996491658
+  useIOFile: false
+  ioFile: ''
+  useIOForPayload: false
+  emptyMsgOnFail: false
+  x: 490
+  'y': 40
+  wires:
+    - - d514673c90fffe90
+    - []
+- id: d514673c90fffe90
+  type: function
+  z: 71f537202ea9cf55
+  name: 完成扭矩
+  func: |-
+    var data = msg.payload[5] + msg.payload[6]*0xff;
+    if (!Number.isNaN(data)){
+        msg.payload = data;
+        return msg;
+    }
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 640
+  'y': 80
+  wires:
+    - - c52a9f97c85b9848
+- id: c52a9f97c85b9848
+  type: change
+  z: 71f537202ea9cf55
+  name: ''
+  rules:
+    - t: set
+      p: IO.AI.screw_torque
+      pt: global
+      to: payload
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 870
+  'y': 80
+  wires:
+    - []
+- id: 069f70e3615897de
+  type: inject
+  z: 71f537202ea9cf55
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: true
+  onceDelay: '2'
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 120
+  'y': 260
+  wires:
+    - - 182b0b97b21da321
+- id: 6ff5ff2ceef04486
+  type: inject
+  z: 71f537202ea9cf55
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '4'
+  payloadType: num
+  x: 750
+  'y': 360
+  wires:
+    - - 4dab851a3090a4ee
+- id: ecce777fee31e872
+  type: rbe
+  z: 71f537202ea9cf55
+  name: ''
+  func: rbe
+  gap: ''
+  start: ''
+  inout: out
+  septopics: true
+  property: payload
+  topi: topic
+  x: 810
+  'y': 180
+  wires:
+    - - 4dab851a3090a4ee
+- id: 9ee58c96d40ed36c
+  type: modbus-write
+  z: 71f537202ea9cf55
+  name: screw
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: ''
+  dataType: HoldingRegister
+  adr: '48'
+  quantity: '1'
+  server: 9a4dd78996491658
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 1090
+  'y': 400
+  wires:
+    - []
+    - []
+- id: b7d63146a71a3898
+  type: inject
+  z: 71f537202ea9cf55
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '12'
+  payloadType: num
+  x: 750
+  'y': 480
+  wires:
+    - - 9ee58c96d40ed36c
+- id: e30a2187d403c988
+  type: inject
+  z: 71f537202ea9cf55
+  name: ''
+  props:
+    - p: payload
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: '1'
+  payloadType: num
+  x: 750
+  'y': 520
+  wires:
+    - - 9ee58c96d40ed36c
+- id: 53731b7b0844da45
+  type: change
+  z: 71f537202ea9cf55
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: IO.AO.screw_mode
+      tot: global
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 690
+  'y': 420
+  wires:
+    - - 1d8a69a3d9705111
+- id: 1d8a69a3d9705111
+  type: rbe
+  z: 71f537202ea9cf55
+  name: ''
+  func: rbe
+  gap: ''
+  start: ''
+  inout: out
+  septopics: true
+  property: payload
+  topi: topic
+  x: 870
+  'y': 420
+  wires:
+    - - 9ee58c96d40ed36c
+- id: 3f3486510aa530c1
+  type: modbus-write
+  z: 71f537202ea9cf55
+  name: 结果
+  showStatusActivities: false
+  showErrors: false
+  showWarnings: true
+  unitid: '1'
+  dataType: MHoldingRegisters
+  adr: '20'
+  quantity: '1'
+  server: 967785e4049706c4
+  emptyMsgOnFail: false
+  keepMsgProperties: false
+  delayOnStart: false
+  startDelayTime: ''
+  x: 430
+  'y': 180
+  wires:
+    - []
+    - []
+- id: e2ed2ffdd8ca8d3c
+  type: status
+  z: 71f537202ea9cf55
+  name: 监听网络连接
+  scope:
+    - 8d4d4b53cf1b63e2
+  x: 230
+  'y': 600
+  wires:
+    - - bdf62724a5672db0
+- id: 28330c4133105f6b
+  type: file
+  z: 71f537202ea9cf55
+  name: ''
+  filename: 'c:\log\log.txt'
+  filenameType: str
+  appendNewline: true
+  createDir: false
+  overwriteFile: 'false'
+  encoding: none
+  x: 710
+  'y': 600
+  wires:
+    - []
+- id: bdf62724a5672db0
+  type: rbe
+  z: 71f537202ea9cf55
+  name: ''
+  func: rbe
+  gap: ''
+  start: ''
+  inout: out
+  septopics: true
+  property: status.text
+  topi: topic
+  x: 410
+  'y': 600
+  wires:
+    - - b7f739ccd1ffcd15
+- id: b7f739ccd1ffcd15
+  type: function
+  z: 71f537202ea9cf55
+  name: 函数 20
+  func: |-
+    var txt = msg.status.text;
+    var date = (new Date()).toISOString();
+    msg.payload = date + " : " + txt;
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 540
+  'y': 600
+  wires:
+    - - 28330c4133105f6b
+- id: 4e5f5713bc0f71f8
+  type: function
+  z: 71f537202ea9cf55
+  name: 函数 21
+  func: |-
+    var error = msg.payload[11];
+    var result = msg.payload[12];
+    if(result == 1 && error > 0){
+        msg.payload = [3];
+    }
+    else{
+        msg.payload = [result];
+    }
+    var IO = global.get("IO");
+    IO.AI.screw_error = error;
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 220
+  'y': 180
+  wires:
+    - - 3f3486510aa530c1
+- id: 8c0135732e0ed9b9
+  type: change
+  z: 71f537202ea9cf55
+  name: ''
+  rules:
+    - t: set
+      p: payload
+      pt: msg
+      to: 'payload[12]'
+      tot: msg
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 255
+  'y': 140
+  wires:
+    - - ffd12dc77501f486
+  l: false
+- id: ffd12dc77501f486
+  type: rbe
+  z: 71f537202ea9cf55
+  name: ''
+  func: rbe
+  gap: ''
+  start: ''
+  inout: out
+  septopics: true
+  property: payload
+  topi: topic
+  x: 315
+  'y': 140
+  wires:
+    - - a900078fe5ad1eac
+  l: false
+- id: 20e1855f7fac6cee
+  type: function
+  z: 71f537202ea9cf55
+  name: 扭力数组
+  func: |-
+    var torques = global.get("torques");
+    var IO = global.get("IO");
+    torques.push(IO.AI.screw_torque);
+    torques.shift();
+    return msg;
+  outputs: 1
+  timeout: 0
+  noerr: 0
+  initialize: ''
+  finalize: ''
+  libs: []
+  x: 460
+  'y': 140
+  wires:
+    - []
+- id: a900078fe5ad1eac
+  type: switch
+  z: 71f537202ea9cf55
+  name: ''
+  property: payload
+  propertyType: msg
+  rules:
+    - t: eq
+      v: '1'
+      vt: num
+  checkall: 'true'
+  repair: false
+  outputs: 1
+  x: 365
+  'y': 140
+  wires:
+    - - 20e1855f7fac6cee
+  l: false
