@@ -1,0 +1,226 @@
+[
+  {
+    "id": "8fe3e255cbd378f2",
+    "type": "subflow",
+    "name": "FanZai",
+    "info": "",
+    "category": "",
+    "in": [
+      {
+        "x": 160,
+        "y": 120,
+        "wires": [
+          {
+            "id": "e13a72f090db0b1f"
+          }
+        ]
+      }
+    ],
+    "out": [
+      {
+        "x": 770,
+        "y": 210,
+        "wires": [
+          {
+            "id": "3c3144c82ed350c6",
+            "port": 0
+          }
+        ]
+      }
+    ],
+    "env": [
+      {
+        "name": "FanZai",
+        "type": "num",
+        "value": "0"
+      }
+    ],
+    "meta": {},
+    "color": "#DDAA99",
+    "status": {
+      "x": 510,
+      "y": 410,
+      "wires": [
+        {
+          "id": "d2b17a75cd2d34c8",
+          "port": 0
+        },
+        {
+          "id": "0e2f49849c54aedf",
+          "port": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "512a1af1cfe67333",
+    "type": "trigger",
+    "z": "8fe3e255cbd378f2",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "num",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 425,
+    "y": 210,
+    "wires": [
+      [
+        "668f091b15c8295f",
+        "d2b17a75cd2d34c8"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "6c596065c6e35277",
+    "type": "delay",
+    "z": "8fe3e255cbd378f2",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 425,
+    "y": 170,
+    "wires": [
+      [
+        "c10e076ff0914977"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "668f091b15c8295f",
+    "type": "function",
+    "z": "8fe3e255cbd378f2",
+    "name": "函数 26",
+    "func": "const IO = global.get(\"IO_80\");\nif (IO.AI.response == (IO.AO.request_+100)){\n    return {reset:1};\n}\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 485,
+    "y": 210,
+    "wires": [
+      [
+        "512a1af1cfe67333",
+        "3c3144c82ed350c6"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "3c3144c82ed350c6",
+    "type": "function",
+    "z": "8fe3e255cbd378f2",
+    "name": "函数 27",
+    "func": "return {payload: 1}",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 565,
+    "y": 210,
+    "wires": [
+      [
+        "0e2f49849c54aedf"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e13a72f090db0b1f",
+    "type": "function",
+    "z": "8fe3e255cbd378f2",
+    "name": "函数 28",
+    "func": "var IO = global.get(\"IO_80\");\nIO.AO.request = env.get(\"FanZai\");\nIO.AO.request_ = env.get(\"FanZai\");\nflow.set(\"c3\",1);\nreturn {payload: 1};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 240,
+    "y": 210,
+    "wires": [
+      [
+        "512a1af1cfe67333",
+        "6c596065c6e35277"
+      ]
+    ]
+  },
+  {
+    "id": "c10e076ff0914977",
+    "type": "function",
+    "z": "8fe3e255cbd378f2",
+    "name": "函数 29",
+    "func": "var IO = global.get(\"IO_80\");\nIO.AO.request = 0;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 520,
+    "y": 170,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "d2b17a75cd2d34c8",
+    "type": "function",
+    "z": "8fe3e255cbd378f2",
+    "name": "函数 30",
+    "func": "var c3 = flow.get(\"c3\");\nconst IO = global.get(\"IO_80\");\nmsg.payload = c3 + \":\" + IO.AO.request_;\nflow.set(\"c3\",c3+1);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 400,
+    "y": 350,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "0e2f49849c54aedf",
+    "type": "function",
+    "z": "8fe3e255cbd378f2",
+    "name": "函数 31",
+    "func": "msg.payload = \"DONE\";\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 600,
+    "y": 290,
+    "wires": [
+      []
+    ]
+  }
+]

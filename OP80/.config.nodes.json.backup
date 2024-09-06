@@ -758,7 +758,7 @@
                 "types": [
                     "uibuilder"
                 ],
-                "enabled": true,
+                "enabled": false,
                 "local": false,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
@@ -769,7 +769,7 @@
                 "types": [
                     "uib-cache"
                 ],
-                "enabled": true,
+                "enabled": false,
                 "local": false,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
@@ -780,7 +780,7 @@
                 "types": [
                     "uib-element"
                 ],
-                "enabled": true,
+                "enabled": false,
                 "local": false,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
@@ -791,7 +791,7 @@
                 "types": [
                     "uib-update"
                 ],
-                "enabled": true,
+                "enabled": false,
                 "local": false,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
@@ -802,7 +802,7 @@
                 "types": [
                     "uib-tag"
                 ],
-                "enabled": true,
+                "enabled": false,
                 "local": false,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
@@ -813,7 +813,7 @@
                 "types": [
                     "uib-sender"
                 ],
-                "enabled": true,
+                "enabled": false,
                 "local": false,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
@@ -824,7 +824,7 @@
                 "types": [
                     "uib-list"
                 ],
-                "enabled": true,
+                "enabled": false,
                 "local": false,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
@@ -1167,6 +1167,23 @@
                 "user": false,
                 "module": "node-red-node-ui-webcam",
                 "file": "D:\\projects2023\\nodered\\node-red-master\\node_red\\node_modules\\node-red-node-ui-webcam\\ui_webcam.js"
+            }
+        }
+    },
+    "node-red-example-subflow": {
+        "name": "node-red-example-subflow",
+        "version": "1.0.0",
+        "local": true,
+        "user": false,
+        "nodes": {
+            "example-node": {
+                "name": "example-node",
+                "types": [],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-example-subflow",
+                "file": "D:\\projects2024\\dianyefa\\huadian-dianyefa\\OP80\\node_modules\\node-red-example-subflow\\example.js"
             }
         }
     }

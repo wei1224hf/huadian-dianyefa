@@ -1,0 +1,241 @@
+[
+  {
+    "id": "39ee57f0a4cc832c",
+    "type": "subflow",
+    "name": "memoMonitor",
+    "info": "",
+    "category": "",
+    "in": [
+      {
+        "x": 50,
+        "y": 30,
+        "wires": [
+          {
+            "id": "7c1547d530e30f55"
+          }
+        ]
+      }
+    ],
+    "out": [
+      {
+        "x": 700,
+        "y": 100,
+        "wires": [
+          {
+            "id": "2cc625c63828bea8",
+            "port": 0
+          }
+        ]
+      }
+    ],
+    "env": [
+      {
+        "name": "toChange",
+        "type": "str",
+        "value": ""
+      },
+      {
+        "name": "toMonitor",
+        "type": "str",
+        "value": ""
+      },
+      {
+        "name": "changeValue",
+        "type": "num",
+        "value": ""
+      },
+      {
+        "name": "targetValue",
+        "type": "num",
+        "value": ""
+      },
+      {
+        "name": "toWait",
+        "type": "num",
+        "value": ""
+      },
+      {
+        "name": "toReset",
+        "type": "num",
+        "value": ""
+      }
+    ],
+    "meta": {
+      "module": "example",
+      "type": "power",
+      "version": "1.1",
+      "author": "wei1224hf@gmail.com",
+      "desc": "asdf",
+      "keywords": "power",
+      "license": "BSD-3-Clause"
+    },
+    "color": "#DDAA99",
+    "icon": "font-awesome/fa-hourglass-half",
+    "status": {
+      "x": 540,
+      "y": 320,
+      "wires": [
+        {
+          "id": "b78d024062f14b36",
+          "port": 0
+        },
+        {
+          "id": "2cc625c63828bea8",
+          "port": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "7c1547d530e30f55",
+    "type": "function",
+    "z": "39ee57f0a4cc832c",
+    "name": "function 29",
+    "func": "const toChange = env.get(\"toChange\");\nconst changeValue = env.get(\"changeValue\");\nconst toMonitor = env.get(\"toMonitor\");\nconst targetValue = env.get(\"targetValue\");\n\nconst arr = toChange.split(\".\");\nlet temp = global.get(arr[0]);\nlet str = toChange.replace(arr[0],\"\");\neval(\"temp\"+str+\"=\"+changeValue+\";\");\nconst toWait = env.get(\"toWait\");\nconst toReset = env.get(\"toReset\");\nmsg.delay = toWait;\nflow.set(\"num\",1000);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 190,
+    "y": 120,
+    "wires": [
+      [
+        "a36a0360fe8b73a2",
+        "f1cef2b2ee7c1f4a"
+      ]
+    ]
+  },
+  {
+    "id": "f1cef2b2ee7c1f4a",
+    "type": "trigger",
+    "z": "39ee57f0a4cc832c",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "num",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 375,
+    "y": 160,
+    "wires": [
+      [
+        "75f9921de8346921",
+        "b78d024062f14b36"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "a36a0360fe8b73a2",
+    "type": "delay",
+    "z": "39ee57f0a4cc832c",
+    "name": "",
+    "pauseType": "delayv",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 375,
+    "y": 120,
+    "wires": [
+      [
+        "85e92b43bd8c2e27"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "75f9921de8346921",
+    "type": "function",
+    "z": "39ee57f0a4cc832c",
+    "name": "函数 26",
+    "func": "const toChange = env.get(\"toChange\");\nconst changeValue = env.get(\"changeValue\");\nconst toMonitor = env.get(\"toMonitor\");\nconst targetValue = env.get(\"targetValue\");\n\nconst arr = toMonitor.split(\".\");\nlet temp = global.get(arr[0]);\nlet str = toMonitor.replace(arr[0],\"\");\nvar val = 0;\neval(\"val = temp\"+str+\";\");\nif(val == targetValue){\n    return {reset:1};\n}\nelse{\n    var num = flow.get(\"num\");\n    num += 250;\n    flow.set(\"num\",num);\n}\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 485,
+    "y": 160,
+    "wires": [
+      [
+        "f1cef2b2ee7c1f4a",
+        "2cc625c63828bea8"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "2cc625c63828bea8",
+    "type": "function",
+    "z": "39ee57f0a4cc832c",
+    "name": "函数 27",
+    "func": "return {payload: \"DONE\"}",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 605,
+    "y": 160,
+    "wires": [
+      []
+    ],
+    "l": false
+  },
+  {
+    "id": "85e92b43bd8c2e27",
+    "type": "function",
+    "z": "39ee57f0a4cc832c",
+    "name": "函数 29",
+    "func": "const toChange = env.get(\"toChange\");\nconst changeValue = env.get(\"changeValue\");\nconst toMonitor = env.get(\"toMonitor\");\nconst targetValue = env.get(\"targetValue\");\nconst arr = toChange.split(\".\");\nlet temp = global.get(arr[0]);\nlet str = toChange.replace(arr[0],\"\");\nconst toWait = env.get(\"toWait\");\nconst toReset = env.get(\"toReset\");\neval(\"temp\"+str+\"=\"+toReset+\";\");\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 470,
+    "y": 120,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "b78d024062f14b36",
+    "type": "function",
+    "z": "39ee57f0a4cc832c",
+    "name": "function 31",
+    "func": "const toChange = env.get(\"toChange\");\nconst changeValue = env.get(\"changeValue\");\nconst toMonitor = env.get(\"toMonitor\");\nconst targetValue = env.get(\"targetValue\");\n\nconst arr = toMonitor.split(\".\");\nlet temp = global.get(arr[0]);\nlet str = toMonitor.replace(arr[0],\"\");\nvar val = 0;\neval(\"val = temp\"+str+\";\");\n\nvar num = flow.get(\"num\");\nmsg.payload = val + \",\"+(num/1000).toFixed(1);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 435,
+    "y": 260,
+    "wires": [
+      []
+    ],
+    "l": false
+  }
+]

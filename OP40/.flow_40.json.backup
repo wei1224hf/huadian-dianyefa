@@ -4052,7 +4052,7 @@
         "type": "function",
         "z": "d88c1867bae1e0fb",
         "name": "动作置位",
-        "func": "\nmsg.payload = { value: 0, 'fc': 6, 'unitid': 1, 'address': 4040, 'quantity': 1 } \nnode.send(msg);",
+        "func": "msg.payload = { value: 0,fc: 6, unitid: 1, address: 4040, quantity: 1 };\nnode.send(msg);",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,

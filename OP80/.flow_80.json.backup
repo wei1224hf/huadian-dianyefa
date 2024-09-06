@@ -217,7 +217,6 @@
             "license": "BSD-3-Clause"
         },
         "color": "#DDAA99",
-        "icon": "font-awesome/fa-hourglass-half",
         "status": {
             "x": 540,
             "y": 320,

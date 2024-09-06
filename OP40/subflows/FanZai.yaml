@@ -19,6 +19,7 @@
       type: num
       value: ''
       ui:
+        icon: font-awesome/fa-arrow-circle-down
         type: input
         opts:
           types:
