@@ -80,7 +80,12 @@
             {
                 "name": "asdf",
                 "type": "str",
-                "value": ""
+                "value": "",
+                "ui": {
+                    "label": {
+                        "en-US": "按不出"
+                    }
+                }
             }
         ],
         "meta": {},
@@ -198,6 +203,7 @@
                 "type": "num",
                 "value": "",
                 "ui": {
+                    "icon": "font-awesome/fa-arrow-circle-down",
                     "type": "input",
                     "opts": {
                         "types": [
@@ -430,7 +436,7 @@
         "stateLogEnabled": false,
         "queueLogEnabled": false,
         "failureLogEnabled": true,
-        "tcpHost": "192.168.110.43",
+        "tcpHost": "193.168.110.43",
         "tcpPort": "502",
         "tcpType": "DEFAULT",
         "serialPort": "/dev/ttyUSB",
@@ -489,7 +495,7 @@
         "stateLogEnabled": false,
         "queueLogEnabled": false,
         "failureLogEnabled": true,
-        "tcpHost": "192.168.110.44",
+        "tcpHost": "193.168.110.44",
         "tcpPort": "502",
         "tcpType": "DEFAULT",
         "serialPort": "/dev/ttyUSB",
@@ -519,7 +525,7 @@
         "stateLogEnabled": false,
         "queueLogEnabled": false,
         "failureLogEnabled": true,
-        "tcpHost": "192.168.110.40",
+        "tcpHost": "193.168.110.40",
         "tcpPort": "503",
         "tcpType": "DEFAULT",
         "serialPort": "/dev/ttyUSB",

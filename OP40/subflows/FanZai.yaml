@@ -20,6 +20,8 @@
       value: ''
       ui:
         icon: font-awesome/fa-arrow-circle-down
+        label:
+          en-US: 阿斯顿
         type: input
         opts:
           types:

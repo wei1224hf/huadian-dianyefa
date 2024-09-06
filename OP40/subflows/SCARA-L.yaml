@@ -18,6 +18,9 @@
     - name: asdf
       type: str
       value: ''
+      ui:
+        label:
+          en-US: 按不出
   meta: {}
   color: '#E2D96E'
   icon: node-red/arduino.svg
