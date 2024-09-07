@@ -1797,7 +1797,7 @@
         "t": "set",
         "p": "c.c",
         "pt": "global",
-        "to": "200",
+        "to": "100",
         "tot": "num"
       }
     ],
@@ -1867,144 +1867,6 @@
     ]
   },
   {
-    "id": "239aaac7c9c972a9",
-    "type": "power",
-    "z": "dce641ad0336b7ac",
-    "name": "",
-    "toChange": "ta.b",
-    "toMonitor": "c.c",
-    "changeValue": 100,
-    "targetValue": 200,
-    "toWait": 2,
-    "toReset": 5,
-    "x": 640,
-    "y": 1960,
-    "wires": [
-      []
-    ]
-  },
-  {
-    "id": "b18609a45929edb5",
-    "type": "inject",
-    "z": "dce641ad0336b7ac",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 430,
-    "y": 1960,
-    "wires": [
-      [
-        "239aaac7c9c972a9"
-      ]
-    ]
-  },
-  {
-    "id": "792028be3a227dbf",
-    "type": "power",
-    "z": "dce641ad0336b7ac",
-    "name": "",
-    "toChange": "ta.b",
-    "toMonitor": "c.c",
-    "changeValue": 100,
-    "targetValue": 300,
-    "toWait": 2,
-    "toReset": 5,
-    "x": 560,
-    "y": 2080,
-    "wires": [
-      []
-    ]
-  },
-  {
-    "id": "09a305bc389c992b",
-    "type": "inject",
-    "z": "dce641ad0336b7ac",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 350,
-    "y": 2080,
-    "wires": [
-      [
-        "792028be3a227dbf"
-      ]
-    ]
-  },
-  {
-    "id": "dcc1acb1ce2e42f7",
-    "type": "power",
-    "z": "dce641ad0336b7ac",
-    "name": "",
-    "toChange": "tb.b",
-    "toMonitor": "d.d",
-    "changeValue": 100,
-    "targetValue": 300,
-    "toWait": 2,
-    "toReset": 5,
-    "x": 520,
-    "y": 2180,
-    "wires": [
-      []
-    ]
-  },
-  {
-    "id": "5caa5339b0b7c7a4",
-    "type": "inject",
-    "z": "dce641ad0336b7ac",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "",
-    "payloadType": "date",
-    "x": 310,
-    "y": 2180,
-    "wires": [
-      [
-        "dcc1acb1ce2e42f7"
-      ]
-    ]
-  },
-  {
     "id": "418e808ea030fdf4",
     "type": "inject",
     "z": "dce641ad0336b7ac",
@@ -2056,6 +1918,98 @@
     "y": 1880,
     "wires": [
       []
+    ]
+  },
+  {
+    "id": "18eeb3461c2e5a62",
+    "type": "storage",
+    "z": "dce641ad0336b7ac",
+    "name": "",
+    "toChange": "ta.b",
+    "changeValue": 100,
+    "toMonitor": "c.c",
+    "targetValue": 100,
+    "toWait": 2,
+    "toReset": 999,
+    "x": 460,
+    "y": 1960,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "e981cc15cf5f3c31",
+    "type": "inject",
+    "z": "dce641ad0336b7ac",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 210,
+    "y": 1960,
+    "wires": [
+      [
+        "18eeb3461c2e5a62"
+      ]
+    ]
+  },
+  {
+    "id": "a7cd34cee45cb325",
+    "type": "storage",
+    "z": "dce641ad0336b7ac",
+    "name": "",
+    "toChange": "",
+    "changeValue": 0,
+    "toMonitor": "",
+    "targetValue": 0,
+    "toWait": 0,
+    "toReset": 0,
+    "x": 460,
+    "y": 2040,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "37236385609c880f",
+    "type": "inject",
+    "z": "dce641ad0336b7ac",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 207.1999969482422,
+    "y": 2049.199951171875,
+    "wires": [
+      [
+        "a7cd34cee45cb325"
+      ]
     ]
   }
 ]

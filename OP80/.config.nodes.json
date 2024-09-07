@@ -1172,8 +1172,8 @@
             }
         }
     },
-    "node-red-example-subflow": {
-        "name": "node-red-example-subflow",
+    "node-red-memo-monitor": {
+        "name": "node-red-memo-monitor",
         "version": "1.0.0",
         "local": true,
         "user": false,
@@ -1181,13 +1181,13 @@
             "example-node": {
                 "name": "example-node",
                 "types": [
-                    "power"
+                    "storage"
                 ],
                 "enabled": true,
                 "local": true,
                 "user": false,
-                "module": "node-red-example-subflow",
-                "file": "D:\\projects2024\\dianyefa\\huadian-dianyefa\\OP80\\node_modules\\node-red-example-subflow\\example.js"
+                "module": "node-red-memo-monitor",
+                "file": "D:\\projects2024\\dianyefa\\huadian-dianyefa\\OP80\\node_modules\\node-red-memo-monitor\\example.js"
             }
         }
     }
