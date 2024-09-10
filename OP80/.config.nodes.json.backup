@@ -1170,11 +1170,28 @@
             }
         }
     },
-    "node-red-memo-monitor": {
-        "name": "node-red-memo-monitor",
-        "version": "1.0.0",
+    "node-red-data-center": {
+        "name": "node-red-data-center",
+        "version": "0.0.1",
         "local": true,
         "user": false,
+        "nodes": {
+            "data-center": {
+                "name": "data-center",
+                "types": [],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-data-center",
+                "file": "D:\\projects2024\\dianyefa\\huadian-dianyefa\\OP80\\node_modules\\node-red-data-center\\main.js"
+            }
+        }
+    },
+    "node-red-memo-monitor": {
+        "name": "node-red-memo-monitor",
+        "version": "0.0.1",
+        "local": true,
+        "user": true,
         "nodes": {
             "example-node": {
                 "name": "example-node",

@@ -760,7 +760,7 @@
                 "types": [
                     "uibuilder"
                 ],
-                "enabled": true,
+                "enabled": false,
                 "local": false,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
@@ -771,7 +771,7 @@
                 "types": [
                     "uib-cache"
                 ],
-                "enabled": true,
+                "enabled": false,
                 "local": false,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
@@ -782,7 +782,7 @@
                 "types": [
                     "uib-element"
                 ],
-                "enabled": true,
+                "enabled": false,
                 "local": false,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
@@ -793,7 +793,7 @@
                 "types": [
                     "uib-update"
                 ],
-                "enabled": true,
+                "enabled": false,
                 "local": false,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
@@ -804,7 +804,7 @@
                 "types": [
                     "uib-tag"
                 ],
-                "enabled": true,
+                "enabled": false,
                 "local": false,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
@@ -815,7 +815,7 @@
                 "types": [
                     "uib-sender"
                 ],
-                "enabled": true,
+                "enabled": false,
                 "local": false,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
@@ -826,7 +826,7 @@
                 "types": [
                     "uib-list"
                 ],
-                "enabled": true,
+                "enabled": false,
                 "local": false,
                 "user": false,
                 "module": "node-red-contrib-uibuilder",
@@ -1169,6 +1169,25 @@
                 "user": false,
                 "module": "node-red-node-ui-webcam",
                 "file": "D:\\projects2023\\nodered\\node-red-master\\node_red\\node_modules\\node-red-node-ui-webcam\\ui_webcam.js"
+            }
+        }
+    },
+    "node-red-memo-monitor": {
+        "name": "node-red-memo-monitor",
+        "version": "0.0.2",
+        "local": true,
+        "user": false,
+        "nodes": {
+            "memo-monitor": {
+                "name": "memo-monitor",
+                "types": [
+                    "storage"
+                ],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-memo-monitor",
+                "file": "D:\\projects2024\\dianyefa\\huadian-dianyefa\\OP70\\node_modules\\node-red-memo-monitor\\main.js"
             }
         }
     }
