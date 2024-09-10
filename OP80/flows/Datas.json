@@ -1,0 +1,460 @@
+[
+  {
+    "id": "Datas",
+    "type": "tab",
+    "label": "Datas",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "Datas_inject",
+    "type": "inject",
+    "z": "Datas",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": "3",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 90,
+    "y": 160,
+    "wires": [
+      [
+        "ext-controller__fun",
+        "scara-left__fun",
+        "scara-right__fun",
+        "virtual-modbus__fun"
+      ]
+    ]
+  },
+  {
+    "id": "modbus-flex-getter__ext-controller",
+    "type": "modbus-flex-getter",
+    "z": "Datas",
+    "name": "",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "logIOActivities": false,
+    "server": "ext-controller",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 450,
+    "y": 50,
+    "wires": [
+      [
+        "fun_receive__ext-controller",
+        "73f39ba39b1606bd"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "ext-controller__fun",
+    "type": "function",
+    "z": "Datas",
+    "name": "function 44",
+    "func": "setTimeout(function(){ node.send({payload : {end:false,dev:'ext-controller', 'fc': 3, 'unitid': 1, 'address':  0 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:false,dev:'ext-controller', 'fc': 3, 'unitid': 1, 'address':  1 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:false,dev:'ext-controller', 'fc': 3, 'unitid': 1, 'address':  3 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:false,dev:'ext-controller', 'fc': 3, 'unitid': 1, 'address':  4 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:false,dev:'ext-controller', 'fc': 3, 'unitid': 1, 'address':  5 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:true,dev:'ext-controller', 'fc':3, 'unitid': 1, 'address':  6 , 'quantity': 1 }}); \n},80); \n},80); \n},80); \n},80); \n},80); \n},80); \n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 250,
+    "y": 100,
+    "wires": [
+      [
+        "modbus-flex-getter__ext-controller",
+        "switch__ext-controller",
+        "edecea4dd04efe59"
+      ]
+    ]
+  },
+  {
+    "id": "switch__ext-controller",
+    "type": "switch",
+    "z": "Datas",
+    "name": "",
+    "property": "payload.end",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "true"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 450,
+    "y": 100,
+    "wires": [
+      [
+        "ext-controller__fun"
+      ]
+    ]
+  },
+  {
+    "id": "fun_receive__ext-controller",
+    "type": "function",
+    "z": "Datas",
+    "name": "function 45",
+    "func": "let devices = global.get('devices'); \nlet device = devices['ext-controller']; \nlet monitor = device['monitor']; \nlet datas = global.get('datas'); \nfor(let key in monitor){ \n    let point = monitor[key]; \n    if( parseInt( point.address) == msg.modbusRequest.address){ \n        point.value = msg.payload[0]; \n        for(let key2 in datas){ \n            if(key2 == key){ \n                datas[key2] = point.value; \n                break; \n            } \n        } \n        break; \n    } \n} \n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 830,
+    "y": 100,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "modbus-flex-getter__scara-left",
+    "type": "modbus-flex-getter",
+    "z": "Datas",
+    "name": "",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "logIOActivities": false,
+    "server": "scara-left",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 450,
+    "y": 150,
+    "wires": [
+      [
+        "fun_receive__scara-left",
+        "1f0bf707775d2f43"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "scara-left__fun",
+    "type": "function",
+    "z": "Datas",
+    "name": "function 44",
+    "func": "setTimeout(function(){ node.send({payload : {end:false,dev:'scara-left', 'fc': 3, 'unitid': 1, 'address':  5 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:false,dev:'scara-left', 'fc': 3, 'unitid': 1, 'address':  6 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:true,dev:'scara-left', 'fc':3, 'unitid': 1, 'address':  8 , 'quantity': 1 }}); \n},80); \n},80); \n},80); \n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 250,
+    "y": 200,
+    "wires": [
+      [
+        "modbus-flex-getter__scara-left",
+        "switch__scara-left",
+        "e3c0fa40060c0c8d"
+      ]
+    ]
+  },
+  {
+    "id": "switch__scara-left",
+    "type": "switch",
+    "z": "Datas",
+    "name": "",
+    "property": "payload.end",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "true"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 450,
+    "y": 200,
+    "wires": [
+      [
+        "scara-left__fun"
+      ]
+    ]
+  },
+  {
+    "id": "fun_receive__scara-left",
+    "type": "function",
+    "z": "Datas",
+    "name": "function 45",
+    "func": "let devices = global.get('devices'); \nlet device = devices['scara-left']; \nlet monitor = device['monitor']; \nlet datas = global.get('datas'); \nfor(let key in monitor){ \n    let point = monitor[key]; \n    if( parseInt( point.address) == msg.modbusRequest.address){ \n        point.value = msg.payload[0]; \n        for(let key2 in datas){ \n            if(key2 == key){ \n                datas[key2] = point.value; \n                break; \n            } \n        } \n        break; \n    } \n} \n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 830,
+    "y": 200,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "modbus-flex-getter__scara-right",
+    "type": "modbus-flex-getter",
+    "z": "Datas",
+    "name": "",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "logIOActivities": false,
+    "server": "scara-right",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 450,
+    "y": 250,
+    "wires": [
+      [
+        "fun_receive__scara-right"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "scara-right__fun",
+    "type": "function",
+    "z": "Datas",
+    "name": "function 44",
+    "func": "setTimeout(function(){ node.send({payload : {end:false,dev:'scara-right', 'fc': 3, 'unitid': 1, 'address':  5 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:false,dev:'scara-right', 'fc': 3, 'unitid': 1, 'address':  6 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:true,dev:'scara-right', 'fc':3, 'unitid': 1, 'address':  8 , 'quantity': 1 }}); \n},80); \n},80); \n},80); \n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 250,
+    "y": 300,
+    "wires": [
+      [
+        "modbus-flex-getter__scara-right",
+        "switch__scara-right"
+      ]
+    ]
+  },
+  {
+    "id": "switch__scara-right",
+    "type": "switch",
+    "z": "Datas",
+    "name": "",
+    "property": "payload.end",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "true"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 450,
+    "y": 300,
+    "wires": [
+      [
+        "scara-right__fun"
+      ]
+    ]
+  },
+  {
+    "id": "fun_receive__scara-right",
+    "type": "function",
+    "z": "Datas",
+    "name": "function 45",
+    "func": "let devices = global.get('devices'); \nlet device = devices['scara-right']; \nlet monitor = device['monitor']; \nlet datas = global.get('datas'); \nfor(let key in monitor){ \n    let point = monitor[key]; \n    if( parseInt( point.address) == msg.modbusRequest.address){ \n        point.value = msg.payload[0]; \n        for(let key2 in datas){ \n            if(key2 == key){ \n                datas[key2] = point.value; \n                break; \n            } \n        } \n        break; \n    } \n} \n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 830,
+    "y": 300,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "modbus-flex-getter__virtual-modbus",
+    "type": "modbus-flex-getter",
+    "z": "Datas",
+    "name": "",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "logIOActivities": false,
+    "server": "virtual-modbus",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 450,
+    "y": 350,
+    "wires": [
+      [
+        "fun_receive__virtual-modbus"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "virtual-modbus__fun",
+    "type": "function",
+    "z": "Datas",
+    "name": "function 44",
+    "func": "",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 250,
+    "y": 400,
+    "wires": [
+      [
+        "modbus-flex-getter__virtual-modbus",
+        "switch__virtual-modbus"
+      ]
+    ]
+  },
+  {
+    "id": "switch__virtual-modbus",
+    "type": "switch",
+    "z": "Datas",
+    "name": "",
+    "property": "payload",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "true"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 450,
+    "y": 400,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "fun_receive__virtual-modbus",
+    "type": "function",
+    "z": "Datas",
+    "name": "function 45",
+    "func": "",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 830,
+    "y": 400,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "73f39ba39b1606bd",
+    "type": "debug",
+    "z": "Datas",
+    "name": "debug 22",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 680,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "edecea4dd04efe59",
+    "type": "debug",
+    "z": "Datas",
+    "name": "debug 23",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 240,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "e3c0fa40060c0c8d",
+    "type": "debug",
+    "z": "Datas",
+    "name": "debug 24",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 160,
+    "y": 520,
+    "wires": []
+  },
+  {
+    "id": "1f0bf707775d2f43",
+    "type": "debug",
+    "z": "Datas",
+    "name": "debug 25",
+    "active": false,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 680,
+    "y": 120,
+    "wires": []
+  }
+]

@@ -219,7 +219,7 @@ module.exports = {
      * following property can be used to identify a directory of static content
      * that should be served at http://localhost:1880/.
      */
-    httpStatic: 'E:/projects2023/nodered/node-red-master/node-red-scadavis/',
+    //httpStatic: 'E:/projects2023/nodered/node-red-master/node-red-scadavis/',
 
 /*******************************************************************************
  * Runtime Settings
@@ -410,6 +410,8 @@ module.exports = {
      */
     functionGlobalContext: {
         // os:require('os'),
+        userDir: 'D:\\projects2024\\dianyefa\\huadian-dianyefa\\OP80',
+        abc: "adfasdfasdf",
     },
 
     /** The maximum number of messages nodes will buffer internally as part of their

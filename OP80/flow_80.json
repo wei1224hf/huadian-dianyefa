@@ -1,5 +1,21 @@
 [
     {
+        "id": "a6632bb9eb46a176",
+        "type": "tab",
+        "label": "DataCenter",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "Datas",
+        "type": "tab",
+        "label": "Datas",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "3b5216fa86e84cf0",
         "type": "tab",
         "label": "dataCenter-80",
@@ -334,6 +350,147 @@
         "failureLogEnabled": true,
         "tcpHost": "193.168.110.83",
         "tcpPort": "23",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "fdb4b3fb6e4144b0",
+        "type": "influxdb",
+        "d": true,
+        "hostname": "192.168.105.78",
+        "port": "8086",
+        "protocol": "http",
+        "database": "logs",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "72fb1ac61c3e02f6",
+        "type": "sqlitedb",
+        "db": "datas.db",
+        "mode": "RWC"
+    },
+    {
+        "id": "ext-controller",
+        "type": "modbus-client",
+        "name": "OP40-泛在控制器",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "localhost",
+        "tcpPort": "503",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "scara-left",
+        "type": "modbus-client",
+        "name": "OP40-左scara",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "localhost",
+        "tcpPort": "504",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "scara-right",
+        "type": "modbus-client",
+        "name": "OP40-右scara",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "localhost",
+        "tcpPort": "505",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "virtual-modbus",
+        "type": "modbus-client",
+        "name": "OP40-虚拟modbus",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "localhost",
+        "tcpPort": "506",
         "tcpType": "DEFAULT",
         "serialPort": "/dev/ttyUSB",
         "serialType": "RTU-BUFFERD",
@@ -846,6 +1003,1430 @@
             []
         ],
         "l": false
+    },
+    {
+        "id": "822327e29b9c7716",
+        "type": "inject",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 220,
+        "y": 160,
+        "wires": [
+            [
+                "03bccdf3ead313fd",
+                "e9ddbfd1faa4ca73"
+            ]
+        ]
+    },
+    {
+        "id": "03bccdf3ead313fd",
+        "type": "function",
+        "z": "a6632bb9eb46a176",
+        "name": "读取所有设备",
+        "func": "msg.topic = \"select * from device order by id\";\nglobal.set(\"datas\",{});\nglobal.set(\"devices\",{});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 160,
+        "wires": [
+            [
+                "aa53129c620841dc"
+            ]
+        ]
+    },
+    {
+        "id": "1c9562554a62c0d0",
+        "type": "function",
+        "z": "a6632bb9eb46a176",
+        "name": "读取设备的监听点位",
+        "func": "const arr = msg.payload;\nlet obj = {};\nfor(let i2=0;i2<arr.length;i2++){\n    obj[arr[i2].code] = arr[i2];\n}\nglobal.set(\"devices\",obj);\nfor(let i=0;i<arr.length;i++){\n    const code = arr[i].code;\n    let msg2 = {\n        topic : \"select * from device_datas where device = '\"+code+\"' order by mode, id;\",\n        code: code,\n        rate: 300,\n        idx: i\n    };\n    if(i==arr.length-1){\n        msg2.end = true;\n    }\n    else{\n        msg2.end = false;\n    }\n    node.send(msg2);\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 160,
+        "wires": [
+            [
+                "64d37206bf381b47"
+            ]
+        ]
+    },
+    {
+        "id": "64d37206bf381b47",
+        "type": "delay",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": true,
+        "outputs": 1,
+        "x": 990,
+        "y": 160,
+        "wires": [
+            [
+                "a9001338cbf5fb68"
+            ]
+        ]
+    },
+    {
+        "id": "db5514b7f5d78739",
+        "type": "function",
+        "z": "a6632bb9eb46a176",
+        "name": "更新点位",
+        "func": "const arr = msg.payload;\nlet obj = {};\nlet monitors = global.get(\"datas\");\nfor(let i=0;i<arr.length;i++){\n    obj[arr[i].code] = arr[i];\n    monitors[arr[i].code] = obj[arr[i].code].value;\n}\nconst idx = msg.idx;\nconst code = msg.code;\nvar devices = global.get(\"devices\");\ndevices[code].monitor = obj;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1300,
+        "y": 160,
+        "wires": [
+            [
+                "19e23dcf92ebda54"
+            ]
+        ]
+    },
+    {
+        "id": "e9ddbfd1faa4ca73",
+        "type": "change",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "devices",
+                "pt": "global",
+                "to": "[]",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "monitors",
+                "pt": "global",
+                "to": "[]",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "decb630c2a227768",
+        "type": "file",
+        "z": "a6632bb9eb46a176",
+        "name": "重写文件",
+        "filename": "/home/gene/nodejs/userDir3/flows/DataToDevice.json",
+        "filenameType": "str",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 2200,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "67da85378cb7cf04",
+        "type": "json",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 2050,
+        "y": 220,
+        "wires": [
+            [
+                "decb630c2a227768"
+            ]
+        ]
+    },
+    {
+        "id": "63d80612e660d136",
+        "type": "inject",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 240,
+        "wires": [
+            [
+                "a20724385b2bb116"
+            ]
+        ]
+    },
+    {
+        "id": "a20724385b2bb116",
+        "type": "change",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "initDataFlow",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 370,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "24d7a37c3478a504",
+        "type": "function",
+        "z": "a6632bb9eb46a176",
+        "name": "自动配置设备监听",
+        "func": "var arr = [];\n\nvar arr_display = [];\nvar tab = {\n    id:\"66ef82508844a0be\",\n    \"type\": \"tab\",\n    \"label\": \"DataToDevice\",\n    \"disabled\": false,\n    \"info\": \"\",\n    \"env\": []\n};\n\nvar nodeX = \n    {\n        \"id\": \"6bef479b0810c7fd\",\n        \"type\": \"link out\",\n        \"z\": \"66ef82508844a0be\",\n        \"name\": \"onDataChange\",\n        \"mode\": \"link\",\n        \"links\": [\n            \"9f079691ddfa9681\",\"6b4c49db67d0f57e\"\n        ],\n    \"x\": 500,\n    \"y\": 200,\n        \"wires\": []\n    }\n;\n\nvar g_fs = global.get(\"g_fs\");\nconst onS7Chage = g_fs.readFileSync(\"/home/gene/nodejs/jsFunctions/onS7Chage.js\", 'utf8');\n\nvar functionNode = {\n    \"id\": \"node_s7_function\" ,\n    \"type\": \"function\",\n    \"z\": tab.id,\n    \"name\": \"node_s7_function\",\n    \"func\": onS7Chage,\n    \"outputs\": 1,\n    \"timeout\": 0,\n    \"noerr\": 0,\n    \"initialize\": \"\",\n    \"finalize\": \"\",\n    \"libs\": [],\n    \"x\": 300 ,\n    \"y\": 200,\n    \"wires\": [\n        [\"6bef479b0810c7fd\"]\n    ]\n};\n\narr_display.push(tab);\narr_display.push(nodeX);\narr_display.push(functionNode);\n\nvar masterNode = {};\nvar _connect_address = \"\";\nvar modbusFunctionNodeId = 0;\nvar data = global.get(\"monitors\");\nvar nodeIdx = 0;\nvar pointIdx = 0;\nfor(var i=0;i<data.length;i++){\n    var item = data[i];\n    pointIdx ++;\n    if(item.connect_type==\"S1200\"){\n        if(_connect_address!=item.connect_address){\n            nodeIdx ++;            \n            _connect_address = item.connect_address;\n            var clone = JSON.parse(JSON.stringify(masterNode));\n            clone = {\n                \"id\": \"node_\"+nodeIdx,\n                \"isDataCenter\": 1,\n                \"type\": \"s7 endpoint\",\n                \"transport\": \"iso-on-tcp\",\n                \"address\": _connect_address,\n                \"port\": \"102\",\n                \"rack\": \"0\",\n                \"slot\": \"1\",\n                \"localtsaphi\": \"01\",\n                \"localtsaplo\": \"00\",\n                \"remotetsaphi\": \"01\",\n                \"remotetsaplo\": \"00\",\n                \"connmode\": \"rack-slot\",\n                \"adapter\": \"\",\n                \"busaddr\": \"2\",\n                \"cycletime\": \"1000\",\n                \"timeout\": \"2000\",\n                \"name\": item.device+\"_s7_endpoint\",\n                \"vartable\": [\n                    {\n                        \"addr\": item.address,\n                        \"name\": item.device+\"|\"+item.code,\n                    }\n                ]                \n            }\n            masterNode = clone;\n            arr.push(masterNode);            \n            nodeIdx ++; \n\n\n            var slaveNode = {\n                \"id\": \"node_\" + nodeIdx,\n                \"type\": \"s7 in\",\n                \"z\": tab.id,\n                \"endpoint\": \"node_\" + (nodeIdx - 1),\n                \"mode\": \"all-split\",\n                \"variable\": \"\",\n                \"diff\": true,\n                \"name\": item.device + \"_s7in\",\n                \"x\": 250,\n                \"y\": Math.floor(nodeIdx / 2) * 80 + 80,\n                \"wires\": [\n                    [\n                        \"node_s7_function\"\n                    ]\n                ]\n            };\n            arr_display.push(slaveNode);\n\n          \n        }\n        else{\n            masterNode.vartable.push({\n                    \"addr\": item.address,\n                \"name\": item.device+\"|\"+item.code,\n                }\n            );\n        }\n    }\n    \n}\n\nnode.send( {dataCenter:arr, type: 'server'});\nnode.send({ payload: arr_display, type: 'display' });",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1770,
+        "y": 260,
+        "wires": [
+            [
+                "9ad453e537e0752f"
+            ]
+        ]
+    },
+    {
+        "id": "9ad453e537e0752f",
+        "type": "switch",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "property": "type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "server",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "display",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1910,
+        "y": 160,
+        "wires": [
+            [],
+            [
+                "67da85378cb7cf04"
+            ]
+        ]
+    },
+    {
+        "id": "ce7d973bd740adb7",
+        "type": "influxdb out",
+        "z": "a6632bb9eb46a176",
+        "influxdb": "fdb4b3fb6e4144b0",
+        "name": "设备状态变更记录",
+        "measurement": "logs_onchage",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 310,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "9f079691ddfa9681",
+        "type": "link in",
+        "z": "a6632bb9eb46a176",
+        "name": "onDataChange",
+        "links": [
+            "6bef479b0810c7fd"
+        ],
+        "x": 155,
+        "y": 320,
+        "wires": [
+            [
+                "ce7d973bd740adb7"
+            ]
+        ]
+    },
+    {
+        "id": "32ee451cf9375848",
+        "type": "function",
+        "z": "a6632bb9eb46a176",
+        "name": "点位数据初始化",
+        "func": "var data = global.get(\"monitors\");\nfor(var i=0;i<data.length;i++){\n    var item = data[i];\n    node.send({ payload: { \"opcuaCommand\": \"addVariable\" }, topic: \"ns=1;s=\"+item.device+\"|\"+item.code+\";datatype=Double\"  } );\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6b4c49db67d0f57e",
+        "type": "link in",
+        "z": "a6632bb9eb46a176",
+        "name": "OPCUA_CHANGE",
+        "links": [
+            "6bef479b0810c7fd"
+        ],
+        "x": 155,
+        "y": 440,
+        "wires": [
+            [
+                "b3e90d1a8f596783"
+            ]
+        ]
+    },
+    {
+        "id": "b3e90d1a8f596783",
+        "type": "function",
+        "z": "a6632bb9eb46a176",
+        "name": "点位数据变更推送",
+        "func": "msg.payload = { messageType: 'Variable', variableName: msg.payload.device + \"|\" + msg.payload.code, datatype: 'Double', namespace: 1, variableValue :msg.payload.value};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aa53129c620841dc",
+        "type": "sqlite",
+        "z": "a6632bb9eb46a176",
+        "mydb": "72fb1ac61c3e02f6",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 620,
+        "y": 220,
+        "wires": [
+            [
+                "1c9562554a62c0d0",
+                "aa6877cafba9f14b"
+            ]
+        ]
+    },
+    {
+        "id": "c3292f9b5d4b661f",
+        "type": "function",
+        "z": "a6632bb9eb46a176",
+        "name": "读取所有设备",
+        "func": "msg.topic = \"CREATE TABLE device (\"+\n  \"  name              VARCHAR (200) NOT NULL,\"+\n  \"   code              VARCHAR (200),\"+\n    \" request           INT,\"+\n \"    response          INT,\"+\n   \"  state             INT,\"+\n     \"id                INTEGER       PRIMARY KEY AUTOINCREMENT,\"+\n \"    type              INT,\"+\n   \"  key_component     VARCHAR (200),\"+\n     \"product_name      VARCHAR (200),\"+\n \"    product_barcode   VARCHAR (200),\"+\n   \"  takt              FLOAT,\"+\n     \"time_run          DATETIME,\"+\n \"    connect_address,\"+\n \"    connect_type,\"+\n \"    operator          VARCHAR (200),\"+\n  \"   operator_nickname VARCHAR (200),\"+\n \"    time_created      DATETIME,\"+\n \"    user_created      VARCHAR (200),\"+\n \"    time_lastupdated  DATETIME,\"+\n \"    user_lastupdated  VARCHAR (200) \"+\n \");\"+\n \"\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 540,
+        "wires": [
+            [
+                "aa53129c620841dc"
+            ]
+        ]
+    },
+    {
+        "id": "9c4f4a239808c056",
+        "type": "inject",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 540,
+        "wires": [
+            [
+                "c3292f9b5d4b661f"
+            ]
+        ]
+    },
+    {
+        "id": "c71f4cbcdfac7dfc",
+        "type": "file in",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "filename": "filename",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 440,
+        "y": 660,
+        "wires": [
+            [
+                "1486b0fc2257aa06"
+            ]
+        ]
+    },
+    {
+        "id": "d068c4a28c7a40b3",
+        "type": "inject",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 660,
+        "wires": [
+            [
+                "b5849a7e2c2ca7d3"
+            ]
+        ]
+    },
+    {
+        "id": "448d3b30412b5c88",
+        "type": "debug",
+        "z": "a6632bb9eb46a176",
+        "name": "debug 20",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "b5849a7e2c2ca7d3",
+        "type": "function",
+        "z": "a6632bb9eb46a176",
+        "name": "function 42",
+        "func": "console.debug(global.get(\"userDir\"));\nconsole.debug(global.get(\"abc\"));\nmsg.filename = global.get(\"userDir\") + \"\\\\config-nodes.json\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 660,
+        "wires": [
+            [
+                "c71f4cbcdfac7dfc"
+            ]
+        ]
+    },
+    {
+        "id": "1486b0fc2257aa06",
+        "type": "json",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 590,
+        "y": 660,
+        "wires": [
+            [
+                "448d3b30412b5c88",
+                "e5f37db092a36b89"
+            ]
+        ]
+    },
+    {
+        "id": "e5f37db092a36b89",
+        "type": "change",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "config-nodes",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a9001338cbf5fb68",
+        "type": "sqlite",
+        "z": "a6632bb9eb46a176",
+        "mydb": "72fb1ac61c3e02f6",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 1160,
+        "y": 160,
+        "wires": [
+            [
+                "db5514b7f5d78739"
+            ]
+        ]
+    },
+    {
+        "id": "aa6877cafba9f14b",
+        "type": "function",
+        "z": "a6632bb9eb46a176",
+        "name": "function 43",
+        "func": "const arr = msg.payload;\nlet config_nodes = global.get(\"config-nodes\");\n\nfor(let i=0;i<arr.length;i++){\n    const t = arr[i];\n    if(t.connect_type == 'modbus-server'){\n        var obj =   {\n            \"id\": \"967785e4049706c4\",\n            \"type\": \"modbus-client\",\n            \"name\": \"6轴-84\",\n            \"clienttype\": \"tcp\",\n            \"bufferCommands\": true,\n            \"stateLogEnabled\": false,\n            \"queueLogEnabled\": false,\n            \"failureLogEnabled\": true,\n            \"tcpHost\": \"193.168.110.84\",\n            \"tcpPort\": \"502\",\n            \"tcpType\": \"DEFAULT\",\n            \"serialPort\": \"/dev/ttyUSB\",\n            \"serialType\": \"RTU-BUFFERD\",\n            \"serialBaudrate\": \"9600\",\n            \"serialDatabits\": \"8\",\n            \"serialStopbits\": \"1\",\n            \"serialParity\": \"none\",\n            \"serialConnectionDelay\": \"100\",\n            \"serialAsciiResponseStartDelimiter\": \"0x3A\",\n            \"unit_id\": \"1\",\n            \"commandDelay\": \"1\",\n            \"clientTimeout\": \"1000\",\n            \"reconnectOnTimeout\": true,\n            \"reconnectTimeout\": \"2000\",\n            \"parallelUnitIdsAllowed\": true,\n            \"showErrors\": false,\n            \"showWarnings\": true,\n            \"showLogs\": true\n          };\n        obj.name = t.name;\n        obj.id = t.code;\n        obj.tcpHost = t.connect_address.split(\":\")[0];\n        obj.tcpPort = t.connect_address.split(\":\")[1];\n        var isContains = false;\n        for(var i2=0;i2<config_nodes.length;i2++){\n            if(config_nodes[i2].id== t.code){\n                isContains = true;\n                break;\n            }\n        }\n        if(!isContains){\n            config_nodes.push(obj);\n        }\n    }\n}\nmsg.payload = config_nodes;\nmsg.filename = global.get(\"userDir\") + \"\\\\config-nodes.json\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 400,
+        "wires": [
+            [
+                "f956a0af422a002e"
+            ]
+        ]
+    },
+    {
+        "id": "f956a0af422a002e",
+        "type": "json",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 910,
+        "y": 400,
+        "wires": [
+            [
+                "957f201f498caea8"
+            ]
+        ]
+    },
+    {
+        "id": "957f201f498caea8",
+        "type": "file",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "utf8",
+        "x": 940,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "19e23dcf92ebda54",
+        "type": "switch",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "property": "end",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1470,
+        "y": 160,
+        "wires": [
+            [
+                "54e95d15aef71ab0",
+                "0810b19c41f9896c"
+            ]
+        ]
+    },
+    {
+        "id": "59f89ef1aef61e90",
+        "type": "function",
+        "z": "a6632bb9eb46a176",
+        "name": "function 46",
+        "func": "var json = [\n  {\n    \"id\": \"Datas\",\n    \"type\": \"tab\",\n    \"label\": \"Datas\",\n    \"disabled\": false,\n    \"info\": \"\",\n    \"env\": []\n  },\n  {\n    \"id\": \"Datas_inject\",\n    \"type\": \"inject\",\n    \"z\": \"Datas\",\n    \"name\": \"\",\n    \"props\": [\n      {\n        \"p\": \"payload\"\n      },\n      {\n        \"p\": \"topic\",\n        \"vt\": \"str\"\n      }\n    ],\n    \"repeat\": \"\",\n    \"crontab\": \"\",\n    \"once\": false,\n    \"onceDelay\": \"3\",\n    \"topic\": \"\",\n    \"payload\": \"\",\n    \"payloadType\": \"date\",\n    \"x\": 100,\n    \"y\": 160,\n    \"wires\": [\n      [\n      ]\n    ]\n  }\n];\n\nconst devices = global.get(\"devices\");\nlet count = 0;\nfor (let key in devices) {\n    count ++;\n    const device = devices[key];\n    const monitor = device['monitor'];\n    const modbus_flex_getter = {\n        \"id\": \"modbus-flex-getter__\"+device.code,\n        \"type\": \"modbus-flex-getter\",\n        \"z\": \"Datas\",\n        \"name\": \"\",\n        \"showStatusActivities\": false,\n        \"showErrors\": false,\n        \"showWarnings\": true,\n        \"logIOActivities\": false,\n        \"server\": device.code,\n        \"useIOFile\": false,\n        \"ioFile\": \"\",\n        \"useIOForPayload\": false,\n        \"emptyMsgOnFail\": false,\n        \"keepMsgProperties\": false,\n        \"delayOnStart\": false,\n        \"startDelayTime\": \"\",\n        \"x\": 450,\n        \"y\": count*100-50,\n        \"wires\": [\n          [\n            \"fun_receive__\"+device.code,\n          ],\n          []\n        ]\n    };\n    let strs = {\n        funStr : \"\",\n        funStr2 : \"\",\n        funReceiveStr: \"\",\n    }\n  \n    let objSwitch =  {\n        \"id\": \"switch__\"+device.code,\n        \"type\": \"switch\",\n        \"z\": \"Datas\",\n        \"name\": \"\",\n        \"property\": \"payload\",\n        \"propertyType\": \"msg\",\n        \"rules\": [\n            {\n                \"t\": \"true\"\n            }\n        ],\n        \"checkall\": \"true\",\n        \"repair\": false,\n        \"outputs\": 1,\n        \"x\": 450,\n        \"y\": count*100,\n        \"wires\": [\n          [\n            device.code+\"__funxxxx\",\n          ]\n        ]\n      };\n\n\n    let keyLength = Object.keys(monitor).length;\n    let idx = 0;\n    for(let key2 in monitor){\n        idx ++;\n        const point = monitor[key2];\n        if(idx == keyLength ){\n            strs.funStr += \"setTimeout(function(){ node.send({payload : {end:true,dev:'\"+device.code+\"', 'fc':3, 'unitid': 1, 'address':  \"+point.address+\" , 'quantity': 1 }}); \\n\"\n        }\n        else{\n            strs.funStr += \"setTimeout(function(){ node.send({payload : {end:false,dev:'\"+device.code+\"', 'fc': 3, 'unitid': 1, 'address':  \"+point.address+\" , 'quantity': 1 }}); \\n\"\n        }\n        strs.funStr2+= \"},80); \\n\"\n        \n        strs.funReceiveStr = \"\"+\n        \"let devices = global.get('devices'); \\n\"+\n        \"let device = devices['\"+device.code+\"']; \\n\"+\n        \"let monitor = device['monitor']; \\n\"+\n        \"let datas = global.get('datas'); \\n\"+\n        \"for(let key in monitor){ \\n\"+\n        \"    let point = monitor[key]; \\n\"+\n        \"    if( parseInt( point.address) == msg.modbusRequest.address){ \\n\"+\n        \"        point.value = msg.payload[0]; \\n\"+\n        \"        for(let key2 in datas){ \\n\"+\n        \"            if(key2 == key){ \\n\"+\n        \"                datas[key2] = point.value; \\n\"+\n        \"                break; \\n\"+\n        \"            } \\n\"+\n        \"        } \\n\"+\n        \"        break; \\n\"+\n        \"    } \\n\"+\n        \"} \\n\";\n\n    }\n    let ojbFunction = {\n        \"id\": device.code+\"__fun\",\n        \"type\": \"function\",\n        \"z\": \"Datas\",\n        \"name\": \"function 44\",\n        \"func\": strs.funStr + strs.funStr2,\n        \"outputs\": 1,\n        \"timeout\": 0,\n        \"noerr\": 0,\n        \"initialize\": \"\",\n        \"finalize\": \"\",\n        \"libs\": [],\n        \"x\": 250,\n        \"y\": count*100,\n        \"wires\": [\n        [\n            \"modbus-flex-getter__\"+device.code,\n            \"switch__\"+device.code,\n        ]\n        ]\n    };     \n    let objReceive =  {\n        \"id\": \"fun_receive__\"+device.code,\n        \"type\": \"function\",\n        \"z\": \"Datas\",\n        \"name\": \"function 45\",\n        \"func\": strs.funReceiveStr,\n        \"outputs\": 1,\n        \"timeout\": 0,\n        \"noerr\": 0,\n        \"initialize\": \"\",\n        \"finalize\": \"\",\n        \"libs\": [],\n        \"x\": 830,\n        \"y\": count*100,\n        \"wires\": [\n          []\n        ]\n      };    \n    json[1].wires[0].push(ojbFunction.id);\n    json.push(modbus_flex_getter);\n    json.push(ojbFunction);\n    json.push(objSwitch);\n    json.push(objReceive);\n    \n}\n\nmsg.payload = json;\nmsg.filename = global.get(\"userDir\") + \"\\\\flows\\\\Datas.json\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1370,
+        "y": 300,
+        "wires": [
+            [
+                "c8a7e963cd531719"
+            ]
+        ]
+    },
+    {
+        "id": "81b937487430e910",
+        "type": "modbus-server",
+        "z": "a6632bb9eb46a176",
+        "name": "503",
+        "logEnabled": false,
+        "hostname": "0.0.0.0",
+        "serverPort": "503",
+        "responseDelay": 100,
+        "delayUnit": "ms",
+        "coilsBufferSize": 10000,
+        "holdingBufferSize": 10000,
+        "inputBufferSize": 10000,
+        "discreteBufferSize": 10000,
+        "showErrors": false,
+        "x": 230,
+        "y": 800,
+        "wires": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "72634f37e27827b1",
+        "type": "modbus-server",
+        "z": "a6632bb9eb46a176",
+        "name": "504",
+        "logEnabled": false,
+        "hostname": "0.0.0.0",
+        "serverPort": "504",
+        "responseDelay": 100,
+        "delayUnit": "ms",
+        "coilsBufferSize": 10000,
+        "holdingBufferSize": 10000,
+        "inputBufferSize": 10000,
+        "discreteBufferSize": 10000,
+        "showErrors": false,
+        "x": 230,
+        "y": 880,
+        "wires": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "92f06e626ec8338f",
+        "type": "modbus-server",
+        "z": "a6632bb9eb46a176",
+        "name": "505",
+        "logEnabled": false,
+        "hostname": "0.0.0.0",
+        "serverPort": "505",
+        "responseDelay": 100,
+        "delayUnit": "ms",
+        "coilsBufferSize": 10000,
+        "holdingBufferSize": 10000,
+        "inputBufferSize": 10000,
+        "discreteBufferSize": 10000,
+        "showErrors": false,
+        "x": 230,
+        "y": 960,
+        "wires": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "2319622f7bf4c895",
+        "type": "modbus-server",
+        "z": "a6632bb9eb46a176",
+        "name": "506",
+        "logEnabled": false,
+        "hostname": "0.0.0.0",
+        "serverPort": "506",
+        "responseDelay": 100,
+        "delayUnit": "ms",
+        "coilsBufferSize": 10000,
+        "holdingBufferSize": 10000,
+        "inputBufferSize": 10000,
+        "discreteBufferSize": 10000,
+        "showErrors": false,
+        "x": 230,
+        "y": 1040,
+        "wires": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c8a7e963cd531719",
+        "type": "json",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 1530,
+        "y": 300,
+        "wires": [
+            [
+                "4686358fbfc7c277"
+            ]
+        ]
+    },
+    {
+        "id": "4686358fbfc7c277",
+        "type": "file",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1680,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "54e95d15aef71ab0",
+        "type": "debug",
+        "z": "a6632bb9eb46a176",
+        "name": "debug 21",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1640,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "0810b19c41f9896c",
+        "type": "switch",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "property": "rewrite",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 1230,
+        "y": 300,
+        "wires": [
+            [
+                "59f89ef1aef61e90"
+            ]
+        ]
+    },
+    {
+        "id": "2fc6f3fd6b9c13d3",
+        "type": "change",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "rewrite",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1370,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6cc27a840456a22a",
+        "type": "inject",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 1130,
+        "y": 420,
+        "wires": [
+            [
+                "2fc6f3fd6b9c13d3"
+            ]
+        ]
+    },
+    {
+        "id": "488f957f40686289",
+        "type": "inject",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 1130,
+        "y": 460,
+        "wires": [
+            [
+                "2fc6f3fd6b9c13d3"
+            ]
+        ]
+    },
+    {
+        "id": "770f5e151179e450",
+        "type": "change",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "devices.ext-controller.monitor.status.value",
+                "pt": "global",
+                "to": "1234",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "09f78af5035c2b40",
+        "type": "inject",
+        "z": "a6632bb9eb46a176",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 1130,
+        "y": 520,
+        "wires": [
+            [
+                "770f5e151179e450"
+            ]
+        ]
+    },
+    {
+        "id": "Datas_inject",
+        "type": "inject",
+        "z": "Datas",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "3",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 160,
+        "wires": [
+            [
+                "ext-controller__fun",
+                "scara-left__fun",
+                "scara-right__fun",
+                "virtual-modbus__fun"
+            ]
+        ]
+    },
+    {
+        "id": "modbus-flex-getter__ext-controller",
+        "type": "modbus-flex-getter",
+        "z": "Datas",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "server": "ext-controller",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 450,
+        "y": 50,
+        "wires": [
+            [
+                "fun_receive__ext-controller",
+                "73f39ba39b1606bd"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ext-controller__fun",
+        "type": "function",
+        "z": "Datas",
+        "name": "function 44",
+        "func": "setTimeout(function(){ node.send({payload : {end:false,dev:'ext-controller', 'fc': 3, 'unitid': 1, 'address':  0 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:false,dev:'ext-controller', 'fc': 3, 'unitid': 1, 'address':  1 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:false,dev:'ext-controller', 'fc': 3, 'unitid': 1, 'address':  3 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:false,dev:'ext-controller', 'fc': 3, 'unitid': 1, 'address':  4 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:false,dev:'ext-controller', 'fc': 3, 'unitid': 1, 'address':  5 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:true,dev:'ext-controller', 'fc':3, 'unitid': 1, 'address':  6 , 'quantity': 1 }}); \n},80); \n},80); \n},80); \n},80); \n},80); \n},80); \n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 100,
+        "wires": [
+            [
+                "modbus-flex-getter__ext-controller",
+                "switch__ext-controller",
+                "edecea4dd04efe59"
+            ]
+        ]
+    },
+    {
+        "id": "switch__ext-controller",
+        "type": "switch",
+        "z": "Datas",
+        "name": "",
+        "property": "payload.end",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 100,
+        "wires": [
+            [
+                "ext-controller__fun"
+            ]
+        ]
+    },
+    {
+        "id": "fun_receive__ext-controller",
+        "type": "function",
+        "z": "Datas",
+        "name": "function 45",
+        "func": "let devices = global.get('devices'); \nlet device = devices['ext-controller']; \nlet monitor = device['monitor']; \nlet datas = global.get('datas'); \nfor(let key in monitor){ \n    let point = monitor[key]; \n    if( parseInt( point.address) == msg.modbusRequest.address){ \n        point.value = msg.payload[0]; \n        for(let key2 in datas){ \n            if(key2 == key){ \n                datas[key2] = point.value; \n                break; \n            } \n        } \n        break; \n    } \n} \n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "modbus-flex-getter__scara-left",
+        "type": "modbus-flex-getter",
+        "z": "Datas",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "server": "scara-left",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 450,
+        "y": 150,
+        "wires": [
+            [
+                "fun_receive__scara-left",
+                "1f0bf707775d2f43"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "scara-left__fun",
+        "type": "function",
+        "z": "Datas",
+        "name": "function 44",
+        "func": "setTimeout(function(){ node.send({payload : {end:false,dev:'scara-left', 'fc': 3, 'unitid': 1, 'address':  5 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:false,dev:'scara-left', 'fc': 3, 'unitid': 1, 'address':  6 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:true,dev:'scara-left', 'fc':3, 'unitid': 1, 'address':  8 , 'quantity': 1 }}); \n},80); \n},80); \n},80); \n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "modbus-flex-getter__scara-left",
+                "switch__scara-left",
+                "e3c0fa40060c0c8d"
+            ]
+        ]
+    },
+    {
+        "id": "switch__scara-left",
+        "type": "switch",
+        "z": "Datas",
+        "name": "",
+        "property": "payload.end",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 200,
+        "wires": [
+            [
+                "scara-left__fun"
+            ]
+        ]
+    },
+    {
+        "id": "fun_receive__scara-left",
+        "type": "function",
+        "z": "Datas",
+        "name": "function 45",
+        "func": "let devices = global.get('devices'); \nlet device = devices['scara-left']; \nlet monitor = device['monitor']; \nlet datas = global.get('datas'); \nfor(let key in monitor){ \n    let point = monitor[key]; \n    if( parseInt( point.address) == msg.modbusRequest.address){ \n        point.value = msg.payload[0]; \n        for(let key2 in datas){ \n            if(key2 == key){ \n                datas[key2] = point.value; \n                break; \n            } \n        } \n        break; \n    } \n} \n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "modbus-flex-getter__scara-right",
+        "type": "modbus-flex-getter",
+        "z": "Datas",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "server": "scara-right",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 450,
+        "y": 250,
+        "wires": [
+            [
+                "fun_receive__scara-right"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "scara-right__fun",
+        "type": "function",
+        "z": "Datas",
+        "name": "function 44",
+        "func": "setTimeout(function(){ node.send({payload : {end:false,dev:'scara-right', 'fc': 3, 'unitid': 1, 'address':  5 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:false,dev:'scara-right', 'fc': 3, 'unitid': 1, 'address':  6 , 'quantity': 1 }}); \nsetTimeout(function(){ node.send({payload : {end:true,dev:'scara-right', 'fc':3, 'unitid': 1, 'address':  8 , 'quantity': 1 }}); \n},80); \n},80); \n},80); \n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 300,
+        "wires": [
+            [
+                "modbus-flex-getter__scara-right",
+                "switch__scara-right"
+            ]
+        ]
+    },
+    {
+        "id": "switch__scara-right",
+        "type": "switch",
+        "z": "Datas",
+        "name": "",
+        "property": "payload.end",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 300,
+        "wires": [
+            [
+                "scara-right__fun"
+            ]
+        ]
+    },
+    {
+        "id": "fun_receive__scara-right",
+        "type": "function",
+        "z": "Datas",
+        "name": "function 45",
+        "func": "let devices = global.get('devices'); \nlet device = devices['scara-right']; \nlet monitor = device['monitor']; \nlet datas = global.get('datas'); \nfor(let key in monitor){ \n    let point = monitor[key]; \n    if( parseInt( point.address) == msg.modbusRequest.address){ \n        point.value = msg.payload[0]; \n        for(let key2 in datas){ \n            if(key2 == key){ \n                datas[key2] = point.value; \n                break; \n            } \n        } \n        break; \n    } \n} \n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "modbus-flex-getter__virtual-modbus",
+        "type": "modbus-flex-getter",
+        "z": "Datas",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "server": "virtual-modbus",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 450,
+        "y": 350,
+        "wires": [
+            [
+                "fun_receive__virtual-modbus"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "virtual-modbus__fun",
+        "type": "function",
+        "z": "Datas",
+        "name": "function 44",
+        "func": "",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 400,
+        "wires": [
+            [
+                "modbus-flex-getter__virtual-modbus",
+                "switch__virtual-modbus"
+            ]
+        ]
+    },
+    {
+        "id": "switch__virtual-modbus",
+        "type": "switch",
+        "z": "Datas",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fun_receive__virtual-modbus",
+        "type": "function",
+        "z": "Datas",
+        "name": "function 45",
+        "func": "",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "73f39ba39b1606bd",
+        "type": "debug",
+        "z": "Datas",
+        "name": "debug 22",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "edecea4dd04efe59",
+        "type": "debug",
+        "z": "Datas",
+        "name": "debug 23",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 240,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "e3c0fa40060c0c8d",
+        "type": "debug",
+        "z": "Datas",
+        "name": "debug 24",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 160,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "1f0bf707775d2f43",
+        "type": "debug",
+        "z": "Datas",
+        "name": "debug 25",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 120,
+        "wires": []
     },
     {
         "id": "3bcf26799f73d963",
@@ -1988,7 +3569,7 @@
         "type": "debug",
         "z": "3b5216fa86e84cf0",
         "name": "debug 15",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -2086,7 +3667,7 @@
         "unitid": "1",
         "dataType": "Coil",
         "adr": "0",
-        "quantity": "10",
+        "quantity": "20",
         "rate": "1",
         "rateUnit": "s",
         "delayOnStart": false,
@@ -2351,7 +3932,7 @@
         "type": "function",
         "z": "3b5216fa86e84cf0",
         "name": "function 37",
-        "func": "msg.payload = { 'value': 1, 'register': 'coils', 'address': 2 , 'disableMsgOutput' : 0 };\nreturn msg;",
+        "func": "msg.payload = { 'value': 1, 'register': 'coils', 'address': 2 , 'disableMsgOutput' : 0 };\nnode.send(msg);\nmsg.payload = { 'value': 1, 'register': 'coils', 'address': 3 , 'disableMsgOutput' : 0 };\nnode.send(msg);",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2400,7 +3981,7 @@
         "type": "function",
         "z": "3b5216fa86e84cf0",
         "name": "function 38",
-        "func": "msg.payload = { 'value': [0,0,0,0], 'register': 'coils', 'address': 1 , 'disableMsgOutput' : 0 };\nreturn msg;",
+        "func": "msg.payload = { 'value': [1,0,1,1,0,1], 'register': 'coils', 'address': 0 , 'disableMsgOutput' : 0 };\nnode.send(msg);\nmsg.payload = { 'value': [1,1,0,1], 'register': 'coils', 'address': 10 , 'disableMsgOutput' : 0 };\nnode.send(msg);\nmsg.payload = { 'value': [1,0,1,1], 'register': 'coils', 'address': 15 , 'disableMsgOutput' : 0 };\nnode.send(msg);\n\nmsg.payload = { 'value': [1,0,1,1,0,1], 'register': 'discrete', 'address': 0 , 'disableMsgOutput' : 0 };\nnode.send(msg);\nmsg.payload = { 'value': [1,1,0,1], 'register': 'discrete', 'address': 10 , 'disableMsgOutput' : 0 };\nnode.send(msg);\nmsg.payload = { 'value': [1,0,1,1], 'register': 'discrete', 'address': 15 , 'disableMsgOutput' : 0 };\nnode.send(msg);",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -2414,6 +3995,249 @@
                 "3bcf26799f73d963"
             ]
         ]
+    },
+    {
+        "id": "4808ad497e7965c9",
+        "type": "inject",
+        "z": "3b5216fa86e84cf0",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 690,
+        "y": 820,
+        "wires": [
+            [
+                "541afe890b094aa7"
+            ]
+        ]
+    },
+    {
+        "id": "541afe890b094aa7",
+        "type": "function",
+        "z": "3b5216fa86e84cf0",
+        "name": "function 39",
+        "func": "msg.payload = { 'value': [1,2,3,4,5,6], 'register': 'holding', 'address': 0 , 'disableMsgOutput' : 0 };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 820,
+        "wires": [
+            [
+                "3bcf26799f73d963"
+            ]
+        ]
+    },
+    {
+        "id": "f90ec2047e5595ba",
+        "type": "inject",
+        "z": "3b5216fa86e84cf0",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 710,
+        "y": 880,
+        "wires": [
+            [
+                "eec9c7f3f8508f1d"
+            ]
+        ]
+    },
+    {
+        "id": "eec9c7f3f8508f1d",
+        "type": "function",
+        "z": "3b5216fa86e84cf0",
+        "name": "function 40",
+        "func": "msg.payload = { 'value': [1,2,3,4,5,6], 'register': 'holding', 'address': 10 , 'disableMsgOutput' : 0 };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 870,
+        "y": 880,
+        "wires": [
+            [
+                "3bcf26799f73d963"
+            ]
+        ]
+    },
+    {
+        "id": "18b95a3a3ef2f8a8",
+        "type": "inject",
+        "z": "3b5216fa86e84cf0",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 730,
+        "y": 920,
+        "wires": [
+            [
+                "57597bcab9354487"
+            ]
+        ]
+    },
+    {
+        "id": "57597bcab9354487",
+        "type": "function",
+        "z": "3b5216fa86e84cf0",
+        "name": "function 41",
+        "func": "msg.payload = { 'value': [1,2,3,4,5,6], 'register': 'input', 'address': 2, 'disableMsgOutput' : 0 };\nnode.send(msg);\nmsg.payload = { 'value': [1,2,3,4,5,6,7,8,9,10,11], 'register': 'input', 'address': 20 , 'disableMsgOutput' : 0 };\nnode.send(msg);",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 890,
+        "y": 920,
+        "wires": [
+            [
+                "3bcf26799f73d963"
+            ]
+        ]
+    },
+    {
+        "id": "5cc64069f384dad2",
+        "type": "modbus-read",
+        "z": "3b5216fa86e84cf0",
+        "name": "",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "Input",
+        "adr": "0",
+        "quantity": "20",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "8b08ccb1dadce45a",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 250,
+        "y": 1500,
+        "wires": [
+            [
+                "3f508f9bf7dc78c7"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3f508f9bf7dc78c7",
+        "type": "debug",
+        "z": "3b5216fa86e84cf0",
+        "name": "debug 17",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "190e5eeb16fe2b82",
+        "type": "modbus-read",
+        "z": "3b5216fa86e84cf0",
+        "name": "",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "InputRegister",
+        "adr": "0",
+        "quantity": "10",
+        "rate": "1",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "8b08ccb1dadce45a",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 630,
+        "y": 1400,
+        "wires": [
+            [
+                "5dbde8e5e08512df"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5dbde8e5e08512df",
+        "type": "debug",
+        "z": "3b5216fa86e84cf0",
+        "name": "debug 18",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 1420,
+        "wires": []
     },
     {
         "id": "4f9e1dd4adb757bb",
