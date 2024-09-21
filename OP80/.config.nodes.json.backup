@@ -1183,7 +1183,16 @@
                 "local": true,
                 "user": false,
                 "module": "node-red-data-center",
-                "file": "D:\\projects2024\\dianyefa\\huadian-dianyefa\\OP80\\node_modules\\node-red-data-center\\main.js"
+                "file": "D:\\projects2024\\dianyefa\\huadian-dianyefa\\OP80\\node_modules\\node-red-data-center\\data_center.js"
+            },
+            "data-create": {
+                "name": "data-create",
+                "types": [],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-data-center",
+                "file": "D:\\projects2024\\dianyefa\\huadian-dianyefa\\OP80\\node_modules\\node-red-data-center\\data_create.js"
             }
         }
     },

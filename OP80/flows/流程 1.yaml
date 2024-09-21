@@ -1,0 +1,729 @@
+- id: 99911e376297d5a2
+  type: tab
+  label: 流程 1
+  disabled: false
+  info: ''
+  env: []
+- id: 3f56efd5826c874c
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 350
+  'y': 360
+  wires:
+    - - 22116b749f3dcf96
+- id: 22116b749f3dcf96
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: rewrite
+      pt: global
+      to: 'true'
+      tot: bool
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 550
+  'y': 360
+  wires:
+    - []
+- id: a93f58fb2c6ca1c6
+  type: data-center
+  z: 99911e376297d5a2
+  name: ''
+  x: 410
+  'y': 460
+  wires:
+    - []
+- id: a644370031299434
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 170
+  'y': 400
+  wires:
+    - - a93f58fb2c6ca1c6
+- id: 6899d336be9e2a24
+  type: modbus-server
+  z: 99911e376297d5a2
+  name: ''
+  logEnabled: false
+  hostname: 0.0.0.0
+  serverPort: '503'
+  responseDelay: 100
+  delayUnit: ms
+  coilsBufferSize: 10000
+  holdingBufferSize: 10000
+  inputBufferSize: 10000
+  discreteBufferSize: 10000
+  showErrors: false
+  x: 400
+  'y': 660
+  wires:
+    - []
+    - []
+    - []
+    - []
+    - []
+- id: 7a8e804c8a1ea826
+  type: modbus-server
+  z: 99911e376297d5a2
+  name: ''
+  logEnabled: false
+  hostname: 0.0.0.0
+  serverPort: '504'
+  responseDelay: 100
+  delayUnit: ms
+  coilsBufferSize: 10000
+  holdingBufferSize: 10000
+  inputBufferSize: 10000
+  discreteBufferSize: 10000
+  showErrors: false
+  x: 400
+  'y': 740
+  wires:
+    - []
+    - []
+    - []
+    - []
+    - []
+- id: 1d9b7a4c4ca0ec07
+  type: modbus-server
+  z: 99911e376297d5a2
+  name: ''
+  logEnabled: false
+  hostname: 0.0.0.0
+  serverPort: '505'
+  responseDelay: 100
+  delayUnit: ms
+  coilsBufferSize: 10000
+  holdingBufferSize: 10000
+  inputBufferSize: 10000
+  discreteBufferSize: 10000
+  showErrors: false
+  x: 400
+  'y': 820
+  wires:
+    - []
+    - []
+    - []
+    - []
+    - []
+- id: 53c3b9c589d16a1b
+  type: modbus-server
+  z: 99911e376297d5a2
+  name: ''
+  logEnabled: false
+  hostname: 0.0.0.0
+  serverPort: '506'
+  responseDelay: 100
+  delayUnit: ms
+  coilsBufferSize: 10000
+  holdingBufferSize: 10000
+  inputBufferSize: 10000
+  discreteBufferSize: 10000
+  showErrors: false
+  x: 400
+  'y': 900
+  wires:
+    - []
+    - []
+    - []
+    - []
+    - []
+- id: 75dc890d57c1098b
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 350
+  'y': 160
+  wires:
+    - - 56a7c8606362fa0f
+- id: 56a7c8606362fa0f
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: datas.tray_out_left
+      pt: global
+      to: '997'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 590
+  'y': 160
+  wires:
+    - []
+- id: 9633c5e31eed0e43
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 350
+  'y': 120
+  wires:
+    - - 12375d9da4457d51
+- id: 12375d9da4457d51
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: datas.tray_in_left
+      pt: global
+      to: '998'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 580
+  'y': 120
+  wires:
+    - []
+- id: 48e2c1052d8c6ffc
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 350
+  'y': 80
+  wires:
+    - - ea1a62cad4b11c31
+- id: ea1a62cad4b11c31
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: datas.request
+      pt: global
+      to: '999'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 570
+  'y': 80
+  wires:
+    - []
+- id: 6efc5b7d7464c2c0
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 350
+  'y': 200
+  wires:
+    - - 92cbbbfb34ff8c79
+- id: 92cbbbfb34ff8c79
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: datas.tray_in_right
+      pt: global
+      to: '996'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 590
+  'y': 200
+  wires:
+    - []
+- id: f439c06804980bda
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 350
+  'y': 240
+  wires:
+    - - 64f4536d6273e851
+- id: 64f4536d6273e851
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: datas.tray_out_right
+      pt: global
+      to: '995'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 590
+  'y': 240
+  wires:
+    - []
+- id: 62177679fb8172f3
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 810
+  'y': 160
+  wires:
+    - - a3f657f97baad122
+- id: a3f657f97baad122
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: datas.material_right
+      pt: global
+      to: '997'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1050
+  'y': 160
+  wires:
+    - []
+- id: 5063c364cfd09b17
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 810
+  'y': 120
+  wires:
+    - - 9306fd1582411463
+- id: 9306fd1582411463
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: datas.idx_out_right
+      pt: global
+      to: '998'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1050
+  'y': 120
+  wires:
+    - []
+- id: 2bc2995e54260bd9
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 810
+  'y': 80
+  wires:
+    - - a1ae372d563dbc4b
+- id: a1ae372d563dbc4b
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: datas.idx_in_right
+      pt: global
+      to: '999'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1040
+  'y': 80
+  wires:
+    - []
+- id: b65fc8e4aac03f2a
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 810
+  'y': 200
+  wires:
+    - - f5bd4d4c6cae053b
+- id: f5bd4d4c6cae053b
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: datas.trash_right
+      pt: global
+      to: '996'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1040
+  'y': 200
+  wires:
+    - []
+- id: 5d180ff5aecebeda
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 810
+  'y': 240
+  wires:
+    - - feb0488cd288b239
+- id: feb0488cd288b239
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: datas.request_right
+      pt: global
+      to: '995'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 1050
+  'y': 240
+  wires:
+    - []
+- id: 33040a7e4e645b74
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 730
+  'y': 400
+  wires:
+    - - afd81e1ea270852b
+- id: afd81e1ea270852b
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: datas.material_left
+      pt: global
+      to: '997'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 970
+  'y': 400
+  wires:
+    - []
+- id: cd33d22e053f1cc9
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 730
+  'y': 360
+  wires:
+    - - df61a000b34c3c82
+- id: df61a000b34c3c82
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: datas.idx_out_left
+      pt: global
+      to: '998'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 960
+  'y': 360
+  wires:
+    - []
+- id: 78ea320c4b0bf6d3
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 730
+  'y': 320
+  wires:
+    - - 96c4618e8dc110be
+- id: 96c4618e8dc110be
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: datas.idx_in_left
+      pt: global
+      to: '999'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 960
+  'y': 320
+  wires:
+    - []
+- id: 37142ccac1b88c97
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 730
+  'y': 440
+  wires:
+    - - f831ed21a0b8d7f6
+- id: f831ed21a0b8d7f6
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: datas.trash_left
+      pt: global
+      to: '996'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 960
+  'y': 440
+  wires:
+    - []
+- id: 525aa0c34d4ade3c
+  type: inject
+  z: 99911e376297d5a2
+  name: ''
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 730
+  'y': 480
+  wires:
+    - - 0903fdf865fd5283
+- id: 0903fdf865fd5283
+  type: change
+  z: 99911e376297d5a2
+  name: ''
+  rules:
+    - t: set
+      p: datas.error_left
+      pt: global
+      to: '995'
+      tot: num
+  action: ''
+  property: ''
+  from: ''
+  to: ''
+  reg: false
+  x: 960
+  'y': 480
+  wires:
+    - []

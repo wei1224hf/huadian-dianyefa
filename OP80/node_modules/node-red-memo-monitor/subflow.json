@@ -97,8 +97,8 @@
     ],
     "meta": {
         "module": "node-red-memo-monitor",
-        "type": "storage",
-        "version": "1.1",
+        "type": "memo-monitor",
+        "version": "0.0.2",
         "author": "wei1224hf@gmail.com",
         "desc": "change a request , then waiting for specific response to change, reset the request after 2 seconds",
         "keywords": "memory monitor",

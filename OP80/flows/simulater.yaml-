@@ -1139,85 +1139,6 @@
   'y': 660
   wires:
     - - dc80b461b6086d93
-- id: fe8a6400e73537b8
-  type: inject
-  z: dce641ad0336b7ac
-  name: ''
-  props:
-    - p: payload
-    - p: topic
-      vt: str
-  repeat: ''
-  crontab: ''
-  once: false
-  onceDelay: 0.1
-  topic: ''
-  payload: ''
-  payloadType: date
-  x: 130
-  'y': 1840
-  wires:
-    - - 769918e605818f46
-- id: 769918e605818f46
-  type: function
-  z: dce641ad0336b7ac
-  name: function 30
-  func: |-
-    var a = {b:1,c:2,d:{d:{d:{d:2}}}};
-    global.set("ta",a);
-    var b = {b:1,c:2,d:{d:{d:{d:2}}}};
-    global.set("tb",b);
-    global.set("c",{c:1});
-    global.set("d",{d:1});
-    return msg;
-  outputs: 1
-  timeout: 0
-  noerr: 0
-  initialize: ''
-  finalize: ''
-  libs: []
-  x: 310
-  'y': 1840
-  wires:
-    - - 2327fea034fb1ce3
-- id: 0a90c5f6079d9ce3
-  type: change
-  z: dce641ad0336b7ac
-  name: ''
-  rules:
-    - t: set
-      p: c.c
-      pt: global
-      to: '100'
-      tot: num
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 900
-  'y': 1840
-  wires:
-    - []
-- id: c722abd60adbb0d6
-  type: change
-  z: dce641ad0336b7ac
-  name: ''
-  rules:
-    - t: set
-      p: c.c
-      pt: global
-      to: '300'
-      tot: num
-  action: ''
-  property: ''
-  from: ''
-  to: ''
-  reg: false
-  x: 900
-  'y': 1900
-  wires:
-    - []
 - id: 418e808ea030fdf4
   type: inject
   z: dce641ad0336b7ac
@@ -1254,34 +1175,6 @@
   reg: false
   x: 860
   'y': 1700
-  wires:
-    - []
-- id: 18eeb3461c2e5a62
-  type: storage
-  z: dce641ad0336b7ac
-  name: ''
-  toChange: ta.b
-  changeValue: 100
-  toMonitor: c.c
-  targetValue: 100
-  toWait: 2
-  toReset: 999
-  x: 740
-  'y': 1940
-  wires:
-    - []
-- id: a7cd34cee45cb325
-  type: storage
-  z: dce641ad0336b7ac
-  name: ''
-  toChange: tb.b
-  changeValue: 777
-  toMonitor: c.c
-  targetValue: 300
-  toWait: 2
-  toReset: 888
-  x: 740
-  'y': 2000
   wires:
     - []
 - id: 3e7485ae4bec7ba5
@@ -1358,66 +1251,22 @@
   'y': 1420
   wires:
     - []
-- id: 2327fea034fb1ce3
-  type: delay
+- id: 9de78715c45b2b46
+  type: inject
   z: dce641ad0336b7ac
   name: ''
-  pauseType: delay
-  timeout: '1'
-  timeoutUnits: seconds
-  rate: '1'
-  nbRateUnits: '1'
-  rateUnits: second
-  randomFirst: '1'
-  randomLast: '5'
-  randomUnits: seconds
-  drop: false
-  allowrate: false
-  outputs: 1
-  x: 500
-  'y': 1840
+  props:
+    - p: payload
+    - p: topic
+      vt: str
+  repeat: ''
+  crontab: ''
+  once: false
+  onceDelay: 0.1
+  topic: ''
+  payload: ''
+  payloadType: date
+  x: 170
+  'y': 2060
   wires:
-    - - 18eeb3461c2e5a62
-      - a7cd34cee45cb325
-      - fc6a8f210a6610cc
-      - 0bdcc11bfb1f1407
-- id: fc6a8f210a6610cc
-  type: delay
-  z: dce641ad0336b7ac
-  name: ''
-  pauseType: delay
-  timeout: '5'
-  timeoutUnits: seconds
-  rate: '1'
-  nbRateUnits: '1'
-  rateUnits: second
-  randomFirst: '1'
-  randomLast: '5'
-  randomUnits: seconds
-  drop: false
-  allowrate: false
-  outputs: 1
-  x: 720
-  'y': 1840
-  wires:
-    - - 0a90c5f6079d9ce3
-- id: 0bdcc11bfb1f1407
-  type: delay
-  z: dce641ad0336b7ac
-  name: ''
-  pauseType: delay
-  timeout: '10'
-  timeoutUnits: seconds
-  rate: '1'
-  nbRateUnits: '1'
-  rateUnits: second
-  randomFirst: '1'
-  randomLast: '5'
-  randomUnits: seconds
-  drop: false
-  allowrate: false
-  outputs: 1
-  x: 720
-  'y': 1900
-  wires:
-    - - c722abd60adbb0d6
+    - []
