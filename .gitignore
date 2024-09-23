@@ -17,6 +17,7 @@ OP10/uibuilder/
 OP100/node_modules/
 OP100/uibuilder/
 OP10/.config.*
+OP10/package.json
 OP10/*.backup
 OP20/.config.*
 OP20/*.backup
