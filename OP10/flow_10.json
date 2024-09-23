@@ -32,8 +32,8 @@
         "stateLogEnabled": false,
         "queueLogEnabled": false,
         "failureLogEnabled": true,
-        "tcpHost": "192.168.110.10",
-        "tcpPort": "503",
+        "tcpHost": "127.0.0.1",
+        "tcpPort": "10011",
         "tcpType": "DEFAULT",
         "serialPort": "/dev/ttyUSB",
         "serialType": "RTU-BUFFERD",
@@ -2634,5 +2634,226 @@
         "x": 550,
         "y": 240,
         "wires": []
+    },
+    {
+        "id": "3c6c02b309258f6e",
+        "type": "modbus-server",
+        "z": "b66460ea0e50b266",
+        "name": "OP10-s",
+        "logEnabled": false,
+        "hostname": "0.0.0.0",
+        "serverPort": "10011",
+        "responseDelay": 100,
+        "delayUnit": "ms",
+        "coilsBufferSize": 10000,
+        "holdingBufferSize": 10000,
+        "inputBufferSize": 10000,
+        "discreteBufferSize": 10000,
+        "showErrors": true,
+        "x": 840,
+        "y": 120,
+        "wires": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "d2a915cdceec2772",
+        "type": "modbus-read",
+        "z": "b66460ea0e50b266",
+        "name": "request",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "18",
+        "quantity": "1",
+        "rate": "100",
+        "rateUnit": "ms",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "1a3a610758658ecb",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 770,
+        "y": 300,
+        "wires": [
+            [
+                "31ea7ca3e68bcb8f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4f8306b213a60ff0",
+        "type": "modbus-write",
+        "z": "b66460ea0e50b266",
+        "name": "status",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "2",
+        "quantity": "1",
+        "server": "1a3a610758658ecb",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 930,
+        "y": 440,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "4f460878a922eae1",
+        "type": "inject",
+        "z": "b66460ea0e50b266",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "4",
+        "payloadType": "num",
+        "x": 650,
+        "y": 400,
+        "wires": [
+            [
+                "4f8306b213a60ff0"
+            ]
+        ]
+    },
+    {
+        "id": "31ea7ca3e68bcb8f",
+        "type": "rbe",
+        "z": "b66460ea0e50b266",
+        "name": "",
+        "func": "rbei",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload[0]",
+        "topi": "topic",
+        "x": 930,
+        "y": 300,
+        "wires": [
+            [
+                "67d2af52c630033d"
+            ]
+        ]
+    },
+    {
+        "id": "67d2af52c630033d",
+        "type": "switch",
+        "z": "b66460ea0e50b266",
+        "name": "",
+        "property": "payload[0]",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "100",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "101",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "102",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "103",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "21",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "31",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "41",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "51",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "20",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "30",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "40",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "50",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "60",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 13,
+        "x": 1110,
+        "y": 300,
+        "wires": [
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
     }
 ]

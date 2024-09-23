@@ -6,8 +6,8 @@
   stateLogEnabled: false
   queueLogEnabled: false
   failureLogEnabled: true
-  tcpHost: 192.168.110.10
-  tcpPort: '503'
+  tcpHost: 127.0.0.1
+  tcpPort: '10011'
   tcpType: DEFAULT
   serialPort: /dev/ttyUSB
   serialType: RTU-BUFFERD
