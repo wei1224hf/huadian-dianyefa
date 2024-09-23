@@ -1,0 +1,184 @@
+[
+  {
+    "id": "ea49554a2ff9c372",
+    "type": "subflow",
+    "name": "外轨中断",
+    "info": "",
+    "category": "",
+    "in": [
+      {
+        "x": 60,
+        "y": 80,
+        "wires": [
+          {
+            "id": "dfc24f458da41426"
+          }
+        ]
+      }
+    ],
+    "out": [
+      {
+        "x": 640,
+        "y": 80,
+        "wires": [
+          {
+            "id": "101be59ab0d63cf0",
+            "port": 0
+          }
+        ]
+      }
+    ],
+    "env": [],
+    "meta": {},
+    "color": "#FFCC66",
+    "icon": "font-awesome/fa-code-fork",
+    "status": {
+      "x": 500,
+      "y": 240,
+      "wires": [
+        {
+          "id": "101be59ab0d63cf0",
+          "port": 0
+        },
+        {
+          "id": "1b7949db015ae60e",
+          "port": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "afc9853e77849313",
+    "type": "switch",
+    "z": "ea49554a2ff9c372",
+    "name": "",
+    "property": "in_initing",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "false"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 235,
+    "y": 80,
+    "wires": [
+      [
+        "81f4e4ab483d8150"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "dfc24f458da41426",
+    "type": "trigger",
+    "z": "ea49554a2ff9c372",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "str",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 155,
+    "y": 80,
+    "wires": [
+      [
+        "afc9853e77849313",
+        "1b7949db015ae60e"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "dd9e153dcb2960fa",
+    "type": "function",
+    "z": "ea49554a2ff9c372",
+    "name": "function 56",
+    "func": "\nreturn {reset:1,payload:1};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 435,
+    "y": 80,
+    "wires": [
+      [
+        "dfc24f458da41426",
+        "101be59ab0d63cf0"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "101be59ab0d63cf0",
+    "type": "function",
+    "z": "ea49554a2ff9c372",
+    "name": "function 57",
+    "func": "\nreturn {payload:\"DONE\"};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 535,
+    "y": 80,
+    "wires": [
+      []
+    ],
+    "l": false
+  },
+  {
+    "id": "1b7949db015ae60e",
+    "type": "function",
+    "z": "ea49554a2ff9c372",
+    "name": "function 61",
+    "func": "const date = new Date();\nmsg.payload = date.getSeconds();\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 270,
+    "y": 240,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "81f4e4ab483d8150",
+    "type": "switch",
+    "z": "ea49554a2ff9c372",
+    "name": "",
+    "property": "pause_out",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "false"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 325,
+    "y": 80,
+    "wires": [
+      [
+        "dd9e153dcb2960fa"
+      ]
+    ],
+    "l": false
+  }
+]

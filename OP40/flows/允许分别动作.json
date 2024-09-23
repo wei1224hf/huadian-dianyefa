@@ -1,0 +1,4450 @@
+[
+  {
+    "id": "b64bb6f00bd7bcee",
+    "type": "tab",
+    "label": "允许分别动作",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "d4e92307d7094bd1",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "内轨道移动到左侧拍照位",
+    "env": [
+      {
+        "name": "request",
+        "value": "210",
+        "type": "num"
+      }
+    ],
+    "x": 230,
+    "y": 120,
+    "wires": [
+      [
+        "2ece68a6e209506b"
+      ]
+    ]
+  },
+  {
+    "id": "2ece68a6e209506b",
+    "type": "subflow:f7971c0dbc233cfb",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧scara拍照 内轨道",
+    "env": [
+      {
+        "name": "SCARA-L",
+        "value": "100",
+        "type": "num"
+      },
+      {
+        "name": "asdf",
+        "value": "100",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "120",
+        "type": "num"
+      }
+    ],
+    "x": 760,
+    "y": 120,
+    "wires": [
+      [
+        "21dce904e00088be"
+      ]
+    ]
+  },
+  {
+    "id": "21dce904e00088be",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "内轨道视觉定位平移到装配位置",
+    "env": [
+      {
+        "name": "request",
+        "value": "230",
+        "type": "num"
+      }
+    ],
+    "x": 1070,
+    "y": 120,
+    "wires": [
+      [
+        "63472aed0daee55b"
+      ]
+    ]
+  },
+  {
+    "id": "4022d170d75c953b",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧内轨道未装配完",
+    "property": "IO_40.AO_SCARA_L.idx_in_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "5",
+        "v2t": "num"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1300,
+    "y": 180,
+    "wires": [
+      [
+        "7f9d346c472a4c0b",
+        "5e9e0c3d0c3309c3"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "7f9d346c472a4c0b",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧有物料",
+    "property": "IO_40.AO_SCARA_L.material_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "20",
+        "v2t": "num"
+      },
+      {
+        "t": "eq",
+        "v": "21",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1510,
+    "y": 180,
+    "wires": [
+      [
+        "663a63ab86a002b7"
+      ],
+      [
+        "567c9016c26ff47b"
+      ]
+    ]
+  },
+  {
+    "id": "d18a034f602b514f",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "物料递减",
+    "func": "var IO = global.get(\"IO_40\");\nIO.AO_SCARA_L.material_left ++;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 2160,
+    "y": 120,
+    "wires": [
+      [
+        "b4108f5622544167"
+      ]
+    ]
+  },
+  {
+    "id": "cae7257b87ee6bf7",
+    "type": "subflow:f7971c0dbc233cfb",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧放喷油",
+    "env": [
+      {
+        "name": "SCARA-L",
+        "value": "130",
+        "type": "num"
+      },
+      {
+        "name": "asdf",
+        "value": "130",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "130",
+        "type": "num"
+      }
+    ],
+    "x": 2010,
+    "y": 120,
+    "wires": [
+      [
+        "d18a034f602b514f"
+      ]
+    ]
+  },
+  {
+    "id": "663a63ab86a002b7",
+    "type": "subflow:f7971c0dbc233cfb",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧取料",
+    "env": [
+      {
+        "name": "SCARA-L",
+        "value": "120",
+        "type": "num"
+      },
+      {
+        "name": "asdf",
+        "value": "120",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "120",
+        "type": "num"
+      }
+    ],
+    "x": 1640,
+    "y": 120,
+    "wires": [
+      [
+        "98dd2b8f220f29c6"
+      ]
+    ]
+  },
+  {
+    "id": "c661de5390ebd2bb",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "装配数递增",
+    "func": "var IO = global.get(\"IO_40\");\nIO.AO_SCARA_L.idx_in_left ++;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 3110,
+    "y": 120,
+    "wires": [
+      [
+        "61e37af799900fcd"
+      ]
+    ]
+  },
+  {
+    "id": "500adf780880be6c",
+    "type": "subflow:f7971c0dbc233cfb",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧内轨道装配",
+    "env": [
+      {
+        "name": "SCARA-L",
+        "value": "170",
+        "type": "num"
+      },
+      {
+        "name": "asdf",
+        "value": "170",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "150",
+        "type": "num"
+      }
+    ],
+    "x": 2920,
+    "y": 120,
+    "wires": [
+      [
+        "c661de5390ebd2bb"
+      ]
+    ]
+  },
+  {
+    "id": "60542327c522f434",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左喷油",
+    "env": [
+      {
+        "name": "request",
+        "value": "600",
+        "type": "num"
+      }
+    ],
+    "x": 2690,
+    "y": 120,
+    "wires": [
+      [
+        "ec68bf404e8c0f3c"
+      ]
+    ]
+  },
+  {
+    "id": "ec68bf404e8c0f3c",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "property": "IO_40.AO_SCARA_L.idx_in_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "5",
+        "v2t": "num"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 2795,
+    "y": 120,
+    "wires": [
+      [
+        "500adf780880be6c"
+      ],
+      []
+    ],
+    "l": false
+  },
+  {
+    "id": "61e37af799900fcd",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "结束",
+    "func": "\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 3250,
+    "y": 220,
+    "wires": [
+      [
+        "169f83c713bd9b8c"
+      ]
+    ]
+  },
+  {
+    "id": "169f83c713bd9b8c",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧内轨道未装配完",
+    "property": "IO_40.AO_SCARA_L.idx_in_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "6",
+        "vt": "num"
+      },
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "5",
+        "v2t": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 3300,
+    "y": 320,
+    "wires": [
+      [
+        "e6c9d20b57194ca2"
+      ],
+      [
+        "0e1fbf1c890929b0",
+        "b157712f6f744bdc"
+      ]
+    ]
+  },
+  {
+    "id": "0e1fbf1c890929b0",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "无用点",
+    "func": "\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 870,
+    "y": 320,
+    "wires": [
+      [
+        "f1cc133ccb486426"
+      ]
+    ]
+  },
+  {
+    "id": "2ac27b71ad231844",
+    "type": "inject",
+    "z": "b64bb6f00bd7bcee",
+    "name": "初始化",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 950,
+    "y": 40,
+    "wires": [
+      [
+        "a6cab2552b898bee"
+      ]
+    ]
+  },
+  {
+    "id": "a6cab2552b898bee",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_L.material_left",
+        "pt": "global",
+        "to": "1",
+        "tot": "num"
+      },
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_L.idx_in_left",
+        "pt": "global",
+        "to": "1",
+        "tot": "num"
+      },
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_R.material_right",
+        "pt": "global",
+        "to": "1",
+        "tot": "num"
+      },
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_R.idx_in_right",
+        "pt": "global",
+        "to": "1",
+        "tot": "num"
+      },
+      {
+        "t": "set",
+        "p": "IO_40.AO.tray_in_left",
+        "pt": "global",
+        "to": "3",
+        "tot": "num"
+      },
+      {
+        "t": "set",
+        "p": "IO_40.AO.tray_out_left",
+        "pt": "global",
+        "to": "2",
+        "tot": "num"
+      },
+      {
+        "t": "set",
+        "p": "IO_40.AO.tray_in_right",
+        "pt": "global",
+        "to": "5",
+        "tot": "num"
+      },
+      {
+        "t": "set",
+        "p": "IO_40.AO.tray_out_right",
+        "pt": "global",
+        "to": "0",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1055,
+    "y": 40,
+    "wires": [
+      [
+        "dc6f95d9ffbe1923"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "4810b2044b562ba3",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧料盘初始化",
+    "env": [
+      {
+        "name": "request",
+        "value": "340",
+        "type": "num"
+      }
+    ],
+    "x": 1240,
+    "y": 40,
+    "wires": [
+      [
+        "269304b2d32dceb0"
+      ]
+    ]
+  },
+  {
+    "id": "0798f5828ef660ae",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧料盘初始化",
+    "env": [
+      {
+        "name": "request",
+        "value": "440",
+        "type": "num"
+      }
+    ],
+    "x": 1500,
+    "y": 40,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "dc6f95d9ffbe1923",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 1115,
+    "y": 40,
+    "wires": [
+      [
+        "4810b2044b562ba3"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "269304b2d32dceb0",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 1365,
+    "y": 40,
+    "wires": [
+      [
+        "0798f5828ef660ae"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "b4108f5622544167",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左阀串检测",
+    "env": [
+      {
+        "name": "request",
+        "value": "700",
+        "type": "num"
+      }
+    ],
+    "x": 2310,
+    "y": 160,
+    "wires": [
+      [
+        "03b4e270ee47196a"
+      ]
+    ]
+  },
+  {
+    "id": "03b4e270ee47196a",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "property": "IO_40.AI.Left_visionResult",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "1",
+        "vt": "num"
+      },
+      {
+        "t": "eq",
+        "v": "2",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 2470,
+    "y": 160,
+    "wires": [
+      [
+        "ec28b51de1a8bb97"
+      ],
+      [
+        "2fc0e5767753fb81"
+      ]
+    ]
+  },
+  {
+    "id": "b976bd4b3d441aa5",
+    "type": "subflow:f7971c0dbc233cfb",
+    "z": "b64bb6f00bd7bcee",
+    "name": "放不良品区",
+    "env": [
+      {
+        "name": "SCARA-L",
+        "value": "140",
+        "type": "num"
+      },
+      {
+        "name": "asdf",
+        "value": "140",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "150",
+        "type": "num"
+      }
+    ],
+    "x": 2890,
+    "y": 220,
+    "wires": [
+      [
+        "eeacdffc9defebc6"
+      ]
+    ]
+  },
+  {
+    "id": "2fc0e5767753fb81",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左不良品是否满",
+    "property": "IO_40.AO_SCARA_L.trash_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "lte",
+        "v": "8",
+        "vt": "num"
+      },
+      {
+        "t": "gt",
+        "v": "8",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 2660,
+    "y": 220,
+    "wires": [
+      [
+        "b976bd4b3d441aa5"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "c9e6f698768e8290",
+    "type": "link in",
+    "z": "b64bb6f00bd7bcee",
+    "name": "虚拟输入 1",
+    "links": [],
+    "x": 2685,
+    "y": 260,
+    "wires": [
+      [
+        "b976bd4b3d441aa5"
+      ]
+    ]
+  },
+  {
+    "id": "eeacdffc9defebc6",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "不良品递增",
+    "func": "var IO = global.get(\"IO_40\");\nIO.AO_SCARA_L.trash_left ++;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 3070,
+    "y": 220,
+    "wires": [
+      [
+        "61e37af799900fcd"
+      ]
+    ]
+  },
+  {
+    "id": "e6c9d20b57194ca2",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧未装配完",
+    "property": "IO_40.AO_SCARA_R.idx_in_right",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "15",
+        "vt": "num"
+      },
+      {
+        "t": "eq",
+        "v": "0",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 3560,
+    "y": 320,
+    "wires": [
+      [
+        "c2b69be643d9b648"
+      ],
+      [
+        "332b816a5fdc66e0"
+      ]
+    ]
+  },
+  {
+    "id": "e87ab6df888751ba",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "内轨道移动到右侧",
+    "env": [
+      {
+        "name": "request",
+        "value": "220",
+        "type": "num"
+      }
+    ],
+    "x": 750,
+    "y": 560,
+    "wires": [
+      [
+        "e9fced08fe7253e8",
+        "c7956ef5c8a14b78"
+      ]
+    ]
+  },
+  {
+    "id": "1931a6d9afdc7b86",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "内轨道右侧未装配完",
+    "property": "IO_40.AO_SCARA_R.idx_in_right",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "14",
+        "v2t": "num"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 880,
+    "y": 620,
+    "wires": [
+      [
+        "714de225f5825404",
+        "96e6a80fa9588c32"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "714de225f5825404",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧有物料",
+    "property": "IO_40.AO_SCARA_R.material_right",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "30",
+        "v2t": "num"
+      },
+      {
+        "t": "eq",
+        "v": "31",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1090,
+    "y": 620,
+    "wires": [
+      [
+        "1b1e3f6d87a8bfc7"
+      ],
+      [
+        "995772c45c24dba3"
+      ]
+    ]
+  },
+  {
+    "id": "e0591a5051acedf0",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "物料递减",
+    "func": "var IO = global.get(\"IO_40\");\nIO.AO_SCARA_R.material_right++;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1820,
+    "y": 620,
+    "wires": [
+      [
+        "7ee03fe5019095ca"
+      ]
+    ]
+  },
+  {
+    "id": "d6f908efe0cff6bd",
+    "type": "subflow:ea20ebf1717d3f23",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧放喷油",
+    "env": [
+      {
+        "name": "request_r",
+        "value": "130",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "130",
+        "type": "num"
+      }
+    ],
+    "x": 1650,
+    "y": 620,
+    "wires": [
+      [
+        "e0591a5051acedf0"
+      ]
+    ]
+  },
+  {
+    "id": "7ee03fe5019095ca",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右阀串检测",
+    "env": [
+      {
+        "name": "request",
+        "value": "710",
+        "type": "num"
+      }
+    ],
+    "x": 1990,
+    "y": 620,
+    "wires": [
+      [
+        "86030ca2a585c326"
+      ]
+    ]
+  },
+  {
+    "id": "86030ca2a585c326",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "property": "IO_40.AI.Right_visionResult",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "1",
+        "vt": "num"
+      },
+      {
+        "t": "eq",
+        "v": "2",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 2150,
+    "y": 620,
+    "wires": [
+      [
+        "641fdda61a8d5643"
+      ],
+      [
+        "d3830906c818af77"
+      ]
+    ]
+  },
+  {
+    "id": "14ccc6cf1cbedfea",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "装配数递增",
+    "func": "var IO = global.get(\"IO_40\");\nIO.AO_SCARA_R.idx_in_right ++;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 2970,
+    "y": 620,
+    "wires": [
+      [
+        "9142a8d5d358e608"
+      ]
+    ]
+  },
+  {
+    "id": "e266d792f6298a3a",
+    "type": "subflow:ea20ebf1717d3f23",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧内轨道装配",
+    "env": [
+      {
+        "name": "request_r",
+        "value": "170",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "150",
+        "type": "num"
+      }
+    ],
+    "x": 2760,
+    "y": 620,
+    "wires": [
+      [
+        "14ccc6cf1cbedfea"
+      ]
+    ]
+  },
+  {
+    "id": "e5cd059b60baead4",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧喷油",
+    "env": [
+      {
+        "name": "request",
+        "value": "610",
+        "type": "num"
+      }
+    ],
+    "x": 2500,
+    "y": 620,
+    "wires": [
+      [
+        "7324f626d742dd3e"
+      ]
+    ]
+  },
+  {
+    "id": "7324f626d742dd3e",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "property": "IO_40.AO_SCARA_R.idx_in_right",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "14",
+        "v2t": "num"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 2625,
+    "y": 620,
+    "wires": [
+      [
+        "e266d792f6298a3a"
+      ],
+      []
+    ],
+    "l": false
+  },
+  {
+    "id": "9142a8d5d358e608",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "结束",
+    "func": "\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 3190,
+    "y": 700,
+    "wires": [
+      [
+        "a629221cbf4a6cef"
+      ]
+    ]
+  },
+  {
+    "id": "a629221cbf4a6cef",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "内轨道右侧未装配完",
+    "property": "IO_40.AO_SCARA_R.idx_in_right",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "15",
+        "vt": "num"
+      },
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "14",
+        "v2t": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 3420,
+    "y": 760,
+    "wires": [
+      [
+        "5a12217bc556971d"
+      ],
+      [
+        "6350e843540592fa",
+        "b38e2257f5d9c28a"
+      ]
+    ]
+  },
+  {
+    "id": "5a12217bc556971d",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "内轨道左侧装配完",
+    "property": "IO_40.AO_SCARA_L.idx_in_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "6",
+        "vt": "num"
+      },
+      {
+        "t": "eq",
+        "v": "0",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 3650,
+    "y": 760,
+    "wires": [
+      [
+        "c2b69be643d9b648"
+      ],
+      [
+        "b5acad82d5e4290d"
+      ]
+    ]
+  },
+  {
+    "id": "6350e843540592fa",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "无用点",
+    "func": "\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 450,
+    "y": 760,
+    "wires": [
+      [
+        "32bd528a1fdecec2"
+      ]
+    ]
+  },
+  {
+    "id": "c2b69be643d9b648",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "横移到中间",
+    "env": [
+      {
+        "name": "request",
+        "value": "200",
+        "type": "num"
+      }
+    ],
+    "x": 3970,
+    "y": 540,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "d3830906c818af77",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右不良品是否满",
+    "property": "IO_40.AO_SCARA_R.trash_right",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "8",
+        "v2t": "num"
+      },
+      {
+        "t": "eq",
+        "v": "9",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 2320,
+    "y": 700,
+    "wires": [
+      [
+        "1af7fc6aac598029"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "1af7fc6aac598029",
+    "type": "subflow:ea20ebf1717d3f23",
+    "z": "b64bb6f00bd7bcee",
+    "name": "放不良品区",
+    "env": [
+      {
+        "name": "request_r",
+        "value": "140",
+        "type": "num"
+      }
+    ],
+    "x": 2510,
+    "y": 700,
+    "wires": [
+      [
+        "75021a2e2aefe89b"
+      ]
+    ]
+  },
+  {
+    "id": "75021a2e2aefe89b",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "不良品递增",
+    "func": "var IO = global.get(\"IO_40\");\nIO.AO_SCARA_R.trash_right ++;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 2690,
+    "y": 700,
+    "wires": [
+      [
+        "9142a8d5d358e608"
+      ]
+    ]
+  },
+  {
+    "id": "98dd2b8f220f29c6",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "200",
+    "timeoutUnits": "milliseconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 1745,
+    "y": 120,
+    "wires": [
+      [
+        "bc66dbf9dccf3ff2"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "ec28b51de1a8bb97",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "200",
+    "timeoutUnits": "milliseconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 2585,
+    "y": 120,
+    "wires": [
+      [
+        "60542327c522f434"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "641fdda61a8d5643",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "300",
+    "timeoutUnits": "milliseconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 2285,
+    "y": 620,
+    "wires": [
+      [
+        "e5cd059b60baead4"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e09181c235f387dd",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "300",
+    "timeoutUnits": "milliseconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 1375,
+    "y": 620,
+    "wires": [
+      [
+        "977f51653ed6d363"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "c04a67e1a64ab942",
+    "type": "comment",
+    "z": "b64bb6f00bd7bcee",
+    "name": "内轨道加工",
+    "info": "",
+    "x": 80,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "08df37c452b1ae4d",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧切换料盘",
+    "env": [
+      {
+        "name": "request",
+        "value": "330",
+        "type": "num"
+      }
+    ],
+    "x": 1880,
+    "y": 240,
+    "wires": [
+      [
+        "741eb538b71dec24"
+      ]
+    ]
+  },
+  {
+    "id": "3299e142cff03757",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧料盘初始化",
+    "env": [
+      {
+        "name": "request",
+        "value": "340",
+        "type": "num"
+      }
+    ],
+    "x": 2120,
+    "y": 240,
+    "wires": [
+      [
+        "b63cf4979b01bf5d"
+      ]
+    ]
+  },
+  {
+    "id": "741eb538b71dec24",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 2005,
+    "y": 240,
+    "wires": [
+      [
+        "3299e142cff03757"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "b63cf4979b01bf5d",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_L.material_left",
+        "pt": "global",
+        "to": "1",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 2255,
+    "y": 240,
+    "wires": [
+      [
+        "032355721fd69499"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "032355721fd69499",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 2305,
+    "y": 240,
+    "wires": [
+      [
+        "663a63ab86a002b7"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "567c9016c26ff47b",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左料不为0",
+    "property": "IO_40.AO.tray_in_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "neq",
+        "v": "0",
+        "vt": "num"
+      },
+      {
+        "t": "eq",
+        "v": "0",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1690,
+    "y": 240,
+    "wires": [
+      [
+        "08df37c452b1ae4d"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "995772c45c24dba3",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧切换料盘",
+    "env": [
+      {
+        "name": "request",
+        "value": "430",
+        "type": "num"
+      }
+    ],
+    "x": 1240,
+    "y": 720,
+    "wires": [
+      [
+        "73935f04fc74beb1"
+      ]
+    ]
+  },
+  {
+    "id": "497e6703268a283b",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧料盘初始化",
+    "env": [
+      {
+        "name": "request",
+        "value": "440",
+        "type": "num"
+      }
+    ],
+    "x": 1480,
+    "y": 720,
+    "wires": [
+      [
+        "759c5e18444a4fae"
+      ]
+    ]
+  },
+  {
+    "id": "73935f04fc74beb1",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "1",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 1365,
+    "y": 720,
+    "wires": [
+      [
+        "497e6703268a283b"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "759c5e18444a4fae",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_R.material_right",
+        "pt": "global",
+        "to": "1",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1605,
+    "y": 720,
+    "wires": [
+      [
+        "cf9f740aa8e625a3"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "cf9f740aa8e625a3",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "1",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 1685,
+    "y": 720,
+    "wires": [
+      [
+        "1b1e3f6d87a8bfc7"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "7dd5dd50b6f6caf8",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧未装配完",
+    "property": "IO_40.AO_SCARA_L.idx_out_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "5",
+        "v2t": "num"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1380,
+    "y": 1360,
+    "wires": [
+      [
+        "b00bebf158d5075e",
+        "ed9d257215fe5b5c"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "436bb65477c09cde",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "横移到左侧拍照位",
+    "env": [
+      {
+        "name": "request",
+        "value": "110",
+        "type": "num"
+      }
+    ],
+    "x": 270,
+    "y": 1160,
+    "wires": [
+      [
+        "22e6ab8eb1ce9d29"
+      ]
+    ]
+  },
+  {
+    "id": "3285ddce73e02796",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "视觉定位平移到装配位置",
+    "env": [
+      {
+        "name": "request",
+        "value": "130",
+        "type": "num"
+      }
+    ],
+    "x": 1090,
+    "y": 1160,
+    "wires": [
+      [
+        "1d679c72bd2e296a"
+      ]
+    ]
+  },
+  {
+    "id": "b26ce0f47b5faa35",
+    "type": "comment",
+    "z": "b64bb6f00bd7bcee",
+    "name": "外轨道加工",
+    "info": "",
+    "x": 120,
+    "y": 1100,
+    "wires": []
+  },
+  {
+    "id": "49473e4b16f8cac9",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "物料递减",
+    "func": "var IO = global.get(\"IO_40\");\nIO.AO_SCARA_L.material_left ++;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 2220,
+    "y": 1360,
+    "wires": [
+      [
+        "69da9e7aae3a257d"
+      ]
+    ]
+  },
+  {
+    "id": "a09621e6f59b508c",
+    "type": "subflow:f7971c0dbc233cfb",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧放喷油",
+    "env": [
+      {
+        "name": "SCARA-L",
+        "value": "130",
+        "type": "num"
+      },
+      {
+        "name": "asdf",
+        "value": "130",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "130",
+        "type": "num"
+      }
+    ],
+    "x": 2170,
+    "y": 1300,
+    "wires": [
+      [
+        "49473e4b16f8cac9"
+      ]
+    ]
+  },
+  {
+    "id": "7efc47d31eb47d4e",
+    "type": "subflow:f7971c0dbc233cfb",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧取料",
+    "env": [
+      {
+        "name": "SCARA-L",
+        "value": "120",
+        "type": "num"
+      },
+      {
+        "name": "asdf",
+        "value": "120",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "120",
+        "type": "num"
+      }
+    ],
+    "x": 1800,
+    "y": 1360,
+    "wires": [
+      [
+        "62bda59d65558075"
+      ]
+    ]
+  },
+  {
+    "id": "46b90cace4589701",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧切换料盘",
+    "env": [
+      {
+        "name": "request",
+        "value": "330",
+        "type": "num"
+      }
+    ],
+    "x": 1900,
+    "y": 1440,
+    "wires": [
+      [
+        "e93695b8af099f81"
+      ]
+    ]
+  },
+  {
+    "id": "2af94f23693a5a21",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧料盘初始化",
+    "env": [
+      {
+        "name": "request",
+        "value": "340",
+        "type": "num"
+      }
+    ],
+    "x": 2160,
+    "y": 1440,
+    "wires": [
+      [
+        "75803dd5b6ca38b1"
+      ]
+    ]
+  },
+  {
+    "id": "e93695b8af099f81",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "1",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 2015,
+    "y": 1440,
+    "wires": [
+      [
+        "2af94f23693a5a21"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "75803dd5b6ca38b1",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_L.material_left",
+        "pt": "global",
+        "to": "1",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 2295,
+    "y": 1440,
+    "wires": [
+      [
+        "9604e9fd0ab4e652"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "9604e9fd0ab4e652",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "1",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 2345,
+    "y": 1440,
+    "wires": [
+      [
+        "7efc47d31eb47d4e"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "b00bebf158d5075e",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧有物料",
+    "property": "IO_40.AO_SCARA_L.material_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "20",
+        "v2t": "num"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1590,
+    "y": 1360,
+    "wires": [
+      [
+        "7efc47d31eb47d4e"
+      ],
+      [
+        "5ea1f8507ab88c20"
+      ]
+    ]
+  },
+  {
+    "id": "5ea1f8507ab88c20",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左料不为0",
+    "property": "IO_40.AO.tray_in_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "neq",
+        "v": "0",
+        "vt": "num"
+      },
+      {
+        "t": "eq",
+        "v": "0",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1730,
+    "y": 1440,
+    "wires": [
+      [
+        "46b90cace4589701"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "a3407ffe8124b132",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "装配数递增",
+    "func": "var IO = global.get(\"IO_40\");\nIO.AO_SCARA_L.idx_out_left ++;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 3130,
+    "y": 1340,
+    "wires": [
+      [
+        "1c2b3d8c454ee937"
+      ]
+    ]
+  },
+  {
+    "id": "3d91a5353078cb7a",
+    "type": "subflow:f7971c0dbc233cfb",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧装配",
+    "env": [
+      {
+        "name": "SCARA-L",
+        "value": "150",
+        "type": "num"
+      },
+      {
+        "name": "asdf",
+        "value": "150",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "150",
+        "type": "num"
+      }
+    ],
+    "x": 2960,
+    "y": 1340,
+    "wires": [
+      [
+        "a3407ffe8124b132"
+      ]
+    ]
+  },
+  {
+    "id": "1c90c49f42bbb824",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左喷油",
+    "env": [
+      {
+        "name": "request",
+        "value": "600",
+        "type": "num"
+      }
+    ],
+    "x": 2750,
+    "y": 1340,
+    "wires": [
+      [
+        "60b62eeda7f1907f"
+      ]
+    ]
+  },
+  {
+    "id": "60b62eeda7f1907f",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "property": "IO_40.AO_SCARA_L.idx_out_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "5",
+        "v2t": "num"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 2845,
+    "y": 1340,
+    "wires": [
+      [
+        "3d91a5353078cb7a"
+      ],
+      []
+    ],
+    "l": false
+  },
+  {
+    "id": "1c2b3d8c454ee937",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "结束",
+    "func": "\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 3310,
+    "y": 1380,
+    "wires": [
+      [
+        "0c906957026fa005"
+      ]
+    ]
+  },
+  {
+    "id": "0c906957026fa005",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧未装配完",
+    "property": "IO_40.AO_SCARA_L.idx_out_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "6",
+        "vt": "num"
+      },
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "5",
+        "v2t": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 3320,
+    "y": 1480,
+    "wires": [
+      [
+        "52e8678e2c7220fa"
+      ],
+      [
+        "06a14b11a1ad26fe",
+        "cbc531786bb78f00"
+      ]
+    ]
+  },
+  {
+    "id": "52e8678e2c7220fa",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧未装配判定",
+    "property": "IO_40.AO_SCARA_R.idx_out_right",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "15",
+        "vt": "num"
+      },
+      {
+        "t": "eq",
+        "v": "0",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 3540,
+    "y": 1480,
+    "wires": [
+      [
+        "33be3d0fb8dc4020"
+      ],
+      [
+        "22a77f09a6932cdc"
+      ]
+    ]
+  },
+  {
+    "id": "06a14b11a1ad26fe",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "无用点",
+    "func": "\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1130,
+    "y": 1480,
+    "wires": [
+      [
+        "9ba272fba5747e54"
+      ]
+    ]
+  },
+  {
+    "id": "db88d9bea75e9ad5",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧未装配完",
+    "property": "IO_40.AO_SCARA_R.idx_out_right",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "14",
+        "v2t": "num"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1740,
+    "y": 1760,
+    "wires": [
+      [
+        "a79152d45c0b6e84",
+        "bc7b0bba0e4e6ffb"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "a79152d45c0b6e84",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧有物料",
+    "property": "IO_40.AO_SCARA_R.material_right",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "30",
+        "v2t": "num"
+      },
+      {
+        "t": "eq",
+        "v": "31",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 1930,
+    "y": 1760,
+    "wires": [
+      [
+        "e59d6787cb502b64"
+      ],
+      [
+        "abed5f400f9ff369"
+      ]
+    ]
+  },
+  {
+    "id": "4219a3c6cf651b87",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "物料递减",
+    "func": "var IO = global.get(\"IO_40\");\nIO.AO_SCARA_R.material_right++;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 2620,
+    "y": 1760,
+    "wires": [
+      [
+        "4bab0cfacce3b3fd"
+      ]
+    ]
+  },
+  {
+    "id": "a80cb7c4c9b562af",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "无用点",
+    "func": "\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1250,
+    "y": 1880,
+    "wires": [
+      [
+        "8652b24bb827728b"
+      ]
+    ]
+  },
+  {
+    "id": "cc97816de8195341",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "横移到右侧",
+    "env": [
+      {
+        "name": "request",
+        "value": "120",
+        "type": "num"
+      }
+    ],
+    "x": 1350,
+    "y": 1760,
+    "wires": [
+      [
+        "951795f6d4cb49d3",
+        "9fc3bebf0ea38c30"
+      ]
+    ]
+  },
+  {
+    "id": "e59d6787cb502b64",
+    "type": "subflow:ea20ebf1717d3f23",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧抓料",
+    "env": [
+      {
+        "name": "request_r",
+        "value": "120",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "120",
+        "type": "num"
+      }
+    ],
+    "x": 2140,
+    "y": 1760,
+    "wires": [
+      [
+        "1dbd7a2c0249c6ec"
+      ]
+    ]
+  },
+  {
+    "id": "68d22761e2370303",
+    "type": "subflow:ea20ebf1717d3f23",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧放喷油",
+    "env": [
+      {
+        "name": "request_r",
+        "value": "130",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "130",
+        "type": "num"
+      }
+    ],
+    "x": 2470,
+    "y": 1760,
+    "wires": [
+      [
+        "4219a3c6cf651b87"
+      ]
+    ]
+  },
+  {
+    "id": "abed5f400f9ff369",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧切换料盘",
+    "env": [
+      {
+        "name": "request",
+        "value": "430",
+        "type": "num"
+      }
+    ],
+    "x": 2140,
+    "y": 1860,
+    "wires": [
+      [
+        "cfba95bbaa1a3ef6"
+      ]
+    ]
+  },
+  {
+    "id": "ecd754bf4bec1ec3",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧料盘初始化",
+    "env": [
+      {
+        "name": "request",
+        "value": "440",
+        "type": "num"
+      }
+    ],
+    "x": 2420,
+    "y": 1860,
+    "wires": [
+      [
+        "e766b7803a6e280d"
+      ]
+    ]
+  },
+  {
+    "id": "cfba95bbaa1a3ef6",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "1",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 2285,
+    "y": 1860,
+    "wires": [
+      [
+        "ecd754bf4bec1ec3"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e766b7803a6e280d",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_R.material_right",
+        "pt": "global",
+        "to": "1",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 2555,
+    "y": 1860,
+    "wires": [
+      [
+        "2f0beb9932324b16"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "2f0beb9932324b16",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "1",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 2615,
+    "y": 1860,
+    "wires": [
+      [
+        "e59d6787cb502b64"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "c8a788e194c4f06e",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "装配数递增",
+    "func": "var IO = global.get(\"IO_40\");\nIO.AO_SCARA_R.idx_out_right ++;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 3610,
+    "y": 1760,
+    "wires": [
+      [
+        "e69f13ad759936b3"
+      ]
+    ]
+  },
+  {
+    "id": "404b0c64ebd87e0c",
+    "type": "subflow:ea20ebf1717d3f23",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧装配",
+    "env": [
+      {
+        "name": "request_r",
+        "value": "150",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "150",
+        "type": "num"
+      }
+    ],
+    "x": 3440,
+    "y": 1760,
+    "wires": [
+      [
+        "c8a788e194c4f06e"
+      ]
+    ]
+  },
+  {
+    "id": "4e257df2dbc5d2eb",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧喷油",
+    "env": [
+      {
+        "name": "request",
+        "value": "610",
+        "type": "num"
+      }
+    ],
+    "x": 3200,
+    "y": 1760,
+    "wires": [
+      [
+        "3a96c292e30a6aa9"
+      ]
+    ]
+  },
+  {
+    "id": "3a96c292e30a6aa9",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "property": "IO_40.AO_SCARA_R.idx_out_right",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "14",
+        "v2t": "num"
+      },
+      {
+        "t": "else"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 3325,
+    "y": 1760,
+    "wires": [
+      [
+        "404b0c64ebd87e0c"
+      ],
+      []
+    ],
+    "l": false
+  },
+  {
+    "id": "e69f13ad759936b3",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "结束",
+    "func": "\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 3790,
+    "y": 1760,
+    "wires": [
+      [
+        "d5411eb0f1376ee2"
+      ]
+    ]
+  },
+  {
+    "id": "d5411eb0f1376ee2",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧未装配完",
+    "property": "IO_40.AO_SCARA_R.idx_out_right",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "15",
+        "vt": "str"
+      },
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "14",
+        "v2t": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 4040,
+    "y": 1880,
+    "wires": [
+      [
+        "3abdbd1d2b8f16f8"
+      ],
+      [
+        "a80cb7c4c9b562af",
+        "9e4e9fb036f10e6c"
+      ]
+    ]
+  },
+  {
+    "id": "3abdbd1d2b8f16f8",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧未装配完",
+    "property": "IO_40.AO_SCARA_L.idx_out_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "6",
+        "vt": "num"
+      },
+      {
+        "t": "eq",
+        "v": "0",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 4260,
+    "y": 1880,
+    "wires": [
+      [
+        "33be3d0fb8dc4020"
+      ],
+      [
+        "eeb3dc496fc78f73"
+      ]
+    ]
+  },
+  {
+    "id": "eeb3dc496fc78f73",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "无用点",
+    "func": "\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 4415,
+    "y": 1980,
+    "wires": [
+      [
+        "d3eed78091a9df1f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "33be3d0fb8dc4020",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "横移到中间",
+    "env": [
+      {
+        "name": "request",
+        "value": "100",
+        "type": "num"
+      }
+    ],
+    "x": 4470,
+    "y": 1500,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "69da9e7aae3a257d",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左阀串检测",
+    "env": [
+      {
+        "name": "request",
+        "value": "700",
+        "type": "num"
+      }
+    ],
+    "x": 2370,
+    "y": 1360,
+    "wires": [
+      [
+        "43c82acbd866a916"
+      ]
+    ]
+  },
+  {
+    "id": "43c82acbd866a916",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "property": "IO_40.AI.Left_visionResult",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "1",
+        "vt": "num"
+      },
+      {
+        "t": "eq",
+        "v": "2",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 2530,
+    "y": 1360,
+    "wires": [
+      [
+        "ad12a1f2cd2741c2"
+      ],
+      [
+        "dc497922dcbbddcd"
+      ]
+    ]
+  },
+  {
+    "id": "ad12a1f2cd2741c2",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "200",
+    "timeoutUnits": "milliseconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 2645,
+    "y": 1340,
+    "wires": [
+      [
+        "1c90c49f42bbb824"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "a5a01b1dbee52f06",
+    "type": "subflow:f7971c0dbc233cfb",
+    "z": "b64bb6f00bd7bcee",
+    "name": "放不良品区",
+    "env": [
+      {
+        "name": "SCARA-L",
+        "value": "140",
+        "type": "num"
+      },
+      {
+        "name": "asdf",
+        "value": "140",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "150",
+        "type": "num"
+      }
+    ],
+    "x": 2930,
+    "y": 1420,
+    "wires": [
+      [
+        "ea343ecda9acc6a0"
+      ]
+    ]
+  },
+  {
+    "id": "dc497922dcbbddcd",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左不良品是否满",
+    "property": "IO_40.AO_SCARA_L.trash_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "lte",
+        "v": "8",
+        "vt": "num"
+      },
+      {
+        "t": "gt",
+        "v": "8",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 2700,
+    "y": 1420,
+    "wires": [
+      [
+        "a5a01b1dbee52f06"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "04fd7e751a267335",
+    "type": "link in",
+    "z": "b64bb6f00bd7bcee",
+    "name": "虚拟输入 2",
+    "links": [],
+    "x": 2725,
+    "y": 1460,
+    "wires": [
+      [
+        "a5a01b1dbee52f06"
+      ]
+    ]
+  },
+  {
+    "id": "ea343ecda9acc6a0",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "不良品递增",
+    "func": "var IO = global.get(\"IO_40\");\nIO.AO_SCARA_L.trash_left ++;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 3110,
+    "y": 1420,
+    "wires": [
+      [
+        "1c2b3d8c454ee937"
+      ]
+    ]
+  },
+  {
+    "id": "4bab0cfacce3b3fd",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右阀串检测",
+    "env": [
+      {
+        "name": "request",
+        "value": "710",
+        "type": "num"
+      }
+    ],
+    "x": 2770,
+    "y": 1820,
+    "wires": [
+      [
+        "cf256a4130d42081"
+      ]
+    ]
+  },
+  {
+    "id": "cf256a4130d42081",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "property": "IO_40.AI.Right_visionResult",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "1",
+        "vt": "num"
+      },
+      {
+        "t": "eq",
+        "v": "2",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 2930,
+    "y": 1820,
+    "wires": [
+      [
+        "619dd95658e8536f"
+      ],
+      [
+        "198c85a04b455c0c"
+      ]
+    ]
+  },
+  {
+    "id": "198c85a04b455c0c",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右不良品是否满",
+    "property": "IO_40.AO_SCARA_R.trash_right",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "lte",
+        "v": "8",
+        "vt": "num"
+      },
+      {
+        "t": "gt",
+        "v": "8",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 2,
+    "x": 3140,
+    "y": 1860,
+    "wires": [
+      [
+        "6d17c67f092a5f97"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "619dd95658e8536f",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "200",
+    "timeoutUnits": "milliseconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 3085,
+    "y": 1760,
+    "wires": [
+      [
+        "4e257df2dbc5d2eb"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "6d17c67f092a5f97",
+    "type": "subflow:ea20ebf1717d3f23",
+    "z": "b64bb6f00bd7bcee",
+    "name": "放不良品区",
+    "env": [
+      {
+        "name": "request_r",
+        "value": "140",
+        "type": "num"
+      }
+    ],
+    "x": 3330,
+    "y": 1860,
+    "wires": [
+      [
+        "4359bd58b73061ff"
+      ]
+    ]
+  },
+  {
+    "id": "4359bd58b73061ff",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "不良品递增",
+    "func": "var IO = global.get(\"IO_40\");\nIO.AO_SCARA_R.trash_right ++;\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 3530,
+    "y": 1860,
+    "wires": [
+      [
+        "e69f13ad759936b3"
+      ]
+    ]
+  },
+  {
+    "id": "6e175644dd74481d",
+    "type": "inject",
+    "z": "b64bb6f00bd7bcee",
+    "name": "启动",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 310,
+    "y": 1100,
+    "wires": [
+      [
+        "19dd1cce1a3522a4",
+        "1231fc663071b2c1"
+      ]
+    ]
+  },
+  {
+    "id": "0659732a897ad7aa",
+    "type": "link in",
+    "z": "b64bb6f00bd7bcee",
+    "name": "执行生产50内轨道",
+    "links": [
+      "a6d11fc72cc988bb"
+    ],
+    "x": 315,
+    "y": 20,
+    "wires": [
+      [
+        "c96070deba11eb29",
+        "2c6ea84f31444594"
+      ]
+    ]
+  },
+  {
+    "id": "c1704814b117a903",
+    "type": "link in",
+    "z": "b64bb6f00bd7bcee",
+    "name": "执行生产40外轨道",
+    "links": [
+      "bb442ff90bfe9c88"
+    ],
+    "x": 335,
+    "y": 1060,
+    "wires": [
+      [
+        "19dd1cce1a3522a4",
+        "1231fc663071b2c1"
+      ]
+    ]
+  },
+  {
+    "id": "de91b3463b340804",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧内轨道,是否装配中",
+    "property": "IO_40.AO_SCARA_L.idx_in_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "0",
+        "vt": "num"
+      },
+      {
+        "t": "eq",
+        "v": "6",
+        "vt": "num"
+      },
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "5",
+        "v2t": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 3,
+    "x": 790,
+    "y": 1300,
+    "wires": [
+      [
+        "1f0f5fb7f972e48a"
+      ],
+      [
+        "1f0f5fb7f972e48a"
+      ],
+      [
+        "22a77f09a6932cdc"
+      ]
+    ]
+  },
+  {
+    "id": "1f0f5fb7f972e48a",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "外轨道左侧-开始",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_L.idx_out_left",
+        "pt": "global",
+        "to": "1",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1220,
+    "y": 1300,
+    "wires": [
+      [
+        "da881c525d8adfa8"
+      ]
+    ]
+  },
+  {
+    "id": "22a77f09a6932cdc",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "外轨道右侧-开始",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_R.idx_out_right",
+        "pt": "global",
+        "to": "1",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1140,
+    "y": 1760,
+    "wires": [
+      [
+        "cc97816de8195341"
+      ]
+    ]
+  },
+  {
+    "id": "d3eed78091a9df1f",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "无用点",
+    "func": "\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 155,
+    "y": 1980,
+    "wires": [
+      [
+        "1f0f5fb7f972e48a"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e333c480e33e888b",
+    "type": "inject",
+    "z": "b64bb6f00bd7bcee",
+    "name": "启动",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 330,
+    "y": 60,
+    "wires": [
+      [
+        "c96070deba11eb29",
+        "2c6ea84f31444594"
+      ]
+    ]
+  },
+  {
+    "id": "366efadd5271a216",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧外轨道,是否装配中",
+    "property": "IO_40.AO_SCARA_L.idx_out_left",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "0",
+        "vt": "num"
+      },
+      {
+        "t": "eq",
+        "v": "6",
+        "vt": "num"
+      },
+      {
+        "t": "btwn",
+        "v": "1",
+        "vt": "num",
+        "v2": "5",
+        "v2t": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 3,
+    "x": 510,
+    "y": 180,
+    "wires": [
+      [
+        "9b80c2b4b221f8c7"
+      ],
+      [
+        "9b80c2b4b221f8c7"
+      ],
+      [
+        "332b816a5fdc66e0"
+      ]
+    ]
+  },
+  {
+    "id": "9b80c2b4b221f8c7",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "内轨道左侧-开始",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_L.idx_in_left",
+        "pt": "global",
+        "to": "1",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 760,
+    "y": 180,
+    "wires": [
+      [
+        "f208d38def4ce0e1"
+      ]
+    ]
+  },
+  {
+    "id": "332b816a5fdc66e0",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "内轨道右侧-开始",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_R.idx_in_right",
+        "pt": "global",
+        "to": "1",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 560,
+    "y": 560,
+    "wires": [
+      [
+        "e87ab6df888751ba"
+      ]
+    ]
+  },
+  {
+    "id": "1d679c72bd2e296a",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左右装配数置零",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_L.idx_out_left",
+        "pt": "global",
+        "to": "0",
+        "tot": "num"
+      },
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_R.idx_out_right",
+        "pt": "global",
+        "to": "0",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1300,
+    "y": 1160,
+    "wires": [
+      [
+        "de91b3463b340804"
+      ]
+    ]
+  },
+  {
+    "id": "63472aed0daee55b",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左右装配数置零",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_L.idx_in_left",
+        "pt": "global",
+        "to": "0",
+        "tot": "num"
+      },
+      {
+        "t": "set",
+        "p": "IO_40.AO_SCARA_R.idx_in_right",
+        "pt": "global",
+        "to": "0",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1300,
+    "y": 120,
+    "wires": [
+      [
+        "366efadd5271a216"
+      ]
+    ]
+  },
+  {
+    "id": "da881c525d8adfa8",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "横移到左侧",
+    "env": [
+      {
+        "name": "request",
+        "value": "110",
+        "type": "num"
+      }
+    ],
+    "x": 1410,
+    "y": 1300,
+    "wires": [
+      [
+        "2d9f88817bf66182",
+        "97e8a51165343571"
+      ]
+    ]
+  },
+  {
+    "id": "f208d38def4ce0e1",
+    "type": "subflow:9586c5d88dd2c881",
+    "z": "b64bb6f00bd7bcee",
+    "name": "内轨道移动到左侧",
+    "env": [
+      {
+        "name": "request",
+        "value": "210",
+        "type": "num"
+      }
+    ],
+    "x": 990,
+    "y": 180,
+    "wires": [
+      [
+        "0e55c23a0e1f0d08",
+        "a87f466b256b353a"
+      ]
+    ]
+  },
+  {
+    "id": "0e55c23a0e1f0d08",
+    "type": "subflow:5b7607247210f390",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "x": 1090,
+    "y": 240,
+    "wires": [
+      [
+        "f1cc133ccb486426"
+      ]
+    ]
+  },
+  {
+    "id": "e9fced08fe7253e8",
+    "type": "subflow:c6cdde3e27578b72",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "x": 930,
+    "y": 560,
+    "wires": [
+      [
+        "32bd528a1fdecec2"
+      ]
+    ]
+  },
+  {
+    "id": "2d9f88817bf66182",
+    "type": "subflow:f1b5175008df5e4f",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "x": 1570,
+    "y": 1300,
+    "wires": [
+      [
+        "9ba272fba5747e54"
+      ]
+    ]
+  },
+  {
+    "id": "951795f6d4cb49d3",
+    "type": "subflow:5318328504c0fd7c",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "x": 1530,
+    "y": 1760,
+    "wires": [
+      [
+        "8652b24bb827728b"
+      ]
+    ]
+  },
+  {
+    "id": "b5acad82d5e4290d",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "无用点",
+    "func": "\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 3855,
+    "y": 820,
+    "wires": [
+      [
+        "e1e9beb7b9403c56"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e1e9beb7b9403c56",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "无用点",
+    "func": "\nreturn msg;\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 135,
+    "y": 820,
+    "wires": [
+      [
+        "9b80c2b4b221f8c7"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "22e6ab8eb1ce9d29",
+    "type": "subflow:f7971c0dbc233cfb",
+    "z": "b64bb6f00bd7bcee",
+    "name": "左侧scara拍照",
+    "env": [
+      {
+        "name": "SCARA-L",
+        "value": "110",
+        "type": "num"
+      },
+      {
+        "name": "asdf",
+        "value": "110",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "120",
+        "type": "num"
+      }
+    ],
+    "x": 880,
+    "y": 1160,
+    "wires": [
+      [
+        "3285ddce73e02796"
+      ]
+    ]
+  },
+  {
+    "id": "62bda59d65558075",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "300",
+    "timeoutUnits": "milliseconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 1885,
+    "y": 1300,
+    "wires": [
+      [
+        "3cd812922703331b"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "977f51653ed6d363",
+    "type": "subflow:da53119d7e90a265",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "x": 1490,
+    "y": 620,
+    "wires": [
+      [
+        "d6f908efe0cff6bd"
+      ]
+    ]
+  },
+  {
+    "id": "3cd812922703331b",
+    "type": "subflow:dfa3db885e16c622",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "x": 2010,
+    "y": 1300,
+    "wires": [
+      [
+        "a09621e6f59b508c"
+      ]
+    ]
+  },
+  {
+    "id": "4e2131a8977720a5",
+    "type": "subflow:da53119d7e90a265",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "x": 2310,
+    "y": 1700,
+    "wires": [
+      [
+        "68d22761e2370303"
+      ]
+    ]
+  },
+  {
+    "id": "1dbd7a2c0249c6ec",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "300",
+    "timeoutUnits": "milliseconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 2195,
+    "y": 1700,
+    "wires": [
+      [
+        "4e2131a8977720a5"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "1b1e3f6d87a8bfc7",
+    "type": "subflow:ea20ebf1717d3f23",
+    "z": "b64bb6f00bd7bcee",
+    "name": "右侧抓料",
+    "env": [
+      {
+        "name": "request_r",
+        "value": "120",
+        "type": "num"
+      },
+      {
+        "name": "request",
+        "value": "120",
+        "type": "num"
+      }
+    ],
+    "x": 1280,
+    "y": 620,
+    "wires": [
+      [
+        "e09181c235f387dd"
+      ]
+    ]
+  },
+  {
+    "id": "bc66dbf9dccf3ff2",
+    "type": "subflow:dfa3db885e16c622",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "x": 1850,
+    "y": 120,
+    "wires": [
+      [
+        "cae7257b87ee6bf7"
+      ]
+    ]
+  },
+  {
+    "id": "f1cc133ccb486426",
+    "type": "subflow:7b3736660559e9a0",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "x": 1140,
+    "y": 320,
+    "wires": [
+      [
+        "4022d170d75c953b"
+      ]
+    ]
+  },
+  {
+    "id": "8652b24bb827728b",
+    "type": "subflow:ea49554a2ff9c372",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "x": 1500,
+    "y": 1880,
+    "wires": [
+      [
+        "db88d9bea75e9ad5"
+      ]
+    ]
+  },
+  {
+    "id": "32bd528a1fdecec2",
+    "type": "subflow:7b3736660559e9a0",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "x": 660,
+    "y": 620,
+    "wires": [
+      [
+        "1931a6d9afdc7b86"
+      ]
+    ]
+  },
+  {
+    "id": "9ba272fba5747e54",
+    "type": "subflow:ea49554a2ff9c372",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "x": 1160,
+    "y": 1360,
+    "wires": [
+      [
+        "7dd5dd50b6f6caf8"
+      ]
+    ]
+  },
+  {
+    "id": "5e9e0c3d0c3309c3",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "left_in_assembling",
+        "pt": "global",
+        "to": "true",
+        "tot": "bool"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1420,
+    "y": 240,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "b157712f6f744bdc",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "left_in_assembling",
+        "pt": "global",
+        "to": "false",
+        "tot": "bool"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 3600,
+    "y": 400,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "96e6a80fa9588c32",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "right_in_assembling",
+        "pt": "global",
+        "to": "true",
+        "tot": "bool"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 990,
+    "y": 660,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "b38e2257f5d9c28a",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "right_in_assembling",
+        "pt": "global",
+        "to": "false",
+        "tot": "bool"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 3650,
+    "y": 820,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ed9d257215fe5b5c",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "left_out_assembling",
+        "pt": "global",
+        "to": "true",
+        "tot": "bool"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1490,
+    "y": 1400,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "cbc531786bb78f00",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "left_out_assembling",
+        "pt": "global",
+        "to": "false",
+        "tot": "bool"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 3570,
+    "y": 1580,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "bc7b0bba0e4e6ffb",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "right_out_assembling",
+        "pt": "global",
+        "to": "true",
+        "tot": "bool"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1850,
+    "y": 1820,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "9e4e9fb036f10e6c",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "right_out_assembling",
+        "pt": "global",
+        "to": "false",
+        "tot": "bool"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 4170,
+    "y": 1940,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "c96070deba11eb29",
+    "type": "trigger",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "str",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 455,
+    "y": 60,
+    "wires": [
+      [
+        "0d496a1eae0f11e5"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "0d496a1eae0f11e5",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "property": "out_initing",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "false"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 515,
+    "y": 60,
+    "wires": [
+      [
+        "98811128a8a9c1f3"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "98811128a8a9c1f3",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "property": "left_out_assembling",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "false"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 565,
+    "y": 60,
+    "wires": [
+      [
+        "9bf9f89aa758c263"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "9bf9f89aa758c263",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "property": "right_out_assembling",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "false"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 615,
+    "y": 60,
+    "wires": [
+      [
+        "aaefa36ab4a2d30d"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "aaefa36ab4a2d30d",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "reset",
+        "pt": "msg",
+        "to": "1",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 685,
+    "y": 60,
+    "wires": [
+      [
+        "b16367572a533c3d",
+        "c96070deba11eb29"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "b16367572a533c3d",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "无用点",
+    "func": "\nreturn {payload:1};\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 755,
+    "y": 60,
+    "wires": [
+      [
+        "d4e92307d7094bd1"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "90a5e5f80d4af7e8",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "in_initing",
+        "pt": "global",
+        "to": "false",
+        "tot": "bool"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 860,
+    "y": 240,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "19dd1cce1a3522a4",
+    "type": "trigger",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "str",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 475,
+    "y": 1100,
+    "wires": [
+      [
+        "80d46e046aa2f1be"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "80d46e046aa2f1be",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "property": "in_initing",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "false"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 535,
+    "y": 1100,
+    "wires": [
+      [
+        "ee4e19d2de0fce4e"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "ee4e19d2de0fce4e",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "property": "left_in_assembling",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "false"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 585,
+    "y": 1100,
+    "wires": [
+      [
+        "4d921442ce4c3c1f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "4d921442ce4c3c1f",
+    "type": "switch",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "property": "right_in_assembling",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "false"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 635,
+    "y": 1100,
+    "wires": [
+      [
+        "4cf7f278981d25de"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "4cf7f278981d25de",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "reset",
+        "pt": "msg",
+        "to": "1",
+        "tot": "num"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 705,
+    "y": 1100,
+    "wires": [
+      [
+        "062d4ecc7ca86640",
+        "19dd1cce1a3522a4"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "062d4ecc7ca86640",
+    "type": "function",
+    "z": "b64bb6f00bd7bcee",
+    "name": "无用点",
+    "func": "\nreturn {payload:1};\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 775,
+    "y": 1100,
+    "wires": [
+      [
+        "436bb65477c09cde"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "c7956ef5c8a14b78",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "in_initing",
+        "pt": "global",
+        "to": "false",
+        "tot": "bool"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 950,
+    "y": 520,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "97e8a51165343571",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "out_initing",
+        "pt": "global",
+        "to": "false",
+        "tot": "bool"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1600,
+    "y": 1260,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "9fc3bebf0ea38c30",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "out_initing",
+        "pt": "global",
+        "to": "false",
+        "tot": "bool"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1480,
+    "y": 1800,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "2c6ea84f31444594",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "in_initing",
+        "pt": "global",
+        "to": "true",
+        "tot": "bool"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 530,
+    "y": 20,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "1231fc663071b2c1",
+    "type": "change",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "out_initing",
+        "pt": "global",
+        "to": "true",
+        "tot": "bool"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 580,
+    "y": 1040,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "a87f466b256b353a",
+    "type": "delay",
+    "z": "b64bb6f00bd7bcee",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "1",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 715,
+    "y": 240,
+    "wires": [
+      [
+        "90a5e5f80d4af7e8"
+      ]
+    ],
+    "l": false
+  }
+]

@@ -1,0 +1,1210 @@
+[
+  {
+    "id": "f9ed7ce98dfb48f5",
+    "type": "tab",
+    "label": "dataCenter-40",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "3dba3e8d93abf91f",
+    "type": "modbus-server",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "OP40",
+    "logEnabled": false,
+    "hostname": "0.0.0.0",
+    "serverPort": "10040",
+    "responseDelay": 100,
+    "delayUnit": "ms",
+    "coilsBufferSize": 10000,
+    "holdingBufferSize": 10000,
+    "inputBufferSize": 10000,
+    "discreteBufferSize": 10000,
+    "showErrors": true,
+    "x": 130,
+    "y": 680,
+    "wires": [
+      [],
+      [],
+      [],
+      [],
+      []
+    ]
+  },
+  {
+    "id": "5510cac9c6e89b5c",
+    "type": "inject",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "OP40数据初始化",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 170,
+    "y": 40,
+    "wires": [
+      [
+        "1ea186152dc1a1ba"
+      ]
+    ]
+  },
+  {
+    "id": "d173ea419e8a649d",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "IO初始化",
+    "func": "var IO_40 = {\n    DO:{},\n    DI:{\n        DI_JiTing:0,\n\n\n    },\n    AI:{//node-red收到来自控制器的逻辑变量\n        response: 0,//控制器端动作端的完成信号\n        error: 0,//控制器端的故障码\n        status: 0,//控制器端的状态\n        Left_visionResult:0,\n        Right_visionResult:0,\n    },\n    AO:{//node-red要发送下去的逻辑变量\n        request:0,\n        response:0,\n        tray_in_left:0,\n        tray_out_left:0,\n        tray_in_right:0,\n        tray_out_right:0,\n        left_max:5,\n        right_max:14,\n        shifted: false,\n    },    \n    AI_SCARA_R:{\n        response: 0,//6轴机械臂端动作的完成信号\n        error: 0,//6轴机械臂的故障码\n        status: 0,//6轴机械臂状态\n    },\n\n    AO_SCARA_R:{\n        request_: 0,\n        request:0,\n        idx_out_right:0,\n        idx_in_right:0,\n        material_right:0,\n        trash_right:0,\n        product_offset_in:0,\n        product_offset_out:0,\n\n    },\n    AI_SCARA_L:{\n        response: 0,//6轴机械臂端动作的完成信号\n        error: 0,//6轴机械臂的故障码\n        status: 0,//6轴机械臂状态\n    },\n\n    AO_SCARA_L:{\n        request:0,\n        request_: 0,\n        idx_out_left:0,\n        idx_in_left:0,\n        material_left:0,\n        trash_left:0,\n        product_offset_in:0,\n        product_offset_out:0,\n    },    \n    AI_LCS:{\n        request: 0,\n    },\n    AO_LCS:{\n        response: 0,\n    },\n    AI_AGV:{\n        response: 0,\n    },\n    AO_AGV:{\n        request: 0,\n    },    \n    AI_vision:{\n        response: 0,\n    },\n    AO_vision:{\n        request: 0,\n    },  \n};\n\nglobal.set(\"IO_40\",IO_40);\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 620,
+    "y": 40,
+    "wires": [
+      [
+        "604d8873ecf1a876"
+      ]
+    ]
+  },
+  {
+    "id": "ec1227fef549c0f8",
+    "type": "modbus-read",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "SCARA-左-逻辑变量读取",
+    "topic": "",
+    "showStatusActivities": false,
+    "logIOActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "HoldingRegister",
+    "adr": "61",
+    "quantity": "1",
+    "rate": "200",
+    "rateUnit": "ms",
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "server": "1a3a610758658ecb",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "emptyMsgOnFail": false,
+    "x": 190,
+    "y": 360,
+    "wires": [
+      [
+        "77d6f684e3be66e0"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "581258e7ec76ca3f",
+    "type": "inject",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "2",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 120,
+    "y": 600,
+    "wires": [
+      [
+        "992229330d7f0aa0"
+      ]
+    ]
+  },
+  {
+    "id": "992229330d7f0aa0",
+    "type": "trigger",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "str",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 310,
+    "y": 600,
+    "wires": [
+      [
+        "722bdb380e6f0539",
+        "f3f856f51bab9785",
+        "3f5bb7c3b3a49d19",
+        "7cfbd76cd3100e6e"
+      ]
+    ]
+  },
+  {
+    "id": "db2fd7353bc50f2b",
+    "type": "modbus-write",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到左侧",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "MHoldingRegisters",
+    "adr": "62",
+    "quantity": "6",
+    "server": "1a3a610758658ecb",
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 730,
+    "y": 740,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "3f5bb7c3b3a49d19",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写到左侧SCARA",
+    "func": "var IO = global.get(\"IO_40\");\nvar data = [\n    IO.AO_SCARA_L.idx_out_left,\n    IO.AO_SCARA_L.idx_in_left,\n    IO.AO_SCARA_L.material_left,\n    IO.AO_SCARA_L.trash_left,\n    IO.AO_SCARA_L.product_offset_in,\n    IO.AO_SCARA_L.product_offset_out,\n];\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 530,
+    "y": 740,
+    "wires": [
+      [
+        "db2fd7353bc50f2b"
+      ]
+    ]
+  },
+  {
+    "id": "357e91fad310949b",
+    "type": "modbus-read",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "LCS 调度命令读取",
+    "topic": "",
+    "showStatusActivities": false,
+    "logIOActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "HoldingRegister",
+    "adr": "4040",
+    "quantity": "1",
+    "rate": "200",
+    "rateUnit": "ms",
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "server": "ebdc7b3b4236640e",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "emptyMsgOnFail": false,
+    "x": 170,
+    "y": 520,
+    "wires": [
+      [
+        "0b44f277f7555902"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "0b44f277f7555902",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到本地内存",
+    "func": "\nconst data = msg.payload;\nvar IO = global.get(\"IO_40\");\nvar i = 0;\nIO.AI_LCS.request = data[i]; i++;\n\n\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 480,
+    "y": 520,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "05ac1629b6a0b772",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "发送给LCS呼叫AGV",
+    "func": "var data = [];\nvar IO = global.get(\"IO_90\");\ndata.push(IO.AO_LCS.Pos_In);\ndata.push(IO.AO_LCS.Pos_Out);\n\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 540,
+    "y": 840,
+    "wires": [
+      [
+        "a065307aaef40619"
+      ]
+    ]
+  },
+  {
+    "id": "a065307aaef40619",
+    "type": "modbus-write",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到虚拟modbus",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "",
+    "dataType": "MHoldingRegisters",
+    "adr": "0",
+    "quantity": "100",
+    "server": "ebdc7b3b4236640e",
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 750,
+    "y": 840,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "604d8873ecf1a876",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "物料-工单 初始化",
+    "func": "\nvar ErrorMap_40 = [\n    \"视觉通信故障\",\n    \"螺丝刀通信故障\",\n    \"伺服1故障\",\n    \"伺服2故障\",\n    \"伺服3故障\",\n    \"伺服4故障\",   \n    \"伺服5故障\",\n    \"伺服6故障\",\n    \"伺服7故障\",\n    ];\n    \nglobal.set(\"StationTask_40\",{\n    BillCode: \"-\",\n    ProductCode: \"-\",\n    ProductName:\"-\",\n    ProcessDetail: [{\n        ProcessCode: \"OP40\",\n        ProcessName: \"-\",\n        EquipmentCode: \"OP40\",\n        ProgramNumer: 1,\n        Num: 0,\n        completed: 0,\n MaterialDetails: [\n            {\n                MaterialCode: \"DN-10\",\n                MaterialName: \"DN-10\",\n                Num: 0,\n                consumption: 15,\n                remain: 0,\n                used: 0,\n                layers: [],\n                LocationCode: \"OP40_IN_1#\",\n                \n            },\n            {\n                MaterialCode: \"DN-20\",\n                MaterialName: \"DN-20\",\n                Num: 0,\n                consumption: 15,\n                remain: 0,\n                used: 0,\n                layers: [],\n                LocationCode: \"OP40_IN_2#\",\n            },\n            {\n                MaterialCode: \"-\",\n                MaterialName: \"-\",\n                Num: 0,\n                consumption: 0,\n                remain: 0,\n                used: 0,\n                layers: [],\n                LocationCode: \"OP40_OUT_2#\",\n            },  \n            {\n                MaterialCode: \"-\",\n                MaterialName: \"-\",\n                Num: 0,\n                consumption: 0,\n                remain: 0,\n                used: 0,\n                layers: [],\n                LocationCode: \"OP40_OUT_1#\",\n            },             \n        ]\n    }]\n});\n\nconst t = (new Date()).toISOString();\nglobal.set(\"Request_40\",{\n    StartTime:t,\n    EndTime:t,\n    RequestID:\"-\",\n    RequestID_:\"-\",\n    barcode: \"\",\n});\n\nglobal.set(\"Request_41\",{\n    StartTime:t,\n    EndTime:t,\n    RequestID:\"-\",\n    RequestID_:\"-\",\n    barcode: \"\",\n});\n\nglobal.set(\"SCARA_L_Actions\",[]);\nglobal.set(\"SCARA_R_Actions\",[]);\nglobal.set(\"ExtController_Actions\",[]);\n\nglobal.set(\"in_initing\",false);\nglobal.set(\"out_initing\", false);\n\nglobal.set(\"right_in_assembling\", false);\nglobal.set(\"left_in_assembling\", false);\n\nglobal.set(\"right_out_assembling\", false);\nglobal.set(\"left_out_assembling\", false);\n\nglobal.set(\"pause_out\",false);\nglobal.set(\"pause_in\",false);\n\nglobal.set(\"ErrorMap_40\", ErrorMap_40);\nglobal.set(\"LCS\", \"http://192.168.110.200:9006/openApiUbiquitous/\");\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 830,
+    "y": 40,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "1ea186152dc1a1ba",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "定义变量名",
+    "func": "global.set(\"Enum\",{\n\nDEFAULT:0,\nOUTER_TO_CENTER:100,\nOUTER_TO_LEFT:110,\nOUTER_TO_RIGHT:120,\nINNER_TO_CENTER:200,\nINNER_TO_LEFT:210,\nINNER_TO_RIGHT:220,\nBUNK_LEFT_FULL_IN:300,\nBUNK_LEFT_FULL_OUT:310,\nBUNK_LEFT_EMPTY_OUT:320,\nBUNK_LEFT_SHIFT:330,\nBUNK_LEFT_FULL_CHECK:340,\nBUNK_LEFT_EMPTY_STOP:350,\nBUNK_LEFT_FULL_STOP:360,\nBUNK_RIGHT_FULL_IN:400,\nBUNK_RIGHT_FULL_OUT:410,\nBUNK_RIGHT_EMPTY_OUT:420,\nBUNK_RIGHT_SHIFT:430,\nBUNK_RIGHT_FULL_CHECK:440,\nBUNK_RIGHT_EMPTY_STOP:450,\nBUNK_RIGHT_FULL_STOP:460,\nBUNK_INIT:500,\nOIL_LEFT:600,\nOIL_RIGHT:610,\nDEFAULT_L:0,\nSCARA_LEFT_PRODUCT_IN:100,\nSCARA_LEFT_PRODUCT_OUT:110,\nSCARA_LEFT_PANEL_TO_HOME:120,\nSCARA_LEFT_HOME_TO_OIL:130,\nSCARA_LEFT_OIL_TO_TRASH:140,\nSCARA_LEFT_OIL_TO_PRODUCT:150,\nSCARA_LEFT_INIT:160,\nDEFAULT_R:0,\nSCARA_RIGHT_PRODUCT_IN:100,\nSCARA_RIGHT_PRODUCT_OUT:110,\nSCARA_RIGHT_PANEL_TO_HOME:120,\nSCARA_RIGHT_HOEM_TO_OIL:130,\nSCARA_RIGHT_OIL_TO_TRASH:140,\nSCARA_RIGHT_OIL_TO_PRODUCT:150,\nSCARA_RIGHT_INIT:160,\nDEFAULT_LCS:0,\nLCS_ENABLE:1,\nLCS_DISABLE:2,\nLCS_PAUSE:3,\nLCS_RUN:4,\nLCS_PRODUCE:5,\nLCS_PRODUCE_INNER:6,\nDEFAULT_AGV:0,\nAGV_LEFT_FULL_IN:10,\nAGV_LEFT_FULL_OUT:20,\nAGV_LEFT_EMPTY_OUT:30,\nAGV_RIGHT_FULL_IN:40,\nAGV_RIGHT_FULL_OUT:50,\nAGV_RIGHT_EMPTY_OUT:60,\nDEFAULT_V:0,\nLEFT_CHECK_1:10,\nLEFT_CHECK_2:20,\nRIGHT_CHECK_1:30,\nRIGHT_CHECK_2:40,\nLEFT_CHECK_RING:50,\nRIGHT_CHECK_RING:60,\nVISION_SUCCESS:10,\nVISION_FAIL:20,\n\nDEFAULT_DONE:1,\nOUTER_TO_CENTER_DONE:101,\nOUTER_TO_LEFT_DONE:111,\nOUTER_TO_RIGHT_DONE:121,\nINNER_TO_CENTER_DONE:201,\nINNER_TO_LEFT_DONE:211,\nINNER_TO_RIGHT_DONE:221,\nBUNK_LEFT_FULL_IN_DONE:301,\nBUNK_LEFT_FULL_OUT_DONE:311,\nBUNK_LEFT_EMPTY_OUT_DONE:321,\nBUNK_LEFT_SHIFT_DONE:331,\nBUNK_LEFT_FULL_CHECK_DONE:341,\nBUNK_LEFT_EMPTY_STOP_DONE:351,\nBUNK_LEFT_FULL_STOP_DONE:361,\nBUNK_RIGHT_FULL_IN_DONE:401,\nBUNK_RIGHT_FULL_OUT_DONE:411,\nBUNK_RIGHT_EMPTY_OUT_DONE:421,\nBUNK_RIGHT_SHIFT_DONE:431,\nBUNK_RIGHT_FULL_CHECK_DONE:441,\nBUNK_RIGHT_EMPTY_STOP_DONE:451,\nBUNK_RIGHT_FULL_STOP_DONE:461,\nBUNK_INIT_DONE:501,\nOIL_LEFT_DONE:601,\nOIL_RIGHT_DONE:611,\nDEFAULT_L_DONE:1,\nSCARA_LEFT_PRODUCT_IN_DONE:101,\nSCARA_LEFT_PRODUCT_OUT_DONE:111,\nSCARA_LEFT_PANEL_TO_HOME_DONE:121,\nSCARA_LEFT_HOME_TO_OIL_DONE:131,\nSCARA_LEFT_OIL_TO_TRASH_DONE:141,\nSCARA_LEFT_OIL_TO_PRODUCT_DONE:151,\nSCARA_LEFT_INIT_DONE:161,\nDEFAULT_R_DONE:1,\nSCARA_RIGHT_PRODUCT_IN_DONE:101,\nSCARA_RIGHT_PRODUCT_OUT_DONE:111,\nSCARA_RIGHT_PANEL_TO_HOME_DONE:121,\nSCARA_RIGHT_HOEM_TO_OIL_DONE:131,\nSCARA_RIGHT_OIL_TO_TRASH_DONE:141,\nSCARA_RIGHT_OIL_TO_PRODUCT_DONE:151,\nSCARA_RIGHT_INIT_DONE:161,\nDEFAULT_LCS_DONE:1,\nLCS_ENABLE_DONE:2,\nLCS_DISABLE_DONE:3,\nLCS_PAUSE_DONE:4,\nLCS_RUN_DONE:5,\nLCS_PRODUCE_DONE:6,\nLCS_PRODUCE_INNER_DONE:7,\nDEFAULT_AGV_DONE:1,\nAGV_LEFT_FULL_IN_DONE:11,\nAGV_LEFT_FULL_OUT_DONE:21,\nAGV_LEFT_EMPTY_OUT_DONE:31,\nAGV_RIGHT_FULL_IN_DONE:41,\nAGV_RIGHT_FULL_OUT_DONE:51,\nAGV_RIGHT_EMPTY_OUT_DONE:61,\nDEFAULT_V_DONE:1,\nLEFT_CHECK_1_DONE:11,\nLEFT_CHECK_2_DONE:21,\nRIGHT_CHECK_1_DONE:31,\nRIGHT_CHECK_2_DONE:41,\nLEFT_CHECK_RING_DONE:51,\nRIGHT_CHECK_RING_DONE:61,\n\n});\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 450,
+    "y": 40,
+    "wires": [
+      [
+        "d173ea419e8a649d"
+      ]
+    ]
+  },
+  {
+    "id": "def7b74dd73c77b9",
+    "type": "http in",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "url": "/40/data",
+    "method": "get",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 150,
+    "y": 920,
+    "wires": [
+      [
+        "9bc3906f868c0782"
+      ]
+    ]
+  },
+  {
+    "id": "1e57f8f96e834f72",
+    "type": "http response",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "statusCode": "",
+    "headers": {},
+    "x": 610,
+    "y": 920,
+    "wires": []
+  },
+  {
+    "id": "9bc3906f868c0782",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "function 30",
+    "func": "const p = msg.payload.key;\nvar arr = p.split(\".\");\nconst obj = global.get(arr[0]);\neval(\"var \" + arr[0] + \" = obj;\");\nconsole.debug(1);\neval(\"msg.payload = \" + p + \";\");\nconsole.debug(2);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 370,
+    "y": 920,
+    "wires": [
+      [
+        "1e57f8f96e834f72"
+      ]
+    ]
+  },
+  {
+    "id": "eb511f2d68c50a05",
+    "type": "modbus-read",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "SCARA-右-逻辑变量读取",
+    "topic": "",
+    "showStatusActivities": false,
+    "logIOActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "HoldingRegister",
+    "adr": "61",
+    "quantity": "1",
+    "rate": "200",
+    "rateUnit": "ms",
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "server": "1c6dae42783642fa",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "emptyMsgOnFail": false,
+    "x": 190,
+    "y": 300,
+    "wires": [
+      [
+        "2666af028a9f9109"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "fdc1a94e430efbd9",
+    "type": "modbus-write",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到右侧",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "MHoldingRegisters",
+    "adr": "62",
+    "quantity": "6",
+    "server": "1c6dae42783642fa",
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 730,
+    "y": 680,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "f3f856f51bab9785",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写到右侧SCARA",
+    "func": "var data = [];\nvar IO = global.get(\"IO_40\");\ndata = [\n    IO.AO_SCARA_R.idx_out_right,\n    IO.AO_SCARA_R.idx_in_right,\n    IO.AO_SCARA_R.material_right,\n    IO.AO_SCARA_R.trash_right,\n    IO.AO_SCARA_R.product_offset_in,\n    IO.AO_SCARA_R.product_offset_out,\n];\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 530,
+    "y": 680,
+    "wires": [
+      [
+        "fdc1a94e430efbd9"
+      ]
+    ]
+  },
+  {
+    "id": "ae2ec5083c579d8e",
+    "type": "modbus-read",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "泛在控制器-linux-DI",
+    "topic": "",
+    "showStatusActivities": false,
+    "logIOActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "HoldingRegister",
+    "adr": "10",
+    "quantity": "38",
+    "rate": "200",
+    "rateUnit": "ms",
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "server": "30dcaa59b1afd833",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "emptyMsgOnFail": false,
+    "x": 190,
+    "y": 180,
+    "wires": [
+      [
+        "7f573a2b4067baa6",
+        "4f0311489e2832d0",
+        "67f1472e62295f69",
+        "c3668e2df9ac86bf"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "7f573a2b4067baa6",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到本地内存",
+    "func": "var DI_Names = [\n\"left_qian_roller_reached\",\n\"left_hou_roller_reached\",\n\"left_qian_ShengJiang_reached\",\n\"left_hou_ShengJiang_reached\",\n\"left_ZhuaPanZhao1_open\",\n\"left_ZhuaPanZhao1_close\",\n\"left_ZhuaPanZhao2_close\",\n\"left_ZhuaPanZhao2_open\",\n\"right_qian_roller_reached\",\n\"right_hou_roller_reached\",\n\"right_qian_ShengJiang_reached\",\n\"right_hou_ShengJiang_reached\",\n\"right_ZhuaPanZhao1_close\",\n\"right_ZhuaPanZhao1_open\",\n\"right_ZhuaPanZhao2_open\",\n\"right_ZhuaPanZhao2_close\",\n\"qian_HengYi_youliao\",\n\"qian_HengYi_gripper_open\",\n\"qian_HengYi_gripper_close\",\n\"hou_HengYi_youliao\",\n\"hou_HengYi_gripper_open\",\n\"hou_HengYi_gripper_close\",\n\"left_scara_gripper_close\",\n\"left_scara_gripper_open\",\n\"right_scara_gripper_close\",\n\"right_scara_gripper_open\",\n\"left_penyou_tuigan_opened\",\n\"left_penyou_tuigan_closed\",\n\"right_penyou_tuigan_opened\",\n\"right_penyou_tuigan_closed\",\n\"no_oil\",\n\"emergency\",\n\"start\",\n\"stop\",\n\"ManualAndAuto\",\n\"enable\",\n\"clearError\",\n\"network\",\n    ];\n\nvar IO = global.get(\"IO_40\");\nconst data = msg.payload;\nfor(var i=0;i<DI_Names.length;i++){\n    if(DI_Names[i]!='-'){\n        IO.DI[DI_Names[i]] = data[i];\n    }\n}\n\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 640,
+    "y": 140,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "4f0311489e2832d0",
+    "type": "modbus-write",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到右侧",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "MHoldingRegisters",
+    "adr": "10",
+    "quantity": "38",
+    "server": "1c6dae42783642fa",
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 630,
+    "y": 180,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "67f1472e62295f69",
+    "type": "modbus-write",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到右侧",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "MHoldingRegisters",
+    "adr": "10",
+    "quantity": "38",
+    "server": "1a3a610758658ecb",
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 630,
+    "y": 220,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "1864a39b01eced97",
+    "type": "modbus-write",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到右侧",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "MHoldingRegisters",
+    "adr": "60",
+    "quantity": "1",
+    "server": "1c6dae42783642fa",
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 870,
+    "y": 540,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "f6d664a936b81aae",
+    "type": "modbus-write",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到左侧",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "MHoldingRegisters",
+    "adr": "60",
+    "quantity": "1",
+    "server": "1a3a610758658ecb",
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 870,
+    "y": 580,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "f7517198f61ea82e",
+    "type": "modbus-write",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到泛在",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "MHoldingRegisters",
+    "adr": "60",
+    "quantity": "1",
+    "server": "30dcaa59b1afd833",
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 870,
+    "y": 620,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "ecd724963f368590",
+    "type": "rbe",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "func": "rbe",
+    "gap": "",
+    "start": "",
+    "inout": "out",
+    "septopics": true,
+    "property": "payload",
+    "topi": "topic",
+    "x": 695,
+    "y": 540,
+    "wires": [
+      [
+        "1864a39b01eced97"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "85f7fca2ca25aa5e",
+    "type": "change",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload[0]",
+        "pt": "msg",
+        "to": "IO_40.AO_SCARA_R.request",
+        "tot": "global"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 595,
+    "y": 540,
+    "wires": [
+      [
+        "ecd724963f368590"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "c8694d6532bae134",
+    "type": "rbe",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "func": "rbe",
+    "gap": "",
+    "start": "",
+    "inout": "out",
+    "septopics": true,
+    "property": "payload",
+    "topi": "topic",
+    "x": 695,
+    "y": 580,
+    "wires": [
+      [
+        "f6d664a936b81aae"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "cdc8df64732b2f4f",
+    "type": "change",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload[0]",
+        "pt": "msg",
+        "to": "IO_40.AO_SCARA_L.request",
+        "tot": "global"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 595,
+    "y": 580,
+    "wires": [
+      [
+        "c8694d6532bae134"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "1ade816fcae22cbd",
+    "type": "rbe",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "func": "rbe",
+    "gap": "",
+    "start": "",
+    "inout": "out",
+    "septopics": true,
+    "property": "payload",
+    "topi": "topic",
+    "x": 695,
+    "y": 620,
+    "wires": [
+      [
+        "f7517198f61ea82e"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "df23e648dbb33762",
+    "type": "change",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload[0]",
+        "pt": "msg",
+        "to": "IO_40.AO.request",
+        "tot": "global"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 595,
+    "y": 620,
+    "wires": [
+      [
+        "1ade816fcae22cbd"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "722bdb380e6f0539",
+    "type": "change",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "payload",
+        "pt": "msg",
+        "to": "[0]",
+        "tot": "json"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 445,
+    "y": 600,
+    "wires": [
+      [
+        "85f7fca2ca25aa5e",
+        "cdc8df64732b2f4f",
+        "df23e648dbb33762"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "2666af028a9f9109",
+    "type": "change",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AI_SCARA_R.response",
+        "pt": "global",
+        "to": "payload[0]",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 610,
+    "y": 300,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "77d6f684e3be66e0",
+    "type": "change",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AI_SCARA_L.response",
+        "pt": "global",
+        "to": "payload[0]",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 600,
+    "y": 360,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "d9d909c28cf6e40d",
+    "type": "modbus-write",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到控制器",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "MHoldingRegisters",
+    "adr": "61",
+    "quantity": "4",
+    "server": "30dcaa59b1afd833",
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 740,
+    "y": 780,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "7cfbd76cd3100e6e",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写到控制器",
+    "func": "var data = [];\nvar IO = global.get(\"IO_40\");\ndata = [\n    IO.AO.tray_in_left,\n    IO.AO.tray_out_left,\n    IO.AO.tray_in_right,\n    IO.AO.tray_out_right,\n];\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 510,
+    "y": 780,
+    "wires": [
+      [
+        "d9d909c28cf6e40d"
+      ]
+    ]
+  },
+  {
+    "id": "6acfd00b12475b63",
+    "type": "modbus-read",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "关键状态读取",
+    "topic": "",
+    "showStatusActivities": false,
+    "logIOActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "HoldingRegister",
+    "adr": "70",
+    "quantity": "5",
+    "rate": "200",
+    "rateUnit": "ms",
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "server": "30dcaa59b1afd833",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "emptyMsgOnFail": false,
+    "x": 150,
+    "y": 400,
+    "wires": [
+      [
+        "92302fe6389280f0",
+        "7bf4bccd13bdf4aa"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "92302fe6389280f0",
+    "type": "change",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AI.response",
+        "pt": "global",
+        "to": "payload[0]",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 570,
+    "y": 400,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "156d6b915a66bc0b",
+    "type": "modbus-read",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "状态读取",
+    "topic": "",
+    "showStatusActivities": false,
+    "logIOActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "HoldingRegister",
+    "adr": "4",
+    "quantity": "1",
+    "rate": "200",
+    "rateUnit": "ms",
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "server": "30dcaa59b1afd833",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "emptyMsgOnFail": false,
+    "x": 140,
+    "y": 460,
+    "wires": [
+      [
+        "af4d7b9bfbea4055"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "af4d7b9bfbea4055",
+    "type": "change",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AI.status",
+        "pt": "global",
+        "to": "payload[0]",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 560,
+    "y": 480,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "c3668e2df9ac86bf",
+    "type": "modbus-write",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "写入到虚拟modbus",
+    "showStatusActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "MHoldingRegisters",
+    "adr": "5000",
+    "quantity": "38",
+    "server": "ebdc7b3b4236640e",
+    "emptyMsgOnFail": false,
+    "keepMsgProperties": false,
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "x": 650,
+    "y": 260,
+    "wires": [
+      [],
+      []
+    ]
+  },
+  {
+    "id": "7bf4bccd13bdf4aa",
+    "type": "change",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AI.Left_visionResult",
+        "pt": "global",
+        "to": "payload[2]",
+        "tot": "msg"
+      },
+      {
+        "t": "set",
+        "p": "IO_40.AI.Right_visionResult",
+        "pt": "global",
+        "to": "payload[3]",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 520,
+    "y": 440,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "251edc19deb8f364",
+    "type": "change",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "IO_40.AI.status50",
+        "pt": "global",
+        "to": "payload[0]",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 1020,
+    "y": 440,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "6fb93a8197655ca4",
+    "type": "modbus-read",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "状态读取",
+    "topic": "",
+    "showStatusActivities": false,
+    "logIOActivities": false,
+    "showErrors": false,
+    "showWarnings": true,
+    "unitid": "1",
+    "dataType": "HoldingRegister",
+    "adr": "71",
+    "quantity": "1",
+    "rate": "200",
+    "rateUnit": "ms",
+    "delayOnStart": false,
+    "startDelayTime": "",
+    "server": "30dcaa59b1afd833",
+    "useIOFile": false,
+    "ioFile": "",
+    "useIOForPayload": false,
+    "emptyMsgOnFail": false,
+    "x": 750,
+    "y": 440,
+    "wires": [
+      [
+        "251edc19deb8f364"
+      ],
+      []
+    ]
+  },
+  {
+    "id": "5c5f4509c66420c0",
+    "type": "http in",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "url": "/changeData",
+    "method": "get",
+    "upload": false,
+    "swaggerDoc": "",
+    "x": 170,
+    "y": 980,
+    "wires": [
+      [
+        "faed85b5e4f2a99e",
+        "3ffc5653818b3dd8"
+      ]
+    ]
+  },
+  {
+    "id": "61c9a744120e87c0",
+    "type": "http response",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "",
+    "statusCode": "",
+    "headers": {},
+    "x": 610,
+    "y": 980,
+    "wires": []
+  },
+  {
+    "id": "faed85b5e4f2a99e",
+    "type": "function",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "function 62",
+    "func": "const p = msg.payload.key;\nvar arr = p.split(\".\");\nconst obj = global.get(arr[0]);\neval(\"var \"+arr[0]+\" = obj;\");\nconsole.debug(1);\neval(\"msg.payload = \"+p+\";\");\nconsole.debug(2);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 370,
+    "y": 980,
+    "wires": [
+      [
+        "61c9a744120e87c0"
+      ]
+    ]
+  },
+  {
+    "id": "3ffc5653818b3dd8",
+    "type": "debug",
+    "z": "f9ed7ce98dfb48f5",
+    "name": "debug 64",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 380,
+    "y": 1060,
+    "wires": []
+  }
+]

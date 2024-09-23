@@ -1,0 +1,235 @@
+[
+  {
+    "id": "df816d1d0ee5921b",
+    "type": "subflow",
+    "name": "Vision",
+    "info": "",
+    "category": "",
+    "in": [
+      {
+        "x": 120,
+        "y": 140,
+        "wires": [
+          {
+            "id": "d5a62736c898b103"
+          }
+        ]
+      }
+    ],
+    "out": [
+      {
+        "x": 700,
+        "y": 340,
+        "wires": [
+          {
+            "id": "8be0e01737b94903",
+            "port": 0
+          },
+          {
+            "id": "d13db9df75c36ef4",
+            "port": 0
+          }
+        ]
+      }
+    ],
+    "env": [
+      {
+        "name": "request_v",
+        "type": "str",
+        "value": "",
+        "ui": {
+          "type": "input",
+          "opts": {
+            "types": [
+              "str"
+            ]
+          }
+        }
+      }
+    ],
+    "meta": {},
+    "color": "#DDAA99",
+    "icon": "font-awesome/fa-camera",
+    "status": {
+      "x": 780,
+      "y": 140,
+      "wires": [
+        {
+          "id": "4106c8e136dabd5e",
+          "port": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "82371e04dcf7c896",
+    "type": "trigger",
+    "z": "df816d1d0ee5921b",
+    "name": "",
+    "op1": "IO_40.AI_SCARA_L.response",
+    "op2": "0",
+    "op1type": "global",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 485,
+    "y": 140,
+    "wires": [
+      [
+        "8c56935ded53fecc",
+        "8be0e01737b94903"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "af372b3a790bdc7e",
+    "type": "delay",
+    "z": "df816d1d0ee5921b",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 485,
+    "y": 100,
+    "wires": [
+      [
+        "ed7f99defe995c8e"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "8c56935ded53fecc",
+    "type": "function",
+    "z": "df816d1d0ee5921b",
+    "name": "函数 32",
+    "func": "const IO = global.get(\"IO_40\");\nif (IO.AI_vision.result == 1){\n    return {reset:1};\n}\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 545,
+    "y": 140,
+    "wires": [
+      [
+        "82371e04dcf7c896",
+        "4106c8e136dabd5e"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "4106c8e136dabd5e",
+    "type": "function",
+    "z": "df816d1d0ee5921b",
+    "name": "函数 33",
+    "func": "return {payload: 1}",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 625,
+    "y": 140,
+    "wires": [
+      [
+        "d13db9df75c36ef4"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "d5a62736c898b103",
+    "type": "function",
+    "z": "df816d1d0ee5921b",
+    "name": "函数 34",
+    "func": "var IO = global.get(\"IO_40\");\nIO.AO_vision.request = env.get(\"request_v\");\nIO.AO_vision.request_ = env.get(\"request_v\");\nflow.set(\"c4\",1);\nreturn {payload: 1};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 300,
+    "y": 140,
+    "wires": [
+      [
+        "82371e04dcf7c896",
+        "af372b3a790bdc7e"
+      ]
+    ]
+  },
+  {
+    "id": "ed7f99defe995c8e",
+    "type": "function",
+    "z": "df816d1d0ee5921b",
+    "name": "函数 35",
+    "func": "var IO = global.get(\"IO_40\");\nIO.AO_vision.result = 0;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 580,
+    "y": 100,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "8be0e01737b94903",
+    "type": "function",
+    "z": "df816d1d0ee5921b",
+    "name": "函数 36",
+    "func": "var c4 = flow.get(\"c4\");\nconst IO = global.get(\"IO_40\");\nmsg.payload = c4 + \":\" + IO.AO.request_;\nflow.set(\"c4\",c4+1);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 460,
+    "y": 280,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "d13db9df75c36ef4",
+    "type": "function",
+    "z": "df816d1d0ee5921b",
+    "name": "函数 37",
+    "func": "msg.payload = \"DONE\";\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 660,
+    "y": 220,
+    "wires": [
+      []
+    ]
+  }
+]
