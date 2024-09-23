@@ -33,3 +33,6 @@ OP80/.config.*
 OP80/*.backup
 OP90/.config.*
 OP90/*.backup
+.config.nodes.json
+.config.nodes.json.backup
+.config.runtime.json
