@@ -1,0 +1,3166 @@
+[
+  {
+    "id": "1a4aea46367a594a",
+    "type": "tab",
+    "label": "line",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "8319e152e50579ad",
+    "type": "ui_spacer",
+    "z": "1a4aea46367a594a",
+    "name": "spacer",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 49,
+    "width": 7,
+    "height": 1
+  },
+  {
+    "id": "bce870d2d9da6c30",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "20",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 5,
+    "width": 4,
+    "height": 1,
+    "passthru": false,
+    "label": "{{msg.payload}}",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 600,
+    "y": 300,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "3e9cb0efbc2bce17",
+    "type": "ui_template",
+    "z": "1a4aea46367a594a",
+    "group": "6a9bf0ddc6321c2c",
+    "name": "",
+    "order": 53,
+    "width": "1",
+    "height": "1",
+    "format": "<style>\n    .rr_running{\n        background-color:green;\n    }\n    .rr_wait{\n        background-color:yellow;\n    }    \n    .br1 {\n  display: block;\n  margin-bottom: 2px;\n  font-size:2px;\n  line-height: 2px;\n}\n.line18{\n    line-height:18px;\n}\nbutton span{\n    line-height:18px;\n}\nspan{\n    line-height:18px;\n}\n</style>\n<script>\n    \nvar f1 = function(){    \n    const element = document.documentElement; // 获取整个文档的元素\n \n    if (element.requestFullscreen) { // 标准写法\n      element.requestFullscreen();\n    } else if (element.mozRequestFullScreen) { // Firefox 浏览器\n      element.mozRequestFullScreen();\n    } else if (element.webkitRequestFullscreen) { // Chrome 和 Safari\n      element.webkitRequestFullscreen();\n    } else if (element.msRequestFullscreen) { // IE11\n      element.msRequestFullscreen();\n    }\n}\n\nvar f2 = function(){\n    if (document.exitFullscreen) { // 标准写法\n    document.exitFullscreen();\n    } else if (document.mozCancelFullScreen) { // Firefox 浏览器\n      document.mozCancelFullScreen();\n    } else if (document.webkitExitFullscreen) { // Chrome 和 Safari\n      document.webkitExitFullscreen();\n    } else if (document.msExitFullscreen) { // IE11\n      document.msExitFullscreen();\n    }\n}\n\nvar switch_full = 0;\nvar f3 = function(){\n    if(switch_full==0){\n        f1();\n        switch_full = 1;\n    }\n    else{\n        f2();\n        switch_full = 0;\n    }\n}\n    \n</script>\n<button onclick=\"f3()\" style='height:46px;background-color:rgb(0,148,206);border: 0px;border-radius: 3px;'>屏</button>",
+    "storeOutMessages": true,
+    "fwdInMessages": true,
+    "resendOnRefresh": true,
+    "templateScope": "local",
+    "className": "",
+    "x": 220,
+    "y": 860,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "942104f4ba824830",
+    "type": "inject",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 120,
+    "y": 120,
+    "wires": [
+      [
+        "c1fc61d6ee24a977"
+      ]
+    ]
+  },
+  {
+    "id": "06722c33485f2b1d",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 1",
+    "func": "var IO = global.get(\"IO_10\");\nvar color = \"black\";\nvar background = \"rgb(0,148,206)\";\nif(IO.AI.status==30){\n    background = \"green\";\n}\nelse if(IO.AI.status==4){\n    background = \"yellow\";\n}\nmsg.color = color;\nmsg.background = background;\nvar tray_10_1 = global.get(\"tray_10_1\");\nmsg.payload = \"OP10:&nbsp;\"+IO.AI.status+\",请求:\"+IO.AI_LCS.request_ + \",反馈:\"+IO.AI.response;\nmsg.enabled = false;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 450,
+    "y": 260,
+    "wires": [
+      [
+        "23ef358f72a4c293"
+      ]
+    ]
+  },
+  {
+    "id": "c1fc61d6ee24a977",
+    "type": "trigger",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "str",
+    "op2type": "str",
+    "duration": "-100",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 170,
+    "y": 200,
+    "wires": [
+      [
+        "06722c33485f2b1d",
+        "639bb9e55e8aaa1c",
+        "c2d2ddc1b68f6a48",
+        "cdd6c94ef806f04b",
+        "28c76f0e3047817d",
+        "e579cbfaa6d7a26f",
+        "b047cfb70f93e40a",
+        "f06971ed8034a152",
+        "e41c6fc55ec54c02",
+        "1b2c5f9e312f7a6f",
+        "a60c3a900faa30dd",
+        "66c701aff514216e"
+      ]
+    ]
+  },
+  {
+    "id": "f791e12097f82b34",
+    "type": "ui_audio",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "group": "6a9bf0ddc6321c2c",
+    "voice": "Microsoft Huihui - Chinese (Simplified, PRC)",
+    "always": "",
+    "x": 560,
+    "y": 780,
+    "wires": []
+  },
+  {
+    "id": "5408bbbb21b7bbbd",
+    "type": "inject",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "SADFASDFASDF",
+    "payloadType": "str",
+    "x": 360,
+    "y": 780,
+    "wires": [
+      [
+        "f791e12097f82b34"
+      ]
+    ]
+  },
+  {
+    "id": "639bb9e55e8aaa1c",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 2",
+    "func": "var IO = global.get(\"IO_20\");\nvar Request = global.get(\"Request_20\");\nvar color = \"black\";\nvar background = \"rgb(0,148,206)\";\nif(IO.AI.status==30){\n    background = \"green\";\n}\nelse if(IO.AI.status==4){\n    background = \"yellow\";\n}\nmsg.color = color;\nmsg.background = background;\nmsg.payload = \"OP20:&nbsp;\"+IO.AI.status+\"<br/>条码:\"+Request.barcode;\nmsg.enabled = false;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 450,
+    "y": 300,
+    "wires": [
+      [
+        "bce870d2d9da6c30"
+      ]
+    ]
+  },
+  {
+    "id": "23ef358f72a4c293",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "10",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 1,
+    "width": 4,
+    "height": 1,
+    "passthru": false,
+    "label": "{{msg.payload}}",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "line18",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 600,
+    "y": 260,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "dcbb3b9b1014d7cf",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "40",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 13,
+    "width": "2",
+    "height": 1,
+    "passthru": false,
+    "label": "{{msg.payload}}",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 600,
+    "y": 380,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "c2d2ddc1b68f6a48",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 3",
+    "func": "var IO = global.get(\"IO_30\");\nvar color = \"black\";\nvar background = \"rgb(0,148,206)\";\nif(IO.AI.status==30){\n    background = \"green\";\n}\nelse if(IO.AI.status==4){\n    background = \"yellow\";\n}\nmsg.color = color;\nmsg.background = background;\nmsg.payload = \"OP30:&nbsp;\"+IO.AI.status;\nmsg.enabled = false;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 450,
+    "y": 340,
+    "wires": [
+      [
+        "be44034bae5e1f23"
+      ]
+    ]
+  },
+  {
+    "id": "cdd6c94ef806f04b",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 4",
+    "func": "var IO = global.get(\"IO_40\");\nvar color = \"black\";\nvar background = \"rgb(0,148,206)\";\nif(IO.AI.status==30){\n    background = \"green\";\n}\nelse if(IO.AI.status==4){\n    background = \"yellow\";\n}\nmsg.color = color;\nmsg.background = background;\nmsg.payload = \"OP40:&nbsp;\"+IO.AI.status;\nmsg.enabled = false;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 450,
+    "y": 380,
+    "wires": [
+      [
+        "dcbb3b9b1014d7cf"
+      ]
+    ]
+  },
+  {
+    "id": "be44034bae5e1f23",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "30",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 9,
+    "width": 4,
+    "height": 1,
+    "passthru": false,
+    "label": "{{msg.payload}}",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 600,
+    "y": 340,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "28c76f0e3047817d",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 5",
+    "func": "var IO = global.get(\"IO_50\");\nvar color = \"black\";\nvar background = \"rgb(0,148,206)\";\nif(IO.AI.status==30){\n    background = \"green\";\n}\nelse if(IO.AI.status==4){\n    background = \"yellow\";\n}\nmsg.color = color;\nmsg.background = background;\nmsg.payload = \"OP50:&nbsp;\"+IO.AI.status;\nmsg.enabled = false;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 440,
+    "y": 480,
+    "wires": [
+      [
+        "487aba661ecaca06"
+      ]
+    ]
+  },
+  {
+    "id": "487aba661ecaca06",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "50",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 25,
+    "width": 4,
+    "height": 1,
+    "passthru": false,
+    "label": "{{msg.payload}}",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 590,
+    "y": 480,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "e579cbfaa6d7a26f",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 6",
+    "func": "var IO = global.get(\"IO_60\");\nvar color = \"black\";\nvar background = \"rgb(0,148,206)\";\nif(IO.AO.status==30){\n    background = \"green\";\n}\nelse if(IO.AO.status==4){\n    background = \"yellow\";\n}\nmsg.color = color;\nmsg.background = background;\nmsg.payload = \"OP60:&nbsp;\"+IO.AO.status;\nmsg.enabled = false;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 440,
+    "y": 520,
+    "wires": [
+      [
+        "41a9a5416926b48c"
+      ]
+    ]
+  },
+  {
+    "id": "41a9a5416926b48c",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "60",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 29,
+    "width": 4,
+    "height": 1,
+    "passthru": false,
+    "label": "{{msg.payload}}",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 590,
+    "y": 520,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "b047cfb70f93e40a",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 7",
+    "func": "var IO = global.get(\"IO_70\");\nvar color = \"black\";\nvar background = \"rgb(0,148,206)\";\nif(IO.AI.status==30){\n    background = \"green\";\n}\nelse if(IO.AI.status==4){\n    background = \"yellow\";\n}\nmsg.color = color;\nmsg.background = background;\nmsg.payload = \"OP70:&nbsp;\"+IO.AI.status;\nmsg.enabled = false;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 440,
+    "y": 560,
+    "wires": [
+      [
+        "4ab84cf8214c65cf"
+      ]
+    ]
+  },
+  {
+    "id": "4ab84cf8214c65cf",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "70",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 33,
+    "width": 4,
+    "height": 1,
+    "passthru": false,
+    "label": "{{msg.payload}}",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 590,
+    "y": 560,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "1b2c5f9e312f7a6f",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 8",
+    "func": "var IO = global.get(\"IO_80\");\nvar color = \"black\";\nvar background = \"rgb(0,148,206)\";\nif(IO.AI.status==30){\n    background = \"green\";\n}\nelse if(IO.AI.status==4){\n    background = \"yellow\";\n}\nmsg.color = color;\nmsg.background = background;\nmsg.payload = \"OP80:&nbsp;\"+IO.AI.status+ \",工位:\"+IO.AI.response+ \",6轴:\"+IO.AI_6axes.response+\",装配:\"+IO.AO_6axes.index_top_tray;\nmsg.enabled = false;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 440,
+    "y": 600,
+    "wires": [
+      [
+        "c2a1dd566e52ed5b"
+      ]
+    ]
+  },
+  {
+    "id": "c2a1dd566e52ed5b",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "80",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 37,
+    "width": 4,
+    "height": 1,
+    "passthru": false,
+    "label": "{{msg.payload}}",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 590,
+    "y": 600,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "f06971ed8034a152",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 9",
+    "func": "var IO = global.get(\"IO_90\");\nvar color = \"black\";\nvar background = \"rgb(0,148,206)\";\nif(IO.AI.status==30){\n    background = \"green\";\n}\nelse if(IO.AI.status==4){\n    background = \"yellow\";\n}\nmsg.color = color;\nmsg.background = background;\nmsg.payload = \"OP90:&nbsp;\"+IO.AI.status+ \",工位:\"+IO.AI.response+ \",6轴:\"+IO.AI_6axes.response;\nmsg.enabled = false;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 440,
+    "y": 640,
+    "wires": [
+      [
+        "233190948f1c55a2"
+      ]
+    ]
+  },
+  {
+    "id": "233190948f1c55a2",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "90",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 41,
+    "width": 4,
+    "height": 1,
+    "passthru": false,
+    "label": "{{msg.payload}}",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 590,
+    "y": 640,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "e41c6fc55ec54c02",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 10",
+    "func": "var IO = global.get(\"IO_100\");\nvar color = \"black\";\nvar background = \"rgb(0,148,206)\";\nif(IO.AI.status==30){\n    background = \"green\";\n}\nelse if(IO.AI.status==4){\n    background = \"yellow\";\n}\nmsg.color = color;\nmsg.background = background;\nvar tray_1 = global.get(\"tray_100_1\");\nmsg.payload = \"OP100:&nbsp;\"+IO.AI.status+\",请求:\"+IO.AI_LCS.request_ + \",反馈:\"+IO.AI.response;\nmsg.enabled = false;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 450,
+    "y": 680,
+    "wires": [
+      [
+        "7bebf4c5e8dc6761"
+      ]
+    ]
+  },
+  {
+    "id": "7bebf4c5e8dc6761",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "100",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 45,
+    "width": 4,
+    "height": 1,
+    "passthru": false,
+    "label": "{{msg.payload}}",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 600,
+    "y": 680,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "80d88058cf64fd3e",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 25",
+    "func": "node.send([  , {payload:2} ]);",
+    "outputs": 2,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 350,
+    "y": 1040,
+    "wires": [
+      [
+        "933409166ff6af1d"
+      ],
+      [
+        "8e108689d4a53041"
+      ]
+    ]
+  },
+  {
+    "id": "03d2eb2ecfe07d60",
+    "type": "inject",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 210,
+    "y": 1000,
+    "wires": [
+      [
+        "80d88058cf64fd3e"
+      ]
+    ]
+  },
+  {
+    "id": "933409166ff6af1d",
+    "type": "debug",
+    "z": "1a4aea46367a594a",
+    "name": "debug 33",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 580,
+    "y": 1000,
+    "wires": []
+  },
+  {
+    "id": "8e108689d4a53041",
+    "type": "debug",
+    "z": "1a4aea46367a594a",
+    "name": "debug 34",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 580,
+    "y": 1060,
+    "wires": []
+  },
+  {
+    "id": "1f838530f791464f",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "20-拿",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 8,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "拿",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "20-拿",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 720,
+    "wires": [
+      [
+        "004bb0898baddbd5"
+      ]
+    ]
+  },
+  {
+    "id": "113ce935dd275cf7",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "20-放",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 6,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "放",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "20-放",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 760,
+    "wires": [
+      [
+        "176a322c6288b112"
+      ]
+    ]
+  },
+  {
+    "id": "0ba48f19174e0b03",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "30-拿",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 12,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "拿",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "30-拿",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 800,
+    "wires": [
+      [
+        "a3fb9c74094340ec"
+      ]
+    ]
+  },
+  {
+    "id": "552a00e455218c16",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "30-放",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 10,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "放",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "30-放",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 840,
+    "wires": [
+      [
+        "8cd1f2ee7a46d4e5"
+      ]
+    ]
+  },
+  {
+    "id": "b65a6da6aee643cb",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "40-拿",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 18,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "拿",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "40-拿",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 880,
+    "wires": [
+      [
+        "e81a698e9b34b73a"
+      ]
+    ]
+  },
+  {
+    "id": "971903d29dfdc538",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "40-放",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 14,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "放",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "40-放",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 920,
+    "wires": [
+      [
+        "0f3d5f9b95c9fca1"
+      ]
+    ]
+  },
+  {
+    "id": "7a26cf531807c893",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "50-拿",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 28,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "拿",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "50-拿",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 960,
+    "wires": [
+      [
+        "b5ea0fb58a33f0ec"
+      ]
+    ]
+  },
+  {
+    "id": "19d12537f0c5e894",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "50-放",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 26,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "放",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "50-放",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1000,
+    "wires": [
+      [
+        "baa121a4139719ea"
+      ]
+    ]
+  },
+  {
+    "id": "af00684b24cdf19b",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "60-拿",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 32,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "拿",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "60-拿",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1040,
+    "wires": [
+      [
+        "8f88ef35df7cfee3"
+      ]
+    ]
+  },
+  {
+    "id": "3ccbc2a53bbfbddd",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "60-放",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 30,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "放",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "60-放",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1080,
+    "wires": [
+      [
+        "628a634402bbe469"
+      ]
+    ]
+  },
+  {
+    "id": "fd01c6a5190b32b5",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "70-拿",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 36,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "拿",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "70-拿",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1120,
+    "wires": [
+      [
+        "dfd797e7b92c61a7"
+      ]
+    ]
+  },
+  {
+    "id": "f8a717bb8ed5a900",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "70-放",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 34,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "放",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "70-放",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1160,
+    "wires": [
+      [
+        "395a02835efb9307"
+      ]
+    ]
+  },
+  {
+    "id": "a288c4b5b51367c5",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "80-拿",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 40,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "拿",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "80-拿",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1200,
+    "wires": [
+      [
+        "705a24e064e7ce85"
+      ]
+    ]
+  },
+  {
+    "id": "2c57b2051fc3333e",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "80-放",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 38,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "放",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "80-放",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1240,
+    "wires": [
+      [
+        "28b203dc2683eb15"
+      ]
+    ]
+  },
+  {
+    "id": "e047920d142ca7be",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "90-拿",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 44,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "拿",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "90-拿",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1280,
+    "wires": [
+      [
+        "724708696b21594d"
+      ]
+    ]
+  },
+  {
+    "id": "3a70c00a17dc29d1",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "90-放",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 42,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "放",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "90-放",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1320,
+    "wires": [
+      [
+        "b793bd7f0d8d3837"
+      ]
+    ]
+  },
+  {
+    "id": "7650f50e57f59024",
+    "type": "ui_toast",
+    "z": "1a4aea46367a594a",
+    "position": "bottom left",
+    "displayTime": "3",
+    "highlight": "",
+    "sendall": true,
+    "outputs": 0,
+    "ok": "OK",
+    "cancel": "",
+    "raw": false,
+    "className": "",
+    "topic": "",
+    "name": "",
+    "x": 1450,
+    "y": 880,
+    "wires": []
+  },
+  {
+    "id": "6edc6613bce0fe9f",
+    "type": "http request",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "method": "POST",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 1325,
+    "y": 880,
+    "wires": [
+      [
+        "7650f50e57f59024"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "8f9646671ee439ba",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 26",
+    "func": "var data = {\"RequestID\":111111,\"Value\":21,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 720,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "61998d8d835c2e74",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 27",
+    "func": "var data = {\"RequestID\":111111,\"Value\":20,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 760,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "3023c33eef527971",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 28",
+    "func": "var data = {\"RequestID\":111111,\"Value\":31,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 800,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "d7c50134c70b173e",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 29",
+    "func": "var data = {\"RequestID\":111111,\"Value\":30,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 840,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "33cf4529e283c5b5",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 30",
+    "func": "var data = {\"RequestID\":111111,\"Value\":41,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 880,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "9e2770d1bac1a953",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 31",
+    "func": "var data = {\"RequestID\":111111,\"Value\":40,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 920,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "bff7b349e356b009",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 32",
+    "func": "var data = {\"RequestID\":111111,\"Value\":51,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 960,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "5d974f5374e467bc",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 33",
+    "func": "var data = {\"RequestID\":111111,\"Value\":50,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1000,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e64dd0e73bac409d",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 34",
+    "func": "var data = {\"RequestID\":111111,\"Value\":61,\"Address\":4100};\nvar url = \"http://192.168.110.100:1880/100/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1040,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "40e16e0e6df81510",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 35",
+    "func": "var data = {\"RequestID\":111111,\"Value\":60,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1080,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "8f173eaf58552711",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 36",
+    "func": "var data = {\"RequestID\":111111,\"Value\":71,\"Address\":4100};\nvar url = \"http://192.168.110.100:1880/100/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1120,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "a031f0e5d2376890",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 37",
+    "func": "var data = {\"RequestID\":111111,\"Value\":70,\"Address\":4100};\nvar url = \"http://192.168.110.100:1880/100/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1160,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "370e07a8f672b730",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 38",
+    "func": "var data = {\"RequestID\":111111,\"Value\":81,\"Address\":4100};\nvar url = \"http://192.168.110.100:1880/100/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1200,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "05f3fdc6776dc77b",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 39",
+    "func": "var data = {\"RequestID\":111111,\"Value\":80,\"Address\":4100};\nvar url = \"http://192.168.110.100:1880/100/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1240,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "1c9239f4dbced227",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 40",
+    "func": "var data = {\"RequestID\":111111,\"Value\":91,\"Address\":4100};\nvar url = \"http://192.168.110.100:1880/100/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1280,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "f17269ee589d956c",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 41",
+    "func": "var data = {\"RequestID\":111111,\"Value\":90,\"Address\":4100};\nvar url = \"http://192.168.110.100:1880/100/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1320,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "085fc688a3c836db",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "20-产",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 7,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "产",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1380,
+    "wires": [
+      [
+        "32afa7e878de2f0d"
+      ]
+    ]
+  },
+  {
+    "id": "c7643338b501d179",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "30-产",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 11,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "产",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1420,
+    "wires": [
+      [
+        "92180cb8472da35b"
+      ]
+    ]
+  },
+  {
+    "id": "cedb9776694d6785",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "40-产",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 15,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "产",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1460,
+    "wires": [
+      [
+        "438b6276f589ea27"
+      ]
+    ]
+  },
+  {
+    "id": "125cc3bdb4583e70",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "50-产",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 27,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "产",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1540,
+    "wires": [
+      [
+        "f0ec0c91679f2704"
+      ]
+    ]
+  },
+  {
+    "id": "5921f27d2c48320e",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "60-产",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 31,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "产",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1580,
+    "wires": [
+      [
+        "39599f3f30705c97"
+      ]
+    ]
+  },
+  {
+    "id": "db0009995eae66ab",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "70-产",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 35,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "产",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1620,
+    "wires": [
+      [
+        "5e147790c4f52c6b"
+      ]
+    ]
+  },
+  {
+    "id": "bd18dfe1573666df",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "80-产",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 39,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "产",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1660,
+    "wires": [
+      [
+        "7d50d7d79fed1d43"
+      ]
+    ]
+  },
+  {
+    "id": "2e0580508fceed1d",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "90-产",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 43,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "产",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1700,
+    "wires": [
+      [
+        "50fa5247d6027c86"
+      ]
+    ]
+  },
+  {
+    "id": "af67f3c9f50b5b88",
+    "type": "http request",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "method": "POST",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 1335,
+    "y": 1520,
+    "wires": [
+      [
+        "f64f8dc5a6396591"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "f64f8dc5a6396591",
+    "type": "ui_toast",
+    "z": "1a4aea46367a594a",
+    "position": "bottom left",
+    "displayTime": "3",
+    "highlight": "",
+    "sendall": true,
+    "outputs": 0,
+    "ok": "OK",
+    "cancel": "",
+    "raw": false,
+    "className": "",
+    "topic": "",
+    "name": "",
+    "x": 1460,
+    "y": 1520,
+    "wires": []
+  },
+  {
+    "id": "c1894a83918067ea",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 42",
+    "func": "var data = {\"RequestID\":111111,\"Value\":20,\"Address\":4020};\nvar url = \"http://192.168.110.20:1880/20/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1380,
+    "wires": [
+      [
+        "af67f3c9f50b5b88"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "db26c2869f65e1cd",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 43",
+    "func": "var data = {\"RequestID\":111111,\"Value\":30,\"Address\":4030};\nvar url = \"http://192.168.110.20:1880/30/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1420,
+    "wires": [
+      [
+        "af67f3c9f50b5b88"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "de904218cc035400",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 44",
+    "func": "var data = {\"RequestID\":111111,\"Value\":40,\"Address\":4040};\nvar url = \"http://192.168.110.40:1880/40/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1460,
+    "wires": [
+      [
+        "af67f3c9f50b5b88"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "f617302b838d60df",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 45",
+    "func": "var data = {\"RequestID\":111111,\"Value\":50,\"Address\":4050};\nvar url = \"http://192.168.110.50:1880/50/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1540,
+    "wires": [
+      [
+        "af67f3c9f50b5b88"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "902a12a791fecf92",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 46",
+    "func": "var data = {\"RequestID\":111111,\"Value\":60,\"Address\":4060};\nvar url = \"http://192.168.110.60:1880/60/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1580,
+    "wires": [
+      [
+        "af67f3c9f50b5b88"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "b7c88fd67217649f",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 47",
+    "func": "var data = {\"RequestID\":111111,\"Value\":70,\"Address\":4070};\nvar url = \"http://192.168.110.70:1880/70/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1620,
+    "wires": [
+      [
+        "af67f3c9f50b5b88"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "01b92358bc186a5c",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 48",
+    "func": "var data = {\"RequestID\":111111,\"Value\":80,\"Address\":4080};\nvar url = \"http://192.168.110.80:1880/80/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1660,
+    "wires": [
+      [
+        "af67f3c9f50b5b88"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "6fb51d7812105446",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 49",
+    "func": "var data = {\"RequestID\":111111,\"Value\":90,\"Address\":4090};\nvar url = \"http://192.168.110.90:1880/90/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1700,
+    "wires": [
+      [
+        "af67f3c9f50b5b88"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "6f612a55d26eacfc",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "10-拿",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 4,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "拿",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "10-拿",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 1270,
+    "y": 720,
+    "wires": [
+      [
+        "c48419f5fc4cf613"
+      ]
+    ]
+  },
+  {
+    "id": "e8f348d2292c0d26",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "10-放",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 2,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "放",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 1270,
+    "y": 760,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "19fb0d06a09714ce",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 50",
+    "func": "var data = {\"RequestID\":111111,\"Value\":12,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1475,
+    "y": 720,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "16fa3da43df536cc",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "10-拍",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 3,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "拍",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "10-拍",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 1270,
+    "y": 800,
+    "wires": [
+      [
+        "9b3a408f5b5434d3"
+      ]
+    ]
+  },
+  {
+    "id": "a60c3a900faa30dd",
+    "type": "link out",
+    "z": "1a4aea46367a594a",
+    "name": "RESET",
+    "mode": "link",
+    "links": [
+      "1c5f14b0d8c2bb46",
+      "4e465b63caf14270",
+      "fbb74128f432e222"
+    ],
+    "x": 425,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "19c8c3fbef88a5b6",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "100-拿",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 48,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "拿",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 1270,
+    "y": 580,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "6f0a46d964644408",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "100-放",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 46,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "放",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "100-放",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 1270,
+    "y": 620,
+    "wires": [
+      [
+        "f64e56d36da95d42"
+      ]
+    ]
+  },
+  {
+    "id": "86a730ef380ebcc0",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "100-拍",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 47,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "拍",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 1270,
+    "y": 660,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ce769d04c73ecd1b",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 54",
+    "func": "var data = {\"RequestID\":111111,\"Value\":10,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1475,
+    "y": 800,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e0020aeda676549d",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 55",
+    "func": "var data = {\"RequestID\":111111,\"Value\":13,\"Address\":4100};\nvar url = \"http://192.168.110.100:1880/100/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1475,
+    "y": 620,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "3e7278ef94898f08",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "100停",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 51,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "100停",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1780,
+    "wires": [
+      [
+        "53f52bbcc5dced3c"
+      ]
+    ]
+  },
+  {
+    "id": "f3ceeb79d8a91363",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 67",
+    "func": "var data = {\"RequestID\":111111,\"Value\":3,\"Address\":4100};\nvar url = \"http://192.168.110.100:1880/100/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1095,
+    "y": 1780,
+    "wires": [
+      [
+        "af67f3c9f50b5b88"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "47415928e853fa2a",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "10停",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 50,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "10停",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1740,
+    "wires": [
+      [
+        "2d5f15ed24b5677f"
+      ]
+    ]
+  },
+  {
+    "id": "b7a8747169aed2e3",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 68",
+    "func": "var data = {\"RequestID\":111111,\"Value\":3,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1095,
+    "y": 1740,
+    "wires": [
+      [
+        "af67f3c9f50b5b88"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "004bb0898baddbd5",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 720,
+    "wires": [
+      [
+        "8f9646671ee439ba"
+      ]
+    ]
+  },
+  {
+    "id": "176a322c6288b112",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 760,
+    "wires": [
+      [
+        "61998d8d835c2e74"
+      ]
+    ]
+  },
+  {
+    "id": "a3fb9c74094340ec",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 800,
+    "wires": [
+      [
+        "3023c33eef527971"
+      ]
+    ]
+  },
+  {
+    "id": "8cd1f2ee7a46d4e5",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 840,
+    "wires": [
+      [
+        "d7c50134c70b173e"
+      ]
+    ]
+  },
+  {
+    "id": "e81a698e9b34b73a",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 880,
+    "wires": [
+      [
+        "33cf4529e283c5b5"
+      ]
+    ]
+  },
+  {
+    "id": "0f3d5f9b95c9fca1",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 920,
+    "wires": [
+      [
+        "9e2770d1bac1a953"
+      ]
+    ]
+  },
+  {
+    "id": "b5ea0fb58a33f0ec",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 960,
+    "wires": [
+      [
+        "bff7b349e356b009"
+      ]
+    ]
+  },
+  {
+    "id": "baa121a4139719ea",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1000,
+    "wires": [
+      [
+        "5d974f5374e467bc"
+      ]
+    ]
+  },
+  {
+    "id": "8f88ef35df7cfee3",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1040,
+    "wires": [
+      [
+        "e64dd0e73bac409d"
+      ]
+    ]
+  },
+  {
+    "id": "628a634402bbe469",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1080,
+    "wires": [
+      [
+        "40e16e0e6df81510"
+      ]
+    ]
+  },
+  {
+    "id": "dfd797e7b92c61a7",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1120,
+    "wires": [
+      [
+        "8f173eaf58552711"
+      ]
+    ]
+  },
+  {
+    "id": "395a02835efb9307",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1160,
+    "wires": [
+      [
+        "a031f0e5d2376890"
+      ]
+    ]
+  },
+  {
+    "id": "705a24e064e7ce85",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1200,
+    "wires": [
+      [
+        "370e07a8f672b730"
+      ]
+    ]
+  },
+  {
+    "id": "28b203dc2683eb15",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1240,
+    "wires": [
+      [
+        "05f3fdc6776dc77b"
+      ]
+    ]
+  },
+  {
+    "id": "724708696b21594d",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1280,
+    "wires": [
+      [
+        "1c9239f4dbced227"
+      ]
+    ]
+  },
+  {
+    "id": "b793bd7f0d8d3837",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1320,
+    "wires": [
+      [
+        "f17269ee589d956c"
+      ]
+    ]
+  },
+  {
+    "id": "f64e56d36da95d42",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 1390,
+    "y": 620,
+    "wires": [
+      [
+        "e0020aeda676549d"
+      ]
+    ]
+  },
+  {
+    "id": "c48419f5fc4cf613",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 1390,
+    "y": 720,
+    "wires": [
+      [
+        "19fb0d06a09714ce"
+      ]
+    ]
+  },
+  {
+    "id": "9b3a408f5b5434d3",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 1390,
+    "y": 800,
+    "wires": [
+      [
+        "ce769d04c73ecd1b"
+      ]
+    ]
+  },
+  {
+    "id": "32afa7e878de2f0d",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1380,
+    "wires": [
+      [
+        "c1894a83918067ea"
+      ]
+    ]
+  },
+  {
+    "id": "92180cb8472da35b",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1420,
+    "wires": [
+      [
+        "db26c2869f65e1cd"
+      ]
+    ]
+  },
+  {
+    "id": "438b6276f589ea27",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1460,
+    "wires": [
+      [
+        "de904218cc035400"
+      ]
+    ]
+  },
+  {
+    "id": "f0ec0c91679f2704",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1540,
+    "wires": [
+      [
+        "f617302b838d60df"
+      ]
+    ]
+  },
+  {
+    "id": "39599f3f30705c97",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1580,
+    "wires": [
+      [
+        "902a12a791fecf92"
+      ]
+    ]
+  },
+  {
+    "id": "5e147790c4f52c6b",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1620,
+    "wires": [
+      [
+        "b7c88fd67217649f"
+      ]
+    ]
+  },
+  {
+    "id": "7d50d7d79fed1d43",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1660,
+    "wires": [
+      [
+        "01b92358bc186a5c"
+      ]
+    ]
+  },
+  {
+    "id": "50fa5247d6027c86",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1700,
+    "wires": [
+      [
+        "6fb51d7812105446"
+      ]
+    ]
+  },
+  {
+    "id": "2d5f15ed24b5677f",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1740,
+    "wires": [
+      [
+        "b7a8747169aed2e3"
+      ]
+    ]
+  },
+  {
+    "id": "53f52bbcc5dced3c",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1780,
+    "wires": [
+      [
+        "f3ceeb79d8a91363"
+      ]
+    ]
+  },
+  {
+    "id": "66c701aff514216e",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 80",
+    "func": "var IO = global.get(\"IO_40\");\nvar color = \"black\";\nvar background = \"rgb(0,148,206)\";\nif(IO.AI.status50==30){\n    background = \"green\";\n}\nelse if(IO.AI.status50==4){\n    background = \"yellow\";\n}\nmsg.color = color;\nmsg.background = background;\nmsg.payload = \"OP41:&nbsp;\" + IO.AI.status50;\nmsg.enabled = false;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 450,
+    "y": 420,
+    "wires": [
+      [
+        "1e7fbe5ff10d80b5"
+      ]
+    ]
+  },
+  {
+    "id": "1e7fbe5ff10d80b5",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "4X",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 19,
+    "width": "2",
+    "height": 1,
+    "passthru": false,
+    "label": "{{msg.payload}}",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 600,
+    "y": 420,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "4baac5148d6df240",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "4X-拿",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 24,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "拿-",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "40-拿",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 640,
+    "wires": [
+      [
+        "19fdee41a07eb3c4"
+      ]
+    ]
+  },
+  {
+    "id": "13cb9e998a895db1",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "4X-放",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 20,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "放-",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "40-放",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 680,
+    "wires": [
+      [
+        "50615ed0067321d0"
+      ]
+    ]
+  },
+  {
+    "id": "36a98d0671400e66",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 81",
+    "func": "var data = {\"RequestID\":111111,\"Value\":43,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 640,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "886a5be8e047b869",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 82",
+    "func": "var data = {\"RequestID\":111111,\"Value\":42,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 680,
+    "wires": [
+      [
+        "6edc6613bce0fe9f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "19fdee41a07eb3c4",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 640,
+    "wires": [
+      [
+        "36a98d0671400e66"
+      ]
+    ]
+  },
+  {
+    "id": "50615ed0067321d0",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 680,
+    "wires": [
+      [
+        "886a5be8e047b869"
+      ]
+    ]
+  },
+  {
+    "id": "9126e1bf7f970743",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "4X-产",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 21,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "产-",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1500,
+    "wires": [
+      [
+        "7f98098f8f220bae"
+      ]
+    ]
+  },
+  {
+    "id": "d74ca01f7d9e36c6",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 83",
+    "func": "var data = {\"RequestID\":111111,\"Value\":40,\"Address\":4050};\nvar url = \"http://192.168.110.40:1880/40/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1500,
+    "wires": [
+      [
+        "af67f3c9f50b5b88"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "7f98098f8f220bae",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1500,
+    "wires": [
+      [
+        "d74ca01f7d9e36c6"
+      ]
+    ]
+  },
+  {
+    "id": "8c7c86e113be8351",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "4X-停",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 22,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "停-",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1860,
+    "wires": [
+      [
+        "8be7642aeda9d5a2"
+      ]
+    ]
+  },
+  {
+    "id": "105eed165ce34fdc",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 84",
+    "func": "var data = {\"RequestID\":111111,\"Value\":41,\"Address\":4050};\nvar url = \"http://192.168.110.40:1880/40/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1860,
+    "wires": [
+      [
+        "af67f3c9f50b5b88"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "8be7642aeda9d5a2",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1860,
+    "wires": [
+      [
+        "105eed165ce34fdc"
+      ]
+    ]
+  },
+  {
+    "id": "0f77479bfa1a7b58",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "4X-恢",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 23,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "恢-",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1900,
+    "wires": [
+      [
+        "a83ec47b15ef57da"
+      ]
+    ]
+  },
+  {
+    "id": "765bb9c9fa97e3cb",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 85",
+    "func": "var data = {\"RequestID\":111111,\"Value\":42,\"Address\":4050};\nvar url = \"http://192.168.110.40:1880/40/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1900,
+    "wires": [
+      [
+        "af67f3c9f50b5b88"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "a83ec47b15ef57da",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1900,
+    "wires": [
+      [
+        "765bb9c9fa97e3cb"
+      ]
+    ]
+  },
+  {
+    "id": "9e956ca6e28487f3",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "40-停",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 16,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "停",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 1960,
+    "wires": [
+      [
+        "1649dec0fcba5e76"
+      ]
+    ]
+  },
+  {
+    "id": "4d5ae1d6c2b45e19",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 86",
+    "func": "var data = {\"RequestID\":111111,\"Value\":41,\"Address\":4040};\nvar url = \"http://192.168.110.40:1880/40/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 1960,
+    "wires": [
+      [
+        "af67f3c9f50b5b88",
+        "cbcf7762b31520cc"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "1649dec0fcba5e76",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 1960,
+    "wires": [
+      [
+        "4d5ae1d6c2b45e19"
+      ]
+    ]
+  },
+  {
+    "id": "1a6ba1c8a028a8e7",
+    "type": "ui_button",
+    "z": "1a4aea46367a594a",
+    "name": "40-恢",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 17,
+    "width": 1,
+    "height": 1,
+    "passthru": false,
+    "label": "恢",
+    "tooltip": "",
+    "color": "{{msg.color}}",
+    "bgcolor": "{{msg.background}}",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 830,
+    "y": 2000,
+    "wires": [
+      [
+        "a5bdcf7d0e11bd8f"
+      ]
+    ]
+  },
+  {
+    "id": "4a25aee7938f8f17",
+    "type": "function",
+    "z": "1a4aea46367a594a",
+    "name": "function 87",
+    "func": "var data = {\"RequestID\":111111,\"Value\":42,\"Address\":4040};\nvar url = \"http://192.168.110.40:1880/40/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1085,
+    "y": 2000,
+    "wires": [
+      [
+        "af67f3c9f50b5b88",
+        "cbcf7762b31520cc"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "a5bdcf7d0e11bd8f",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "1a4aea46367a594a",
+    "name": "",
+    "x": 950,
+    "y": 2000,
+    "wires": [
+      [
+        "4a25aee7938f8f17"
+      ]
+    ]
+  },
+  {
+    "id": "cbcf7762b31520cc",
+    "type": "debug",
+    "z": "1a4aea46367a594a",
+    "name": "debug 36",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1260,
+    "y": 2000,
+    "wires": []
+  }
+]

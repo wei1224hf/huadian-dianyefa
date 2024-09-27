@@ -1,0 +1,3556 @@
+[
+  {
+    "id": "4825b425abf4fd3c",
+    "type": "tab",
+    "label": "stop",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "b1f827b41cf6d3b3",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "10停",
+    "group": "2fbce496f639fcbe",
+    "order": 1,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "10停",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "10停",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 160,
+    "wires": [
+      [
+        "74b570a8b2abe7bb"
+      ]
+    ]
+  },
+  {
+    "id": "e79f6e770ee65408",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":3,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 160,
+    "wires": [
+      [
+        "e817a2120f2a7dde"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "3a3bbe6d966af27d",
+    "type": "http request",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "method": "POST",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 725,
+    "y": 340,
+    "wires": [
+      [
+        "14e8b8ae388b5875"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "14e8b8ae388b5875",
+    "type": "ui_toast",
+    "z": "4825b425abf4fd3c",
+    "position": "bottom left",
+    "displayTime": "3",
+    "highlight": "",
+    "sendall": true,
+    "outputs": 0,
+    "ok": "OK",
+    "cancel": "",
+    "raw": false,
+    "className": "",
+    "topic": "",
+    "name": "",
+    "x": 850,
+    "y": 340,
+    "wires": []
+  },
+  {
+    "id": "e817a2120f2a7dde",
+    "type": "switch",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "property": "phoneControlle",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "true"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 455,
+    "y": 240,
+    "wires": [
+      [
+        "3a3bbe6d966af27d"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "8a0131c5d11c531f",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "全停",
+    "group": "6a9bf0ddc6321c2c",
+    "order": 52,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "全停",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 190,
+    "y": 40,
+    "wires": [
+      [
+        "e79f6e770ee65408",
+        "d3dc9f6150c65a38",
+        "fefcf73d3ab18da6",
+        "6b08f91576e148be",
+        "f50c6ae3d569af9c",
+        "f27b7c3c86e7a074",
+        "8bb573ade0eb2e21",
+        "82e86f0da519d902",
+        "cdfcd6b365f7dca6",
+        "2d614cb5449bfbe0"
+      ]
+    ]
+  },
+  {
+    "id": "17dd99044b72b221",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "10开",
+    "group": "2fbce496f639fcbe",
+    "order": 2,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "10开",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "10开",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 200,
+    "wires": [
+      [
+        "5cefef7daf54bcae"
+      ]
+    ]
+  },
+  {
+    "id": "3061c55833fb7d5f",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":4,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 200,
+    "wires": [
+      [
+        "e817a2120f2a7dde"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "c05a02b5d100e446",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "10下",
+    "group": "2fbce496f639fcbe",
+    "order": 3,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "10下",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "10下",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 240,
+    "wires": [
+      [
+        "8ede431b982b6d56"
+      ]
+    ]
+  },
+  {
+    "id": "9ebfa12906437908",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 69",
+    "func": "var data = {\"RequestID\":111111,\"Value\":2,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 240,
+    "wires": [
+      [
+        "e817a2120f2a7dde"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "a7f471023be7a9f2",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "10上",
+    "group": "2fbce496f639fcbe",
+    "order": 4,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "10上",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "10上",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 280,
+    "wires": [
+      [
+        "65f033854bd43fb2"
+      ]
+    ]
+  },
+  {
+    "id": "da43eb96f86ae980",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 70",
+    "func": "var data = {\"RequestID\":111111,\"Value\":1,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 280,
+    "wires": [
+      [
+        "e817a2120f2a7dde"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "b3a8ce4276064a3b",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "10原",
+    "group": "2fbce496f639fcbe",
+    "order": 5,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "10原",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "10原",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 320,
+    "wires": [
+      [
+        "130e41ee085b595d"
+      ]
+    ]
+  },
+  {
+    "id": "e4ce1f5be8d1f1fc",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 71",
+    "func": "var data = {\"RequestID\":111111,\"Value\":5,\"Address\":4010};\nvar url = \"http://192.168.110.10:1880/10/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 320,
+    "wires": [
+      [
+        "e817a2120f2a7dde"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "0b67db53a6906db9",
+    "type": "inject",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "true",
+    "payloadType": "bool",
+    "x": 390,
+    "y": 60,
+    "wires": [
+      [
+        "53db1ed620719c09"
+      ]
+    ]
+  },
+  {
+    "id": "542e305d9b2fe533",
+    "type": "inject",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "false",
+    "payloadType": "bool",
+    "x": 390,
+    "y": 100,
+    "wires": [
+      [
+        "53db1ed620719c09"
+      ]
+    ]
+  },
+  {
+    "id": "53db1ed620719c09",
+    "type": "change",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "rules": [
+      {
+        "t": "set",
+        "p": "phoneControlle",
+        "pt": "global",
+        "to": "payload",
+        "tot": "msg"
+      }
+    ],
+    "action": "",
+    "property": "",
+    "from": "",
+    "to": "",
+    "reg": false,
+    "x": 580,
+    "y": 80,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "e136ef1f17fc614c",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "20停",
+    "group": "2fbce496f639fcbe",
+    "order": 21,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "20停",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "20停",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 400,
+    "wires": [
+      [
+        "eba92eb3fb9c7e42"
+      ]
+    ]
+  },
+  {
+    "id": "d3dc9f6150c65a38",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":3,\"Address\":4020};\nvar url = \"http://192.168.110.20:1880/20/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 400,
+    "wires": [
+      [
+        "8135b2bc528723cb"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "8135b2bc528723cb",
+    "type": "switch",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "property": "phoneControlle",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "true"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 455,
+    "y": 480,
+    "wires": [
+      [
+        "3a3bbe6d966af27d"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "b09894eca6a3525b",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "20开",
+    "group": "2fbce496f639fcbe",
+    "order": 22,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "20开",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "20开",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 440,
+    "wires": [
+      [
+        "2da3a5df2b590834"
+      ]
+    ]
+  },
+  {
+    "id": "c39aac11db48d0a9",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":4,\"Address\":4020};\nvar url = \"http://192.168.110.20:1880/20/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 440,
+    "wires": [
+      [
+        "8135b2bc528723cb"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "fc31f2954e3306e2",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "20下",
+    "group": "2fbce496f639fcbe",
+    "order": 23,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "20下",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "20下",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 480,
+    "wires": [
+      [
+        "3dab57ae51eff336"
+      ]
+    ]
+  },
+  {
+    "id": "41971dacf964be06",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 69",
+    "func": "var data = {\"RequestID\":111111,\"Value\":2,\"Address\":4020};\nvar url = \"http://192.168.110.20:1880/20/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 480,
+    "wires": [
+      [
+        "8135b2bc528723cb"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "cd3baf31dba089e6",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "20上",
+    "group": "2fbce496f639fcbe",
+    "order": 24,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "20上",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "20上",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 520,
+    "wires": [
+      [
+        "8dafe798fe2e21c2"
+      ]
+    ]
+  },
+  {
+    "id": "4121d86ecd6e5272",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 70",
+    "func": "var data = {\"RequestID\":111111,\"Value\":1,\"Address\":4020};\nvar url = \"http://192.168.110.20:1880/20/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 520,
+    "wires": [
+      [
+        "8135b2bc528723cb"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "a70d67fe8d79901d",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "20原",
+    "group": "2fbce496f639fcbe",
+    "order": 25,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "20原",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "20原",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 560,
+    "wires": [
+      [
+        "72806f31340eca9c"
+      ]
+    ]
+  },
+  {
+    "id": "3d4f0afa405ba9ff",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 71",
+    "func": "var data = {\"RequestID\":111111,\"Value\":5,\"Address\":4020};\nvar url = \"http://192.168.110.20:1880/20/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 560,
+    "wires": [
+      [
+        "8135b2bc528723cb"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "c66e82837ded97ad",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "30停",
+    "group": "2fbce496f639fcbe",
+    "order": 31,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "30停",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "30停",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 640,
+    "wires": [
+      [
+        "1197e14bd2cf35f6"
+      ]
+    ]
+  },
+  {
+    "id": "fefcf73d3ab18da6",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":3,\"Address\":4030};\nvar url = \"http://192.168.110.20:1880/30/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 640,
+    "wires": [
+      [
+        "80931d8fde59adeb"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "80931d8fde59adeb",
+    "type": "switch",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "property": "phoneControlle",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "true"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 455,
+    "y": 720,
+    "wires": [
+      [
+        "3a3bbe6d966af27d"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "870a44e0384a8fc5",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "30开",
+    "group": "2fbce496f639fcbe",
+    "order": 32,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "30开",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "30开",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 680,
+    "wires": [
+      [
+        "f12d8c2293aafd5b"
+      ]
+    ]
+  },
+  {
+    "id": "c759abaf8d424b8f",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":4,\"Address\":4030};\nvar url = \"http://192.168.110.20:1880/30/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 680,
+    "wires": [
+      [
+        "80931d8fde59adeb"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "b27541ae266a573f",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "30下",
+    "group": "2fbce496f639fcbe",
+    "order": 33,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "30下",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "30下",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 720,
+    "wires": [
+      [
+        "9ac54633482b39a7"
+      ]
+    ]
+  },
+  {
+    "id": "b98bdbe900bed124",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 69",
+    "func": "var data = {\"RequestID\":111111,\"Value\":2,\"Address\":4030};\nvar url = \"http://192.168.110.20:1880/30/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 720,
+    "wires": [
+      [
+        "80931d8fde59adeb"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "f55b19dcfdf4789d",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "30上",
+    "group": "2fbce496f639fcbe",
+    "order": 34,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "30上",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "30上",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 760,
+    "wires": [
+      [
+        "e8328a7c8d022139"
+      ]
+    ]
+  },
+  {
+    "id": "c60c5d9fc2dd7d46",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 70",
+    "func": "var data = {\"RequestID\":111111,\"Value\":1,\"Address\":4030};\nvar url = \"http://192.168.110.20:1880/30/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 760,
+    "wires": [
+      [
+        "80931d8fde59adeb"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "0fa43a233c8f90e5",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "30原",
+    "group": "2fbce496f639fcbe",
+    "order": 35,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "30原",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "30原",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 800,
+    "wires": [
+      [
+        "927c1a9890ed679b"
+      ]
+    ]
+  },
+  {
+    "id": "d4aa3e381e947b3e",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 71",
+    "func": "var data = {\"RequestID\":111111,\"Value\":5,\"Address\":4030};\nvar url = \"http://192.168.110.20:1880/30/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 800,
+    "wires": [
+      [
+        "80931d8fde59adeb"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "ae3320e243c60558",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "40停",
+    "group": "2fbce496f639fcbe",
+    "order": 41,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "40停",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "40停",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 860,
+    "wires": [
+      [
+        "e623e2ea0366ad6b"
+      ]
+    ]
+  },
+  {
+    "id": "6b08f91576e148be",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":3,\"Address\":4040};\nvar url = \"http://192.168.110.40:1880/40/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 860,
+    "wires": [
+      [
+        "e938d8efd31f283f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e938d8efd31f283f",
+    "type": "switch",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "property": "phoneControlle",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "true"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 455,
+    "y": 940,
+    "wires": [
+      [
+        "3a3bbe6d966af27d"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "03cb99ec76401663",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "40开",
+    "group": "2fbce496f639fcbe",
+    "order": 42,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "40开",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "40开",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 900,
+    "wires": [
+      [
+        "85556ea2e47c9ac3"
+      ]
+    ]
+  },
+  {
+    "id": "2e5b4e998c43411a",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":4,\"Address\":4040};\nvar url = \"http://192.168.110.40:1880/40/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 900,
+    "wires": [
+      [
+        "e938d8efd31f283f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "480351940e065187",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "40下",
+    "group": "2fbce496f639fcbe",
+    "order": 43,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "40下",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "40下",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 940,
+    "wires": [
+      [
+        "091289bda6a741e7"
+      ]
+    ]
+  },
+  {
+    "id": "903e90824e80de56",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 69",
+    "func": "var data = {\"RequestID\":111111,\"Value\":2,\"Address\":4040};\nvar url = \"http://192.168.110.40:1880/40/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 940,
+    "wires": [
+      [
+        "e938d8efd31f283f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "021c7dc2746c80f4",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "40上",
+    "group": "2fbce496f639fcbe",
+    "order": 44,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "40上",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "40上",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 980,
+    "wires": [
+      [
+        "0e71ef94336554bd"
+      ]
+    ]
+  },
+  {
+    "id": "0a7630884765516b",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 70",
+    "func": "var data = {\"RequestID\":111111,\"Value\":1,\"Address\":4040};\nvar url = \"http://192.168.110.40:1880/40/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 980,
+    "wires": [
+      [
+        "e938d8efd31f283f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "32180430deef9ca1",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "40原",
+    "group": "2fbce496f639fcbe",
+    "order": 45,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "40原",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "40原",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1020,
+    "wires": [
+      [
+        "c002141662dcb37d"
+      ]
+    ]
+  },
+  {
+    "id": "0cfc8da2fcb11990",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 71",
+    "func": "var data = {\"RequestID\":111111,\"Value\":5,\"Address\":4040};\nvar url = \"http://192.168.110.40:1880/40/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1020,
+    "wires": [
+      [
+        "e938d8efd31f283f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "c29dec9b727011d0",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "50停",
+    "group": "2fbce496f639fcbe",
+    "order": 51,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "50停",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "50停",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1080,
+    "wires": [
+      [
+        "892dd149576f8505"
+      ]
+    ]
+  },
+  {
+    "id": "f50c6ae3d569af9c",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":3,\"Address\":4050};\nvar url = \"http://192.168.110.50:1880/50/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1080,
+    "wires": [
+      [
+        "84e6fe986d91ff0f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "84e6fe986d91ff0f",
+    "type": "switch",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "property": "phoneControlle",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "true"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 455,
+    "y": 1160,
+    "wires": [
+      [
+        "3a3bbe6d966af27d"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "77bd9eadb2a318a0",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "50开",
+    "group": "2fbce496f639fcbe",
+    "order": 52,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "50开",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "50开",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1120,
+    "wires": [
+      [
+        "e0a20cb7ddd7f963"
+      ]
+    ]
+  },
+  {
+    "id": "1060f0ec89722f02",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":4,\"Address\":4050};\nvar url = \"http://192.168.110.50:1880/50/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1120,
+    "wires": [
+      [
+        "84e6fe986d91ff0f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "255f17ffc3a3696e",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "50下",
+    "group": "2fbce496f639fcbe",
+    "order": 53,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "50下",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "50下",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1160,
+    "wires": [
+      [
+        "39bc50d74892db33"
+      ]
+    ]
+  },
+  {
+    "id": "020ce8035ba022d7",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 69",
+    "func": "var data = {\"RequestID\":111111,\"Value\":2,\"Address\":4050};\nvar url = \"http://192.168.110.50:1880/50/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1160,
+    "wires": [
+      [
+        "84e6fe986d91ff0f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "dafe78f510a1e823",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "50上",
+    "group": "2fbce496f639fcbe",
+    "order": 54,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "50上",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "50上",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1200,
+    "wires": [
+      [
+        "2069426aa60689dc"
+      ]
+    ]
+  },
+  {
+    "id": "55faa902b973bb96",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 70",
+    "func": "var data = {\"RequestID\":111111,\"Value\":1,\"Address\":4050};\nvar url = \"http://192.168.110.50:1880/50/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1200,
+    "wires": [
+      [
+        "84e6fe986d91ff0f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "60a87e250f6eb3c9",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "50原",
+    "group": "2fbce496f639fcbe",
+    "order": 55,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "50原",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "50原",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1240,
+    "wires": [
+      [
+        "608c4494496b4ade"
+      ]
+    ]
+  },
+  {
+    "id": "941d3df9c5d4b68e",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 71",
+    "func": "var data = {\"RequestID\":111111,\"Value\":5,\"Address\":4050};\nvar url = \"http://192.168.110.50:1880/50/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1240,
+    "wires": [
+      [
+        "84e6fe986d91ff0f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "90747dadf8b95c9f",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "60停",
+    "group": "2fbce496f639fcbe",
+    "order": 61,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "60停",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "60停",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1300,
+    "wires": [
+      [
+        "31e1d55949754777"
+      ]
+    ]
+  },
+  {
+    "id": "f27b7c3c86e7a074",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":3,\"Address\":4060};\nvar url = \"http://192.168.110.60:1880/60/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1300,
+    "wires": [
+      [
+        "a99b931adc1abc5f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "a99b931adc1abc5f",
+    "type": "switch",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "property": "phoneControlle",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "true"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 455,
+    "y": 1380,
+    "wires": [
+      [
+        "3a3bbe6d966af27d"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "d58a9cb9877a6095",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "60开",
+    "group": "2fbce496f639fcbe",
+    "order": 62,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "60开",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "60开",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1340,
+    "wires": [
+      [
+        "ea652e5e34d04822"
+      ]
+    ]
+  },
+  {
+    "id": "0e490404ae5e9f2a",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":4,\"Address\":4060};\nvar url = \"http://192.168.110.60:1880/60/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1340,
+    "wires": [
+      [
+        "a99b931adc1abc5f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "3dc4a241f76c99a1",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "60下",
+    "group": "2fbce496f639fcbe",
+    "order": 63,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "60下",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "60下",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1380,
+    "wires": [
+      [
+        "90539a48e0171c87"
+      ]
+    ]
+  },
+  {
+    "id": "8cc86d8ab4b23fc5",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 69",
+    "func": "var data = {\"RequestID\":111111,\"Value\":2,\"Address\":4060};\nvar url = \"http://192.168.110.60:1880/60/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1380,
+    "wires": [
+      [
+        "a99b931adc1abc5f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "04fa48c3445d9dd4",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "60上",
+    "group": "2fbce496f639fcbe",
+    "order": 64,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "60上",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "60上",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1420,
+    "wires": [
+      [
+        "7c214d97a935421f"
+      ]
+    ]
+  },
+  {
+    "id": "9ffb57904265e92d",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 70",
+    "func": "var data = {\"RequestID\":111111,\"Value\":1,\"Address\":4060};\nvar url = \"http://192.168.110.60:1880/60/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1420,
+    "wires": [
+      [
+        "a99b931adc1abc5f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "761a86be6060df35",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "60原",
+    "group": "2fbce496f639fcbe",
+    "order": 65,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "60原",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "60原",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1460,
+    "wires": [
+      [
+        "c19ebb891e7e7ff5"
+      ]
+    ]
+  },
+  {
+    "id": "fe94ce283ec2147e",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 71",
+    "func": "var data = {\"RequestID\":111111,\"Value\":5,\"Address\":4060};\nvar url = \"http://192.168.110.60:1880/60/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1460,
+    "wires": [
+      [
+        "a99b931adc1abc5f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "a5c5b6458302873d",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "70停",
+    "group": "2fbce496f639fcbe",
+    "order": 71,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "70停",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "70停",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1520,
+    "wires": [
+      [
+        "3114582e7dfb2989"
+      ]
+    ]
+  },
+  {
+    "id": "8bb573ade0eb2e21",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":3,\"Address\":4070};\nvar url = \"http://192.168.110.70:1880/70/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1520,
+    "wires": [
+      [
+        "bb1ef14bd9d3f598"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "bb1ef14bd9d3f598",
+    "type": "switch",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "property": "phoneControlle",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "true"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 455,
+    "y": 1600,
+    "wires": [
+      [
+        "3a3bbe6d966af27d"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "af2af10884cdf092",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "70开",
+    "group": "2fbce496f639fcbe",
+    "order": 72,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "70开",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "70开",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1560,
+    "wires": [
+      [
+        "cdd1b2e8cf7828c2"
+      ]
+    ]
+  },
+  {
+    "id": "faa7a5d260a59f38",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":4,\"Address\":4070};\nvar url = \"http://192.168.110.70:1880/70/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1560,
+    "wires": [
+      [
+        "bb1ef14bd9d3f598"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "d2462b545e5f0a13",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "70下",
+    "group": "2fbce496f639fcbe",
+    "order": 73,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "70下",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "70下",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1600,
+    "wires": [
+      [
+        "3b83899a2edbe03a"
+      ]
+    ]
+  },
+  {
+    "id": "145fbeae7121a912",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 69",
+    "func": "var data = {\"RequestID\":111111,\"Value\":2,\"Address\":4070};\nvar url = \"http://192.168.110.70:1880/70/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1600,
+    "wires": [
+      [
+        "bb1ef14bd9d3f598"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "8248d85d9afd04c4",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "70上",
+    "group": "2fbce496f639fcbe",
+    "order": 74,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "70上",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "70上",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1640,
+    "wires": [
+      [
+        "a261ac1dbea6e5be"
+      ]
+    ]
+  },
+  {
+    "id": "7b1406bf85635582",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 70",
+    "func": "var data = {\"RequestID\":111111,\"Value\":1,\"Address\":4070};\nvar url = \"http://192.168.110.70:1880/70/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1640,
+    "wires": [
+      [
+        "bb1ef14bd9d3f598"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "1c694eb612ccaba8",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "70原",
+    "group": "2fbce496f639fcbe",
+    "order": 75,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "70原",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "70原",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1680,
+    "wires": [
+      [
+        "472a0c5fe44f602f"
+      ]
+    ]
+  },
+  {
+    "id": "c6ca9020bad0469e",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 71",
+    "func": "var data = {\"RequestID\":111111,\"Value\":5,\"Address\":4070};\nvar url = \"http://192.168.110.70:1880/70/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1680,
+    "wires": [
+      [
+        "bb1ef14bd9d3f598"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "588c6304a04e69ea",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "80停",
+    "group": "2fbce496f639fcbe",
+    "order": 81,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "80停",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "80停",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1760,
+    "wires": [
+      [
+        "67ef53ec2623aba2"
+      ]
+    ]
+  },
+  {
+    "id": "82e86f0da519d902",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":3,\"Address\":4080};\nvar url = \"http://192.168.110.80:1880/80/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1760,
+    "wires": [
+      [
+        "ee835b515a055cfa"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "ee835b515a055cfa",
+    "type": "switch",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "property": "phoneControlle",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "true"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 455,
+    "y": 1840,
+    "wires": [
+      [
+        "3a3bbe6d966af27d"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "7c698906763f788c",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "80开",
+    "group": "2fbce496f639fcbe",
+    "order": 82,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "80开",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "80开",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1800,
+    "wires": [
+      [
+        "2f01cdedf284bdee"
+      ]
+    ]
+  },
+  {
+    "id": "6d93bd4f5bfd8285",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":4,\"Address\":4080};\nvar url = \"http://192.168.110.80:1880/80/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1800,
+    "wires": [
+      [
+        "ee835b515a055cfa"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "ba1f082d8e8179aa",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "80下",
+    "group": "2fbce496f639fcbe",
+    "order": 83,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "80下",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "80下",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1840,
+    "wires": [
+      [
+        "9b6d93daf16bd4ae"
+      ]
+    ]
+  },
+  {
+    "id": "8f3ca945b7946a52",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 69",
+    "func": "var data = {\"RequestID\":111111,\"Value\":2,\"Address\":4080};\nvar url = \"http://192.168.110.80:1880/80/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1840,
+    "wires": [
+      [
+        "ee835b515a055cfa"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "4615a4caad023dcf",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "80上",
+    "group": "2fbce496f639fcbe",
+    "order": 84,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "80上",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "80上",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1880,
+    "wires": [
+      [
+        "e5a4a339af8595bb"
+      ]
+    ]
+  },
+  {
+    "id": "4f4c0346f33f827f",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 70",
+    "func": "var data = {\"RequestID\":111111,\"Value\":1,\"Address\":4080};\nvar url = \"http://192.168.110.80:1880/80/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1880,
+    "wires": [
+      [
+        "ee835b515a055cfa"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "c2d8839feb3876ac",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "80原",
+    "group": "2fbce496f639fcbe",
+    "order": 85,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "80原",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "80原",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 1920,
+    "wires": [
+      [
+        "ecf4ba07b655843e"
+      ]
+    ]
+  },
+  {
+    "id": "4a19f9847c48ba4d",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 71",
+    "func": "var data = {\"RequestID\":111111,\"Value\":5,\"Address\":4080};\nvar url = \"http://192.168.110.80:1880/80/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 1920,
+    "wires": [
+      [
+        "ee835b515a055cfa"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "d1d7322c452ecb84",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "90停",
+    "group": "2fbce496f639fcbe",
+    "order": 91,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "90停",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "90停",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 2000,
+    "wires": [
+      [
+        "e5e8519a3ebcf25d"
+      ]
+    ]
+  },
+  {
+    "id": "cdfcd6b365f7dca6",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":3,\"Address\":4090};\nvar url = \"http://192.168.110.90:1880/90/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 2000,
+    "wires": [
+      [
+        "bf9c46d43cf087cf"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "bf9c46d43cf087cf",
+    "type": "switch",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "property": "phoneControlle",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "true"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 455,
+    "y": 2080,
+    "wires": [
+      [
+        "3a3bbe6d966af27d"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "ed7db4826860e05e",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "90开",
+    "group": "2fbce496f639fcbe",
+    "order": 92,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "90开",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "90开",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 2040,
+    "wires": [
+      [
+        "e5471debfaff7948"
+      ]
+    ]
+  },
+  {
+    "id": "e8701dbaf87b7b11",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":4,\"Address\":4090};\nvar url = \"http://192.168.110.90:1880/90/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 2040,
+    "wires": [
+      [
+        "bf9c46d43cf087cf"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e63336877a10d1cf",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "90下",
+    "group": "2fbce496f639fcbe",
+    "order": 93,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "90下",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "90下",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 2080,
+    "wires": [
+      [
+        "963e734195f58426"
+      ]
+    ]
+  },
+  {
+    "id": "1d44e765a6ac0645",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 69",
+    "func": "var data = {\"RequestID\":111111,\"Value\":2,\"Address\":4090};\nvar url = \"http://192.168.110.90:1880/90/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 2080,
+    "wires": [
+      [
+        "bf9c46d43cf087cf"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "4746026731aeb48f",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "90上",
+    "group": "2fbce496f639fcbe",
+    "order": 94,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "90上",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "90上",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 2120,
+    "wires": [
+      [
+        "ed13284abe1ad879"
+      ]
+    ]
+  },
+  {
+    "id": "332fa2075dadb2e7",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 70",
+    "func": "var data = {\"RequestID\":111111,\"Value\":1,\"Address\":4090};\nvar url = \"http://192.168.110.90:1880/90/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 2120,
+    "wires": [
+      [
+        "bf9c46d43cf087cf"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "ee4c2d919f629cea",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "90原",
+    "group": "2fbce496f639fcbe",
+    "order": 95,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "90原",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "90原",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 2160,
+    "wires": [
+      [
+        "119bfd95bd8e9602"
+      ]
+    ]
+  },
+  {
+    "id": "fcc186c7ebf048d8",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 71",
+    "func": "var data = {\"RequestID\":111111,\"Value\":5,\"Address\":4090};\nvar url = \"http://192.168.110.90:1880/90/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 2160,
+    "wires": [
+      [
+        "bf9c46d43cf087cf"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "4874fea7888fca0f",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "100停",
+    "group": "2fbce496f639fcbe",
+    "order": 101,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "100停",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "100停",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 2240,
+    "wires": [
+      [
+        "1f322c41255b1049"
+      ]
+    ]
+  },
+  {
+    "id": "2d614cb5449bfbe0",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":3,\"Address\":4100};\nvar url = \"http://192.168.110.100:1880/100/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 2240,
+    "wires": [
+      [
+        "0c5a36d28f09cf61"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "0c5a36d28f09cf61",
+    "type": "switch",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "property": "phoneControlle",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "true"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 455,
+    "y": 2320,
+    "wires": [
+      [
+        "3a3bbe6d966af27d"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "c4e5a1a64536fbfb",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "100开",
+    "group": "2fbce496f639fcbe",
+    "order": 102,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "100开",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "100开",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 2280,
+    "wires": [
+      [
+        "15f73430ee68a1be"
+      ]
+    ]
+  },
+  {
+    "id": "9fc96572d3865395",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 57",
+    "func": "var data = {\"RequestID\":111111,\"Value\":4,\"Address\":4100};\nvar url = \"http://192.168.110.100:1880/100/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 2280,
+    "wires": [
+      [
+        "0c5a36d28f09cf61"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "a5915d90b6689e35",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "100下",
+    "group": "2fbce496f639fcbe",
+    "order": 103,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "100下",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "100下",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 2320,
+    "wires": [
+      [
+        "36f2be5ded830fb7"
+      ]
+    ]
+  },
+  {
+    "id": "d199807206d6f977",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 69",
+    "func": "var data = {\"RequestID\":111111,\"Value\":2,\"Address\":4100};\nvar url = \"http://192.168.110.100:1880/100/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 2320,
+    "wires": [
+      [
+        "0c5a36d28f09cf61"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "25ab2dfaba09e1eb",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "100上",
+    "group": "2fbce496f639fcbe",
+    "order": 104,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "100上",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "100上",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 2360,
+    "wires": [
+      [
+        "eb768f902eadd153"
+      ]
+    ]
+  },
+  {
+    "id": "2dc8541d02848063",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 70",
+    "func": "var data = {\"RequestID\":111111,\"Value\":1,\"Address\":4100};\nvar url = \"http://192.168.110.100:1880/100/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 2360,
+    "wires": [
+      [
+        "0c5a36d28f09cf61"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "ad633d62765d3f8b",
+    "type": "ui_button",
+    "z": "4825b425abf4fd3c",
+    "name": "100原",
+    "group": "2fbce496f639fcbe",
+    "order": 105,
+    "width": "1",
+    "height": "1",
+    "passthru": false,
+    "label": "100原",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "100原",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 110,
+    "y": 2400,
+    "wires": [
+      [
+        "d7f03daf31c01183"
+      ]
+    ]
+  },
+  {
+    "id": "5a1a36284da1a1d6",
+    "type": "function",
+    "z": "4825b425abf4fd3c",
+    "name": "function 71",
+    "func": "var data = {\"RequestID\":111111,\"Value\":5,\"Address\":4100};\nvar url = \"http://192.168.110.100:1880/100/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 315,
+    "y": 2400,
+    "wires": [
+      [
+        "0c5a36d28f09cf61"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "74b570a8b2abe7bb",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 160,
+    "wires": [
+      [
+        "e79f6e770ee65408"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "5cefef7daf54bcae",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 200,
+    "wires": [
+      [
+        "3061c55833fb7d5f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "8ede431b982b6d56",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 240,
+    "wires": [
+      [
+        "9ebfa12906437908"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "65f033854bd43fb2",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 280,
+    "wires": [
+      [
+        "da43eb96f86ae980"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "130e41ee085b595d",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 320,
+    "wires": [
+      [
+        "e4ce1f5be8d1f1fc"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "eba92eb3fb9c7e42",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 400,
+    "wires": [
+      [
+        "d3dc9f6150c65a38"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "2da3a5df2b590834",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 440,
+    "wires": [
+      [
+        "c39aac11db48d0a9"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "3dab57ae51eff336",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 480,
+    "wires": [
+      [
+        "41971dacf964be06"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "8dafe798fe2e21c2",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 520,
+    "wires": [
+      [
+        "4121d86ecd6e5272"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "72806f31340eca9c",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 560,
+    "wires": [
+      [
+        "3d4f0afa405ba9ff"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "1197e14bd2cf35f6",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 640,
+    "wires": [
+      [
+        "fefcf73d3ab18da6"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "f12d8c2293aafd5b",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 680,
+    "wires": [
+      [
+        "c759abaf8d424b8f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "9ac54633482b39a7",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 720,
+    "wires": [
+      [
+        "b98bdbe900bed124"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e8328a7c8d022139",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 760,
+    "wires": [
+      [
+        "c60c5d9fc2dd7d46"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "927c1a9890ed679b",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 800,
+    "wires": [
+      [
+        "d4aa3e381e947b3e"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e623e2ea0366ad6b",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 860,
+    "wires": [
+      [
+        "6b08f91576e148be"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "85556ea2e47c9ac3",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 900,
+    "wires": [
+      [
+        "2e5b4e998c43411a"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "091289bda6a741e7",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 940,
+    "wires": [
+      [
+        "903e90824e80de56"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "0e71ef94336554bd",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 980,
+    "wires": [
+      [
+        "0a7630884765516b"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "c002141662dcb37d",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1020,
+    "wires": [
+      [
+        "0cfc8da2fcb11990"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "892dd149576f8505",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1080,
+    "wires": [
+      [
+        "f50c6ae3d569af9c"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e0a20cb7ddd7f963",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1120,
+    "wires": [
+      [
+        "1060f0ec89722f02"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "39bc50d74892db33",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1160,
+    "wires": [
+      [
+        "020ce8035ba022d7"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "2069426aa60689dc",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1200,
+    "wires": [
+      [
+        "55faa902b973bb96"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "608c4494496b4ade",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1240,
+    "wires": [
+      [
+        "941d3df9c5d4b68e"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "31e1d55949754777",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1300,
+    "wires": [
+      [
+        "f27b7c3c86e7a074"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "ea652e5e34d04822",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1340,
+    "wires": [
+      [
+        "0e490404ae5e9f2a"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "90539a48e0171c87",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1380,
+    "wires": [
+      [
+        "8cc86d8ab4b23fc5"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "7c214d97a935421f",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1420,
+    "wires": [
+      [
+        "9ffb57904265e92d"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "c19ebb891e7e7ff5",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1460,
+    "wires": [
+      [
+        "fe94ce283ec2147e"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "3114582e7dfb2989",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1520,
+    "wires": [
+      [
+        "8bb573ade0eb2e21"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "cdd1b2e8cf7828c2",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1560,
+    "wires": [
+      [
+        "faa7a5d260a59f38"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "3b83899a2edbe03a",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1600,
+    "wires": [
+      [
+        "145fbeae7121a912"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "a261ac1dbea6e5be",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1640,
+    "wires": [
+      [
+        "7b1406bf85635582"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "472a0c5fe44f602f",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1680,
+    "wires": [
+      [
+        "c6ca9020bad0469e"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "67ef53ec2623aba2",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1760,
+    "wires": [
+      [
+        "82e86f0da519d902"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "2f01cdedf284bdee",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1800,
+    "wires": [
+      [
+        "6d93bd4f5bfd8285"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "9b6d93daf16bd4ae",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1840,
+    "wires": [
+      [
+        "8f3ca945b7946a52"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e5a4a339af8595bb",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1880,
+    "wires": [
+      [
+        "4f4c0346f33f827f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "ecf4ba07b655843e",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 1920,
+    "wires": [
+      [
+        "4a19f9847c48ba4d"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e5e8519a3ebcf25d",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 2000,
+    "wires": [
+      [
+        "cdfcd6b365f7dca6"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e5471debfaff7948",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 2040,
+    "wires": [
+      [
+        "e8701dbaf87b7b11"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "963e734195f58426",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 2080,
+    "wires": [
+      [
+        "1d44e765a6ac0645"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "ed13284abe1ad879",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 2120,
+    "wires": [
+      [
+        "332fa2075dadb2e7"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "119bfd95bd8e9602",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 2160,
+    "wires": [
+      [
+        "fcc186c7ebf048d8"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "1f322c41255b1049",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 2240,
+    "wires": [
+      [
+        "2d614cb5449bfbe0"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "15f73430ee68a1be",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 2280,
+    "wires": [
+      [
+        "9fc96572d3865395"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "36f2be5ded830fb7",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 2320,
+    "wires": [
+      [
+        "d199807206d6f977"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "eb768f902eadd153",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 2360,
+    "wires": [
+      [
+        "2dc8541d02848063"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "d7f03daf31c01183",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "4825b425abf4fd3c",
+    "name": "",
+    "x": 205,
+    "y": 2400,
+    "wires": [
+      [
+        "5a1a36284da1a1d6"
+      ]
+    ],
+    "l": false
+  }
+]

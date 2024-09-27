@@ -1,0 +1,1456 @@
+[
+  {
+    "id": "99c12e9d42560109",
+    "type": "tab",
+    "label": "0904_test",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "55f8ce0f5fe66161",
+    "type": "inject",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 90,
+    "y": 40,
+    "wires": [
+      [
+        "e718d7a761f7b94a"
+      ]
+    ]
+  },
+  {
+    "id": "e718d7a761f7b94a",
+    "type": "subflow:88b66ec62c694e8c",
+    "z": "99c12e9d42560109",
+    "name": "拿90",
+    "env": [
+      {
+        "name": "e_100",
+        "value": "91",
+        "type": "num"
+      }
+    ],
+    "x": 150,
+    "y": 100,
+    "wires": [
+      [
+        "68a6bacf74d3a6d0"
+      ]
+    ]
+  },
+  {
+    "id": "68a6bacf74d3a6d0",
+    "type": "delay",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 255,
+    "y": 100,
+    "wires": [
+      [
+        "5d1d676a9d9e62a1"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "5d1d676a9d9e62a1",
+    "type": "subflow:88b66ec62c694e8c",
+    "z": "99c12e9d42560109",
+    "name": "放托盘",
+    "env": [
+      {
+        "name": "e_100",
+        "value": "12",
+        "type": "num"
+      }
+    ],
+    "x": 370,
+    "y": 100,
+    "wires": [
+      [
+        "792dc4dcd810bb2e"
+      ]
+    ]
+  },
+  {
+    "id": "792dc4dcd810bb2e",
+    "type": "delay",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 475,
+    "y": 100,
+    "wires": [
+      [
+        "5a038bb673b0e1e3"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "5a038bb673b0e1e3",
+    "type": "subflow:88b66ec62c694e8c",
+    "z": "99c12e9d42560109",
+    "name": "拿80",
+    "env": [
+      {
+        "name": "e_100",
+        "value": "81",
+        "type": "num"
+      }
+    ],
+    "x": 590,
+    "y": 100,
+    "wires": [
+      [
+        "9b16523abf9b93c6"
+      ]
+    ]
+  },
+  {
+    "id": "9b16523abf9b93c6",
+    "type": "delay",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 695,
+    "y": 100,
+    "wires": [
+      [
+        "1aae163deea681e0"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "1aae163deea681e0",
+    "type": "subflow:88b66ec62c694e8c",
+    "z": "99c12e9d42560109",
+    "name": "放托盘",
+    "env": [
+      {
+        "name": "e_100",
+        "value": "12",
+        "type": "num"
+      }
+    ],
+    "x": 790,
+    "y": 100,
+    "wires": [
+      [
+        "61608adff174d39f"
+      ]
+    ]
+  },
+  {
+    "id": "61608adff174d39f",
+    "type": "delay",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 125,
+    "y": 200,
+    "wires": [
+      [
+        "cd571e344d148348"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "211717b12ff1e0c6",
+    "type": "subflow:88b66ec62c694e8c",
+    "z": "99c12e9d42560109",
+    "name": "拿70",
+    "env": [
+      {
+        "name": "e_100",
+        "value": "71",
+        "type": "num"
+      }
+    ],
+    "x": 430,
+    "y": 200,
+    "wires": [
+      [
+        "2a268a9cd763e28e"
+      ]
+    ]
+  },
+  {
+    "id": "2a268a9cd763e28e",
+    "type": "delay",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 535,
+    "y": 200,
+    "wires": [
+      [
+        "32079c06e8a94b68"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "32079c06e8a94b68",
+    "type": "subflow:88b66ec62c694e8c",
+    "z": "99c12e9d42560109",
+    "name": "放90",
+    "env": [
+      {
+        "name": "e_100",
+        "value": "90",
+        "type": "num"
+      }
+    ],
+    "x": 630,
+    "y": 200,
+    "wires": [
+      [
+        "a96eb362ef6f0f1f",
+        "68ebe5a2db584138"
+      ]
+    ]
+  },
+  {
+    "id": "cd571e344d148348",
+    "type": "trigger",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "str",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 195,
+    "y": 200,
+    "wires": [
+      [
+        "11da9396f6c812be"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "11da9396f6c812be",
+    "type": "switch",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "property": "IO_70.AI.status",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "4",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 265,
+    "y": 200,
+    "wires": [
+      [
+        "8bc30608b87cb8dc"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "8bc30608b87cb8dc",
+    "type": "function",
+    "z": "99c12e9d42560109",
+    "name": "function 74",
+    "func": "return {reset:1,payload:1};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 325,
+    "y": 200,
+    "wires": [
+      [
+        "211717b12ff1e0c6",
+        "cd571e344d148348"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "a96eb362ef6f0f1f",
+    "type": "function",
+    "z": "99c12e9d42560109",
+    "name": "90产",
+    "func": "var data = {\"RequestID\":111111,\"Value\":90,\"Address\":4090};\nvar url = \"http://192.168.110.90:1880/90/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 770,
+    "y": 200,
+    "wires": [
+      [
+        "39eb6d38dc68d0c5"
+      ]
+    ]
+  },
+  {
+    "id": "39eb6d38dc68d0c5",
+    "type": "http request",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "method": "POST",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 855,
+    "y": 200,
+    "wires": [
+      []
+    ],
+    "l": false
+  },
+  {
+    "id": "68ebe5a2db584138",
+    "type": "delay",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 125,
+    "y": 280,
+    "wires": [
+      [
+        "671fa9731d2ae527"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "3dd29467cf65168c",
+    "type": "subflow:88b66ec62c694e8c",
+    "z": "99c12e9d42560109",
+    "name": "拿60",
+    "env": [
+      {
+        "name": "e_100",
+        "value": "61",
+        "type": "num"
+      }
+    ],
+    "x": 430,
+    "y": 280,
+    "wires": [
+      [
+        "45d5ee5a0ae8bf91"
+      ]
+    ]
+  },
+  {
+    "id": "45d5ee5a0ae8bf91",
+    "type": "delay",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 535,
+    "y": 280,
+    "wires": [
+      [
+        "b36123190c0aa9f0"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "b36123190c0aa9f0",
+    "type": "subflow:88b66ec62c694e8c",
+    "z": "99c12e9d42560109",
+    "name": "放70",
+    "env": [
+      {
+        "name": "e_100",
+        "value": "70",
+        "type": "num"
+      }
+    ],
+    "x": 630,
+    "y": 280,
+    "wires": [
+      [
+        "bde882ded685ecd2",
+        "6c5230babfbbf447"
+      ]
+    ]
+  },
+  {
+    "id": "671fa9731d2ae527",
+    "type": "trigger",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "str",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 195,
+    "y": 280,
+    "wires": [
+      [
+        "c0d9258b5e755a47"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "c0d9258b5e755a47",
+    "type": "switch",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "property": "IO_60.AO.status",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "4",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 265,
+    "y": 280,
+    "wires": [
+      [
+        "76cf63822701d95d"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "76cf63822701d95d",
+    "type": "function",
+    "z": "99c12e9d42560109",
+    "name": "function 75",
+    "func": "return {reset:1,payload:1};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 325,
+    "y": 280,
+    "wires": [
+      [
+        "3dd29467cf65168c",
+        "671fa9731d2ae527"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "bde882ded685ecd2",
+    "type": "function",
+    "z": "99c12e9d42560109",
+    "name": "70产",
+    "func": "var data = {\"RequestID\":111111,\"Value\":70,\"Address\":4070};\nvar url = \"http://192.168.110.70:1880/70/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 770,
+    "y": 280,
+    "wires": [
+      [
+        "d94bf23e4c028bd3"
+      ]
+    ]
+  },
+  {
+    "id": "d94bf23e4c028bd3",
+    "type": "http request",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "method": "POST",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 855,
+    "y": 280,
+    "wires": [
+      []
+    ],
+    "l": false
+  },
+  {
+    "id": "6c5230babfbbf447",
+    "type": "delay",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 125,
+    "y": 360,
+    "wires": [
+      [
+        "aefaf86ad93bda97"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "1fe602f97c6fa641",
+    "type": "delay",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 535,
+    "y": 360,
+    "wires": [
+      [
+        "dee7e516f622e8f9"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "aefaf86ad93bda97",
+    "type": "trigger",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "str",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 195,
+    "y": 360,
+    "wires": [
+      [
+        "b65152048e081a6c"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "b65152048e081a6c",
+    "type": "switch",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "property": "IO_50.AI.status",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "4",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 265,
+    "y": 360,
+    "wires": [
+      [
+        "703ceaff44f42419"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "703ceaff44f42419",
+    "type": "function",
+    "z": "99c12e9d42560109",
+    "name": "function 76",
+    "func": "return {reset:1,payload:1};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 325,
+    "y": 360,
+    "wires": [
+      [
+        "aefaf86ad93bda97",
+        "b04d71d120e077d1"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "1893207c5e2901fb",
+    "type": "function",
+    "z": "99c12e9d42560109",
+    "name": "60产",
+    "func": "var data = {\"RequestID\":111111,\"Value\":60,\"Address\":4060};\nvar url = \"http://192.168.110.60:1880/60/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 770,
+    "y": 360,
+    "wires": [
+      [
+        "2d09e8a386daaacc"
+      ]
+    ]
+  },
+  {
+    "id": "2d09e8a386daaacc",
+    "type": "http request",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "method": "POST",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 855,
+    "y": 360,
+    "wires": [
+      []
+    ],
+    "l": false
+  },
+  {
+    "id": "1f91aadbd1092c23",
+    "type": "delay",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 125,
+    "y": 440,
+    "wires": [
+      [
+        "cb82b7acb899ed0a"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "2370f756a122982c",
+    "type": "delay",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 535,
+    "y": 440,
+    "wires": [
+      [
+        "ee19efba62488d75"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "cb82b7acb899ed0a",
+    "type": "trigger",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "str",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 195,
+    "y": 440,
+    "wires": [
+      [
+        "cb1e5bbf1c38a934"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "cb1e5bbf1c38a934",
+    "type": "switch",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "property": "IO_40.AI.status",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "4",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 265,
+    "y": 440,
+    "wires": [
+      [
+        "a9afc841b2b5dd77"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "a9afc841b2b5dd77",
+    "type": "function",
+    "z": "99c12e9d42560109",
+    "name": "function 77",
+    "func": "return {reset:1,payload:1};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 325,
+    "y": 440,
+    "wires": [
+      [
+        "cb82b7acb899ed0a",
+        "3dbc9f0e271dd185"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "650c96df6d94f721",
+    "type": "function",
+    "z": "99c12e9d42560109",
+    "name": "50产",
+    "func": "var data = {\"RequestID\":111111,\"Value\":50,\"Address\":4050};\nvar url = \"http://192.168.110.50:1880/50/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 770,
+    "y": 440,
+    "wires": [
+      [
+        "853bee48a2a445eb"
+      ]
+    ]
+  },
+  {
+    "id": "853bee48a2a445eb",
+    "type": "http request",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "method": "POST",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 855,
+    "y": 440,
+    "wires": [
+      []
+    ],
+    "l": false
+  },
+  {
+    "id": "b04d71d120e077d1",
+    "type": "subflow:444f29ece2925d4e",
+    "z": "99c12e9d42560109",
+    "name": "拿50",
+    "env": [
+      {
+        "name": "e_10",
+        "value": "51",
+        "type": "num"
+      }
+    ],
+    "x": 430,
+    "y": 360,
+    "wires": [
+      [
+        "1fe602f97c6fa641"
+      ]
+    ]
+  },
+  {
+    "id": "dee7e516f622e8f9",
+    "type": "subflow:444f29ece2925d4e",
+    "z": "99c12e9d42560109",
+    "name": "放60",
+    "env": [
+      {
+        "name": "e_10",
+        "value": "60",
+        "type": "num"
+      }
+    ],
+    "x": 630,
+    "y": 360,
+    "wires": [
+      [
+        "1893207c5e2901fb",
+        "1f91aadbd1092c23"
+      ]
+    ]
+  },
+  {
+    "id": "3dbc9f0e271dd185",
+    "type": "subflow:444f29ece2925d4e",
+    "z": "99c12e9d42560109",
+    "name": "拿40",
+    "env": [
+      {
+        "name": "e_10",
+        "value": "41",
+        "type": "num"
+      }
+    ],
+    "x": 430,
+    "y": 440,
+    "wires": [
+      [
+        "2370f756a122982c"
+      ]
+    ]
+  },
+  {
+    "id": "ee19efba62488d75",
+    "type": "subflow:444f29ece2925d4e",
+    "z": "99c12e9d42560109",
+    "name": "放50",
+    "env": [
+      {
+        "name": "e_10",
+        "value": "50",
+        "type": "num"
+      }
+    ],
+    "x": 630,
+    "y": 440,
+    "wires": [
+      [
+        "650c96df6d94f721",
+        "c815511b7b2de9fb"
+      ]
+    ]
+  },
+  {
+    "id": "c815511b7b2de9fb",
+    "type": "delay",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 125,
+    "y": 520,
+    "wires": [
+      [
+        "1220ec64346b1caa"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "3116a563779bedae",
+    "type": "delay",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 535,
+    "y": 520,
+    "wires": [
+      [
+        "307877480d037193"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "1220ec64346b1caa",
+    "type": "trigger",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "str",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 195,
+    "y": 520,
+    "wires": [
+      [
+        "a7b7955342966aae"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "a7b7955342966aae",
+    "type": "switch",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "property": "IO_30.AI.status",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "4",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 265,
+    "y": 520,
+    "wires": [
+      [
+        "294605ab688780e7"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "294605ab688780e7",
+    "type": "function",
+    "z": "99c12e9d42560109",
+    "name": "function 78",
+    "func": "return {reset:1,payload:1};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 325,
+    "y": 520,
+    "wires": [
+      [
+        "1220ec64346b1caa",
+        "3dcb56bd6ca56834"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "71cf1e96f26672e6",
+    "type": "function",
+    "z": "99c12e9d42560109",
+    "name": "40产",
+    "func": "var data = {\"RequestID\":111111,\"Value\":40,\"Address\":4040};\nvar url = \"http://192.168.110.40:1880/40/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 770,
+    "y": 520,
+    "wires": [
+      [
+        "a61da459577a8ee5"
+      ]
+    ]
+  },
+  {
+    "id": "a61da459577a8ee5",
+    "type": "http request",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "method": "POST",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 855,
+    "y": 520,
+    "wires": [
+      []
+    ],
+    "l": false
+  },
+  {
+    "id": "3dcb56bd6ca56834",
+    "type": "subflow:444f29ece2925d4e",
+    "z": "99c12e9d42560109",
+    "name": "拿31",
+    "env": [
+      {
+        "name": "e_10",
+        "value": "31",
+        "type": "num"
+      }
+    ],
+    "x": 430,
+    "y": 520,
+    "wires": [
+      [
+        "3116a563779bedae"
+      ]
+    ]
+  },
+  {
+    "id": "307877480d037193",
+    "type": "subflow:444f29ece2925d4e",
+    "z": "99c12e9d42560109",
+    "name": "放40",
+    "env": [
+      {
+        "name": "e_10",
+        "value": "40",
+        "type": "num"
+      }
+    ],
+    "x": 630,
+    "y": 520,
+    "wires": [
+      [
+        "71cf1e96f26672e6",
+        "b056e0f0a7991283"
+      ]
+    ]
+  },
+  {
+    "id": "b056e0f0a7991283",
+    "type": "delay",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 125,
+    "y": 600,
+    "wires": [
+      [
+        "6585b4d6613d5706"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "c1349949680fd6c1",
+    "type": "delay",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 535,
+    "y": 600,
+    "wires": [
+      [
+        "38527753cac357fb"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "6585b4d6613d5706",
+    "type": "trigger",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "str",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 195,
+    "y": 600,
+    "wires": [
+      [
+        "4e55fdfb57b3cc3f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "4e55fdfb57b3cc3f",
+    "type": "switch",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "property": "IO_20.AI.status",
+    "propertyType": "global",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "4",
+        "vt": "num"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 265,
+    "y": 600,
+    "wires": [
+      [
+        "731e913814e43bed"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "731e913814e43bed",
+    "type": "function",
+    "z": "99c12e9d42560109",
+    "name": "function 79",
+    "func": "return {reset:1,payload:1};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 325,
+    "y": 600,
+    "wires": [
+      [
+        "6585b4d6613d5706",
+        "6b462281de4ffc7f"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "b8def552b243c8d8",
+    "type": "function",
+    "z": "99c12e9d42560109",
+    "name": "30产",
+    "func": "var data = {\"RequestID\":111111,\"Value\":30,\"Address\":4030};\nvar url = \"http://192.168.110.20:1880/30/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 770,
+    "y": 600,
+    "wires": [
+      [
+        "ee726d4a71cac399"
+      ]
+    ]
+  },
+  {
+    "id": "ee726d4a71cac399",
+    "type": "http request",
+    "z": "99c12e9d42560109",
+    "name": "",
+    "method": "POST",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 855,
+    "y": 600,
+    "wires": [
+      []
+    ],
+    "l": false
+  },
+  {
+    "id": "6b462281de4ffc7f",
+    "type": "subflow:444f29ece2925d4e",
+    "z": "99c12e9d42560109",
+    "name": "拿21",
+    "env": [
+      {
+        "name": "e_10",
+        "value": "21",
+        "type": "num"
+      }
+    ],
+    "x": 430,
+    "y": 600,
+    "wires": [
+      [
+        "c1349949680fd6c1"
+      ]
+    ]
+  },
+  {
+    "id": "38527753cac357fb",
+    "type": "subflow:444f29ece2925d4e",
+    "z": "99c12e9d42560109",
+    "name": "放30",
+    "env": [
+      {
+        "name": "e_10",
+        "value": "30",
+        "type": "num"
+      }
+    ],
+    "x": 630,
+    "y": 600,
+    "wires": [
+      [
+        "b8def552b243c8d8"
+      ]
+    ]
+  }
+]

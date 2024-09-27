@@ -1,0 +1,294 @@
+[
+  {
+    "id": "0feb82a2b5c0345a",
+    "type": "ui_tab",
+    "name": "华电-电液阀-线体总览",
+    "icon": "dashboard",
+    "order": 1,
+    "disabled": false,
+    "hidden": false
+  },
+  {
+    "id": "70a9d0aba01b2916",
+    "type": "ui_base",
+    "theme": {
+      "name": "theme-light",
+      "lightTheme": {
+        "default": "#0094CE",
+        "baseColor": "#0094CE",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+        "edited": true,
+        "reset": false
+      },
+      "darkTheme": {
+        "default": "#097479",
+        "baseColor": "#097479",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+        "edited": false
+      },
+      "customTheme": {
+        "name": "Untitled Theme 1",
+        "default": "#4B7930",
+        "baseColor": "#4B7930",
+        "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+      },
+      "themeState": {
+        "base-color": {
+          "default": "#0094CE",
+          "value": "#0094CE",
+          "edited": false
+        },
+        "page-titlebar-backgroundColor": {
+          "value": "#0094CE",
+          "edited": false
+        },
+        "page-backgroundColor": {
+          "value": "#fafafa",
+          "edited": false
+        },
+        "page-sidebar-backgroundColor": {
+          "value": "#ffffff",
+          "edited": false
+        },
+        "group-textColor": {
+          "value": "#1bbfff",
+          "edited": false
+        },
+        "group-borderColor": {
+          "value": "#ffffff",
+          "edited": false
+        },
+        "group-backgroundColor": {
+          "value": "#ffffff",
+          "edited": false
+        },
+        "widget-textColor": {
+          "value": "#111111",
+          "edited": false
+        },
+        "widget-backgroundColor": {
+          "value": "#0094ce",
+          "edited": false
+        },
+        "widget-borderColor": {
+          "value": "#ffffff",
+          "edited": false
+        },
+        "base-font": {
+          "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+        }
+      },
+      "angularTheme": {
+        "primary": "indigo",
+        "accents": "blue",
+        "warn": "red",
+        "background": "grey",
+        "palette": "light"
+      }
+    },
+    "site": {
+      "name": "Node-RED Dashboard",
+      "hideToolbar": "false",
+      "allowSwipe": "false",
+      "lockMenu": "false",
+      "allowTempTheme": "true",
+      "dateFormat": "DD/MM/YYYY",
+      "sizes": {
+        "sx": 48,
+        "sy": 48,
+        "gx": 3,
+        "gy": 3,
+        "cx": 3,
+        "cy": 3,
+        "px": 0,
+        "py": 0
+      }
+    }
+  },
+  {
+    "id": "6a9bf0ddc6321c2c",
+    "type": "ui_group",
+    "name": "ALL",
+    "tab": "0feb82a2b5c0345a",
+    "order": 1,
+    "disp": false,
+    "width": 7,
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "90a5e4513f523743",
+    "type": "ui_tab",
+    "name": "清请求",
+    "icon": "cancel",
+    "order": 2,
+    "disabled": false,
+    "hidden": false
+  },
+  {
+    "id": "7c570207316879f0",
+    "type": "ui_group",
+    "name": "ALL2",
+    "tab": "90a5e4513f523743",
+    "order": 1,
+    "disp": false,
+    "width": "6",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "eacb06694c1aef16",
+    "type": "ui_tab",
+    "name": "远程启停",
+    "icon": "autorenew",
+    "order": 3,
+    "disabled": false,
+    "hidden": false
+  },
+  {
+    "id": "2fbce496f639fcbe",
+    "type": "ui_group",
+    "name": "ALL3",
+    "tab": "eacb06694c1aef16",
+    "order": 1,
+    "disp": false,
+    "width": "7",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "7016e7c073688f63",
+    "type": "ui_tab",
+    "name": "OP10",
+    "icon": "dashboard",
+    "order": 4,
+    "disabled": false,
+    "hidden": false
+  },
+  {
+    "id": "6a94dd369699e356",
+    "type": "ui_group",
+    "name": "ALL4",
+    "tab": "7016e7c073688f63",
+    "order": 1,
+    "disp": false,
+    "width": "6",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "df698a19a7445ded",
+    "type": "ui_tab",
+    "name": "OP100",
+    "icon": "dashboard",
+    "order": 5,
+    "disabled": false,
+    "hidden": false
+  },
+  {
+    "id": "6f146a025804242a",
+    "type": "ui_group",
+    "name": "ALL5",
+    "tab": "df698a19a7445ded",
+    "order": 1,
+    "disp": false,
+    "width": "6",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "b31e9a2d45adaab7",
+    "type": "ui_tab",
+    "name": "OP80",
+    "icon": "dashboard",
+    "order": 6,
+    "disabled": false,
+    "hidden": false
+  },
+  {
+    "id": "bd1a603217a23f8c",
+    "type": "ui_group",
+    "name": "ALL6",
+    "tab": "b31e9a2d45adaab7",
+    "order": 1,
+    "disp": false,
+    "width": "7",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "9407edd6e1beea30",
+    "type": "ui_tab",
+    "name": "OP40",
+    "icon": "dashboard",
+    "order": 7,
+    "disabled": false,
+    "hidden": false
+  },
+  {
+    "id": "fad6d55b4d71cd29",
+    "type": "ui_group",
+    "name": "参数修改",
+    "tab": "9407edd6e1beea30",
+    "order": 1,
+    "disp": true,
+    "width": "7",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "5ddf2db376b1a54f",
+    "type": "ui_group",
+    "name": "轨道",
+    "tab": "9407edd6e1beea30",
+    "order": 2,
+    "disp": true,
+    "width": "7",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "9bdf898e5916298f",
+    "type": "ui_group",
+    "name": "左SCARA",
+    "tab": "9407edd6e1beea30",
+    "order": 3,
+    "disp": true,
+    "width": "6",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "624ebe3c53362a92",
+    "type": "ui_group",
+    "name": "右SCARA",
+    "tab": "9407edd6e1beea30",
+    "order": 4,
+    "disp": true,
+    "width": "6",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "3f4171b68a159284",
+    "type": "ui_group",
+    "name": "左料舱",
+    "tab": "9407edd6e1beea30",
+    "order": 5,
+    "disp": true,
+    "width": "6",
+    "collapse": false,
+    "className": ""
+  },
+  {
+    "id": "a73a1c7f4318437d",
+    "type": "ui_group",
+    "name": "右料舱",
+    "tab": "9407edd6e1beea30",
+    "order": 6,
+    "disp": true,
+    "width": "6",
+    "collapse": false,
+    "className": ""
+  }
+]

@@ -1,0 +1,309 @@
+[
+  {
+    "id": "c212cdb87109d07f",
+    "type": "tab",
+    "label": "OP80",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "3413c424697073c0",
+    "type": "function",
+    "z": "c212cdb87109d07f",
+    "name": "function 11",
+    "func": "var IO = global.get(\"IO_80\");\nvar str = \"\";\nstr += \"装配号:\" + IO.AO.index_assembled+\",\";\nstr += \"进料层:\" + IO.AO.tray_in_count + \",\";\nstr += \"退料层:\" + IO.AO.tray_out_count + \",\";\nstr += \"料盘抓取:\" + IO.AO_6axes.index_top_tray + \",\";\nmsg.payload = str;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 310,
+    "y": 240,
+    "wires": [
+      [
+        "4be4e2dce6ef54ec"
+      ]
+    ]
+  },
+  {
+    "id": "5de353f6b73877cb",
+    "type": "inject",
+    "z": "c212cdb87109d07f",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 220,
+    "y": 80,
+    "wires": [
+      [
+        "f97224ba131dc514"
+      ]
+    ]
+  },
+  {
+    "id": "f97224ba131dc514",
+    "type": "trigger",
+    "z": "c212cdb87109d07f",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "str",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 330,
+    "y": 160,
+    "wires": [
+      [
+        "3413c424697073c0"
+      ]
+    ]
+  },
+  {
+    "id": "4be4e2dce6ef54ec",
+    "type": "ui_text",
+    "z": "c212cdb87109d07f",
+    "group": "bd1a603217a23f8c",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "name": "",
+    "label": "交互:",
+    "format": "{{msg.payload}}",
+    "layout": "row-left",
+    "className": "",
+    "style": false,
+    "font": "",
+    "fontSize": 16,
+    "color": "#000000",
+    "x": 530,
+    "y": 240,
+    "wires": []
+  },
+  {
+    "id": "581ea8275f08b747",
+    "type": "ui_text_input",
+    "z": "c212cdb87109d07f",
+    "name": "",
+    "label": "装配号",
+    "tooltip": "",
+    "group": "bd1a603217a23f8c",
+    "order": 46,
+    "width": 0,
+    "height": 0,
+    "passthru": true,
+    "mode": "number",
+    "delay": 300,
+    "topic": "topic",
+    "sendOnBlur": true,
+    "className": "",
+    "topicType": "msg",
+    "x": 290,
+    "y": 320,
+    "wires": [
+      [
+        "5c8b4681a27575a9"
+      ]
+    ]
+  },
+  {
+    "id": "21ed30cbb6cf88e1",
+    "type": "ui_text_input",
+    "z": "c212cdb87109d07f",
+    "name": "",
+    "label": "进料层",
+    "tooltip": "",
+    "group": "bd1a603217a23f8c",
+    "order": 46,
+    "width": 0,
+    "height": 0,
+    "passthru": true,
+    "mode": "number",
+    "delay": 300,
+    "topic": "topic",
+    "sendOnBlur": true,
+    "className": "",
+    "topicType": "msg",
+    "x": 290,
+    "y": 360,
+    "wires": [
+      [
+        "4f77843fd8eade5d"
+      ]
+    ]
+  },
+  {
+    "id": "3e15e7c5b4b71541",
+    "type": "ui_text_input",
+    "z": "c212cdb87109d07f",
+    "name": "",
+    "label": "料盘抓取",
+    "tooltip": "",
+    "group": "bd1a603217a23f8c",
+    "order": 46,
+    "width": 0,
+    "height": 0,
+    "passthru": true,
+    "mode": "number",
+    "delay": 300,
+    "topic": "topic",
+    "sendOnBlur": true,
+    "className": "",
+    "topicType": "msg",
+    "x": 300,
+    "y": 400,
+    "wires": [
+      [
+        "6d55469b9bee0d3b"
+      ]
+    ]
+  },
+  {
+    "id": "d33d3876424c6e06",
+    "type": "http request",
+    "z": "c212cdb87109d07f",
+    "name": "",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 680,
+    "y": 320,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "5c8b4681a27575a9",
+    "type": "function",
+    "z": "c212cdb87109d07f",
+    "name": "函数 32",
+    "func": "if((msg.payload)!=null){\n    msg.url = \"http://192.168.110.80:1880/AO.index_assembled?data=\"+msg.payload;\n    return msg;\n}",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 540,
+    "y": 320,
+    "wires": [
+      [
+        "d33d3876424c6e06"
+      ]
+    ]
+  },
+  {
+    "id": "4403090f6951d834",
+    "type": "http request",
+    "z": "c212cdb87109d07f",
+    "name": "",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 680,
+    "y": 360,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "4f77843fd8eade5d",
+    "type": "function",
+    "z": "c212cdb87109d07f",
+    "name": "函数 33",
+    "func": "if((msg.payload)!=null){\n    msg.url = \"http://192.168.110.80:1880/AO.tray_in_count?data=\"+msg.payload;\n    return msg;\n}",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 540,
+    "y": 360,
+    "wires": [
+      [
+        "4403090f6951d834"
+      ]
+    ]
+  },
+  {
+    "id": "69773fe1985b87c0",
+    "type": "http request",
+    "z": "c212cdb87109d07f",
+    "name": "",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 680,
+    "y": 400,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "6d55469b9bee0d3b",
+    "type": "function",
+    "z": "c212cdb87109d07f",
+    "name": "函数 34",
+    "func": "if((msg.payload)!=null){\n    msg.url = \"http://192.168.110.80:1880/AO_6axes.index_top_tray?data=\"+msg.payload;\n    return msg;\n}",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 540,
+    "y": 400,
+    "wires": [
+      [
+        "69773fe1985b87c0"
+      ]
+    ]
+  }
+]

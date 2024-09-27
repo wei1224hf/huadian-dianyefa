@@ -1,0 +1,253 @@
+[
+  {
+    "id": "88b66ec62c694e8c",
+    "type": "subflow",
+    "name": "OP100",
+    "info": "",
+    "category": "",
+    "in": [
+      {
+        "x": 60,
+        "y": 120,
+        "wires": [
+          {
+            "id": "5dbc5ad4cfc8d4c2"
+          },
+          {
+            "id": "6ba7b4b9042b7742"
+          }
+        ]
+      }
+    ],
+    "out": [
+      {
+        "x": 920,
+        "y": 120,
+        "wires": [
+          {
+            "id": "115d07b9699f5075",
+            "port": 0
+          }
+        ]
+      }
+    ],
+    "env": [
+      {
+        "name": "e_100",
+        "type": "num",
+        "value": "0"
+      }
+    ],
+    "meta": {},
+    "color": "#DDAA99",
+    "icon": "node-red-dashboard/ui_text.png",
+    "status": {
+      "x": 800,
+      "y": 300,
+      "wires": [
+        {
+          "id": "cf07fe3e60c5b818",
+          "port": 0
+        },
+        {
+          "id": "8855e0792e3adec0",
+          "port": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "4f58230549e5c9a1",
+    "type": "trigger",
+    "z": "88b66ec62c694e8c",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "num",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 645,
+    "y": 120,
+    "wires": [
+      [
+        "e174d503577ae9fa",
+        "cf07fe3e60c5b818"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "e174d503577ae9fa",
+    "type": "function",
+    "z": "88b66ec62c694e8c",
+    "name": "函数 26",
+    "func": "const IO = global.get(\"IO_100\");\nif (IO.AI.status == 4){\n    return {reset:1};\n}\n\n",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 705,
+    "y": 120,
+    "wires": [
+      [
+        "4f58230549e5c9a1",
+        "115d07b9699f5075"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "115d07b9699f5075",
+    "type": "function",
+    "z": "88b66ec62c694e8c",
+    "name": "函数 27",
+    "func": "return {payload: 1}",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 785,
+    "y": 120,
+    "wires": [
+      [
+        "8855e0792e3adec0"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "5dbc5ad4cfc8d4c2",
+    "type": "function",
+    "z": "88b66ec62c694e8c",
+    "name": "函数 28",
+    "func": "flow.set(\"c_100\",1);\nreturn {payload: 1};",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 240,
+    "y": 120,
+    "wires": [
+      [
+        "67a95894fe2668f7"
+      ]
+    ]
+  },
+  {
+    "id": "cf07fe3e60c5b818",
+    "type": "function",
+    "z": "88b66ec62c694e8c",
+    "name": "函数 30",
+    "func": "var c = flow.get(\"c_100\");\nconst IO = global.get(\"IO_100\");\nmsg.payload = c + \":\" + IO.AI.response;\nflow.set(\"c_100\",c+1);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 620,
+    "y": 220,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "8855e0792e3adec0",
+    "type": "function",
+    "z": "88b66ec62c694e8c",
+    "name": "函数 31",
+    "func": "msg.payload = \"DONE\";\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 830,
+    "y": 220,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "67a95894fe2668f7",
+    "type": "delay",
+    "z": "88b66ec62c694e8c",
+    "name": "",
+    "pauseType": "delay",
+    "timeout": "2",
+    "timeoutUnits": "seconds",
+    "rate": "1",
+    "nbRateUnits": "1",
+    "rateUnits": "second",
+    "randomFirst": "1",
+    "randomLast": "5",
+    "randomUnits": "seconds",
+    "drop": false,
+    "allowrate": false,
+    "outputs": 1,
+    "x": 395,
+    "y": 120,
+    "wires": [
+      [
+        "4f58230549e5c9a1"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "76c64dfc543c6e73",
+    "type": "http request",
+    "z": "88b66ec62c694e8c",
+    "name": "",
+    "method": "POST",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 430,
+    "y": 220,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "6ba7b4b9042b7742",
+    "type": "function",
+    "z": "88b66ec62c694e8c",
+    "name": "function 73",
+    "func": "var Value = env.get(\"e_100\");\nvar data = {\"RequestID\":111111,\"Value\":Value,\"Address\":4100};\nvar url = \"http://192.168.110.100:1880/100/DoAction\";\nmsg.url = url;\nmsg.payload = data;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 260,
+    "y": 220,
+    "wires": [
+      [
+        "76c64dfc543c6e73"
+      ]
+    ]
+  }
+]

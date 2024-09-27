@@ -1,0 +1,3360 @@
+[
+  {
+    "id": "be1e79e09ebf0433",
+    "type": "tab",
+    "label": "OP40",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "280fc4b5c6678b03",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "函数 35",
+    "func": "const IO = global.get(\"IO_40\");\nmsg.payload = \"左料盘:\" + IO.AO.tray_in_left + \",右料盘:\" + IO.AO.tray_in_right + \n\",左料:\" + IO.AO_SCARA_L.material_left + \",右料:\" + IO.AO_SCARA_R.material_right + \n\",左废:\" + IO.AO_SCARA_L.trash_left + \",右废:\" + IO.AO_SCARA_R.trash_right+\n    \",左外:\" + IO.AO_SCARA_L.idx_out_left + \",右外:\" + IO.AO_SCARA_R.idx_out_right+\n    \",左内:\" + IO.AO_SCARA_L.idx_in_left + \",右内:\" + IO.AO_SCARA_R.idx_in_right;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 240,
+    "y": 140,
+    "wires": [
+      [
+        "481536c70a237253"
+      ]
+    ]
+  },
+  {
+    "id": "481536c70a237253",
+    "type": "ui_text",
+    "z": "be1e79e09ebf0433",
+    "group": "fad6d55b4d71cd29",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "name": "",
+    "label": " ",
+    "format": "{{msg.payload}}",
+    "layout": "row-spread",
+    "className": "",
+    "style": false,
+    "font": "",
+    "fontSize": 16,
+    "color": "#000000",
+    "x": 450,
+    "y": 140,
+    "wires": []
+  },
+  {
+    "id": "0ce3222ce6bf07d8",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 3,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "左料层+",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "左料层+",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 280,
+    "y": 200,
+    "wires": [
+      [
+        "117b81ea6ad318c8"
+      ]
+    ]
+  },
+  {
+    "id": "df2ae472794a8e46",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 2,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "左料层-",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "左料层-",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 280,
+    "y": 240,
+    "wires": [
+      [
+        "c738ea7ba688afde"
+      ]
+    ]
+  },
+  {
+    "id": "8eae74d559d07a5a",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 5,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "右料层+",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "右料层+",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 280,
+    "y": 280,
+    "wires": [
+      [
+        "ca2911bc9f168043"
+      ]
+    ]
+  },
+  {
+    "id": "0c71698376f244d9",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 4,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "右料层-",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "右料层-",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 280,
+    "y": 320,
+    "wires": [
+      [
+        "d44c94c7ada67b4e"
+      ]
+    ]
+  },
+  {
+    "id": "a494def3cdb9823d",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 9,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "右料数+",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "右料数+",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 280,
+    "y": 360,
+    "wires": [
+      [
+        "f64094ab63c3e9d2"
+      ]
+    ]
+  },
+  {
+    "id": "175352645f15ba61",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 8,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "右料数-",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "右料数-",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 280,
+    "y": 400,
+    "wires": [
+      [
+        "96fb85a629fa3cf1"
+      ]
+    ]
+  },
+  {
+    "id": "6a085a5c572ed5d2",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 7,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "左料数+",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "左料数+",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 280,
+    "y": 440,
+    "wires": [
+      [
+        "6730653c3e92e52d"
+      ]
+    ]
+  },
+  {
+    "id": "a8aa90916d1a5c6f",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 6,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "左料数-",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "左料数-",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 280,
+    "y": 480,
+    "wires": [
+      [
+        "211c7d6f52bd7fd7"
+      ]
+    ]
+  },
+  {
+    "id": "70f5da4a8d19265f",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 11,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "外装配+",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "外装配+",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 280,
+    "y": 520,
+    "wires": [
+      [
+        "55c34ad501198e17"
+      ]
+    ]
+  },
+  {
+    "id": "2968a56cb21f21fc",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 10,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "外装配-",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "外装配-",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 280,
+    "y": 560,
+    "wires": [
+      [
+        "ba122a4cc9d807ed"
+      ]
+    ]
+  },
+  {
+    "id": "fb117d8bc2af5845",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 13,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "内装配+",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "内装配+",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 280,
+    "y": 600,
+    "wires": [
+      [
+        "8359d2e68cc69d20"
+      ]
+    ]
+  },
+  {
+    "id": "a204524bd54dc83f",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 12,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "内装配-",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "内装配-",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 280,
+    "y": 640,
+    "wires": [
+      [
+        "c7e718f56ae22299"
+      ]
+    ]
+  },
+  {
+    "id": "653158da872ab33c",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "5ddf2db376b1a54f",
+    "order": 1,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "前轨道抓放位",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "前轨道抓放位",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 720,
+    "wires": [
+      [
+        "99fee0ad9de83269"
+      ]
+    ]
+  },
+  {
+    "id": "2ec79dc817e3f52b",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "5ddf2db376b1a54f",
+    "order": 2,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "前轨道视觉纠偏左",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "前轨道视觉纠偏左",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 310,
+    "y": 760,
+    "wires": [
+      [
+        "064af6a1317629cc"
+      ]
+    ]
+  },
+  {
+    "id": "38661d7504b73967",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "5ddf2db376b1a54f",
+    "order": 3,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "前轨道视觉纠偏",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "前轨道视觉纠偏",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 800,
+    "wires": [
+      [
+        "a7484a1ce106f3b5"
+      ]
+    ]
+  },
+  {
+    "id": "1f4134f7e7a327f1",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "5ddf2db376b1a54f",
+    "order": 5,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "前轨道右装配位",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "前轨道右装配位",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 840,
+    "wires": [
+      [
+        "97767b560fdbb12c"
+      ]
+    ]
+  },
+  {
+    "id": "aa9e0cf90182f2ae",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "9bdf898e5916298f",
+    "order": 26,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "SCARA左HOME",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "SCARA左HOME",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 310,
+    "y": 1140,
+    "wires": [
+      [
+        "2417183c9e5ca2c2"
+      ]
+    ]
+  },
+  {
+    "id": "4f33e8df277cd7ad",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "624ebe3c53362a92",
+    "order": 6,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "SCARA右HOME",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "SCARA右HOME",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 310,
+    "y": 1480,
+    "wires": [
+      [
+        "2c85065f2316664c"
+      ]
+    ]
+  },
+  {
+    "id": "8a737a83c117dec5",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "9bdf898e5916298f",
+    "order": 7,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "SCARA左抓料",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "SCARA左抓料",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 1180,
+    "wires": [
+      [
+        "28d05f6ab54b2f02"
+      ]
+    ]
+  },
+  {
+    "id": "152ba55fb0a9527a",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "624ebe3c53362a92",
+    "order": 8,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "SCARA右抓料",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "SCARA右抓料",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 1520,
+    "wires": [
+      [
+        "76dbce72413301a3"
+      ]
+    ]
+  },
+  {
+    "id": "9bd013b382bc72d3",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "9bdf898e5916298f",
+    "order": 9,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "SCARA左装配内",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "SCARA左装配内",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 310,
+    "y": 1220,
+    "wires": [
+      [
+        "7c8df2d0c7f1f923"
+      ]
+    ]
+  },
+  {
+    "id": "4a98396b54b4d7b3",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "624ebe3c53362a92",
+    "order": 10,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "SCARA右装配内",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "SCARA右装配内",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 310,
+    "y": 1560,
+    "wires": [
+      [
+        "c5d5536a48a640c4"
+      ]
+    ]
+  },
+  {
+    "id": "c680f4ce5c76608c",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "9bdf898e5916298f",
+    "order": 11,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "SCARA左装配外",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "SCARA左装配外",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 310,
+    "y": 1260,
+    "wires": [
+      [
+        "1f3b0e9745539d4e"
+      ]
+    ]
+  },
+  {
+    "id": "7b38bc286ecf2cd7",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "624ebe3c53362a92",
+    "order": 12,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "SCARA右装配外",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "SCARA右装配外",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 310,
+    "y": 1600,
+    "wires": [
+      [
+        "2da2336049190dab"
+      ]
+    ]
+  },
+  {
+    "id": "cf0a70b40b5c6c54",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "9bdf898e5916298f",
+    "order": 13,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "SCARA左废料",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "SCARA左废料",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 1300,
+    "wires": [
+      [
+        "a49c34adea58f620"
+      ]
+    ]
+  },
+  {
+    "id": "6a6167aa956df893",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "624ebe3c53362a92",
+    "order": 14,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "SCARA右废料",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "SCARA右废料",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 1640,
+    "wires": [
+      [
+        "5365c435c84f86e5"
+      ]
+    ]
+  },
+  {
+    "id": "b302487fab6980c9",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "5ddf2db376b1a54f",
+    "order": 15,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "内轨道抓放位",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "内轨道抓放位",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 920,
+    "wires": [
+      [
+        "12ee8aafa88b2199"
+      ]
+    ]
+  },
+  {
+    "id": "18d1f9f7f11263bd",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "5ddf2db376b1a54f",
+    "order": 16,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "内轨道视觉纠偏左",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "内轨道视觉纠偏左",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 310,
+    "y": 960,
+    "wires": [
+      [
+        "034b5380ef88bf2c"
+      ]
+    ]
+  },
+  {
+    "id": "4965d8fbd6c6ad71",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "5ddf2db376b1a54f",
+    "order": 17,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "内轨道视觉纠偏",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "内轨道视觉纠偏",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 1000,
+    "wires": [
+      [
+        "0985477285f83676"
+      ]
+    ]
+  },
+  {
+    "id": "f68d13d3583d449e",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "5ddf2db376b1a54f",
+    "order": 19,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "内轨道右装配位",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "内轨道右装配位",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 1040,
+    "wires": [
+      [
+        "50922d9742e63887"
+      ]
+    ]
+  },
+  {
+    "id": "cee34e12ada267b9",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "3f4171b68a159284",
+    "order": 20,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "左料舱换盘",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "左料舱换盘",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 290,
+    "y": 1800,
+    "wires": [
+      [
+        "8982c140184e2d2f"
+      ]
+    ]
+  },
+  {
+    "id": "37e65b535b5c1ac6",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "a73a1c7f4318437d",
+    "order": 21,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "右料舱换盘",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "右料舱换盘",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 290,
+    "y": 2100,
+    "wires": [
+      [
+        "ac0f041eb0a51a23"
+      ]
+    ]
+  },
+  {
+    "id": "2d5ad074d5161481",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "3f4171b68a159284",
+    "order": 22,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "左料舱自检层数",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "左料舱自检层数",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 1840,
+    "wires": [
+      [
+        "d9e5da4cd1e18e82"
+      ]
+    ]
+  },
+  {
+    "id": "1bfdc25f715a757f",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "a73a1c7f4318437d",
+    "order": 23,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "右料舱自检层数",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "右料舱自检层数",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 2140,
+    "wires": [
+      [
+        "b32ba50294b047c6"
+      ]
+    ]
+  },
+  {
+    "id": "d3f4ee56312cf9bb",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "3f4171b68a159284",
+    "order": 24,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "左料舱料层到位",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "左料舱料层到位",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 1880,
+    "wires": [
+      [
+        "d346bde70299acaf"
+      ]
+    ]
+  },
+  {
+    "id": "5e87ba0f784e3358",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "a73a1c7f4318437d",
+    "order": 25,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "右料舱料层到位",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "右料舱料层到位",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 2180,
+    "wires": [
+      [
+        "c7326e6cc90e89c6"
+      ]
+    ]
+  },
+  {
+    "id": "117b81ea6ad318c8",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 450,
+    "y": 200,
+    "wires": [
+      [
+        "9245c9b4e4f6331d"
+      ]
+    ]
+  },
+  {
+    "id": "fbb74128f432e222",
+    "type": "link in",
+    "z": "be1e79e09ebf0433",
+    "name": "OP-40-IN",
+    "links": [
+      "a60c3a900faa30dd"
+    ],
+    "x": 125,
+    "y": 100,
+    "wires": [
+      [
+        "280fc4b5c6678b03"
+      ]
+    ]
+  },
+  {
+    "id": "c738ea7ba688afde",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 450,
+    "y": 240,
+    "wires": [
+      [
+        "350aacc133161cf3"
+      ]
+    ]
+  },
+  {
+    "id": "ca2911bc9f168043",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 450,
+    "y": 280,
+    "wires": [
+      [
+        "ddec73505ee9a6d7"
+      ]
+    ]
+  },
+  {
+    "id": "d44c94c7ada67b4e",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 450,
+    "y": 320,
+    "wires": [
+      [
+        "65485921322722ac"
+      ]
+    ]
+  },
+  {
+    "id": "f64094ab63c3e9d2",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 450,
+    "y": 360,
+    "wires": [
+      [
+        "4b6cb22e14716db5"
+      ]
+    ]
+  },
+  {
+    "id": "96fb85a629fa3cf1",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 450,
+    "y": 400,
+    "wires": [
+      [
+        "7a0367fc99be8717"
+      ]
+    ]
+  },
+  {
+    "id": "6730653c3e92e52d",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 450,
+    "y": 440,
+    "wires": [
+      [
+        "6ba3c865af5ca039"
+      ]
+    ]
+  },
+  {
+    "id": "211c7d6f52bd7fd7",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 450,
+    "y": 480,
+    "wires": [
+      [
+        "3db4363d3ed79e1c"
+      ]
+    ]
+  },
+  {
+    "id": "55c34ad501198e17",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 450,
+    "y": 520,
+    "wires": [
+      [
+        "c15fa10328f85a2e"
+      ]
+    ]
+  },
+  {
+    "id": "ba122a4cc9d807ed",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 450,
+    "y": 560,
+    "wires": [
+      [
+        "0375d2a07fc471bf"
+      ]
+    ]
+  },
+  {
+    "id": "8359d2e68cc69d20",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 450,
+    "y": 600,
+    "wires": [
+      [
+        "aba4b69d3eefa4a2"
+      ]
+    ]
+  },
+  {
+    "id": "c7e718f56ae22299",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 450,
+    "y": 640,
+    "wires": [
+      [
+        "1b3319ea96f30d49"
+      ]
+    ]
+  },
+  {
+    "id": "9245c9b4e4f6331d",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 88",
+    "func": "let IO = global.get(\"IO_40\");\nlet data = IO.AO.tray_in_left;\ndata ++;\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.tray_in_left&value=\"+data;\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 200,
+    "wires": [
+      [
+        "efdb0a8b5cfca941"
+      ]
+    ]
+  },
+  {
+    "id": "350aacc133161cf3",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 89",
+    "func": "let IO = global.get(\"IO_40\");\nlet data = IO.AO.tray_in_left;\ndata --;\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.tray_in_left&value=\"+data;\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 240,
+    "wires": [
+      [
+        "efdb0a8b5cfca941"
+      ]
+    ]
+  },
+  {
+    "id": "ddec73505ee9a6d7",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 90",
+    "func": "let IO = global.get(\"IO_40\");\nlet data = IO.AO.tray_in_right;\ndata ++;\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.tray_in_right&value=\"+data;\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 280,
+    "wires": [
+      [
+        "efdb0a8b5cfca941"
+      ]
+    ]
+  },
+  {
+    "id": "65485921322722ac",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 91",
+    "func": "let IO = global.get(\"IO_40\");\nlet data = IO.AO.tray_in_right;\ndata --;\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.tray_in_right&value=\"+data;\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 320,
+    "wires": [
+      [
+        "efdb0a8b5cfca941"
+      ]
+    ]
+  },
+  {
+    "id": "4b6cb22e14716db5",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 92",
+    "func": "let IO = global.get(\"IO_40\");\nlet data = IO.AO_SCARA_R.material_right;\ndata ++\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO_SCARA_R.material_right&value=\"+data;\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 360,
+    "wires": [
+      [
+        "efdb0a8b5cfca941"
+      ]
+    ]
+  },
+  {
+    "id": "7a0367fc99be8717",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 93",
+    "func": "let IO = global.get(\"IO_40\");\nlet data = IO.AO_SCARA_R.material_right;\ndata--;\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO_SCARA_R.material_right&value=\" + data;\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 400,
+    "wires": [
+      [
+        "efdb0a8b5cfca941"
+      ]
+    ]
+  },
+  {
+    "id": "6ba3c865af5ca039",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 94",
+    "func": "let IO = global.get(\"IO_40\");\nlet data = IO.AO_SCARA_L.material_left;\ndata++;\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO_SCARA_L.material_left&value=\" + data;\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 440,
+    "wires": [
+      [
+        "efdb0a8b5cfca941"
+      ]
+    ]
+  },
+  {
+    "id": "3db4363d3ed79e1c",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 95",
+    "func": "let IO = global.get(\"IO_40\");\nlet data = IO.AO_SCARA_L.material_left;\ndata --;\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO_SCARA_L.material_left&value=\" + data;\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 480,
+    "wires": [
+      [
+        "efdb0a8b5cfca941"
+      ]
+    ]
+  },
+  {
+    "id": "c15fa10328f85a2e",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 96",
+    "func": "let IO = global.get(\"IO_40\");\nlet data = IO.AO.tray_in_left;\ndata --;\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.tray_in_left&value=\"+data;\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 520,
+    "wires": [
+      [
+        "efdb0a8b5cfca941"
+      ]
+    ]
+  },
+  {
+    "id": "0375d2a07fc471bf",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 97",
+    "func": "let IO = global.get(\"IO_40\");\nlet data = IO.AO.tray_in_left;\ndata --;\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.tray_in_left&value=\"+data;\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 560,
+    "wires": [
+      [
+        "efdb0a8b5cfca941"
+      ]
+    ]
+  },
+  {
+    "id": "aba4b69d3eefa4a2",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 98",
+    "func": "let IO = global.get(\"IO_40\");\nlet data = IO.AO.tray_in_left;\ndata --;\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.tray_in_left&value=\"+data;\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 600,
+    "wires": [
+      [
+        "efdb0a8b5cfca941"
+      ]
+    ]
+  },
+  {
+    "id": "1b3319ea96f30d49",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 99",
+    "func": "let IO = global.get(\"IO_40\");\nlet data = IO.AO.tray_in_left;\ndata --;\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.tray_in_left&value=\"+data;\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 650,
+    "y": 640,
+    "wires": [
+      [
+        "efdb0a8b5cfca941"
+      ]
+    ]
+  },
+  {
+    "id": "99fee0ad9de83269",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 720,
+    "wires": [
+      [
+        "a64096fe24e7aa62"
+      ]
+    ]
+  },
+  {
+    "id": "064af6a1317629cc",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 760,
+    "wires": [
+      [
+        "5d5325ff9055aaf9"
+      ]
+    ]
+  },
+  {
+    "id": "a7484a1ce106f3b5",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 800,
+    "wires": [
+      [
+        "cce64f7de628c17d"
+      ]
+    ]
+  },
+  {
+    "id": "97767b560fdbb12c",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 840,
+    "wires": [
+      [
+        "5ae943005b894a79"
+      ]
+    ]
+  },
+  {
+    "id": "12ee8aafa88b2199",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 920,
+    "wires": [
+      [
+        "0d64d249d0ae605e"
+      ]
+    ]
+  },
+  {
+    "id": "a64096fe24e7aa62",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "100",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.request&value=100\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 720,
+    "wires": [
+      [
+        "964b549bdfbb28e0"
+      ]
+    ]
+  },
+  {
+    "id": "5d5325ff9055aaf9",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "110",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.request&value=110\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 760,
+    "wires": [
+      [
+        "964b549bdfbb28e0"
+      ]
+    ]
+  },
+  {
+    "id": "5ae943005b894a79",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "120",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.request&value=120\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 840,
+    "wires": [
+      [
+        "964b549bdfbb28e0"
+      ]
+    ]
+  },
+  {
+    "id": "034b5380ef88bf2c",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 960,
+    "wires": [
+      [
+        "82e76b0403355282"
+      ]
+    ]
+  },
+  {
+    "id": "0985477285f83676",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1000,
+    "wires": [
+      [
+        "893c741c786ef23d"
+      ]
+    ]
+  },
+  {
+    "id": "50922d9742e63887",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1040,
+    "wires": [
+      [
+        "d9d6583946e86515"
+      ]
+    ]
+  },
+  {
+    "id": "2417183c9e5ca2c2",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1140,
+    "wires": [
+      [
+        "043ec0da3eb5ec5e"
+      ]
+    ]
+  },
+  {
+    "id": "2c85065f2316664c",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1480,
+    "wires": [
+      [
+        "c9a817677b16d1d6"
+      ]
+    ]
+  },
+  {
+    "id": "28d05f6ab54b2f02",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1180,
+    "wires": [
+      [
+        "1dc8be92146cee90"
+      ]
+    ]
+  },
+  {
+    "id": "76dbce72413301a3",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1520,
+    "wires": [
+      [
+        "9c71098d03db094f"
+      ]
+    ]
+  },
+  {
+    "id": "7c8df2d0c7f1f923",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1220,
+    "wires": [
+      [
+        "0d927d48a75582b1"
+      ]
+    ]
+  },
+  {
+    "id": "c5d5536a48a640c4",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1560,
+    "wires": [
+      [
+        "25aae1935058ad95"
+      ]
+    ]
+  },
+  {
+    "id": "043ec0da3eb5ec5e",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "160",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO_SCARA_L.request&value=160\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1140,
+    "wires": [
+      [
+        "a6e1a3377041d4b4"
+      ]
+    ]
+  },
+  {
+    "id": "1dc8be92146cee90",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "120",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO_SCARA_L.request&value=120\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1180,
+    "wires": [
+      [
+        "a6e1a3377041d4b4"
+      ]
+    ]
+  },
+  {
+    "id": "0d927d48a75582b1",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "170",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO_SCARA_L.request&value=170\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1220,
+    "wires": [
+      [
+        "a6e1a3377041d4b4"
+      ]
+    ]
+  },
+  {
+    "id": "1f3b0e9745539d4e",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1260,
+    "wires": [
+      [
+        "ba2e3da14f3c6300"
+      ]
+    ]
+  },
+  {
+    "id": "2da2336049190dab",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1600,
+    "wires": [
+      [
+        "a1dc7e30f155411f"
+      ]
+    ]
+  },
+  {
+    "id": "a49c34adea58f620",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1300,
+    "wires": [
+      [
+        "40eda4352b25a880"
+      ]
+    ]
+  },
+  {
+    "id": "5365c435c84f86e5",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1640,
+    "wires": [
+      [
+        "36303aa66653f5fc"
+      ]
+    ]
+  },
+  {
+    "id": "ba2e3da14f3c6300",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "150",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO_SCARA_L.request&value=150\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1260,
+    "wires": [
+      [
+        "a6e1a3377041d4b4"
+      ]
+    ]
+  },
+  {
+    "id": "40eda4352b25a880",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "140",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO_SCARA_L.request&value=140\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1300,
+    "wires": [
+      [
+        "a6e1a3377041d4b4"
+      ]
+    ]
+  },
+  {
+    "id": "8982c140184e2d2f",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1800,
+    "wires": [
+      [
+        "33150934aa450d75"
+      ]
+    ]
+  },
+  {
+    "id": "ac0f041eb0a51a23",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 2100,
+    "wires": [
+      [
+        "78e490f2dac3f82f"
+      ]
+    ]
+  },
+  {
+    "id": "33150934aa450d75",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "330",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO.request&value=330\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1800,
+    "wires": [
+      [
+        "23ead5d0583287b3"
+      ]
+    ]
+  },
+  {
+    "id": "d9e5da4cd1e18e82",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1840,
+    "wires": [
+      [
+        "34b964f9a9c145c2"
+      ]
+    ]
+  },
+  {
+    "id": "b32ba50294b047c6",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 2140,
+    "wires": [
+      [
+        "862b447822f61603"
+      ]
+    ]
+  },
+  {
+    "id": "d346bde70299acaf",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1880,
+    "wires": [
+      [
+        "5c289e0cd4c4116e"
+      ]
+    ]
+  },
+  {
+    "id": "c7326e6cc90e89c6",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 2180,
+    "wires": [
+      [
+        "79b574ab43ca5914"
+      ]
+    ]
+  },
+  {
+    "id": "34b964f9a9c145c2",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "370",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO.request&value=370\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1840,
+    "wires": [
+      [
+        "23ead5d0583287b3"
+      ]
+    ]
+  },
+  {
+    "id": "5c289e0cd4c4116e",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "340",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO.request&value=340\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1880,
+    "wires": [
+      [
+        "23ead5d0583287b3"
+      ]
+    ]
+  },
+  {
+    "id": "cce64f7de628c17d",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "130",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.request&value=130\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 800,
+    "wires": [
+      [
+        "964b549bdfbb28e0"
+      ]
+    ]
+  },
+  {
+    "id": "0d64d249d0ae605e",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "200",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.request&value=200\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 920,
+    "wires": [
+      [
+        "7c9b2538330e6dc3"
+      ]
+    ]
+  },
+  {
+    "id": "82e76b0403355282",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "210",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.request&value=210\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 960,
+    "wires": [
+      [
+        "7c9b2538330e6dc3"
+      ]
+    ]
+  },
+  {
+    "id": "d9d6583946e86515",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "220",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.request&value=220\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1040,
+    "wires": [
+      [
+        "7c9b2538330e6dc3"
+      ]
+    ]
+  },
+  {
+    "id": "893c741c786ef23d",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "230",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.request&value=230\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1000,
+    "wires": [
+      [
+        "7c9b2538330e6dc3"
+      ]
+    ]
+  },
+  {
+    "id": "c9a817677b16d1d6",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "160",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO_SCARA_R.request&value=160\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1480,
+    "wires": [
+      [
+        "29a77c8043f4023e"
+      ]
+    ]
+  },
+  {
+    "id": "9c71098d03db094f",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "120",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO_SCARA_R.request&value=120\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1520,
+    "wires": [
+      [
+        "29a77c8043f4023e"
+      ]
+    ]
+  },
+  {
+    "id": "25aae1935058ad95",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "170",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO_SCARA_R.request&value=170\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1560,
+    "wires": [
+      [
+        "29a77c8043f4023e"
+      ]
+    ]
+  },
+  {
+    "id": "a1dc7e30f155411f",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "150",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO_SCARA_R.request&value=150\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1600,
+    "wires": [
+      [
+        "29a77c8043f4023e"
+      ]
+    ]
+  },
+  {
+    "id": "36303aa66653f5fc",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "140",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO_SCARA_R.request&value=140\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1640,
+    "wires": [
+      [
+        "29a77c8043f4023e"
+      ]
+    ]
+  },
+  {
+    "id": "0a823feb18398ac1",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "9bdf898e5916298f",
+    "order": 13,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "SCARA左拍照",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "SCARA左拍照",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 1340,
+    "wires": [
+      [
+        "33dc32ba7a5a83f5"
+      ]
+    ]
+  },
+  {
+    "id": "33dc32ba7a5a83f5",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1340,
+    "wires": [
+      [
+        "087f170647a5167f"
+      ]
+    ]
+  },
+  {
+    "id": "087f170647a5167f",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "110",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO_SCARA_L.request&value=110\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1340,
+    "wires": [
+      [
+        "a6e1a3377041d4b4"
+      ]
+    ]
+  },
+  {
+    "id": "390c736d7c616bee",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "9bdf898e5916298f",
+    "order": 13,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "SCARA左放喷油",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "SCARA左放喷油",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 310,
+    "y": 1380,
+    "wires": [
+      [
+        "a57240d4b809e7d6"
+      ]
+    ]
+  },
+  {
+    "id": "a57240d4b809e7d6",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1380,
+    "wires": [
+      [
+        "35c7a80c59fb9448"
+      ]
+    ]
+  },
+  {
+    "id": "35c7a80c59fb9448",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "130",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO_SCARA_L.request&value=130\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1380,
+    "wires": [
+      [
+        "a6e1a3377041d4b4"
+      ]
+    ]
+  },
+  {
+    "id": "35f967e81ae5a850",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "624ebe3c53362a92",
+    "order": 13,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "SCARA右拍照",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "SCARA右拍照",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 1680,
+    "wires": [
+      [
+        "54f9cbb4eb2d7f38"
+      ]
+    ]
+  },
+  {
+    "id": "54f9cbb4eb2d7f38",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1680,
+    "wires": [
+      [
+        "d2783f476dec9be8"
+      ]
+    ]
+  },
+  {
+    "id": "d2783f476dec9be8",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "110",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO_SCARA_R.request&value=110\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1680,
+    "wires": [
+      [
+        "29a77c8043f4023e"
+      ]
+    ]
+  },
+  {
+    "id": "e1d8d63d92613b0a",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "624ebe3c53362a92",
+    "order": 13,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "SCARA右放喷油",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "SCARA右放喷油",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 310,
+    "y": 1720,
+    "wires": [
+      [
+        "1b66c00d46c36f59"
+      ]
+    ]
+  },
+  {
+    "id": "1b66c00d46c36f59",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1720,
+    "wires": [
+      [
+        "e593f8a8abafc785"
+      ]
+    ]
+  },
+  {
+    "id": "e593f8a8abafc785",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "130",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO_SCARA_R.request&value=130\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1720,
+    "wires": [
+      [
+        "29a77c8043f4023e"
+      ]
+    ]
+  },
+  {
+    "id": "84aa3658eb1b6530",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "3f4171b68a159284",
+    "order": 24,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "左料舱空盘退出",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "左料舱空盘退出",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 1920,
+    "wires": [
+      [
+        "34fa71d103921693"
+      ]
+    ]
+  },
+  {
+    "id": "34fa71d103921693",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1920,
+    "wires": [
+      [
+        "f876ddc31bcd4535"
+      ]
+    ]
+  },
+  {
+    "id": "ecf26511a4547064",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "3f4171b68a159284",
+    "order": 24,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "左料舱满盘退出",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "左料舱满盘退出",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 1960,
+    "wires": [
+      [
+        "3804f5d06f078f1d"
+      ]
+    ]
+  },
+  {
+    "id": "3804f5d06f078f1d",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 1960,
+    "wires": [
+      [
+        "911f3179b7d9a466"
+      ]
+    ]
+  },
+  {
+    "id": "4e09c1d2e64abb3c",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "3f4171b68a159284",
+    "order": 24,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "左料舱满盘接入",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "左料舱满盘退出",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 2000,
+    "wires": [
+      [
+        "fc9f65917eddf868"
+      ]
+    ]
+  },
+  {
+    "id": "fc9f65917eddf868",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 2000,
+    "wires": [
+      [
+        "cf27422c4471fc9a"
+      ]
+    ]
+  },
+  {
+    "id": "f876ddc31bcd4535",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "320",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO.request&value=320\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1920,
+    "wires": [
+      [
+        "23ead5d0583287b3"
+      ]
+    ]
+  },
+  {
+    "id": "911f3179b7d9a466",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "310",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO.request&value=310\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 1960,
+    "wires": [
+      [
+        "23ead5d0583287b3"
+      ]
+    ]
+  },
+  {
+    "id": "cf27422c4471fc9a",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "300",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO.request&value=300\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 2000,
+    "wires": [
+      [
+        "23ead5d0583287b3"
+      ]
+    ]
+  },
+  {
+    "id": "182301b6b3577587",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "a73a1c7f4318437d",
+    "order": 24,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "右料舱满盘退出",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "右料舱满盘退出",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 2260,
+    "wires": [
+      [
+        "c7e2b4afbc5b61d2"
+      ]
+    ]
+  },
+  {
+    "id": "c7e2b4afbc5b61d2",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 2260,
+    "wires": [
+      [
+        "96eb9a1e9df9c39c"
+      ]
+    ]
+  },
+  {
+    "id": "d6ea95863cd2d2d0",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "a73a1c7f4318437d",
+    "order": 24,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "右料舱满盘接入",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "右料舱满盘退出",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 2300,
+    "wires": [
+      [
+        "fd0586fe7ff7a9ea"
+      ]
+    ]
+  },
+  {
+    "id": "fd0586fe7ff7a9ea",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 2300,
+    "wires": [
+      [
+        "89bc89787d1e0e1d"
+      ]
+    ]
+  },
+  {
+    "id": "e3bbe8282aa638ae",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "a73a1c7f4318437d",
+    "order": 24,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "右料舱空盘退出",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "右料舱空盘退出",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 300,
+    "y": 2220,
+    "wires": [
+      [
+        "648dc4bbef324f3d"
+      ]
+    ]
+  },
+  {
+    "id": "648dc4bbef324f3d",
+    "type": "subflow:cbc4ef316e071083",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "x": 550,
+    "y": 2220,
+    "wires": [
+      [
+        "9f394a47682ce5da"
+      ]
+    ]
+  },
+  {
+    "id": "78e490f2dac3f82f",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "430",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO.request&value=430\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 2100,
+    "wires": [
+      [
+        "ee5d4ddb24aaef6d"
+      ]
+    ]
+  },
+  {
+    "id": "862b447822f61603",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "470",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO.request&value=470\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 2140,
+    "wires": [
+      [
+        "ee5d4ddb24aaef6d"
+      ]
+    ]
+  },
+  {
+    "id": "79b574ab43ca5914",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "440",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO.request&value=440\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 2180,
+    "wires": [
+      [
+        "ee5d4ddb24aaef6d"
+      ]
+    ]
+  },
+  {
+    "id": "9f394a47682ce5da",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "420",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO.request&value=420\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 2220,
+    "wires": [
+      [
+        "ee5d4ddb24aaef6d"
+      ]
+    ]
+  },
+  {
+    "id": "96eb9a1e9df9c39c",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "410",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO.request&value=410\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 2260,
+    "wires": [
+      [
+        "ee5d4ddb24aaef6d"
+      ]
+    ]
+  },
+  {
+    "id": "89bc89787d1e0e1d",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "400",
+    "func": "\nconst url = \"http://192.168.110.40:1880/changeData?key=IO.AO.request&value=400\";\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 730,
+    "y": 2300,
+    "wires": [
+      [
+        "ee5d4ddb24aaef6d"
+      ]
+    ]
+  },
+  {
+    "id": "a1fb8b318eb37e41",
+    "type": "ui_toast",
+    "z": "be1e79e09ebf0433",
+    "position": "bottom left",
+    "displayTime": "3",
+    "highlight": "",
+    "sendall": true,
+    "outputs": 0,
+    "ok": "OK",
+    "cancel": "",
+    "raw": false,
+    "className": "",
+    "topic": "",
+    "name": "",
+    "x": 1350,
+    "y": 1260,
+    "wires": []
+  },
+  {
+    "id": "36b257ccbf9683cf",
+    "type": "http request",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 1225,
+    "y": 1260,
+    "wires": [
+      [
+        "a1fb8b318eb37e41"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "032d39a6cbf01893",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 100",
+    "func": "\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1175,
+    "y": 1260,
+    "wires": [
+      [
+        "36b257ccbf9683cf"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "efdb0a8b5cfca941",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 101",
+    "func": "\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 915,
+    "y": 380,
+    "wires": [
+      [
+        "032d39a6cbf01893"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "964b549bdfbb28e0",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 102",
+    "func": "\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 905,
+    "y": 780,
+    "wires": [
+      [
+        "032d39a6cbf01893"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "7c9b2538330e6dc3",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 103",
+    "func": "\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 895,
+    "y": 980,
+    "wires": [
+      [
+        "032d39a6cbf01893"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "a6e1a3377041d4b4",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 104",
+    "func": "\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 875,
+    "y": 1240,
+    "wires": [
+      [
+        "032d39a6cbf01893"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "29a77c8043f4023e",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 105",
+    "func": "\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 875,
+    "y": 1620,
+    "wires": [
+      [
+        "032d39a6cbf01893"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "23ead5d0583287b3",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 106",
+    "func": "\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 885,
+    "y": 1900,
+    "wires": [
+      [
+        "032d39a6cbf01893"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "ee5d4ddb24aaef6d",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 107",
+    "func": "\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 885,
+    "y": 2200,
+    "wires": [
+      [
+        "032d39a6cbf01893"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "7ea8afbeea538099",
+    "type": "ui_text_input",
+    "z": "be1e79e09ebf0433",
+    "name": "左料层",
+    "label": "左料层",
+    "tooltip": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 54,
+    "width": "4",
+    "height": "1",
+    "passthru": false,
+    "mode": "number",
+    "delay": 300,
+    "topic": "tray_in_left",
+    "sendOnBlur": true,
+    "className": "",
+    "topicType": "str",
+    "x": 690,
+    "y": 80,
+    "wires": [
+      [
+        "70145bc3f245b821"
+      ]
+    ]
+  },
+  {
+    "id": "26b5888bb5f84a96",
+    "type": "ui_toast",
+    "z": "be1e79e09ebf0433",
+    "position": "dialog",
+    "displayTime": "3",
+    "highlight": "",
+    "sendall": false,
+    "outputs": 1,
+    "ok": "好",
+    "cancel": "不好",
+    "raw": false,
+    "className": "",
+    "topic": "tray_in_left",
+    "name": "",
+    "x": 1170,
+    "y": 80,
+    "wires": [
+      [
+        "a330ea4055284321"
+      ]
+    ]
+  },
+  {
+    "id": "70145bc3f245b821",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 109",
+    "func": "var data = global.get(\"OP40_DATA\");\ndata[msg.topic] = msg.payload;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 850,
+    "y": 80,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "335b7620e696d725",
+    "type": "inject",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": "1",
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 290,
+    "y": 40,
+    "wires": [
+      [
+        "fd6ac38a8dd88cef"
+      ]
+    ]
+  },
+  {
+    "id": "fd6ac38a8dd88cef",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 110",
+    "func": "global.set(\"OP40_DATA\",{});\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 450,
+    "y": 40,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "f5e11a9feece6e89",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 3,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "改",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 1010,
+    "y": 80,
+    "wires": [
+      [
+        "26b5888bb5f84a96"
+      ]
+    ]
+  },
+  {
+    "id": "a330ea4055284321",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 111",
+    "func": "let dd = global.get(\"OP40_DATA\");\nlet data = dd.tray_in_left;\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.tray_in_left&value=\"+data;\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1350,
+    "y": 80,
+    "wires": [
+      [
+        "efdb0a8b5cfca941"
+      ]
+    ]
+  },
+  {
+    "id": "3940a58cfc3a046a",
+    "type": "ui_text_input",
+    "z": "be1e79e09ebf0433",
+    "name": "右料层",
+    "label": "右料层",
+    "tooltip": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 54,
+    "width": "4",
+    "height": "1",
+    "passthru": false,
+    "mode": "number",
+    "delay": 300,
+    "topic": "tray_in_right",
+    "sendOnBlur": true,
+    "className": "",
+    "topicType": "str",
+    "x": 690,
+    "y": 120,
+    "wires": [
+      [
+        "8b01a1f283ff16c2"
+      ]
+    ]
+  },
+  {
+    "id": "0a45912969f6d203",
+    "type": "ui_toast",
+    "z": "be1e79e09ebf0433",
+    "position": "dialog",
+    "displayTime": "3",
+    "highlight": "",
+    "sendall": false,
+    "outputs": 1,
+    "ok": "好",
+    "cancel": "不好",
+    "raw": false,
+    "className": "",
+    "topic": "tray_in_left",
+    "name": "",
+    "x": 1170,
+    "y": 120,
+    "wires": [
+      [
+        "77e910456137d681"
+      ]
+    ]
+  },
+  {
+    "id": "8b01a1f283ff16c2",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 112",
+    "func": "var data = global.get(\"OP40_DATA\");\ndata[msg.topic] = msg.payload;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 850,
+    "y": 120,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "ceb45fbfcb793fba",
+    "type": "ui_button",
+    "z": "be1e79e09ebf0433",
+    "name": "",
+    "group": "fad6d55b4d71cd29",
+    "order": 3,
+    "width": "3",
+    "height": "1",
+    "passthru": false,
+    "label": "改",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 1010,
+    "y": 120,
+    "wires": [
+      [
+        "0a45912969f6d203"
+      ]
+    ]
+  },
+  {
+    "id": "77e910456137d681",
+    "type": "function",
+    "z": "be1e79e09ebf0433",
+    "name": "function 113",
+    "func": "let dd = global.get(\"OP40_DATA\");\nlet data = dd.tray_in_left;\nconst url = \"http://192.168.110.40:1880/changeData?key=IO_40.AO.tray_in_left&value=\"+data;\nmsg.url = url;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 1350,
+    "y": 120,
+    "wires": [
+      []
+    ]
+  }
+]

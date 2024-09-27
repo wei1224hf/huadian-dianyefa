@@ -1,0 +1,84 @@
+[
+  {
+    "id": "cbc4ef316e071083",
+    "type": "subflow",
+    "name": "确认",
+    "info": "",
+    "category": "",
+    "in": [
+      {
+        "x": 60,
+        "y": 80,
+        "wires": [
+          {
+            "id": "d2ebb456efc4b1c6"
+          }
+        ]
+      }
+    ],
+    "out": [
+      {
+        "x": 300,
+        "y": 80,
+        "wires": [
+          {
+            "id": "8542751ae369df07",
+            "port": 0
+          }
+        ]
+      }
+    ],
+    "env": [],
+    "meta": {},
+    "color": "#DDAA99",
+    "icon": "node-red/alert.svg"
+  },
+  {
+    "id": "d2ebb456efc4b1c6",
+    "type": "ui_toast",
+    "z": "cbc4ef316e071083",
+    "position": "dialog",
+    "displayTime": "3",
+    "highlight": "",
+    "sendall": false,
+    "outputs": 1,
+    "ok": "好",
+    "cancel": "不",
+    "raw": false,
+    "className": "",
+    "topic": "",
+    "name": "",
+    "x": 145,
+    "y": 80,
+    "wires": [
+      [
+        "8542751ae369df07"
+      ]
+    ],
+    "l": false
+  },
+  {
+    "id": "8542751ae369df07",
+    "type": "switch",
+    "z": "cbc4ef316e071083",
+    "name": "",
+    "property": "payload",
+    "propertyType": "msg",
+    "rules": [
+      {
+        "t": "eq",
+        "v": "好",
+        "vt": "str"
+      }
+    ],
+    "checkall": "true",
+    "repair": false,
+    "outputs": 1,
+    "x": 195,
+    "y": 80,
+    "wires": [
+      []
+    ],
+    "l": false
+  }
+]

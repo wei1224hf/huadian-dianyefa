@@ -1,0 +1,447 @@
+[
+  {
+    "id": "8133aefe2cf2b865",
+    "type": "tab",
+    "label": "OP100",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "5d8654f82a31b358",
+    "type": "function",
+    "z": "8133aefe2cf2b865",
+    "name": "function 11",
+    "func": "var IO = global.get(\"IO_100\");\nvar tray_1 = global.get(\"tray_100_1\");\nvar str = \"\";\nif (IO.DI.MD_L_DItuopanyouliao ==0){\n    str += \"没有\"\n}\nelse{\n    str += JSON.stringify(tray_1);\n}\nmsg.payload = str;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 370,
+    "y": 280,
+    "wires": [
+      [
+        "9e9548420a71137e"
+      ]
+    ]
+  },
+  {
+    "id": "0e973a0f9060c809",
+    "type": "inject",
+    "z": "8133aefe2cf2b865",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 280,
+    "y": 120,
+    "wires": [
+      [
+        "34c962ea3101b24c"
+      ]
+    ]
+  },
+  {
+    "id": "34c962ea3101b24c",
+    "type": "trigger",
+    "z": "8133aefe2cf2b865",
+    "name": "",
+    "op1": "1",
+    "op2": "0",
+    "op1type": "str",
+    "op2type": "str",
+    "duration": "-250",
+    "extend": false,
+    "overrideDelay": false,
+    "units": "ms",
+    "reset": "",
+    "bytopic": "all",
+    "topic": "topic",
+    "outputs": 1,
+    "x": 390,
+    "y": 200,
+    "wires": [
+      [
+        "5d8654f82a31b358",
+        "d80d7d8570978776"
+      ]
+    ]
+  },
+  {
+    "id": "9e9548420a71137e",
+    "type": "ui_text",
+    "z": "8133aefe2cf2b865",
+    "group": "6f146a025804242a",
+    "order": 1,
+    "width": 0,
+    "height": 0,
+    "name": "",
+    "label": "左托盘:",
+    "format": "{{msg.payload}}",
+    "layout": "row-spread",
+    "className": "",
+    "style": false,
+    "font": "",
+    "fontSize": 16,
+    "color": "#000000",
+    "x": 600,
+    "y": 280,
+    "wires": []
+  },
+  {
+    "id": "d80d7d8570978776",
+    "type": "function",
+    "z": "8133aefe2cf2b865",
+    "name": "function 11",
+    "func": "var IO = global.get(\"IO_100\");\nvar tray_2 = global.get(\"tray_100_2\");\nvar str = \"\";\nif (IO.DI.MD_R_DItuopanyouliao ==0){\n    str += \"没有\"\n}\nelse{\n    str += JSON.stringify(tray_2);\n}\nmsg.payload = str;\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 370,
+    "y": 320,
+    "wires": [
+      [
+        "7057b0876741af4f"
+      ]
+    ]
+  },
+  {
+    "id": "7057b0876741af4f",
+    "type": "ui_text",
+    "z": "8133aefe2cf2b865",
+    "group": "6f146a025804242a",
+    "order": 5,
+    "width": 0,
+    "height": 0,
+    "name": "",
+    "label": "右托盘:",
+    "format": "{{msg.payload}}",
+    "layout": "row-spread",
+    "className": "",
+    "style": false,
+    "font": "",
+    "fontSize": 16,
+    "color": "#000000",
+    "x": 600,
+    "y": 320,
+    "wires": []
+  },
+  {
+    "id": "247f16cc06838e18",
+    "type": "ui_button",
+    "z": "8133aefe2cf2b865",
+    "name": "1个",
+    "group": "6f146a025804242a",
+    "order": 2,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "1个",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 350,
+    "y": 380,
+    "wires": [
+      [
+        "70bb2fd545cadada"
+      ]
+    ]
+  },
+  {
+    "id": "06fd3e9293714ec1",
+    "type": "ui_button",
+    "z": "8133aefe2cf2b865",
+    "name": "3个",
+    "group": "6f146a025804242a",
+    "order": 4,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "3个",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 350,
+    "y": 460,
+    "wires": [
+      [
+        "292b98baea759a20"
+      ]
+    ]
+  },
+  {
+    "id": "bf158f8866aa254a",
+    "type": "ui_button",
+    "z": "8133aefe2cf2b865",
+    "name": "2个",
+    "group": "6f146a025804242a",
+    "order": 3,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "2个",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 350,
+    "y": 420,
+    "wires": [
+      [
+        "375f39f16e0dbf2d"
+      ]
+    ]
+  },
+  {
+    "id": "70bb2fd545cadada",
+    "type": "http request",
+    "z": "8133aefe2cf2b865",
+    "name": "",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "http://192.168.110.100:1880/tray1_1",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 580,
+    "y": 380,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "375f39f16e0dbf2d",
+    "type": "http request",
+    "z": "8133aefe2cf2b865",
+    "name": "",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "http://192.168.110.100:1880/tray1_2",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 580,
+    "y": 420,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "292b98baea759a20",
+    "type": "http request",
+    "z": "8133aefe2cf2b865",
+    "name": "",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "http://192.168.110.100:1880/tray1_3",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 580,
+    "y": 460,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "10ce99be6095ade7",
+    "type": "ui_button",
+    "z": "8133aefe2cf2b865",
+    "name": "右1个",
+    "group": "6f146a025804242a",
+    "order": 6,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "右1个",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 350,
+    "y": 520,
+    "wires": [
+      [
+        "f1c950feaa8311c6"
+      ]
+    ]
+  },
+  {
+    "id": "7ca7147d11e9b32f",
+    "type": "ui_button",
+    "z": "8133aefe2cf2b865",
+    "name": "右3个",
+    "group": "6f146a025804242a",
+    "order": 8,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "右3个",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 350,
+    "y": 600,
+    "wires": [
+      [
+        "2a45353030c6e128"
+      ]
+    ]
+  },
+  {
+    "id": "49a05143d13072a4",
+    "type": "ui_button",
+    "z": "8133aefe2cf2b865",
+    "name": "右2个",
+    "group": "6f146a025804242a",
+    "order": 7,
+    "width": "2",
+    "height": "1",
+    "passthru": false,
+    "label": "右2个",
+    "tooltip": "",
+    "color": "",
+    "bgcolor": "",
+    "className": "",
+    "icon": "",
+    "payload": "",
+    "payloadType": "str",
+    "topic": "topic",
+    "topicType": "msg",
+    "x": 350,
+    "y": 560,
+    "wires": [
+      [
+        "dd818806f7e00a7e"
+      ]
+    ]
+  },
+  {
+    "id": "f1c950feaa8311c6",
+    "type": "http request",
+    "z": "8133aefe2cf2b865",
+    "name": "",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "http://192.168.110.100:1880/tray2_1",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 580,
+    "y": 520,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "dd818806f7e00a7e",
+    "type": "http request",
+    "z": "8133aefe2cf2b865",
+    "name": "",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "http://192.168.110.100:1880/tray2_2",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 580,
+    "y": 560,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "2a45353030c6e128",
+    "type": "http request",
+    "z": "8133aefe2cf2b865",
+    "name": "",
+    "method": "GET",
+    "ret": "txt",
+    "paytoqs": "ignore",
+    "url": "http://192.168.110.100:1880/tray2_3",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "insecureHTTPParser": false,
+    "authType": "",
+    "senderr": false,
+    "headers": [],
+    "x": 580,
+    "y": 600,
+    "wires": [
+      []
+    ]
+  }
+]
