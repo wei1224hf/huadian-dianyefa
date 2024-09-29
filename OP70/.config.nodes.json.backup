@@ -425,6 +425,49 @@
             }
         }
     },
+    "node-red-data-center": {
+        "name": "node-red-data-center",
+        "version": "0.0.1",
+        "local": true,
+        "user": false,
+        "nodes": {
+            "data-center": {
+                "name": "data-center",
+                "types": [],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-data-center",
+                "file": "D:\\projects2024\\dianyefa\\huadian-dianyefa\\OP70\\node_modules\\node-red-data-center\\data_center.js"
+            },
+            "data-create": {
+                "name": "data-create",
+                "types": [],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-data-center",
+                "file": "D:\\projects2024\\dianyefa\\huadian-dianyefa\\OP70\\node_modules\\node-red-data-center\\data_create.js"
+            }
+        }
+    },
+    "node-red-memo-monitor": {
+        "name": "node-red-memo-monitor",
+        "version": "0.0.3",
+        "local": true,
+        "user": false,
+        "nodes": {
+            "memo-monitor": {
+                "name": "memo-monitor",
+                "types": [],
+                "enabled": true,
+                "local": true,
+                "user": false,
+                "module": "node-red-memo-monitor",
+                "file": "D:\\projects2024\\dianyefa\\huadian-dianyefa\\OP70\\node_modules\\node-red-memo-monitor\\main.js"
+            }
+        }
+    },
     "node-red-contrib-drawsvg": {
         "name": "node-red-contrib-drawsvg",
         "version": "1.3.0",
@@ -1167,23 +1210,6 @@
                 "user": false,
                 "module": "node-red-node-ui-webcam",
                 "file": "D:\\projects2023\\nodered\\node-red-master\\node_red\\node_modules\\node-red-node-ui-webcam\\ui_webcam.js"
-            }
-        }
-    },
-    "node-red-memo-monitor": {
-        "name": "node-red-memo-monitor",
-        "version": "0.0.2",
-        "local": true,
-        "user": false,
-        "nodes": {
-            "memo-monitor": {
-                "name": "memo-monitor",
-                "types": [],
-                "enabled": true,
-                "local": true,
-                "user": false,
-                "module": "node-red-memo-monitor",
-                "file": "D:\\projects2024\\dianyefa\\huadian-dianyefa\\OP70\\node_modules\\node-red-memo-monitor\\main.js"
             }
         }
     }
