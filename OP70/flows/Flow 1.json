@@ -8,15 +8,6 @@
     "env": []
   },
   {
-    "id": "ccb332c937df9d07",
-    "type": "data-create",
-    "z": "f116a112b4b1a9dc",
-    "name": "",
-    "x": 470,
-    "y": 320,
-    "wires": []
-  },
-  {
     "id": "1da0bebc64e61f98",
     "type": "inject",
     "z": "f116a112b4b1a9dc",
@@ -40,8 +31,85 @@
     "x": 220,
     "y": 300,
     "wires": [
+      []
+    ]
+  },
+  {
+    "id": "21d138722de98563",
+    "type": "sqlite",
+    "z": "f116a112b4b1a9dc",
+    "mydb": "fac6de9c3882034c",
+    "sqlquery": "msg.topic",
+    "sql": "",
+    "name": "",
+    "x": 340,
+    "y": 520,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "0011ed6076d94bbb",
+    "type": "subflow:9af7ae183516690f",
+    "z": "f116a112b4b1a9dc",
+    "name": "",
+    "env": [
+      {
+        "name": "vvvv",
+        "value": "d",
+        "type": "str"
+      }
+    ],
+    "x": 440,
+    "y": 700,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "b74356151e485f70",
+    "type": "function",
+    "z": "f116a112b4b1a9dc",
+    "name": "function 4",
+    "func": "const flows = RED;\nconsole.debug(flows);\nreturn msg;",
+    "outputs": 1,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 700,
+    "y": 800,
+    "wires": [
+      []
+    ]
+  },
+  {
+    "id": "1af8db143947151f",
+    "type": "inject",
+    "z": "f116a112b4b1a9dc",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 500,
+    "y": 780,
+    "wires": [
       [
-        "ccb332c937df9d07"
+        "b74356151e485f70"
       ]
     ]
   }

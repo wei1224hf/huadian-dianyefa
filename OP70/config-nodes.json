@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "id": "fac6de9c3882034c",
+    "type": "sqlitedb",
+    "db": "dataCenter.db",
+    "mode": "RWC"
+  }
+]

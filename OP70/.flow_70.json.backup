@@ -193,7 +193,7 @@
         "type": "function",
         "z": "f116a112b4b1a9dc",
         "name": "function 4",
-        "func": "const flows = RED;\nconsole.debug(flows);\nreturn msg;",
+        "func": "const flows = RED.nodes;\nconsole.debug(flows);\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
