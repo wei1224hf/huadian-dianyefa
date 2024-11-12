@@ -316,7 +316,7 @@ function ChuFa_JianCe1()
 	Vision_Connect()
 	SetDO("DO_ZDP_CCD_GuangYuan", 1)
 	Sleep(500)
-	if GongXu.num >= 12 and GongXu.num <= 25 then --M10
+	if GetAO("GongXu") >= 12 and GetAO("GongXu") <= 25 then --M10
 		retVal = SocketSend(socketName, "000025#0111@0009&0004,6,0;0000#", 2000)
 	else
 		retVal = SocketSend(socketName, "000025#0111@0009&0004,4,0;0000#", 2000)
@@ -344,9 +344,9 @@ function ChuFa_JianCe2()
 	Vision_Connect()
 	SetDO("DO_PY_CCD_GuangYuan", 1)
 	Sleep(500)
-	if GongXu.num <= 4 then
+	if GetAO("GongXu") <= 4 then
 		retVal = SocketSend(socketName, "000025#0111@0009&0004,7,0;0000#", 2000)
-	elseif GongXu.num >= 6 and GongXu.num <= 9 then --M18
+	elseif GetAO("GongXu") >= 6 and GetAO("GongXu") <= 9 then --M18
 		retVal = SocketSend(socketName, "000025#0111@0009&0004,3,0;0000#", 2000)
 	else
 		TPWrite("gongxucuowu")
@@ -436,7 +436,7 @@ function LP_Vis_DingWei()
 		end
 
 		if JL_LP1_Count == 0 and JL_LP2_Count == 0 then
-			if GongXu.num <= 4 then
+			if GetAO("GongXu") <= 4 then
 				ChuFa_LP1() --M24
 				ChuFa_LP2() --M24
 				SetAO("MD_AO_M24", (JL_LP1_Count + JL_LP2_Count))
@@ -447,7 +447,7 @@ function LP_Vis_DingWei()
 				SetDO("DO_SL1_LvDeng", 0)
 				SetDO("DO_SL1_HongDeng", 1)
 				TPWrite("TP1QUELIAO_" .. "LP1" .. JL_LP1_Count .. "LP2" .. JL_LP2_Count)
-				if GongXu.num <= 4 then
+				if GetAO("GongXu") <= 4 then
 					ERR(111)
 				else
 					TuoPan_Ready.num = TuoPan_Ready.num + 1
@@ -466,23 +466,23 @@ function LP_Vis_DingWei()
 
 
 		if JL_LP3_Count == 0 or JL_LP4_Count == 0 then
-			if JL_LP3_Count == 0 and GongXu.num <= 5 then
+			if JL_LP3_Count == 0 and GetAO("GongXu") <= 5 then
 				ChuFa_LP3() --滤芯
 				SetAO("MD_AO_LvXin", (JL_LP3_Count))
 			end
-			if JL_LP4_Count == 0 and GongXu.num <= 10 then
+			if JL_LP4_Count == 0 and GetAO("GongXu") <= 10 then
 				ChuFa_LP4() --单向阀1
 				SetAO("MD_AO_DanXiangFa1", (JL_LP4_Count))
 			end
 
 			if JL_LP3_Count == 0 or JL_LP4_Count == 0 then
-				if JL_LP3_Count == 0 and GongXu.num <= 5 then
+				if JL_LP3_Count == 0 and GetAO("GongXu") <= 5 then
 					IO_check_OFF("DO_SL2_QiGangDing", "DI_SL2_Xia_DaoWei", "DI_SL2_Shang_DaoWei", 2)
 					SetDO("DO_SL2_LvDeng", 0)
 					SetDO("DO_SL2_HongDeng", 1)
 					TPWrite("TP2QueLiao_" .. "LP3" .. JL_LP3_Count .. "LP4" .. JL_LP4_Count)
 					ERR(112)
-				elseif JL_LP4_Count == 0 and GongXu.num <= 10 then
+				elseif JL_LP4_Count == 0 and GetAO("GongXu") <= 10 then
 					IO_check_OFF("DO_SL2_QiGangDing", "DI_SL2_Xia_DaoWei", "DI_SL2_Shang_DaoWei", 2)
 					SetDO("DO_SL2_LvDeng", 0)
 					SetDO("DO_SL2_HongDeng", 1)
@@ -503,22 +503,22 @@ function LP_Vis_DingWei()
 		end
 
 		if JL_LP5_Count == 0 or JL_LP6_Count == 0 then
-			if JL_LP5_Count == 0 and GongXu.num <= 11 then
+			if JL_LP5_Count == 0 and GetAO("GongXu") <= 11 then
 				ChuFa_LP5() --单向阀2
 				SetAO("MD_AO_DanXiangFa2", (JL_LP5_Count))
 			end
-			if JL_LP6_Count == 0 and GongXu.num <= 9 then
+			if JL_LP6_Count == 0 and GetAO("GongXu") <= 9 then
 				ChuFa_LP6() --M18
 				SetAO("MD_AO_M18", (JL_LP6_Count))
 			end
 			if JL_LP5_Count == 0 or JL_LP6_Count == 0 then
-				if JL_LP5_Count == 0 and GongXu.num <= 11 then
+				if JL_LP5_Count == 0 and GetAO("GongXu") <= 11 then
 					IO_check_OFF("DO_SL3_QiGangDing", "DI_SL3_Xia_DaoWei", "DI_SL3_Shang_DaoWei", 3)
 					SetDO("DO_SL3_LvDeng", 0)
 					SetDO("DO_SL3_HongDeng", 1)
 					TPWrite("TP3QueLiao" .. "LP5" .. JL_LP5_Count .. "LP6" .. JL_LP6_Count)
 					ERR(113)
-				elseif JL_LP6_Count == 0 and GongXu.num <= 9 then
+				elseif JL_LP6_Count == 0 and GetAO("GongXu") <= 9 then
 					IO_check_OFF("DO_SL3_QiGangDing", "DI_SL3_Xia_DaoWei", "DI_SL3_Shang_DaoWei", 3)
 					SetDO("DO_SL3_LvDeng", 0)
 					SetDO("DO_SL3_HongDeng", 1)
@@ -767,8 +767,8 @@ function Init()
 	JL_LP6_Count = 0
 	--状态工序初始化
 	PiTouZhuangTai.num = 0 --批头夹取状态  0_未夹取 1_大批头 2_中 3_小
-	WuLiaoZhuangTai.num = 0 --物料夹取状态  0_未夹取 1_M24 2_滤芯 3_M18 4_大单向阀 5_小单向阀 6_M10
-	GongXu.num = 1        --工序
+	WuLiaoZhuangTai.num = 0 --物料夹取状态  0_未夹取 1_M24 2_滤芯 3_M18 4_大单向阀 5_小单向阀 6_M10    
+	SetAO("GongXu",1)       --工序
 	--等待后台启动
 	Wait_All_Ready()
 	--主程序初始化完成 机器人准备就绪		
@@ -1009,7 +1009,7 @@ function FangPiTou3()
 end
 
 function PiTouQuFang()
-	if GongXu.num <= 9 then
+	if GetAO("GongXu") <= 9 then
 		if PiTouZhuangTai.num == 0 and GetDI("DI_NJQ_HuBaoGuanDaoWei") == 0 and GetDI("DI_NJQ_HuBaoKaiDaoWei") == 1 then
 			QuPiTou1()
 		elseif PiTouZhuangTai.num == 1 and GetDI("DI_NJQ_HuBaoGuanDaoWei") == 1 and GetDI("DI_NJQ_HuBaoKaiDaoWei") == 0 then
@@ -1036,7 +1036,7 @@ function PiTouQuFang()
 			TPWrite("pitouxinghaocuowu_" .. PiTouZhuangTai.num)
 			Stop()
 		end
-	elseif GongXu.num == 10 then
+	elseif GetAO("GongXu") == 10 then
 		if PiTouZhuangTai.num == 0 and GetDI("DI_NJQ_HuBaoGuanDaoWei") == 0 and GetDI("DI_NJQ_HuBaoKaiDaoWei") == 1 then
 			QuPiTou2()
 		elseif PiTouZhuangTai.num == 1 and GetDI("DI_NJQ_HuBaoGuanDaoWei") == 1 and GetDI("DI_NJQ_HuBaoKaiDaoWei") == 0 then
@@ -1063,7 +1063,7 @@ function PiTouQuFang()
 			TPWrite("pitouxinghaocuowu_" .. PiTouZhuangTai.num)
 			Stop()
 		end
-	elseif GongXu.num >= 11 and GongXu.num < 26 then
+	elseif GetAO("GongXu") >= 11 and GetAO("GongXu") < 26 then
 		if PiTouZhuangTai.num == 0 and GetDI("DI_NJQ_HuBaoGuanDaoWei") == 0 and GetDI("DI_NJQ_HuBaoKaiDaoWei") == 1 then
 			QuPiTou3()
 		elseif PiTouZhuangTai.num == 1 and GetDI("DI_NJQ_HuBaoGuanDaoWei") == 1 and GetDI("DI_NJQ_HuBaoKaiDaoWei") == 0 then
@@ -1090,7 +1090,7 @@ function PiTouQuFang()
 			TPWrite("pitouxinghaocuowu_" .. PiTouZhuangTai.num)
 			Stop()
 		end
-	elseif GongXu.num == 26 then
+	elseif GetAO("GongXu") == 26 then
 		if GetDI("DI_GH_YouLiao3") == 0 then
 			FangPiTou3()
 		else
@@ -1099,7 +1099,7 @@ function PiTouQuFang()
 			ERR_WaitIO("DI_GH_YouLiao3", 0, 102)
 		end
 	else
-		TPWrite("gongxucuowu_" .. GongXu.num)
+		TPWrite("gongxucuowu_" .. GetAO("GongXu"))
 		Stop()
 	end
 end
@@ -1178,13 +1178,13 @@ function QuLiao_LvXin()
 		Stop()
 	end
 	if JL_LP3_Count == 0 or JL_LP4_Count == 0 then
-		if JL_LP3_Count == 0 and GongXu.num <= 5 then
+		if JL_LP3_Count == 0 and GetAO("GongXu") <= 5 then
 			IO_check_OFF("DO_SL2_QiGangDing", "DI_SL2_Xia_DaoWei", "DI_SL2_Shang_DaoWei", 2)
 			SetDO("DO_SL2_LvDeng", 0)
 			SetDO("DO_SL2_HongDeng", 1)
 			TPWrite("TP2QueLiao_" .. "LP3" .. JL_LP3_Count .. "LP4" .. JL_LP4_Count)
 			QueLiaoERR(112)
-		elseif JL_LP4_Count == 0 and GongXu.num <= 10 then
+		elseif JL_LP4_Count == 0 and GetAO("GongXu") <= 10 then
 			IO_check_OFF("DO_SL2_QiGangDing", "DI_SL2_Xia_DaoWei", "DI_SL2_Shang_DaoWei", 2)
 			SetDO("DO_SL2_LvDeng", 0)
 			SetDO("DO_SL2_HongDeng", 1)
@@ -1231,13 +1231,13 @@ function QuLiao_DanXiangFa1()
 		Stop()
 	end
 	if JL_LP3_Count == 0 or JL_LP4_Count == 0 then
-		if JL_LP3_Count == 0 and GongXu.num <= 5 then
+		if JL_LP3_Count == 0 and GetAO("GongXu") <= 5 then
 			IO_check_OFF("DO_SL2_QiGangDing", "DI_SL2_Xia_DaoWei", "DI_SL2_Shang_DaoWei", 2)
 			SetDO("DO_SL2_LvDeng", 0)
 			SetDO("DO_SL2_HongDeng", 1)
 			TPWrite("TP2QueLiao_" .. "LP3" .. JL_LP3_Count .. "LP4" .. JL_LP4_Count)
 			QueLiaoERR(112)
-		elseif JL_LP4_Count == 0 and GongXu.num <= 10 then
+		elseif JL_LP4_Count == 0 and GetAO("GongXu") <= 10 then
 			IO_check_OFF("DO_SL2_QiGangDing", "DI_SL2_Xia_DaoWei", "DI_SL2_Shang_DaoWei", 2)
 			SetDO("DO_SL2_LvDeng", 0)
 			SetDO("DO_SL2_HongDeng", 1)
@@ -1277,13 +1277,13 @@ function QuLiao_DanXiangFa2()
 		Stop()
 	end
 	if JL_LP5_Count == 0 or JL_LP6_Count == 0 then
-		if JL_LP5_Count == 0 and GongXu.num <= 11 then
+		if JL_LP5_Count == 0 and GetAO("GongXu") <= 11 then
 			IO_check_OFF("DO_SL3_QiGangDing", "DI_SL3_Xia_DaoWei", "DI_SL3_Shang_DaoWei", 3)
 			SetDO("DO_SL3_LvDeng", 0)
 			SetDO("DO_SL3_HongDeng", 1)
 			TPWrite("TP3QueLiao" .. "LP5" .. JL_LP5_Count .. "LP6" .. JL_LP6_Count)
 			QueLiaoERR(113)
-		elseif JL_LP6_Count == 0 and GongXu.num <= 9 then
+		elseif JL_LP6_Count == 0 and GetAO("GongXu") <= 9 then
 			IO_check_OFF("DO_SL3_QiGangDing", "DI_SL3_Xia_DaoWei", "DI_SL3_Shang_DaoWei", 3)
 			SetDO("DO_SL3_LvDeng", 0)
 			SetDO("DO_SL3_HongDeng", 1)
@@ -1323,13 +1323,13 @@ function QuLiao_M18()
 		Stop()
 	end
 	if JL_LP5_Count == 0 or JL_LP6_Count == 0 then
-		if JL_LP5_Count == 0 and GongXu.num <= 11 then
+		if JL_LP5_Count == 0 and GetAO("GongXu") <= 11 then
 			IO_check_OFF("DO_SL3_QiGangDing", "DI_SL3_Xia_DaoWei", "DI_SL3_Shang_DaoWei", 3)
 			SetDO("DO_SL3_LvDeng", 0)
 			SetDO("DO_SL3_HongDeng", 1)
 			TPWrite("TP3QueLiao" .. "LP5" .. JL_LP5_Count .. "LP6" .. JL_LP6_Count)
 			QueLiaoERR(113)
-		elseif JL_LP6_Count == 0 and GongXu.num <= 9 then
+		elseif JL_LP6_Count == 0 and GetAO("GongXu") <= 9 then
 			IO_check_OFF("DO_SL3_QiGangDing", "DI_SL3_Xia_DaoWei", "DI_SL3_Shang_DaoWei", 3)
 			SetDO("DO_SL3_LvDeng", 0)
 			SetDO("DO_SL3_HongDeng", 1)
@@ -1371,28 +1371,28 @@ function QuLiao_M10()
 end
 
 function NG_Fang()
-	if GongXu.num >= 1 and GongXu.num <= 4 then --M24
+	if GetAO("GongXu") >= 1 and GetAO("GongXu") <= 4 then --M24
 		MoveAbsJ(K_NG_GuoDu1, Vmax, z200, toolsj, wobj0, load10)
 		MoveL(P_NG_FangLiao1, Vmid, fine, toolsj, wobj0, load10)
 		IO_check_OFF("DO_Rob_ZhuaLiao", "DI_NJQ_ZhuaLiaoKaiDaoWei", "DI_NJQ_ZhuaLiaoGuanDaoWei", 8)
 		WuLiaoZhuangTai.num = 0
 		MoveAbsJ(K_NG_GuoDu1, Vmax, z200, toolsj, wobj0, load10)
 		MoveAbsJ(K_home, Vmax, z200, toolsj, wobj0, load10)
-	elseif GongXu.num >= 6 and GongXu.num <= 9 then --M18
+	elseif GetAO("GongXu") >= 6 and GetAO("GongXu") <= 9 then --M18
 		MoveAbsJ(K_NG_GuoDu1, Vmax, z200, toolsj, wobj0, load10)
 		MoveL(P_NG_FangLiao1, Vmid, fine, toolsj, wobj0, load10)
 		IO_check_OFF("DO_Rob_ZhuaLiao", "DI_NJQ_ZhuaLiaoKaiDaoWei", "DI_NJQ_ZhuaLiaoGuanDaoWei", 8)
 		WuLiaoZhuangTai.num = 0
 		MoveAbsJ(K_NG_GuoDu1, Vmax, z200, toolsj, wobj0, load10)
 		MoveAbsJ(K_home, Vmax, z200, toolsj, wobj0, load10)
-	elseif GongXu.num == 5 or GongXu.num == 10 or GongXu.num == 11 then
+	elseif GetAO("GongXu") == 5 or GetAO("GongXu") == 10 or GetAO("GongXu") == 11 then
 		MoveAbsJ(K_NG_GuoDu2, Vmax, z200, toolsj, wobj0, load10)
 		MoveL(P_NG_FangLiao2, Vmid, fine, toolsj, wobj0, load10)
 		IO_check_OFF("DO_Rob_ZhuaLiao", "DI_NJQ_ZhuaLiaoKaiDaoWei", "DI_NJQ_ZhuaLiaoGuanDaoWei", 8)
 		WuLiaoZhuangTai.num = 0
 		MoveAbsJ(K_NG_GuoDu2, Vmax, z200, toolsj, wobj0, load10)
 		MoveAbsJ(K_home, Vmax, z200, toolsj, wobj0, load10)
-	elseif GongXu.num >= 12 and GongXu.num <= 25 then --M10
+	elseif GetAO("GongXu") >= 12 and GetAO("GongXu") <= 25 then --M10
 		MoveAbsJ(K_NG_GuoDu2, Vmax, z200, toolsj, wobj0, load10)
 		MoveL(P_NG_FangLiao2, Vmid, fine, toolsj, wobj0, load10)
 		IO_check_OFF("DO_Rob_ZhuaLiao", "DI_NJQ_ZhuaLiaoKaiDaoWei", "DI_NJQ_ZhuaLiaoGuanDaoWei", 8)
@@ -1406,7 +1406,7 @@ function JianCe1()
 	MoveAbsJ(K_JC1_GuoDu, Vmax, z200, toolsj, wobj0, load10)
 	SetDO("DO_PY_TuiSong", 0)
 
-	if GongXu.num == 5 then --LvXin
+	if GetAO("GongXu") == 5 then --LvXin
 		MoveL(P_JC1_1, Vmid, fine, toolsj, wobj0, load10)
 		JianCe1_FanKui1 = nil
 		while (JianCe1_FanKui1 == nil) do
@@ -1433,7 +1433,7 @@ function JianCe1()
 			TPWrite("JianCe1_FanKui1=" .. JianCe1_FanKui1 .. "JianCe1_FanKui2" .. JianCe1_FanKui2)
 			return "false"
 		end
-	elseif GongXu.num == 10 then --danxiangfa1
+	elseif GetAO("GongXu") == 10 then --danxiangfa1
 		MoveL(P_JC1_3, Vmax, fine, toolsj, wobj0, load10)
 		JianCe1_FanKui1 = nil
 		while (JianCe1_FanKui1 == nil) do
@@ -1460,7 +1460,7 @@ function JianCe1()
 			TPWrite("JianCe1_FanKui1=" .. JianCe1_FanKui1 .. "JianCe1_FanKui2" .. JianCe1_FanKui2)
 			return "false"
 		end
-	elseif GongXu.num == 11 then --danxiangfa1
+	elseif GetAO("GongXu") == 11 then --danxiangfa1
 		MoveL(P_JC1_5, Vmid, fine, toolsj, wobj0, load10)
 		JianCe1_FanKui1 = nil
 		while (JianCe1_FanKui1 == nil) do
@@ -1477,7 +1477,7 @@ function JianCe1()
 			TPWrite("JianCe1_FanKui1=" .. JianCe1_FanKui1)
 			return "false"
 		end
-	elseif GongXu.num >= 12 and GongXu.num <= 25 then --M10
+	elseif GetAO("GongXu") >= 12 and GetAO("GongXu") <= 25 then --M10
 		MoveL(P_JC1_6, Vmid, fine, toolsj, wobj0, load10)
 		SetDO("DO_ZDP_QIGang", 0)
 		JianCe1_FanKui1 = nil
@@ -1496,7 +1496,7 @@ function JianCe1()
 			return "false"
 		end
 	else
-		TPWrite("gongxucuowu=" .. GongXu.num)
+		TPWrite("gongxucuowu=" .. GetAO("GongXu"))
 		Stop()
 	end
 end
@@ -1510,12 +1510,12 @@ function JianCe2()
 	end
 
 	MoveAbsJ(K_PY_GuoDu, Vmax, z200, toolsj, wobj0, load10)
-	if GongXu.num >= 1 and GongXu.num <= 4 then   --M24
+	if GetAO("GongXu") >= 1 and GetAO("GongXu") <= 4 then   --M24
 		MoveL(P_JC2_1, Vmid, fine, toolsj, wobj0, load10)
-	elseif GongXu.num >= 6 and GongXu.num <= 9 then --M18
+	elseif GetAO("GongXu") >= 6 and GetAO("GongXu") <= 9 then --M18
 		MoveL(P_JC2_2, Vmid, fine, toolsj, wobj0, load10)
 	else
-		TPWrite("gongxucuowu=" .. GongXu.num)
+		TPWrite("gongxucuowu=" .. GetAO("GongXu"))
 		Stop()
 	end
 
@@ -1538,21 +1538,21 @@ end
 
 function PenYou()
 	SetDO("DO_PY_ChuLiao", 1)
-	if GongXu.num <= 4 then
+	if GetAO("GongXu") <= 4 then
 		MoveL(P_PY_1, Vmid, fine, toolsj, wobj0, load10)
 		Sleep(500)
 		IO_check_ON_2("DO_PY_JiaJin", "DI_PY_JiaJinDaoWei", "DI_PY_SongKaiDaoWei", 10)
 		Sleep(200)
 		IO_check_OFF("DO_Rob_ZhuaLiao", "DI_NJQ_ZhuaLiaoKaiDaoWei", "DI_NJQ_ZhuaLiaoGuanDaoWei", 8)
 		MoveL(Offs(P_PY_1, 0, 0, 50), Vmax, z10, toolsj, wobj0, load10)
-	elseif GongXu.num >= 6 and GongXu.num <= 9 then
+	elseif GetAO("GongXu") >= 6 and GetAO("GongXu") <= 9 then
 		MoveL(P_PY_2, Vmid, fine, toolsj, wobj0, load10)
 		Sleep(500)
 		IO_check_ON_2("DO_PY_JiaJin", "DI_PY_JiaJinDaoWei", "DI_PY_SongKaiDaoWei", 10)
 		Sleep(200)
 		IO_check_OFF("DO_Rob_ZhuaLiao", "DI_NJQ_ZhuaLiaoKaiDaoWei", "DI_NJQ_ZhuaLiaoGuanDaoWei", 8)
 		MoveL(Offs(P_PY_2, 0, 0, 50), Vmax, z10, toolsj, wobj0, load10)
-	elseif GongXu.num == 10 then
+	elseif GetAO("GongXu") == 10 then
 		MoveAbsJ(K_PY_GuoDu, Vmax, z200, toolsj, wobj0, load10)
 		MoveL(P_PY_3, Vmid, fine, toolsj, wobj0, load10)
 		Sleep(500)
@@ -1560,7 +1560,7 @@ function PenYou()
 		Sleep(200)
 		IO_check_OFF("DO_Rob_ZhuaLiao", "DI_NJQ_ZhuaLiaoKaiDaoWei", "DI_NJQ_ZhuaLiaoGuanDaoWei", 8)
 		MoveL(Offs(P_PY_3, 0, 0, 50), Vmax, z10, toolsj, wobj0, load10)
-	elseif GongXu.num == 11 then
+	elseif GetAO("GongXu") == 11 then
 		MoveAbsJ(K_PY_GuoDu, Vmax, z200, toolsj, wobj0, load10)
 		MoveL(P_PY_4, Vmid, fine, toolsj, wobj0, load10)
 		Sleep(500)
@@ -1583,28 +1583,28 @@ function PenYou()
 	SetDO("DO_PY_ChuLiao", 0)
 	IO_check_OFF("DO_PY_TuiSong", "DI_PY_SuoHuiDaoWei", "DI_PY_TuiSongDaoWei", 9)
 
-	if GongXu.num <= 4 then
+	if GetAO("GongXu") <= 4 then
 		MoveL(Offs(P_PY_1, 0, 0, 50), Vmax, z10, toolsj, wobj0, load10)
 		MoveL(P_PY_1, Vmid, fine, toolsj, wobj0, load10)
 		Sleep(500)
 		IO_check_ON_2("DO_Rob_ZhuaLiao", "DI_NJQ_ZhuaLiaoGuanDaoWei", "DI_NJQ_ZhuaLiaoKaiDaoWei", 8)
 		IO_check_OFF("DO_PY_JiaJin", "DI_PY_SongKaiDaoWei", "DI_PY_JiaJinDaoWei", 10)
 		MoveL(Offs(P_PY_1, 0, 0, 50), Vmax, z10, toolsj, wobj0, load10)
-	elseif GongXu.num >= 6 and GongXu.num <= 9 then
+	elseif GetAO("GongXu") >= 6 and GetAO("GongXu") <= 9 then
 		MoveL(Offs(P_PY_2, 0, 0, 50), Vmax, z10, toolsj, wobj0, load10)
 		MoveL(P_PY_2, Vmid, fine, toolsj, wobj0, load10)
 		Sleep(500)
 		IO_check_ON_2("DO_Rob_ZhuaLiao", "DI_NJQ_ZhuaLiaoGuanDaoWei", "DI_NJQ_ZhuaLiaoKaiDaoWei", 8)
 		IO_check_OFF("DO_PY_JiaJin", "DI_PY_SongKaiDaoWei", "DI_PY_JiaJinDaoWei", 10)
 		MoveL(Offs(P_PY_2, 0, 0, 50), Vmax, z10, toolsj, wobj0, load10)
-	elseif GongXu.num == 10 then
+	elseif GetAO("GongXu") == 10 then
 		MoveL(Offs(P_PY_3, 0, 0, 50), Vmax, z10, toolsj, wobj0, load10)
 		MoveL(P_PY_3, Vmid, fine, toolsj, wobj0, load10)
 		Sleep(500)
 		IO_check_ON_2("DO_Rob_ZhuaLiao", "DI_NJQ_ZhuaLiaoGuanDaoWei", "DI_NJQ_ZhuaLiaoKaiDaoWei", 8)
 		IO_check_OFF("DO_PY_JiaJin", "DI_PY_SongKaiDaoWei", "DI_PY_JiaJinDaoWei", 10)
 		MoveL(Offs(P_PY_3, 0, 0, 50), Vmax, z10, toolsj, wobj0, load10)
-	elseif GongXu.num == 11 then
+	elseif GetAO("GongXu") == 11 then
 		MoveL(Offs(P_PY_4, 0, 0, 50), Vmax, z10, toolsj, wobj0, load10)
 		MoveL(P_PY_4, Vmid, fine, toolsj, wobj0, load10)
 		Sleep(500)
@@ -1619,9 +1619,9 @@ function PenYou()
 end
 
 function NingJin(offset1)
-	MoveL(RelTool(P_ZhuangPei[GongXu.num], 0, 0, offset1, 0, 0, 0), Vmid, z0, toolsj, wobj0, load10)
+	MoveL(RelTool(P_ZhuangPei[GetAO("GongXu")], 0, 0, offset1, 0, 0, 0), Vmid, z0, toolsj, wobj0, load10)
 	SetAO("MD_NJQ_FuWei", 0)
-	MoveL(RelTool(P_ZhuangPei[GongXu.num], 0, 0, 0, 0, 0, 0), Vmid, fine, toolsj, wobj0, load10)
+	MoveL(RelTool(P_ZhuangPei[GetAO("GongXu")], 0, 0, 0, 0, 0, 0), Vmid, fine, toolsj, wobj0, load10)
 	SetDO("DO_Rob_TuiSong", 1)
 	WaitDI("DI_NJQ_TuiSongDaoWei", 1, 2000, true)
 	Sleep(100)
@@ -1643,7 +1643,7 @@ function NingJin(offset1)
 		end
 	end
 	Sleep(1000)
-	MoveL(RelTool(P_ZhuangPei[GongXu.num], 0, 0, offset1, 0, 0, 0), Vmax, z0, toolsj, wobj0, load10)
+	MoveL(RelTool(P_ZhuangPei[GetAO("GongXu")], 0, 0, offset1, 0, 0, 0), Vmax, z0, toolsj, wobj0, load10)
 	IO_check_OFF("DO_Rob_TuiSong", "DI_NJQ_SuoHuiDaoWei", "DI_NJQ_TuiSongDaoWei", 5)
 end
 
@@ -1656,46 +1656,46 @@ function ZhuangPei()
 	SetAO("MD_NJQ_MoShi", 1)
 	SetAO("MD_NJQ_ZanTing", 0)
 
-	if GongXu.num == 1 or GongXu.num == 2 then
+	if GetAO("GongXu") == 1 or GetAO("GongXu") == 2 then
 		MoveAbsJ(K_NJ_GuoDu1, Vmax, z200, toolsj, wobj0, load10)
 		NingJin(-30)
 		MoveAbsJ(K_NJ_GuoDu1, Vmax, z200, toolsj, wobj0, load10)
 		MoveAbsJ(K_home, Vmax, z200, toolsj, wobj0, load10)
-	elseif GongXu.num == 3 or GongXu.num == 4 then
+	elseif GetAO("GongXu") == 3 or GetAO("GongXu") == 4 then
 		MoveAbsJ(K_home, Vmax, z200, tool1, wobj0, load10)
 		MoveAbsJ(K_NJ_GuoDu2, Vmax, z200, toolsj, wobj0, load10)
 		NingJin(-30)
 		MoveAbsJ(K_NJ_GuoDu2, Vmax, z200, toolsj, wobj0, load10)
 		MoveAbsJ(K_home, Vmax, z200, toolsj, wobj0, load10)
-	elseif GongXu.num == 5 then
+	elseif GetAO("GongXu") == 5 then
 		MoveAbsJ(K_home, Vmid, z200, tool1, wobj0, load10)
 		MoveAbsJ(K_NJ_GuoDu3, Vmid, z200, toolsj, wobj0, load10)
 		NingJin(-60)
 		MoveAbsJ(K_NJ_GuoDu3, Vmid, z200, toolsj, wobj0, load10)
 		MoveAbsJ(K_home, Vmid, z200, toolsj, wobj0, load10)
-	elseif GongXu.num == 6 or GongXu.num == 7 then
+	elseif GetAO("GongXu") == 6 or GetAO("GongXu") == 7 then
 		MoveAbsJ(K_NJ_GuoDu4, Vmax, z200, toolsj, wobj0, load10)
 		NingJin(-30)
 		MoveL(P_NJ_GuoDu4, Vmax, z200, toolsj, wobj0, load10)
 		MoveAbsJ(K_home, Vmax, z200, toolsj, wobj0, load10)
-	elseif GongXu.num == 8 or GongXu.num == 9 then
+	elseif GetAO("GongXu") == 8 or GetAO("GongXu") == 9 then
 		MoveAbsJ(K_home, Vmax, z200, toolsj, wobj0, load10)
 		NingJin(-30)
 		MoveAbsJ(K_home, Vmax, z200, toolsj, wobj0, load10)
-	elseif GongXu.num == 10 then
+	elseif GetAO("GongXu") == 10 then
 		MoveAbsJ(K_home, Vmax, z200, toolsj, wobj0, load10)
 		NingJin(-50)
 		MoveAbsJ(K_home, Vmax, z200, toolsj, wobj0, load10)
-	elseif GongXu.num == 11 then
+	elseif GetAO("GongXu") == 11 then
 		MoveAbsJ(K_home, Vmax, z200, toolsj, wobj0, load10)
 		NingJin(-50)
 		MoveAbsJ(K_home, Vmax, z200, toolsj, wobj0, load10)
-	elseif GongXu.num >= 12 and GongXu.num <= 18 then
+	elseif GetAO("GongXu") >= 12 and GetAO("GongXu") <= 18 then
 		MoveAbsJ(K_NJ_GuoDu4, Vmax, z200, toolsj, wobj0, load10)
 		NingJin(-30)
 		MoveL(P_NJ_GuoDu4, Vmax, z200, toolsj, wobj0, load10)
 		MoveAbsJ(K_home, Vmax, z200, toolsj, wobj0, load10)
-	elseif GongXu.num >= 19 and GongXu.num <= 25 then
+	elseif GetAO("GongXu") >= 19 and GetAO("GongXu") <= 25 then
 		MoveAbsJ(K_home, Vmax, z200, toolsj, wobj0, load10)
 		NingJin(-50)
 		MoveAbsJ(K_home, Vmax, z200, toolsj, wobj0, load10)
@@ -1704,7 +1704,7 @@ function ZhuangPei()
 		Stop()
 	end
 	WuLiaoZhuangTai.num = 0
-	GongXu.num = GongXu.num + 1
+	SetAO("GongXu",GetAO("GongXu") + 1)
 end
 
 function DianYeFa_1()
@@ -1759,7 +1759,7 @@ function DianYeFa_1()
 		--料盘检测
 		LP_Vis_DingWei()
 		--取料
-		if GongXu.num <= 4 then
+		if GetAO("GongXu") <= 4 then
 			if PiTouZhuangTai.num == 1 then
 				QuLiao_M24()
 				JianCe2_JieGuo = nil
@@ -1792,7 +1792,7 @@ function DianYeFa_1()
 				TPWrite("pitouyichang")
 				Stop()
 			end
-		elseif GongXu.num == 5 then
+		elseif GetAO("GongXu") == 5 then
 			if PiTouZhuangTai.num == 1 then
 				QuLiao_LvXin()
 				JianCe1_JieGuo = nil
@@ -1824,7 +1824,7 @@ function DianYeFa_1()
 				TPWrite("pitouyichang")
 				Stop()
 			end
-		elseif GongXu.num >= 6 and GongXu.num <= 9 then
+		elseif GetAO("GongXu") >= 6 and GetAO("GongXu") <= 9 then
 			if PiTouZhuangTai.num == 1 then
 				QuLiao_M18()
 				JianCe2_JieGuo = nil
@@ -1858,7 +1858,7 @@ function DianYeFa_1()
 				TPWrite("pitouyichang")
 				Stop()
 			end
-		elseif GongXu.num == 10 then
+		elseif GetAO("GongXu") == 10 then
 			if PiTouZhuangTai.num == 2 then
 				QuLiao_DanXiangFa1()
 				JianCe1_JieGuo = nil
@@ -1892,7 +1892,7 @@ function DianYeFa_1()
 				TPWrite("pitouyichang")
 				Stop()
 			end
-		elseif GongXu.num == 11 then
+		elseif GetAO("GongXu") == 11 then
 			if PiTouZhuangTai.num == 3 then
 				QuLiao_DanXiangFa2()
 				JianCe1_JieGuo = nil
@@ -1926,7 +1926,7 @@ function DianYeFa_1()
 				TPWrite("pitouyichang")
 				Stop()
 			end
-		elseif GongXu.num >= 12 and GongXu.num <= 25 then
+		elseif GetAO("GongXu") >= 12 and GetAO("GongXu") <= 25 then
 			if PiTouZhuangTai.num == 3 then
 				QuLiao_M10()
 				JianCe1_JieGuo = nil
@@ -1957,7 +1957,7 @@ function DianYeFa_1()
 				TPWrite("pitouyichang")
 				Stop()
 			end
-		elseif GongXu.num == 26 then
+		elseif GetAO("GongXu") == 26 then
 			SetDO("DO_HT_JiaJin", 0)
 			MoveAbsJ(K_home, Vmax, fine, tool1, wobj0, load10)
 			IO_check_OFF("DO_HT_JiaJin", "DI_HT_SongKaiDaoWei", "DI_HT_JiaJinDaoWei", 15)
@@ -2052,7 +2052,7 @@ while (1) do
 	--while (GetAI("MD_ChanPinXingHao") ~= 0 or GetDI("DI_LianJi") == 0)  do
 	PiTouZhuangTai.num = 0 --批头夹取状态  0_未夹取 1_大批头 2_中 3_小
 	WuLiaoZhuangTai.num = 0 --物料夹取状态  0_未夹取 1_M24 2_滤芯 3_M18 4_大单向阀 5_小单向阀 6_M10
-	GongXu.num = 1        --工序
+	SetAO("GongXu",1)  --工序
 	SetDO("VIR_YunXuFangLiao", 1)
 	DianYeFa_1()
 	--end
