@@ -2,7 +2,7 @@ require "SocketApi"
 local socketName = "sock1"
 local retValL = false
 local receivedDataL = nil
-
+local luosi_num
 local exist_Left
 local exist_Right
 local Vision_First
@@ -307,13 +307,7 @@ function hou_yi()
         MoveAbsJ(sync3_guodu3, v_op70, fine, tool0, wobj0, load0)
         --以下两个信号暂未添加，摆台信号在后台处理，确认摆台气缸到位
 
-        local flag = WaitDI("L_baitai_jiajin", 1, 3000, true)
-        while flag do
-            TPWrite("L_baitai_jiajin Shi Bai")
-            SetAO("error_code", 8)
-            Stop()
-            flag = WaitDI("L_baitai_jiajin", 1, 3000, true)
-        end 
+        WaitDI("L_baitai_jiajin", 1)
         Sleep(100)
         MoveAbsJ(sync3_quliao, OP70_J, fine, tool0, wobj0, load0)
 
@@ -386,6 +380,30 @@ function hou_yi()
             SetAO("screw_left_reset", 1)
             Sleep(500)
             SetAO("screw_left_reset", 0)
+            SetDO("xia_jiazhua", 1)
+            Sleep(500)
+            SetDO("xia_tuigan", 0)
+            Sleep(500)
+            SetDO("xia_tuigan", 1)
+            Sleep(500)
+            SetDO("xia_jiazhua", 0)
+            SetAO("screw_left_run", 1)
+            while true do
+                if GetAI("screw_status_front") == 1 and GetAI("screw_status_side") == 1 then
+                    SetAO("screw_right_run", 0)
+                    Sleep(100)
+                    SetAO("screw_left_run", 0)
+                    break
+                elseif GetAI("screw_status_front") == 3 or GetAI("screw_status_side") == 3 then
+                    SetAO("screw_left_run", 0)
+                    Sleep(500)
+                    SetAO("screw_left_reset", 1)
+                    Sleep(500)
+                    SetAO("screw_left_reset", 0)
+                    break
+                end
+            end
+
             break
         end
         Sleep(500)
@@ -401,36 +419,21 @@ function hou_yi()
     --MoveAbsJ(sync_work,v_op70,fine,tool0,wobj0,load0)
     --到达guodu1，执行下次流程
     MoveAbsJ(sync3_guodu1, v_op70, z10, tool0, wobj0, load0)
-    SetAO("luosi_num", GetAO("luosi_num") + 1)
+    luosi_num = luosi_num + 1
 end
 
 --机器人当前位置在home点
 function Main()
     --luosi_num=39
-    while GetAO("luosi_num") < 38 do
+    while luosi_num < 38 do
         while true do
             MoveAbsJ(sync_guodu2, v_op70, z10, tool0, wobj0, load0)
             MoveAbsJ(sync_guodu3, v_op70, fine, tool0, wobj0, load0)
             --以下两个信号暂未添加，摆台信号在后台处理，确认摆台气缸到位
 
-            local flag = WaitDI("L_baitai_jiajin", 1, 5000, true)
-            while flag do
-                TPWrite("L_baitai_jiajin Shi Bai")
-                SetAO("error_code", 8)
-                Stop()
-                flag = WaitDI("L_baitai_jiajin", 1, 5000, true)
-            end    
-            
+            WaitDI("L_baitai_jiajin", 1)
             Sleep(100)
-
-            local flag = WaitDI("R_baitai_jiajin", 1, 5000, true)
-            while flag do
-                TPWrite("R_baitai_jiajin Shi Bai")
-                SetAO("error_code", 8)
-                Stop()
-                flag = WaitDI("R_baitai_jiajin", 1, 5000, true)
-            end   
-            
+            WaitDI("R_baitai_jiajin", 1)
             Sleep(100)
             MoveAbsJ(sync_quliao, OP70_J, fine, tool0, wobj0, load0)
 
@@ -502,65 +505,9 @@ function Main()
             TPWrite(rax_5)
             Vision_First = 1
         end
-
-        if cycle_index <= 4 then
-            if cycle_index % 2 == 1 then
-                offset_rear_D = offset_rear1
-            else
-                offset_rear_D = offset_rear2
-            end
-        else
-            if cycle_index % 2 == 1 then
-                offset_rear_D = offset_rear1
-            else
-                offset_rear_D = offset_rear3
-            end
-        end
-
-        if cycle_index >= 14 then
-            if cycle_index % 2 == 1 then
-                offset_rear_U = offset_rearA
-            else
-                offset_rear_U = offset_rearB
-            end
-        else
-            if cycle_index % 2 == 1 then
-                offset_rear_U = offset_rearA
-            else
-                offset_rear_U = offset_rearC
-            end
-        end
-        TPWrite(offset_rear_U)
-        TPWrite(offset_rear_D)
-
-        rax_2 = offset_vision_2 +  math.floor(GetAO("luosi_num")/4) * (offset_rearA+offset_rearC) 
-        rax_5 = offset_vision_2 -  math.floor(GetAO("luosi_num")/4) * (offset_rearA+offset_rearC) 
-        if GetAO("luosi_num")%4> 0 then
-            rax_2 = rax_2 + offset_rearA
-            rax_5 = rax_5 - offset_rearA
-        end
-        if (GetAO("luosi_num")==4) or (GetAO("luosi_num")==6) then
-            rax_5 = rax_5 - (offset_rearB - offset_rearC)
-        end
-        if (GetAO("luosi_num")>=8)  then
-            rax_5 = rax_5 - (offset_rearB - offset_rearC)*2
-        end
-
-        if (GetAO("luosi_num")==28) or (GetAO("luosi_num")==30) then
-            rax_2 = rax_2 + (offset_rearB - offset_rearC)
-        end
-        if (GetAO("luosi_num")>=32) and (GetAO("luosi_num")<36)  then
-            rax_2 = rax_2 + (offset_rearB - offset_rearC)*2
-        end
-
-        --rax_6 = 0 - GetAO("luosi_num")/2 * offset_rear_E
-
-        
-
-
         --MoveAbsJ(sync_jiaozheng,v_op70,fine,tool0,wobj0,load0)
         --MoveAbsJ(sync_shangjin,v_op70,fine,tool0,wobj0,load0)
-        if GetAO("luosi_num") == 36 then
+        if luosi_num == 36 then
             --MoveAbsJ(sync2_jiaozheng,v_op70,fine,tool0,wobj0,load0)
             --MoveAbsJ(sync2_shangjin,v_op70,fine,tool0,wobj0,load0)
             MoveAbsJ(JointOffs(sync2_jiaozheng, rax2_1, rax2_2, -50, -50, rax2_5, rax2_6, 0), v_op70, fine, tool0, wobj0,
@@ -568,7 +515,6 @@ function Main()
             MoveAbsJ(JointOffs(sync2_shangjin, rax2_1, rax2_2, 0, 0, rax2_5, rax2_6, 0), OP70_J, fine, tool0, wobj0,
                 load0)
         else
- 
             MoveAbsJ(JointOffs(sync_jiaozheng, rax_1, rax_2, -50, -50, rax_5, rax_6, 0), v_op70, fine, tool0, wobj0,
                 load0)
             --打螺丝，螺丝上紧
@@ -605,6 +551,31 @@ function Main()
                     SetAO("screw_left_reset", 1)
                     Sleep(500)
                     SetAO("screw_left_reset", 0)
+                    SetDO("xia_jiazhua", 1)
+                    Sleep(500)
+                    SetDO("xia_tuigan", 0)
+                    Sleep(500)
+                    SetDO("xia_tuigan", 1)
+                    Sleep(500)
+                    SetDO("xia_jiazhua", 0)
+                    SetAO("screw_left_run", 1)
+                    while true do
+                        if GetAI("screw_status_front") == 1 and GetAI("screw_status_side") == 1 then
+                            SetAO("screw_right_run", 0)
+                            Sleep(100)
+                            SetAO("screw_left_run", 0)
+                            break
+                        elseif GetAI("screw_status_front") == 3 or GetAI("screw_status_side") == 3 then
+                            SetAO("screw_right_run", 0)
+                            Sleep(500)
+                            SetAO("screw_left_run", 0)
+                            Sleep(500)
+                            SetAO("screw_left_reset", 1)
+                            Sleep(500)
+                            SetAO("screw_left_reset", 0)
+                            break
+                        end
+                    end
                 end
 
                 if GetAI("screw_status_side") == 3 then
@@ -625,7 +596,7 @@ function Main()
         IO_check_OFF("shang_jiazhua", "shang_tuigan_shousuo", 1)
 
         --完成一套动作，原路返回
-        if GetAO("luosi_num") == 36 then
+        if luosi_num == 36 then
             MoveAbsJ(JointOffs(sync2_jiaozheng, rax2_1, rax2_2, -50, -50, rax2_5, rax2_6, 0), v_op70, z10, tool0, wobj0,
                 load0)
         else
@@ -633,31 +604,55 @@ function Main()
         end
         --偏置值		
 
+        if cycle_index <= 4 then
+            if cycle_index % 2 == 1 then
+                offset_rear_D = offset_rear1
+            else
+                offset_rear_D = offset_rear2
+            end
+        else
+            if cycle_index % 2 == 1 then
+                offset_rear_D = offset_rear1
+            else
+                offset_rear_D = offset_rear3
+            end
+        end
 
-        SetAO("luosi_num",GetAO("luosi_num") + 2)
-        cycle_index = 1 + GetAO("luosi_num")/2
+        if cycle_index >= 14 then
+            if cycle_index % 2 == 1 then
+                offset_rear_U = offset_rearA
+            else
+                offset_rear_U = offset_rearB
+            end
+        else
+            if cycle_index % 2 == 1 then
+                offset_rear_U = offset_rearA
+            else
+                offset_rear_U = offset_rearC
+            end
+        end
+        TPWrite(offset_rear_U)
+        TPWrite(offset_rear_D)
+        rax_2 = rax_2 + offset_rear_U
+        rax_5 = rax_5 - offset_rear_D
+        rax_6 = rax_6 - offset_rear_E
+        cycle_index = cycle_index + 1
+        luosi_num = luosi_num + 2
         --MoveAbsJ(sync_work,v_op70,fine,tool0,wobj0,load0)
         --到达guodu1，执行下次流程
         --MoveAbsJ(sync_guodu1,v200,fine,tool0,wobj0,load0)
     end
-    if GetAO("luosi_num") == 38 then
+    if luosi_num == 38 then
         hou_yi()
     end
     --侧方四颗拧紧
-    if GetAO("luosi_num") >= 39 then
+    if luosi_num >= 39 then
         for i = 1, 3, 1 do
             while true do
                 MoveAbsJ(cebian_guodu1, XuanZhuan, z10, tool0, wobj0, load0)
                 MoveAbsJ(cebian_guodu2, v_op70, fine, tool0, wobj0, load0)
                 MoveAbsJ(cebian_quliao, OP70_J, fine, tool0, wobj0, load0)
-                local flag = WaitDI("L_baitai_jiajin", 1, 3000, true)
-                while flag do
-                    TPWrite("L_baitai_jiajin Shi Bai")
-                    SetAO("error_code", 8)
-                    Stop()
-                    flag = WaitDI("L_baitai_jiajin", 1, 3000, true)
-                end
-
+                WaitDI("L_baitai_jiajin", 1)
                 Sleep(100)
                 SetDO("xia_jiazhua", 1)
                 IO_check_ON("xia_jiazhua", "xia_jiazhua_jiajin", 1)
@@ -695,7 +690,7 @@ function Main()
                 ce3_rax_4 = ce3_rax_4 - offset_vision_2
                 Vision_First_ce1 = 1
             end
-            if GetAO("luosi_num") == 41 then
+            if luosi_num == 41 then
                 --MoveAbsJ(cebian3_jiejin,v50,fine,tool0,wobj0,load0)
                 --MoveAbsJ(cebian3_ningjin,v20,fine,tool0,wobj0,load0)
                 MoveAbsJ(JointOffs(cebian3_jiejin, 0, 0, 0, ce3_rax_4, ce3_rax_5, ce3_rax_6, 0), v_op70, fine, tool0,
@@ -724,6 +719,30 @@ function Main()
                     SetAO("screw_left_reset", 1)
                     Sleep(500)
                     SetAO("screw_left_reset", 0)
+
+                    SetDO("xia_jiazhua", 1)
+                    Sleep(500)
+                    SetDO("xia_tuigan", 0)
+                    Sleep(500)
+                    SetDO("xia_tuigan", 1)
+                    Sleep(500)
+                    SetDO("xia_jiazhua", 0)
+                    SetAO("screw_left_run", 1)
+                    while true do
+                        if GetAI("screw_status_front") == 1 and GetAI("screw_status_side") == 1 then
+                            SetAO("screw_right_run", 0)
+                            Sleep(100)
+                            SetAO("screw_left_run", 0)
+                            break
+                        elseif GetAI("screw_status_front") == 3 or GetAI("screw_status_side") == 3 then
+                            SetAO("screw_left_run", 0)
+                            Sleep(500)
+                            SetAO("screw_left_reset", 1)
+                            Sleep(500)
+                            SetAO("screw_left_reset", 0)
+                            break
+                        end
+                    end
                     break
                 end
                 Sleep(500)
@@ -731,7 +750,7 @@ function Main()
             --IO_check_ON("xia_tuigan","xia_tuigan_shenzhan",1)
             SetDO("xia_tuigan", 0)
             IO_check_OFF("xia_tuigan", "xia_tuigan_shousuo", 1)
-            if GetAO("luosi_num") == 41 then
+            if luosi_num == 41 then
                 MoveAbsJ(JointOffs(cebian3_jiejin, 0, 0, 0, ce3_rax_4, ce3_rax_5, ce3_rax_6, 0), v_op70, z10, tool0,
                     wobj0, load0)
             else
@@ -740,8 +759,8 @@ function Main()
             end
             MoveAbsJ(cebian_guodu1, v_op70, fine, tool0, wobj0, load0)
 
-            ce1_rax_6 = 0 + (GetAO("luosi_num")-38) * 17.5
-            SetAO("luosi_num",GetAO("luosi_num")+1)
+            ce1_rax_6 = ce1_rax_6 + 17.5
+            luosi_num = luosi_num + 1
         end
 
         --Moveabsj 外轴转动
@@ -750,14 +769,7 @@ function Main()
                 MoveAbsJ(cebian2_guodu1, XuanZhuan, z10, tool0, wobj0, load0)
                 MoveAbsJ(cebian2_guodu2, v_op70, fine, tool0, wobj0, load0)
                 MoveAbsJ(cebian2_quliao, OP70_J, fine, tool0, wobj0, load0)
-                
-                local flag = WaitDI("L_baitai_jiajin", 1, 3000, true)
-                while flag do
-                    TPWrite("L_baitai_jiajin Shi Bai")
-                    SetAO("error_code", 8)
-                    Stop()
-                    flag = WaitDI("L_baitai_jiajin", 1, 3000, true)
-                end                
+                WaitDI("L_baitai_jiajin", 1)
                 Sleep(100)
                 SetDO("xia_jiazhua", 1)
                 IO_check_ON("xia_jiazhua", "xia_jiazhua_jiajin", 1)
@@ -817,6 +829,28 @@ function Main()
                     SetAO("screw_left_reset", 1)
                     Sleep(500)
                     SetAO("screw_left_reset", 0)
+                    SetDO("xia_jiazhua", 1)
+                    Sleep(500)
+                    SetDO("xia_tuigan", 0)
+                    Sleep(500)
+                    SetDO("xia_tuigan", 1)
+                    Sleep(500)
+                    SetDO("xia_jiazhua", 0)
+                    SetAO("screw_left_run", 1)
+                    while true do
+                        if GetAI("screw_status_front") == 1 and GetAI("screw_status_side") == 1 then
+                            SetAO("screw_right_run", 0)
+                            Sleep(100)
+                            SetAO("screw_left_run", 0)
+                            break
+                        elseif GetAI("screw_status_front") == 3 or GetAI("screw_status_side") == 3 then
+                            SetAO("screw_left_run", 0)
+                            SetAO("screw_left_reset", 1)
+                            Sleep(500)
+                            SetAO("screw_left_reset", 0)
+                            break
+                        end
+                    end
                     break
                 end
                 Sleep(500)
@@ -827,12 +861,13 @@ function Main()
             MoveAbsJ(JointOffs(K150, 0, 0, 0, ce2_rax_4, ce2_rax_5, ce2_rax_6, 0), v_op70, z10, tool0, wobj0, load0)
             MoveAbsJ(cebian2_guodu1, v_op70, z10, tool0, wobj0, load0)
 
-            ce2_rax_6 = 0 + 17.5
-            SetAO("luosi_num",GetAO("luosi_num")+1)
+            ce2_rax_6 = ce2_rax_6 + 17.5
+            luosi_num = luosi_num + 1
         end
     end
 
-    if GetAO("luosi_num") == 44 then
+    if luosi_num == 44 then
+        luosi_num = 0
         --回到安全位置
         --输出已完成信号
         TPWrite("DAWAN")
@@ -891,11 +926,12 @@ function Main()
         ce2_rax_4 = 0
         ce3_rax_4 = 0
         cycle_index = 1
-        SetAO("luosi_num", 0)
+        luosi_num = 0
     end
 end
 
 --Wait_All_Ready()
+luosi_num = 0
 Init()
 Gohome()
 SetDO("alarm_green", 1)
@@ -909,124 +945,66 @@ while (1) do
     end
     Sleep(100)
 end
-
 local function GLOBALDATA_DEFINE()
-    LOADDATA("load2", 2.00, { 0.00, 0.00, 100.00 }, { 1.000000, 0.000000, 0.000000, 0.000000 }, 0.00, 0.00, 0.00, 0.00,
-        0.00, 0.01)
-    SPEEDDATA("SpdUser", 200.000, 50.000, 200.000, 50.000)
-    JOINTTARGET("Home1", { 89.999, -85.001, -0.001, -8.001, -2.001, -79.999, 0.000 },
-        { 50.062, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K10", { 50.000, 50.000, 50.000, 50.000, 460.000, 0.000, 0.000 },
-        { 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K100", { 159.886, 12.738, 60.000, 162.136, 909.901, 47.000, 0.000 },
-        { -0.181, 159.147, 47.375, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K110", { 159.886, 12.738, 60.000, 162.136, 909.901, 47.000, 0.000 },
-        { -0.181, 159.147, 47.375, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K120", { 143.291, 312.516, 158.997, 231.521, 550.905, 30.897, 0.000 },
-        { 0.191, 142.547, 31.269, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K130", { 143.551, 312.396, 113.651, 265.339, 551.169, 32.760, 0.000 },
-        { 0.191, 142.675, 31.205, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K140", { 141.883, 51.663, 16.519, 42.663, 698.009, 48.559, 0.000 },
-        { -90.115, 141.118, 45.460, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K150", { 141.883, 51.663, 16.519, 89.090, 502.947, 47.508, 0.000 },
-        { -90.115, 141.442, 49.157, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K160", { 141.883, 51.663, 16.519, 147.160, 502.947, 47.508, 0.000 },
-        { -90.115, 141.442, 49.157, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K20", { 100.000, 100.000, 100.000, 100.000, 480.000, 0.000, 0.000 },
-        { 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K200", { 141.883, 51.663, 16.519, 144.260, 908.720, 259.274, 0.000 },
-        { 90.194, 141.118, 256.175, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K220", { 141.883, 51.663, 16.519, 2.771, 831.388, 110.111, 0.000 },
-        { 90.194, 141.118, 107.012, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K30", { 10.000, 10.000, 10.000, 10.000, 470.000, 0.000, 0.000 },
-        { 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K40", { 157.684, 14.021, 361.738, 203.703, 909.618, 257.405, 0.000 },
-        { -0.180, 157.641, 257.376, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K50", { 155.031, 392.981, 16.503, 149.305, 593.726, 60.769, 0.000 },
-        { 0.200, 154.682, 62.130, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K60", { 47.679, 41.609, 57.525, 149.361, 831.388, 53.716, 0.000 },
-        { -0.183, 47.679, 53.716, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K70", { 155.112, 392.987, 16.516, 272.720, 549.004, 30.157, 0.000 },
-        { 0.196, 154.377, 30.563, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K80", { 143.551, 312.396, 113.651, 273.961, 548.184, 33.133, 0.000 },
-        { 0.191, 142.784, 30.027, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K90", { 142.444, 314.341, 156.628, 273.634, 550.004, 31.157, 0.000 },
-        { 0.196, 141.707, 31.539, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("K_home", { 17.607, -0.050, 16.519, 2.771, 891.116, 110.111, 0.000 },
-        { 0.000, 17.607, 110.111, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("P_GoHome", { 17.607, -0.050, 16.519, 2.771, 891.116, 110.111, 0.000 },
-        { 0.000, 16.844, 110.111, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("P_GoHome1", { 17.607, -0.050, 16.519, 2.771, 891.116, 110.111, 0.000 },
-        { 0.000, 16.844, 110.111, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("VisionPos", { 0.000, 1.000, 0.000, 0.000, 1.000, 0.000, 0.000 },
-        { 100.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("cebian1_jiejin", { 141.909, 51.661, 16.522, 67.301, 301.013, 47.416, 0.000 },
-        { 90.186, 141.468, 49.064, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("cebian1_ningjin", { 141.909, 51.661, 16.522, 131.352, 301.013, 47.416, 0.000 },
-        { 90.186, 141.468, 49.064, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("cebian2_guodu1", { 141.883, 51.663, 16.519, 2.771, 831.388, 110.111, 0.000 },
-        { -90.115, 141.883, 110.111, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("cebian2_guodu2", { 141.883, 51.663, 16.519, 145.000, 908.620, 262.110, 0.000 },
-        { -90.115, 141.709, 262.109, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("cebian2_jiance", { 141.883, 51.663, 16.519, 149.361, 831.388, 254.817, 0.000 },
-        { -90.115, 141.883, 254.175, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("cebian2_quliao", { 141.883, 51.663, 16.519, 202.28, 908.620, 264.580, 0.000 },
-        { -90.115, 141.883, 262.110, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("cebian3_jiejin", { 141.893, 51.649, 16.522, 61.107, 337.404, 31.274, 0.000 },
-        { 90.191, 141.452, 32.923, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("cebian3_ningjin", { 141.893, 51.649, 16.522, 132.027, 337.404, 31.274, 0.000 },
-        { 90.191, 141.452, 32.923, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("cebian_guodu1", { 141.883, 51.663, 16.519, 2.771, 831.388, 110.111, 0.000 },
-        { 90.194, 141.883, 110.111, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("cebian_guodu2", { 141.883, 51.663, 16.519, 145.000, 908.620, 262.110, 0.000 },
-        { 90.194, 141.709, 262.109, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("cebian_jiance", { 141.883, 51.663, 16.519, 149.361, 831.388, 254.817, 0.000 },
-        { 90.194, 141.883, 254.817, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("cebian_quliao", { 141.883, 51.663, 16.519, 202.28, 908.620, 264.580, 0.000 },
-        { 90.194, 141.883, 262.110, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("hou2_work", { 141.882, 51.663, 16.519, 6.865, 507.695, 87.000, 0.000 },
-        { -90.115, 141.037, 83.879, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("hou_work", { 141.883, 51.663, 16.519, 6.865, 382.098, 87.000, 0.000 },
-        { 90.194, 141.118, 83.901, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync2_jiaozheng", { 178.173, 711.288, 131.048, 231.918, 608.936, 36.814, 0.000 },
-        { 0.196, 177.732, 38.463, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync2_shangjin", { 178.173, 711.288, 161.399, 273.749, 608.936, 36.814, 0.000 },
-        { 0.196, 177.732, 38.463, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync3_guodu1", { 141.883, 51.663, 16.519, 130.468, 635.335, 60.652, 0.000 },
-        { -0.183, 141.883, 60.652, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync3_guodu2", { 141.883, 51.663, 16.519, 162.136, 909.901, 47.000, 0.000 },
-        { -0.183, 141.883, 47.000, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync3_guodu3", { 141.883, 51.663, 16.519, 145.000, 908.620, 262.110, 0.000 },
-        { -0.183, 141.709, 262.109, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync3_guodu4", { 141.883, 51.663, 16.519, 149.361, 831.388, 53.716, 0.000 },
-        { -0.183, 141.883, 53.716, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync3_jiaozheng", { 141.883, 51.663, 16.519, 224.727, 609.442, 88.271, 0.000 },
-        { -0.173, 141.442, 89.919, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync3_quliao", { 141.883, 51.663, 16.519, 202.28, 908.620, 264.580, 0.000 },
-        { -0.183, 141.431, 265.213, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync3_shangjin", { 141.883, 51.663, 16.519, 274.973, 609.442, 88.271, 0.000 },
-        { -0.173, 141.442, 89.919, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync3_work", { 47.679, 41.609, 337.665, 149.361, 831.388, 254.817, 0.000 },
-        { -0.183, 47.631, 257.373, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync_guodu1", { 82.583, 418.509, 33.293, 130.468, 635.335, 60.652, 0.000 },
-        { 0.202, 82.539, 60.622, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync_guodu2", { 159.886, -3.560, 60.000, 162.136, 909.901, 47.000, 0.000 },
-        { -0.181, 159.886, 47.000, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync_guodu3", { 158.473, -5.239, 338.335, 145.000, 908.620, 262.110, 0.000 },
-        { -0.181, 159.711, 262.109, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync_jiaozheng", { 142.478, 294.986, 121.600, 225.396, 550.000, 31.360, 0.000 },
-        { 0.187, 141.537, 32.408, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync_quliao", { 158.474, -5.239, 365.159, 202.28, 908.620, 264.580, 0.000 },
-        { -0.181, 158.028, 263.286, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync_shangjin", { 142.478, 294.986, 160.691, 273.766, 550.000, 31.360, 0.000 },
-        { 0.187, 141.537, 32.408, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("sync_work", { 141.881, 398.870, 16.516, 147.561, 642.938, 32.851, 0.000 },
-        { 0.196, 141.881, 32.851, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("work3_jiance", { 141.883, 51.663, 16.519, 149.361, 831.388, 254.817, 0.000 },
-        { -0.183, 141.883, 254.817, 0.000, 0.000, 0.000, 0.000 })
-    JOINTTARGET("work_jiance", { 47.680, 20.505, 338.649, 149.361, 831.388, 254.817, 0.000 },
-        { -0.183, 47.235, 256.465, 0.000, 0.000, 0.000, 0.000 })
-    STRINGDATA("received", "")
-    STRINGDATA("send", "")
+LOADDATA("load2",2.00,{0.00,0.00,100.00},{1.000000,0.000000,0.000000,0.000000},0.00,0.00,0.00,0.00,0.00,0.01)
+SPEEDDATA("SpdUser",200.000,50.000,200.000,50.000)
+JOINTTARGET("Home1",{89.999,-85.001,-0.001,-8.001,-2.001,-79.999,0.000},{50.062,0.000,0.000,0.000,0.000,0.000,0.000})
+JOINTTARGET("K10",{50.000,50.000,50.000,50.000,460.000,0.000,0.000},{0.000,0.000,0.000,0.000,0.000,0.000,0.000})
+JOINTTARGET("K100",{159.886,12.738,60.000,162.136,909.901,47.000,0.000},{-0.181,159.147,47.375,0.000,0.000,0.000,0.000})
+JOINTTARGET("K110",{159.886,12.738,60.000,162.136,909.901,47.000,0.000},{-0.181,159.147,47.375,0.000,0.000,0.000,0.000})
+JOINTTARGET("K120",{143.291,312.516,158.997,231.521,550.905,30.897,0.000},{0.191,142.547,31.269,0.000,0.000,0.000,0.000})
+JOINTTARGET("K130",{143.551,312.396,113.651,265.339,551.169,32.760,0.000},{0.191,142.675,31.205,0.000,0.000,0.000,0.000})
+JOINTTARGET("K140",{141.883,51.663,16.519,42.663,698.009,48.559,0.000},{-90.115,141.118,45.460,0.000,0.000,0.000,0.000})
+JOINTTARGET("K150",{141.883,51.663,16.519,89.090,502.947,47.508,0.000},{-90.115,141.442,49.157,0.000,0.000,0.000,0.000})
+JOINTTARGET("K160",{141.883,51.663,16.519,147.160,502.947,47.508,0.000},{-90.115,141.442,49.157,0.000,0.000,0.000,0.000})
+JOINTTARGET("K20",{100.000,100.000,100.000,100.000,480.000,0.000,0.000},{0.000,0.000,0.000,0.000,0.000,0.000,0.000})
+JOINTTARGET("K200",{141.883,51.663,16.519,144.260,908.720,259.274,0.000},{90.194,141.118,256.175,0.000,0.000,0.000,0.000})
+JOINTTARGET("K220",{141.883,51.663,16.519,2.771,831.388,110.111,0.000},{90.194,141.118,107.012,0.000,0.000,0.000,0.000})
+JOINTTARGET("K30",{10.000,10.000,10.000,10.000,470.000,0.000,0.000},{0.000,0.000,0.000,0.000,0.000,0.000,0.000})
+JOINTTARGET("K40",{157.684,14.021,361.738,203.703,909.618,257.405,0.000},{-0.180,157.641,257.376,0.000,0.000,0.000,0.000})
+JOINTTARGET("K50",{155.031,392.981,16.503,149.305,593.726,60.769,0.000},{0.200,154.682,62.130,0.000,0.000,0.000,0.000})
+JOINTTARGET("K60",{47.679,41.609,57.525,149.361,831.388,53.716,0.000},{-0.183,47.679,53.716,0.000,0.000,0.000,0.000})
+JOINTTARGET("K70",{155.112,392.987,16.516,272.720,549.004,30.157,0.000},{0.196,154.377,30.563,0.000,0.000,0.000,0.000})
+JOINTTARGET("K80",{143.551,312.396,113.651,273.961,548.184,33.133,0.000},{0.191,142.784,30.027,0.000,0.000,0.000,0.000})
+JOINTTARGET("K90",{142.444,314.341,156.628,273.634,550.004,31.157,0.000},{0.196,141.707,31.539,0.000,0.000,0.000,0.000})
+JOINTTARGET("K_home",{17.607,-0.050,16.519,2.771,891.116,110.111,0.000},{0.000,17.607,110.111,0.000,0.000,0.000,0.000})
+JOINTTARGET("P_GoHome",{17.607,-0.050,16.519,2.771,891.116,110.111,0.000},{0.000,16.844,110.111,0.000,0.000,0.000,0.000})
+JOINTTARGET("P_GoHome1",{17.607,-0.050,16.519,2.771,891.116,110.111,0.000},{0.000,16.844,110.111,0.000,0.000,0.000,0.000})
+JOINTTARGET("VisionPos",{0.000,1.000,0.000,0.000,1.000,0.000,0.000},{100.000,0.000,0.000,0.000,0.000,0.000,0.000})
+JOINTTARGET("cebian1_jiejin",{141.909,51.661,16.522,67.301,301.013,47.416,0.000},{90.186,141.468,49.064,0.000,0.000,0.000,0.000})
+JOINTTARGET("cebian1_ningjin",{141.909,51.661,16.522,131.352,301.013,47.416,0.000},{90.186,141.468,49.064,0.000,0.000,0.000,0.000})
+JOINTTARGET("cebian2_guodu1",{141.883,51.663,16.519,2.771,831.388,110.111,0.000},{-90.115,141.883,110.111,0.000,0.000,0.000,0.000})
+JOINTTARGET("cebian2_guodu2",{141.883,51.663,16.519,145.000,908.620,262.110,0.000},{-90.115,141.709,262.109,0.000,0.000,0.000,0.000})
+JOINTTARGET("cebian2_jiance",{141.883,51.663,16.519,149.361,831.388,254.817,0.000},{-90.115,141.883,254.175,0.000,0.000,0.000,0.000})
+JOINTTARGET("cebian2_quliao",{141.883,51.663,16.519,202.28,908.620,264.580,0.000},{-90.115,141.883,262.110,0.000,0.000,0.000,0.000})
+JOINTTARGET("cebian3_jiejin",{141.893,51.649,16.522,61.107,337.404,31.274,0.000},{90.191,141.452,32.923,0.000,0.000,0.000,0.000})
+JOINTTARGET("cebian3_ningjin",{141.893,51.649,16.522,132.027,337.404,31.274,0.000},{90.191,141.452,32.923,0.000,0.000,0.000,0.000})
+JOINTTARGET("cebian_guodu1",{141.883,51.663,16.519,2.771,831.388,110.111,0.000},{90.194,141.883,110.111,0.000,0.000,0.000,0.000})
+JOINTTARGET("cebian_guodu2",{141.883,51.663,16.519,145.000,908.620,262.110,0.000},{90.194,141.709,262.109,0.000,0.000,0.000,0.000})
+JOINTTARGET("cebian_jiance",{141.883,51.663,16.519,149.361,831.388,254.817,0.000},{90.194,141.883,254.817,0.000,0.000,0.000,0.000})
+JOINTTARGET("cebian_quliao",{141.883,51.663,16.519,202.28,908.620,264.580,0.000},{90.194,141.883,262.110,0.000,0.000,0.000,0.000})
+JOINTTARGET("hou2_work",{141.882,51.663,16.519,6.865,507.695,87.000,0.000},{-90.115,141.037,83.879,0.000,0.000,0.000,0.000})
+JOINTTARGET("hou_work",{141.883,51.663,16.519,6.865,382.098,87.000,0.000},{90.194,141.118,83.901,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync2_jiaozheng",{178.173,711.288,131.048,231.918,608.936,36.814,0.000},{0.196,177.732,38.463,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync2_shangjin",{178.173,711.288,161.399,273.749,608.936,36.814,0.000},{0.196,177.732,38.463,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync3_guodu1",{141.883,51.663,16.519,130.468,635.335,60.652,0.000},{-0.183,141.883,60.652,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync3_guodu2",{141.883,51.663,16.519,162.136,909.901,47.000,0.000},{-0.183,141.883,47.000,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync3_guodu3",{141.883,51.663,16.519,145.000,908.620,262.110,0.000},{-0.183,141.709,262.109,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync3_guodu4",{141.883,51.663,16.519,149.361,831.388,53.716,0.000},{-0.183,141.883,53.716,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync3_jiaozheng",{141.883,51.663,16.519,224.727,609.442,88.271,0.000},{-0.173,141.442,89.919,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync3_quliao",{141.883,51.663,16.519,202.28,908.620,264.580,0.000},{-0.183,141.431,265.213,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync3_shangjin",{141.883,51.663,16.519,274.973,609.442,88.271,0.000},{-0.173,141.442,89.919,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync3_work",{47.679,41.609,337.665,149.361,831.388,254.817,0.000},{-0.183,47.631,257.373,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync_guodu1",{82.583,418.509,33.293,130.468,635.335,60.652,0.000},{0.202,82.539,60.622,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync_guodu2",{159.886,-3.560,60.000,162.136,909.901,47.000,0.000},{-0.181,159.886,47.000,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync_guodu3",{158.473,-5.239,338.335,145.000,908.620,262.110,0.000},{-0.181,159.711,262.109,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync_jiaozheng",{142.478,294.986,121.600,225.396,550.000,31.360,0.000},{0.187,141.537,32.408,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync_quliao",{158.474,-5.239,365.159,202.28,908.620,264.580,0.000},{-0.181,158.028,263.286,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync_shangjin",{142.478,294.986,160.691,273.766,550.000,31.360,0.000},{0.187,141.537,32.408,0.000,0.000,0.000,0.000})
+JOINTTARGET("sync_work",{141.881,398.870,16.516,147.561,642.938,32.851,0.000},{0.196,141.881,32.851,0.000,0.000,0.000,0.000})
+JOINTTARGET("work3_jiance",{141.883,51.663,16.519,149.361,831.388,254.817,0.000},{-0.183,141.883,254.817,0.000,0.000,0.000,0.000})
+JOINTTARGET("work_jiance",{47.680,20.505,338.649,149.361,831.388,254.817,0.000},{-0.183,47.235,256.465,0.000,0.000,0.000,0.000})
+STRINGDATA("received","")
+STRINGDATA("send","")
 end
 print("The end!")
